@@ -1,0 +1,228 @@
+.desktop {
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 100%;
+    min-width: 1440px;
+    height: 1024px;
+    position: relative;
+}
+
+.desktop .hi-i-m-sachina-a-UI {
+    position: absolute;
+    top: 383px;
+    left: 67px;
+    width: 606px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 67px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 77px;
+}
+
+.desktop .text-wrapper {
+    color: #018db0;
+}
+
+.desktop .span {
+    color: #d1884f;
+}
+
+.desktop .rectangle {
+    position: absolute;
+    top: 320px;
+    left: 831px;
+    width: 439px;
+    height: 465px;
+    background-color: #2ab5d95c;
+    border-radius: 0px 0px 0px 224px;
+    transform: rotate(-1.57deg);
+}
+
+.desktop .img {
+    position: absolute;
+    top: 292px;
+    left: 852px;
+    width: 464px;
+    height: 489px;
+    object-fit: cover;
+}
+
+.desktop .i-am-a-focused-and {
+    position: absolute;
+    top: 600px;
+    left: 127px;
+    width: 632px;
+    font-family: "Inter-Medium", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.desktop .text-wrapper-2 {
+    font-weight: 500;
+    color: #000000;
+}
+
+.desktop .text-wrapper-3 {
+    font-family: "Inter-Regular", Helvetica;
+    color: #008aaa;
+}
+
+.desktop .frame {
+    left: 123px;
+    background-color: #008aaa;
+    box-shadow: 0px 10px 6px #008aaa3b;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 35px;
+    position: absolute;
+    top: 783px;
+    border-radius: 8px;
+}
+
+.desktop .div {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.desktop .div-wrapper {
+    left: 363px;
+    background-color: #ffffff;
+    border: 2px solid;
+    border-color: #008aaa;
+    box-shadow: 0px 4px 4px #008aaa2b;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 35px;
+    position: absolute;
+    top: 783px;
+    border-radius: 8px;
+}
+
+.desktop .text-wrapper-4 {
+    position: relative;
+    width: fit-content;
+    margin-top: -2.00px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #008aaa;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.desktop .text-wrapper-5 {
+    position: absolute;
+    top: 85px;
+    left: 973px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke: 1px #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.desktop .text-wrapper-6 {
+    position: absolute;
+    top: 86px;
+    left: 1182px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke: 1px #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.desktop .text-wrapper-7 {
+    position: absolute;
+    top: 84px;
+    left: 807px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke: 1px #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #d1884f;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.desktop .user {
+    position: absolute;
+    top: 79px;
+    left: 925px;
+    width: 35px;
+    height: 35px;
+}
+
+.desktop .vector {
+    position: absolute;
+    width: 2.43%;
+    height: 2.93%;
+    top: 7.71%;
+    left: 52.43%;
+}
+
+.desktop .phone {
+    position: absolute;
+    top: 82px;
+    left: 1135px;
+    width: 35px;
+    height: 35px;
+}
+
+.desktop .untitled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 365px;
+    height: 330px;
+    object-fit: cover;
+}
+
+.desktop .text-wrapper-8 {
+    position: absolute;
+    top: 255px;
+    left: -33px;
+    width: 606px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #3bbadb;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 90px;
+}
