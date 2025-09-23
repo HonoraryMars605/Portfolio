@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portfolio — Unity Menu Mock</title>
+    <link rel="stylesheet" href="css/TestGamification.css" />
+</head>
+<body>
+<main class="page">
+    <header class="page-header">
+        <h1>Gamelingo / Portfolio Mock</h1>
+        <p class="subtitle">Simulated Unity-style menu inside a monitor frame</p>
+    </header>
+
+    <section class="stage">
+        <!-- Monitor frame (pure CSS) -->
+        <div class="monitor">
+            <div class="monitor-top"></div>
+            <div class="monitor-body">
+                <!-- screen area: where the UI (menu) lives -->
+                <div class="screen" id="unity-screen" role="application" aria-label="Unity style menu">
+                    <div class="ui-panel">
+                        <div class="title">PROJECT MENU</div>
+
+                        <!-- Menu buttons -->
+                        <nav class="menu" role="navigation" aria-label="Main menu">
+                            <button class="menu-btn active" data-target="home">Start</button>
+                            <button class="menu-btn" data-target="projects">Projects</button>
+                            <button class="menu-btn" data-target="about">About</button>
+                            <button class="menu-btn" data-target="contact">Contact</button>
+                        </nav>
+
+                        <!-- Content panes (single-page) -->
+                        <div class="content">
+                            <div class="pane" id="home" aria-hidden="false">
+                                <h2>Welcome</h2>
+                                <p>Welcome to my portfolio. Use the menu to navigate between sections — all inside this simulated Unity screen.</p>
+                            </div>
+
+                            <div class="pane" id="projects" aria-hidden="true">
+                                <h2>Projects</h2>
+                                <ul class="project-list">
+                                    <li><strong>Project A</strong> — Gameplay prototype (Unity/C#)</li>
+                                    <li><strong>Project B</strong> — WebGL demo (Three.js)</li>
+                                    <li><strong>Project C</strong> — Tooling & editor extensions</li>
+                                </ul>
+                            </div>
+
+                            <div class="pane" id="about" aria-hidden="true">
+                                <h2>About me</h2>
+                                <p>Game dev & frontend designer. I mix gameplay programming with UI/UX design to craft interactive experiences.</p>
+                            </div>
+
+                            <div class="pane" id="contact" aria-hidden="true">
+                                <h2>Contact</h2>
+                                <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+                            </div>
+                        </div>
+
+                        <!-- footer-like status bar -->
+                        <div class="status-bar">
+                            <div class="status-left">UnityMock v1.0</div>
+                            <div class="status-right" id="status-right">Ready</div>
+                        </div>
+                    </div> <!-- ui-panel -->
+                </div> <!-- screen -->
+            </div> <!-- monitor-body -->
+            <div class="monitor-base"></div>
+        </div> <!-- monitor -->
+    </section>
+
+    <footer class="page-footer">
+        <small>Tip: try keyboard arrows ← → or Tab to change menu.</small>
+    </footer>
+</main>
+
+<script src="Script/TestGamificationIdea.js"></script>
+</body>
+</html>

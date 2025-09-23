@@ -1,0 +1,237 @@
+/* styles.css
+   - Responsive monitor with Unity-like menu inside.
+   - Uses your main color #AB2636 and a 3-color gradient for background.
+*/
+
+/* === Page base === */
+:root{
+    --primary: #AB2636;
+    --accent1: #FF4F81;
+    --dark: #2E003E;
+    --bg-gradient: linear-gradient(135deg, #AB2636 0%, #FF4F81 50%, #2E003E 100%);
+    --panel-bg: rgba(10,10,10,0.55);
+    --glass: rgba(255,255,255,0.04);
+    --glass-2: rgba(0,0,0,0.3);
+    --text: #EDEDED;
+    --muted: rgba(235,235,235,0.65);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg-gradient);
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+}
+
+/* container */
+.page{
+    width:100%;
+    max-width:1200px;
+}
+
+/* header */
+.page-header{
+    text-align:center;
+    margin-bottom:18px;
+}
+.page-header h1{
+    margin:0;
+    font-size:20px;
+    letter-spacing:1px;
+}
+.subtitle{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* stage area: center the monitor */
+.stage{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+/* ===== MONITOR (pure CSS mockup) ===== */
+.monitor{
+    width:880px;
+    max-width:92vw;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transform-origin:center;
+    filter:drop-shadow(0 12px 30px rgba(0,0,0,0.45));
+}
+
+/* top bezel - speaker bar look */
+.monitor-top{
+    width:100%;
+    height:18px;
+    border-radius:8px 8px 4px 4px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.2));
+    margin-bottom:6px;
+    position:relative;
+}
+
+/* body with screen area */
+.monitor-body{
+    width:100%;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.45));
+    padding:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* screen */
+.screen{
+    width:92%;
+    height:480px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2));
+    border-radius:6px;
+    overflow:hidden;
+    position:relative;
+    border: 2px solid rgba(255,255,255,0.03);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* monitor base */
+.monitor-base{
+    width:160px;
+    height:18px;
+    margin-top:10px;
+    border-radius:6px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.35));
+}
+
+/* ===== UI Panel (inside the screen) ===== */
+.ui-panel{
+    width:92%;
+    height:92%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    border-radius:6px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    color:var(--text);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 -60px 120px rgba(0,0,0,0.12);
+}
+
+/* Title */
+.title{
+    font-weight:700;
+    letter-spacing:2px;
+    font-size:12px;
+    color:var(--muted);
+    text-transform:uppercase;
+}
+
+/* Menu area */
+.menu{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-top:6px;
+}
+.menu-btn{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:var(--text);
+    padding:10px 14px;
+    border-radius:6px;
+    font-weight:600;
+    cursor:pointer;
+    transition: all 180ms ease;
+    outline:none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:1px;
+}
+.menu-btn:hover{
+    transform:translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.12);
+}
+.menu-btn.active{
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 10px 30px rgba(171,38,54,0.12), inset 0 -2px 6px rgba(0,0,0,0.6);
+    color: var(--text);
+}
+
+/* Content area */
+.content{
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15));
+    border-radius:6px;
+    padding:14px;
+    flex:1;
+    overflow:auto;
+    min-height:220px;
+}
+
+/* individual panes */
+.pane{
+    display:none;
+    animation: fadeIn 220ms ease;
+}
+.pane[aria-hidden="false"]{
+    display:block;
+}
+.pane h2{
+    margin:0 0 8px 0;
+    font-size:20px;
+}
+.pane p, .pane ul{ color:var(--muted); line-height:1.45; margin:0; }
+.project-list{ margin:8px 0 0 16px; }
+
+/* status bar */
+.status-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.25));
+    border-radius:6px;
+    font-size:13px;
+    color:var(--muted);
+    margin-top:8px;
+}
+.status-right{ font-weight:700; color:var(--text) }
+
+/* small touches */
+a{ color:var(--accent1); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+/* fade animation */
+@keyframes fadeIn{
+    from{ opacity:0; transform: translateY(6px) }
+    to{ opacity:1; transform: translateY(0) }
+}
+
+/* responsive tweaks */
+@media (max-width:760px){
+    .ui-panel{ padding:12px; }
+    .monitor{ max-width:98vw }
+    .screen{ height:360px }
+    .menu{ flex-wrap:wrap; gap:8px }
+}
+
+/* keyboard focus */
+.menu-btn:focus{
+    outline:2px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 0 3px rgba(171,38,54,0.12);
+}
