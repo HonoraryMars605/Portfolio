@@ -1,0 +1,9 @@
+:root {
+    --secondary-text: rgba(197, 197, 197, 1);
+    --light-grey: rgba(132, 145, 160, 1);
+    --collection-1-blue-gradient: rgba(91, 173, 255, 1);
+    --collection-1-secondary-color: rgba(132, 145, 160, 1);
+    --collection-1-primary-color: rgba(255, 255, 255, 1);
+    --collection-1-card-color: rgba(42, 42, 42, 1);
+    --collection-1-background-color: rgba(22, 21, 19, 1);
+}

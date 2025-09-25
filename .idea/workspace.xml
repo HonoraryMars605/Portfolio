@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39cd2119-6785-417b-b2f1-54eff9469999" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Script/TestGamificationIdea.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestGamification.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestGamification2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestGamification3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/TestGamification.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styleguide.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test.html" beforeDir="false" afterPath="$PROJECT_DIR$/Test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestGamification3.html" beforeDir="false" afterPath="$PROJECT_DIR$/TestGamification3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
