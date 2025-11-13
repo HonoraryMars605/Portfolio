@@ -20,9 +20,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
-/* Card con effetto */
+/* Card */
 .card {
   background: rgba(255, 255, 255, 0.05);
   padding: 40px;
@@ -31,6 +32,7 @@ body {
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   max-width: 600px;
+  width: 100%;
 }
 
 /* Titolo */
@@ -46,26 +48,115 @@ p {
   font-size: 1.2rem;
   color: #e0e0e0;
   margin-bottom: 30px;
+  line-height: 1.5;
 }
 
-/* Loader animato */
+/* Bottoni CV */
+.row_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cv-button {
+  padding: 12px 26px;
+  background: #ffcc70;
+  color: #1e1e2e;
+  font-weight: 700;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 204, 112, 0.4);
+}
+
+.cv-button:hover {
+  background: #e6b55f;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 204, 112, 0.5);
+}
+
+/* Loader Pac-Man */
 .loader {
-  border: 6px solid rgba(255,255,255,0.2);
-  border-top: 6px solid #ffcc70;
+  width: 0;
+  height: 0;
+  border-right: 25px solid transparent;
+  border-top: 25px solid #ffcc70;
+  border-left: 25px solid #ffcc70;
+  border-bottom: 25px solid #ffcc70;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto;
-  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  position: relative;
+  animation: pacman-mouth 0.5s infinite ease-in-out;
 }
 
-/* Animazioni */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.loader::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pacman-dot 0.5s infinite linear;
 }
 
+@keyframes pacman-mouth {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(45deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pacman-dot {
+  0%   { left: 50px; opacity: 1; }
+  100% { left: -10px; opacity: 0; }
+}
+
+/* Figma + React */
+.figma-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.figma-icons {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.react-logo {
+  width: 60px;
+  height: 60px;
+}
+
+/* Testo figma/react */
+.figma-text {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 25px;
+}
+
+/* Data */
+.update-date {
+  font-size: 0.95rem;
+  color: #ffcc70;
+  opacity: 0.9;
+}
+
+/* Animazione titolo */
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
+  50%      { transform: scale(1.05); opacity: 1; }
+}
+
+/* Responsività */
+@media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  p  { font-size: 1rem; }
+  .card { padding: 30px 20px; }
 }
