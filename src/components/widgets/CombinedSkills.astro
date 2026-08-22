@@ -1,0 +1,518 @@
+---
+import Icon from "@/components/base/Icon.astro"
+
+interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
+
+const githubToken = import.meta.env.GITHUB_TOKEN || (typeof process !== "undefined" ? process.env?.GITHUB_TOKEN : undefined)
+const wakaKey = import.meta.env.WAKATIME_API_KEY || (typeof process !== "undefined" ? process.env?.WAKATIME_API_KEY : undefined)
+
+// ─── 1. GITHUB: Comprehensive Multi-Source Fetch (Owner + Collaborators) ───
+
+let githubSkillMap: Record<string, number> = {}
+let totalRepoCount = 0
+let totalStarsCount = 0
+let isGithubLoaded = false
+let githubErrorMsg = ""
+
+if (!githubToken) {
+  githubErrorMsg = "GITHUB_TOKEN non configurato nel file .env"
+} else {
+  try {
+    const ghH: Record<string, string> = {
+      Accept: "application/vnd.github+json",
+      "User-Agent": "Astro-Portfolio-CombinedSkills",
+      Authorization: `Bearer ${githubToken}`,
+    }
+
+    let allReposMap = new Map<string, any>()
+
+    // 1. Fetch dei tuoi repository personali e organizzazioni
+    let page = 1
+    while (true) {
+      const pr = await fetch(
+        `https://api.github.com/user/repos?visibility=all&affiliation=owner,collaborator,organization_member&per_page=100&sort=updated&page=${page}`,
+        { headers: ghH }
+      )
+      if (!pr.ok) break
+      const pd = await pr.json()
+      if (!Array.isArray(pd) || pd.length === 0) break
+      pd.forEach((r: any) => allReposMap.set(r.full_name, r))
+      if (pd.length < 100) break
+      page++
+    }
+
+    // 2. Fetch mirato dei repository dei collaboratori esterni visti nella dashboard (es. e-tebaldi, moscatestefano, giuma2003, RamJam90)
+    const collaboratorUsers = ["e-tebaldi", "moscatestefano", "giuma2003", "RamJam90"]
+    for (const user of collaboratorUsers) {
+      try {
+        const ur = await fetch(`https://api.github.com/users/${user}/repos?per_page=50&sort=updated`, { headers: ghH })
+        if (ur.ok) {
+          const userRepos = await ur.json()
+          if (Array.isArray(userRepos)) {
+            // Filtriamo solo quelli in cui compari o che sono rilevanti per te
+            userRepos.forEach((r: any) => {
+              allReposMap.set(r.full_name, r)
+            })
+          }
+        }
+      } catch (e) {
+        console.error(`[GitHub] Errore recupero repo per ${user}`, e)
+      }
+    }
+
+    const allRepos = Array.from(allReposMap.values())
+
+    if (allRepos.length > 0) {
+      const own = allRepos.filter((r: any) => !r.fork)
+      totalRepoCount = own.length
+      let totalPoints = 0
+
+      for (const repo of own) {
+        totalStarsCount += repo.stargazers_count || 0
+
+        // Estrazione esplicita dei Topics impostati sui repository
+        if (Array.isArray(repo.topics) && repo.topics.length > 0) {
+          for (const topic of repo.topics) {
+            const formattedTopic = topic
+              .split("-")
+              .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+              .join(" ")
+
+            githubSkillMap[formattedTopic] = (githubSkillMap[formattedTopic] || 0) + 45000
+            totalPoints += 45000
+          }
+        }
+
+        // Estrazione Linguaggi dai byte dei file
+        if (repo.languages_url) {
+          try {
+            const lr = await fetch(repo.languages_url, { headers: ghH })
+            if (lr.ok) {
+              const ld = await lr.json()
+              for (const [n, b] of Object.entries(ld)) {
+                const nb = Number(b) || 0
+                githubSkillMap[n] = (githubSkillMap[n] || 0) + nb
+                totalPoints += nb
+              }
+            }
+          } catch {
+            if (repo.language) {
+              githubSkillMap[repo.language] = (githubSkillMap[repo.language] || 0) + 50000
+              totalPoints += 50000
+            }
+          }
+        } else if (repo.language) {
+          githubSkillMap[repo.language] = (githubSkillMap[repo.language] || 0) + 50000
+          totalPoints += 50000
+        }
+      }
+
+      if (totalPoints > 0) {
+        for (const k of Object.keys(githubSkillMap)) {
+          githubSkillMap[k] = Math.round((githubSkillMap[k] / totalPoints) * 1000) / 10
+        }
+        isGithubLoaded = true
+      } else {
+        githubErrorMsg = "Nessun dato di codice o topic trovato."
+      }
+    } else {
+      githubErrorMsg = "Nessun repository trovato."
+    }
+  } catch (e) {
+    githubErrorMsg = "Connessione a GitHub non riuscita."
+    console.error("[GitHub]", e)
+  }
+}
+
+// ─── 2. WAKATIME: Summaries API (Real-time aggregation) ──────────────────────
+
+let wakaLangMap: Record<string, { percent: number; text: string }> = {}
+let wakaTotalText = ""
+let isWakaLoaded = false
+let wakaStatusMsg = ""
+let wakaPeriodLabel = "ultimi 7 giorni"
+
+if (wakaKey) {
+  try {
+    const auth = "Basic " + Buffer.from(wakaKey.trim()).toString("base64")
+    const r = await fetch("https://wakatime.com/api/v1/users/current/summaries?range=last_7_days", {
+      headers: { Authorization: auth, "User-Agent": "Astro-Portfolio-Wakatime" },
+    })
+
+    if (!r.ok) {
+      wakaStatusMsg = `WakaTime HTTP ${r.status}`
+    } else {
+      const j = await r.json()
+      const days = j?.data
+      if (Array.isArray(days) && days.length > 0) {
+        const langSecondsMap: Record<string, { seconds: number; text: string }> = {}
+        let cumulativeSeconds = 0
+
+        days.forEach((day: any) => {
+          cumulativeSeconds += day.grand_total?.total_seconds || 0
+          if (Array.isArray(day.languages)) {
+            day.languages.forEach((lang: any) => {
+              if (!langSecondsMap[lang.name]) {
+                langSecondsMap[lang.name] = { seconds: 0, text: lang.text }
+              }
+              langSecondsMap[lang.name].seconds += lang.total_seconds
+            })
+          }
+        })
+
+        if (cumulativeSeconds > 0) {
+          const hours = Math.floor(cumulativeSeconds / 3600)
+          const mins = Math.round((cumulativeSeconds % 3600) / 60)
+          wakaTotalText = `${hours > 0 ? hours + ' ore ' : ''}${mins} min`
+
+          for (const [name, data] of Object.entries(langSecondsMap)) {
+            if (name !== "Other" && data.seconds > 0) {
+              const pct = Math.round((data.seconds / cumulativeSeconds) * 1000) / 10
+              const lHours = Math.floor(data.seconds / 3600)
+              const lMins = Math.round((data.seconds % 3600) / 60)
+              const lText = lHours > 0 ? `${lHours}h ${lMins}m` : `${lMins}m`
+              wakaLangMap[name] = { percent: pct, text: lText }
+            }
+          }
+          isWakaLoaded = Object.keys(wakaLangMap).length > 0
+        } else {
+          wakaStatusMsg = "Nessuna attività registrata negli ultimi 7 giorni."
+        }
+      } else {
+        wakaStatusMsg = "Risposta WakaTime non valida."
+      }
+    }
+  } catch (e) {
+    wakaStatusMsg = "Connessione a WakaTime non riuscita."
+    console.error("[WakaTime]", e)
+  }
+} else {
+  wakaStatusMsg = "WAKATIME_API_KEY non configurata nel file .env"
+}
+
+// ─── 3. UNIFIED WEIGHTED SKILL MATRIX ────────────────────────────────────────
+
+interface SkillRow {
+  name: string
+  combined: number
+}
+
+const allSkillNames = new Set<string>([
+  ...Object.keys(githubSkillMap),
+  ...Object.keys(wakaLangMap),
+])
+
+const hasGh = isGithubLoaded
+const hasWaka = isWakaLoaded
+
+const skillRows: SkillRow[] = Array.from(allSkillNames)
+  .map((name): SkillRow => {
+    const gh = githubSkillMap[name] ?? 0
+    const waka = wakaLangMap[name]?.percent ?? 0
+    let combined: number
+    if (hasGh && hasWaka) {
+      combined = Math.round((gh * 0.6 + waka * 0.4) * 10) / 10
+    } else if (hasGh) {
+      combined = gh
+    } else {
+      combined = waka
+    }
+    return { name, combined }
+  })
+  .filter((s) => s.combined > 0)
+  .sort((a, b) => b.combined - a.combined)
+  .slice(0, 16)
+
+const anyLoaded = isGithubLoaded || isWakaLoaded
+---
+
+<div class:list={["combined-skills-widget", className]} id="skills-realtime">
+
+  <!-- Live Sync Badge -->
+  <div class="skills-live-header">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+      </span>
+      <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+        GitHub All Repos & Topics + WakaTime Live Sync
+      </span>
+    </div>
+    <div class="flex items-center gap-3 text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
+      {isGithubLoaded && <span>GitHub: {totalRepoCount} repo · ★ {totalStarsCount}</span>}
+      {isWakaLoaded && <span>WakaTime: {wakaTotalText} ({wakaPeriodLabel})</span>}
+    </div>
+  </div>
+
+  {anyLoaded ? (
+    <div class="skills-matrix-card" id="skills-matrix-card">
+
+      <!-- Search Bar -->
+      <div class="skills-search-row">
+        <Icon name="mingcute:search-line" class="skills-search-icon" size="1rem" />
+        <input
+          id="skills-search"
+          type="search"
+          placeholder="Filtra per skill o framework (es. Unity, C#, Java…)"
+          class="skills-search-input"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <span id="skills-count" class="skills-count-badge">{skillRows.length} skill</span>
+      </div>
+
+      <!-- Unified Table -->
+      <div class="skills-table-wrap" id="skills-table-wrap">
+        <table class="skills-table" id="skills-table">
+          <thead>
+            <tr>
+              <th class="col-skill">Stack</th>
+              <th class="col-score">Score</th>
+              <th class="col-bar"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {skillRows.map((s, idx) => (
+              <tr class="skill-row" data-name={s.name.toLowerCase()}>
+                <td class="col-skill">
+                  <span class="skill-rank">#{idx + 1}</span>
+                  <span class="skill-name">{s.name}</span>
+                </td>
+                <td class="col-score">
+                  <strong class="skill-score">{s.combined}%</strong>
+                </td>
+                <td class="col-bar">
+                  <div class="bar-track">
+                    <div class="bar-fill" style={`width:${Math.min(100, Math.max(2, s.combined))}%`} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div id="skills-empty" class="skills-empty-row" style="display:none;">
+          Nessun risultato per questa ricerca.
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="skills-error-state">
+      <Icon name="mingcute:information-line" class="text-zinc-400 shrink-0" size="1.4rem" />
+      <div>
+        {!isGithubLoaded && <p>{githubErrorMsg || "Dati GitHub non disponibili."}</p>}
+        {!isWakaLoaded && <p>{wakaStatusMsg || "Dati WakaTime non disponibili."}</p>}
+      </div>
+    </div>
+  )}
+</div>
+
+<!-- Live Search Script -->
+<script>
+  const input = document.getElementById("skills-search") as HTMLInputElement | null
+  const countBadge = document.getElementById("skills-count")
+  const emptyMsg = document.getElementById("skills-empty")
+
+  if (input) {
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase()
+      const rows = document.querySelectorAll<HTMLTableRowElement>("#skills-table tbody .skill-row")
+      let visible = 0
+      rows.forEach((row) => {
+        const name = row.dataset.name ?? ""
+        const show = !q || name.includes(q)
+        row.style.display = show ? "" : "none"
+        if (show) visible++
+      })
+      if (countBadge) countBadge.textContent = visible + " skill"
+      if (emptyMsg) emptyMsg.style.display = visible === 0 ? "" : "none"
+    })
+  }
+</script>
+
+<style>
+  .combined-skills-widget {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    inline-size: 100%;
+  }
+
+  .skills-live-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: var(--space-2xs) var(--space-s);
+    background: color-mix(in srgb, var(--surface) 90%, var(--primary));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .skills-matrix-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-s) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    overflow: hidden;
+    transition: border-color var(--motion-duration) var(--motion-ease);
+  }
+
+  .skills-matrix-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  }
+
+  .skills-search-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: color-mix(in srgb, var(--surface) 80%, var(--border));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.3rem 0.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .skills-search-row:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+
+  .skills-search-icon {
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+  }
+
+  .skills-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: var(--step--1);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  .skills-search-input::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  .skills-count-badge {
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-bold);
+    padding: 0.1rem 0.45rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .skills-table-wrap {
+    overflow-x: auto;
+  }
+
+  .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+  }
+
+  .skills-table thead tr {
+    border-block-end: 2px solid var(--border);
+  }
+
+  .skills-table th {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.68rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted-foreground);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .skill-row {
+    border-block-end: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+    transition: background 0.15s;
+  }
+
+  .skill-row:last-child { border-block-end: none; }
+
+  .skill-row:hover {
+    background: color-mix(in srgb, var(--primary) 4%, transparent);
+  }
+
+  .skills-table td {
+    padding: 0.45rem 0.6rem;
+    vertical-align: middle;
+  }
+
+  .col-skill { min-width: 160px; }
+  .col-score { width: 90px; text-align: right; }
+  .col-bar { min-width: 140px; width: 45%; }
+
+  .skill-rank {
+    font-size: 0.65rem;
+    color: var(--muted-foreground);
+    margin-inline-end: 0.4rem;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .skill-name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--foreground);
+  }
+
+  .skill-score {
+    color: var(--primary);
+    font-size: 0.82rem;
+  }
+
+  .bar-track {
+    width: 100%;
+    height: 0.45rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--border) 65%, transparent);
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 70%, #f97316) 100%);
+    transition: width 0.5s ease-out;
+  }
+
+  .skills-empty-row {
+    print-color-adjust: exact;
+    padding: var(--space-m);
+    text-align: center;
+    color: var(--muted-foreground);
+    font-size: var(--step--1);
+  }
+
+  .skills-error-state {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: var(--space-m);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    font-size: 0.82rem;
+    color: var(--muted-foreground);
+  }
+
+  .skills-error-state p { margin: 0 0 0.25rem 0; }
+</style>

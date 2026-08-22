@@ -1,0 +1,11 @@
+[valerio]
+id       = "valerio"
+name     = "Valerio Comella"
+pronouns = "he/him"
+bio      = "Software Engineer | Unity (C#) & Full Stack"
+
+[valerio.links]
+email    = "valeriocom@hotmail.it"
+github   = "https://github.com/valeriocomella"
+linkedin = "https://www.linkedin.com/in/valerio-comella/"
+

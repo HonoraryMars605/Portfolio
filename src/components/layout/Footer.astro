@@ -1,0 +1,67 @@
+---
+import Link from "@/components/base/Link.astro"
+import { PROFILE } from "@site-config"
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-primary-row">
+      <span>&copy; <span id="current-year">{new Date().getFullYear()}</span> <strong>{PROFILE.name}</strong></span>
+      <span class="footer-dot">·</span>
+      <span>Built with <Link href="https://astro.build/" external underline class="footer-link">Astro</Link></span>
+      <span class="footer-dot">·</span>
+      <span><Link href="https://github.com/valeriocomella/valeriocomella.github.io" external underline class="footer-link">Credits template</Link></span>
+    </div>
+    <div class="footer-secondary-row">
+      <p class="footer-ai-text">Sviluppato con il supporto di IA (Antigravity)</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    margin-block-start: var(--space-xl);
+    padding-block: var(--space-m);
+    border-block-start: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: var(--step--1);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .footer-primary-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .footer-dot {
+    color: var(--border);
+  }
+
+  .footer-link {
+    color: var(--foreground);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .footer-link:hover {
+    color: var(--primary);
+  }
+
+  .footer-ai-text {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    opacity: 0.85;
+  }
+</style>

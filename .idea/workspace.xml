@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39cd2119-6785-417b-b2f1-54eff9469999" name="Changes" comment="" />
+    <list default="true" id="fa1f878f-ff04-42b6-a7e7-46e7bde1fc74" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/CV_ComellaValerio.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/content/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,61 +23,44 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;HonoraryMars605&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/HonoraryMars605/valeriocomella.github.io.git&quot;,
-    &quot;accountId&quot;: &quot;de2b8d6a-afcf-4322-bb7d-8c90aa7026d5&quot;
-  }
-}</component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="332vzhi50qxon35oF54NH30vMCC" />
+  <component name="ProjectId" id="3IGpMJy6JMmkkl4ZRBPdkXqXg0s" />
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JavaScript Debug.index.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "myscholar__template",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/valerio/Desktop/valeriocomella.github.io",
+    "last_opened_file_path": "C:/Users/valerio/Desktop/valeriocomella.github.io/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+    "nodejs_package_manager_path": "pnpm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\valerio\\Desktop\\valeriocomella.github.io\\node_modules\\typescript\\lib"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/index.html/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="valeriocomella.github.io" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="valeriocomella.github.io" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\valerio\Desktop\valeriocomella.github.io\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\valerio\Desktop\valeriocomella.github.io\src\assets" />
+      <recent name="C:\Users\valerio\Desktop\valeriocomella.github.io\public" />
+      <recent name="C:\Users\valerio\Desktop\valeriocomella.github.io\public\img" />
+      <recent name="C:\Users\valerio\Desktop\valeriocomella.github.io\src\content\spec" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -76,15 +69,13 @@
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="39cd2119-6785-417b-b2f1-54eff9469999" name="Changes" comment="" />
-      <created>1758528245906</created>
+      <changelist id="fa1f878f-ff04-42b6-a7e7-46e7bde1fc74" name="Changes" comment="" />
+      <created>1787400709843</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1758528245906</updated>
-      <workItem from="1786184847781" duration="309000" />
+      <updated>1787400709843</updated>
     </task>
     <servers />
   </component>

@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Noto Sans CJK SC";
+  src: url("/fonts/NotoSansSC.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF;
+}
+
+@font-face {
+  font-family: "STIX Two Math";
+  src: url("/fonts/STIXTwoMath-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lilex";
+  src: url("/fonts/Lilex[wght].woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-sans:
+    "Didact Gothic", "Plus Jakarta Sans", "Inter", "Roboto", -apple-system,
+    BlinkMacSystemFont, "DM Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-heading:
+    "Alfa Slab One", cursive, system-ui, sans-serif;
+  --font-mono:
+    "Lilex", "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", ui-monospace,
+    "Menlo", "Consolas", "Liberation Mono", "Courier New", monospace;
+  --font-math: "STIX Two Math", math;
+}

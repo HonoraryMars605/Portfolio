@@ -1,0 +1,38 @@
+.itch-widget-container {
+  margin-block: var(--space-m);
+  inline-size: 100%;
+  max-inline-size: 552px;
+  margin-inline: auto;
+}
+
+.itch-iframe {
+  inline-size: 100%;
+  block-size: 167px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 2px 12px -2px color-mix(in srgb, var(--primary) 10%, transparent);
+  transition: border-color var(--motion-duration) var(--motion-ease);
+}
+
+.itch-iframe:hover {
+  border-color: var(--primary);
+}
+
+.itch-iframe-light {
+  display: block;
+}
+
+.itch-iframe-dark {
+  display: none;
+}
+
+[data-theme="dark"] .itch-iframe-light,
+.scheme-dark .itch-iframe-light {
+  display: none !important;
+}
+
+[data-theme="dark"] .itch-iframe-dark,
+.scheme-dark .itch-iframe-dark {
+  display: block !important;
+}

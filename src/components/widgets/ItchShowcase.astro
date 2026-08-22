@@ -1,0 +1,207 @@
+---
+import { getCollection } from "astro:content"
+import Icon from "@/components/base/Icon.astro"
+import Link from "@/components/base/Link.astro"
+
+interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
+
+const allProjects = await getCollection("projects", ({ data }) => {
+  return import.meta.env.PROD ? data.selected !== false : true
+})
+
+// Ordina per data decrescente (dal più recente)
+const sortedProjects = allProjects.sort((a, b) => {
+  const dateA = a.data.fromDate ? new Date(a.data.fromDate).getTime() : 0
+  const dateB = b.data.fromDate ? new Date(b.data.fromDate).getTime() : 0
+  return dateB - dateA
+})
+---
+
+<div class:list={["itch-showcase-container", className]} id="showcase">
+  <div class="games-vertical-list">
+    {sortedProjects.map((project) => {
+      const {
+        title,
+        description,
+        role = "Unity Developer (C#)",
+        itchId,
+        skills = [],
+        tags = [],
+        date,
+      } = project.data
+      const displayTags = tags.length > 0 ? tags : skills
+      const embedSrc = "https://itch.io/embed/" + itchId + "?bg_color=18181b&fg_color=fafafa&link_color=3b82f6&border_color=27272a"
+      const detailHref = "/projects/" + project.slug
+
+      return (
+        <article class="game-card">
+          <div class="game-card-header">
+            <div class="game-engine-badge">
+              <Icon name="mingcute:game-2-line" />
+              <span>{role}</span>
+            </div>
+            <a href={detailHref} class="game-detail-link">
+              <span>Dettagli scheda</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+
+          <div class="game-card-body">
+            <h3 class="game-title">
+              <Link href={detailHref}>
+                {title}
+              </Link>
+            </h3>
+            {date && <p class="game-tagline">{date}</p>}
+            {description && <p class="game-description">{description}</p>}
+          </div>
+
+          {itchId && (
+            <div class="game-embed-wrapper my-3 overflow-hidden rounded-xl border border-cv-border dark:border-zinc-800 shadow-sm">
+              <iframe
+                src={embedSrc}
+                width="100%"
+                height="167"
+                loading="lazy"
+                title={"Gioca a " + title + " su Itch.io"}
+                class="w-full h-[167px] block border-0 bg-[#18181b]"
+              />
+            </div>
+          )}
+
+          {displayTags.length > 0 && (
+            <div class="game-card-footer">
+              <div class="game-tags">
+                {displayTags.map((tag) => (
+                  <span class="game-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </article>
+      )
+    })}
+  </div>
+</div>
+
+<style>
+  .itch-showcase-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    inline-size: 100%;
+  }
+
+  .games-vertical-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .game-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-s);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    transition: border-color var(--motion-duration) var(--motion-ease), box-shadow var(--motion-duration) var(--motion-ease);
+  }
+
+  .game-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+    box-shadow: 0 4px 16px -4px color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  .game-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+  }
+
+  .game-engine-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: var(--step--1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary);
+  }
+
+  .game-detail-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.82rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--motion-duration-fast);
+  }
+
+  .game-detail-link:hover {
+    text-decoration: underline;
+  }
+
+  .game-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .game-title {
+    margin: 0;
+    font-size: var(--step-0);
+    font-weight: var(--font-weight-bold);
+    color: var(--foreground);
+  }
+
+  .game-tagline {
+    margin: 0;
+    font-size: var(--step--1);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary);
+  }
+
+  .game-description {
+    margin: 0.25rem 0 0 0;
+    font-size: var(--step--1);
+    color: var(--muted-foreground);
+    line-height: 1.45;
+  }
+
+  .game-embed-wrapper {
+    margin-block: 0.35rem;
+    background: #18181b;
+  }
+
+  .game-card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-block-start: 0.25rem;
+    padding-block-start: var(--space-xs);
+    border-block-start: 1px solid var(--border);
+  }
+
+  .game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .game-tag {
+    background: var(--background);
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-sm);
+  }
+</style>

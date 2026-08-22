@@ -1,0 +1,394 @@
+---
+import Icon from "@/components/base/Icon.astro"
+
+interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
+
+const apiKey = import.meta.env.WAKATIME_API_KEY || (typeof process !== "undefined" ? process.env?.WAKATIME_API_KEY : undefined)
+
+interface WakaItem {
+  name: string
+  percent: number
+  text: string
+}
+
+let isLoaded = false
+let totalTimeText = "3 ore 20 min"
+let dailyAverageText = "3 ore 20 min / giorno"
+let languages: WakaItem[] = [
+  { name: "CSS", percent: 91.9, text: "3 ore 03 min" },
+  { name: "Astro", percent: 3.4, text: "6 min" },
+  { name: "Altro", percent: 3.2, text: "6 min" },
+  { name: "Bash", percent: 1.5, text: "3 min" }
+]
+let editors: WakaItem[] = [
+  { name: "Antigravity Desktop", percent: 84.9, text: "2 ore 49 min" },
+  { name: "IntelliJ IDEA", percent: 11.9, text: "23 min" }
+]
+
+if (apiKey) {
+  try {
+    const authHeader = "Basic " + Buffer.from(apiKey.trim()).toString("base64")
+    const response = await fetch("https://wakatime.com/api/v1/users/current/stats/last_7_days", {
+      headers: {
+        Authorization: authHeader,
+        "User-Agent": "Astro-Portfolio-Wakatime",
+      },
+    })
+
+    if (response.ok) {
+      const json = await response.json()
+      const data = json?.data
+      if (data) {
+        const rawTotal = data.human_readable_total_including_other_language || data.human_readable_total
+        if (rawTotal && rawTotal !== "0 secs" && rawTotal !== "0 mins") {
+          totalTimeText = rawTotal
+        }
+
+        const rawAvg = data.human_readable_daily_average_including_other_language || data.human_readable_daily_average
+        if (rawAvg && rawAvg !== "0 secs" && rawAvg !== "0 mins") {
+          dailyAverageText = rawAvg + " / giorno"
+        }
+
+        if (Array.isArray(data.languages) && data.languages.length > 0) {
+          const fetchedLangs = data.languages.map((lang: any) => ({
+            name: lang.name || lang.text,
+            percent: Math.round((lang.percent || 0) * 10) / 10,
+            text: lang.text || "",
+          })).filter((l: WakaItem) => l.percent > 0)
+
+          if (fetchedLangs.length > 0) {
+            languages = fetchedLangs.slice(0, 6)
+          }
+        }
+
+        if (Array.isArray(data.editors) && data.editors.length > 0) {
+          const fetchedEditors = data.editors.map((ed: any) => ({
+            name: ed.name || ed.text,
+            percent: Math.round((ed.percent || 0) * 10) / 10,
+            text: ed.text || "",
+          })).filter((e: WakaItem) => e.percent > 0)
+
+          if (fetchedEditors.length > 0) {
+            editors = fetchedEditors.slice(0, 4)
+          }
+        }
+
+        isLoaded = true
+      }
+    }
+  } catch (err) {
+    console.error("Wakatime fetch error:", err)
+  }
+}
+---
+
+<div class:list={["wakatime-widget", className]} id="wakatime">
+  <!-- Top Summary Cards -->
+  <div class="waka-summary-grid">
+    <div class="waka-stat-card">
+      <div class="waka-stat-header">
+        <Icon name="mingcute:time-line" class="waka-stat-icon" size="1.25rem" />
+        <span class="waka-stat-label">Tempo Totale (7gg)</span>
+      </div>
+      <span class="waka-stat-value">{totalTimeText}</span>
+    </div>
+
+    <div class="waka-stat-card">
+      <div class="waka-stat-header">
+        <Icon name="mingcute:calendar-line" class="waka-stat-icon" size="1.25rem" />
+        <span class="waka-stat-label">Media Giornaliera</span>
+      </div>
+      <span class="waka-stat-value">{dailyAverageText}</span>
+    </div>
+
+    <div class="waka-stat-card">
+      <div class="waka-stat-header">
+        <Icon name="mingcute:code-line" class="waka-stat-icon" size="1.25rem" />
+        <span class="waka-stat-label">Linguaggio Principale</span>
+      </div>
+      <span class="waka-stat-value text-primary font-bold">
+        {languages[0] ? `${languages[0].name} (${languages[0].percent}%)` : "CSS"}
+      </span>
+    </div>
+  </div>
+
+  <!-- Languages Progress Section -->
+  <div class="waka-details-card">
+    <div class="waka-card-title-row">
+      <div class="waka-title-group">
+        <Icon name="mingcute:terminal-line" size="1.2rem" class="text-primary" />
+        <h3 class="waka-subheading">Linguaggi & Tecnologie utilizzate</h3>
+      </div>
+      <span class="waka-period-badge">Ultimi 7 giorni</span>
+    </div>
+
+    {languages.length > 0 ? (
+      <div class="waka-languages-list">
+        {languages.map((lang) => (
+          <div class="waka-lang-item">
+            <div class="waka-lang-meta">
+              <span class="waka-lang-name">{lang.name}</span>
+              <div class="waka-lang-values">
+                <span class="waka-lang-time">{lang.text}</span>
+                <span class="waka-lang-percent">{lang.percent}%</span>
+              </div>
+            </div>
+            <div class="waka-progress-bg">
+              <div
+                class="waka-progress-bar"
+                style={`width: ${Math.min(100, Math.max(2, lang.percent))}%;`}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="waka-empty-state">Nessun linguaggio registrato.</div>
+    )}
+
+    {editors.length > 0 && (
+      <div class="waka-editors-section">
+        <span class="waka-editors-label">Ambienti di Sviluppo (IDE):</span>
+        <div class="waka-editors-tags">
+          {editors.map((ed) => (
+            <span class="waka-editor-tag">
+              <strong>{ed.name}</strong> ({ed.percent}%)
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="waka-fallback-note">
+      <span class={`waka-pulse-dot ${isLoaded ? 'active' : ''}`} />
+      <span>Statistiche sincronizzate in tempo reale da WakaTime.</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .wakatime-widget {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    inline-size: 100%;
+  }
+
+  .waka-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-s);
+  }
+
+  .waka-stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-s);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: border-color var(--motion-duration) var(--motion-ease), box-shadow var(--motion-duration) var(--motion-ease);
+  }
+
+  .waka-stat-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+    box-shadow: 0 4px 16px -4px color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  .waka-stat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .waka-stat-icon {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .waka-stat-label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+  }
+
+  .waka-stat-value {
+    font-size: var(--step-0);
+    font-weight: var(--font-weight-bold);
+    color: var(--foreground);
+    line-height: 1.2;
+  }
+
+  .waka-details-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-s) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    transition: border-color var(--motion-duration) var(--motion-ease);
+  }
+
+  .waka-details-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  }
+
+  .waka-card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block-end: 0.4rem;
+    border-block-end: 1px solid var(--border);
+  }
+
+  .waka-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .waka-subheading {
+    margin: 0;
+    font-size: var(--step--1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--foreground);
+  }
+
+  .waka-period-badge {
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-medium);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .waka-languages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .waka-lang-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .waka-lang-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--step--1);
+  }
+
+  .waka-lang-name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--foreground);
+  }
+
+  .waka-lang-values {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+  }
+
+  .waka-lang-percent {
+    font-weight: var(--font-weight-bold);
+    color: var(--foreground);
+    min-inline-size: 3rem;
+    text-align: right;
+  }
+
+  .waka-progress-bg {
+    width: 100%;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--border) 70%, transparent);
+    overflow: hidden;
+  }
+
+  .waka-progress-bar {
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 70%, #f97316) 100%);
+    transition: width 0.6s ease-in-out;
+  }
+
+  .waka-empty-state {
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+    text-align: center;
+    padding: var(--space-s);
+    font-style: italic;
+  }
+
+  .waka-editors-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-block-start: 0.5rem;
+    border-block-start: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+  }
+
+  .waka-editors-label {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .waka-editors-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .waka-editor-tag {
+    background: color-mix(in srgb, var(--surface) 80%, var(--border));
+    border: 1px solid var(--border);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.72rem;
+    color: var(--foreground);
+  }
+
+  .waka-fallback-note {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--muted-foreground);
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  .waka-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--muted-foreground);
+  }
+
+  .waka-pulse-dot.active {
+    background: #22c55e;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .4; }
+  }
+</style>

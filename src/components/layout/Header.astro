@@ -1,0 +1,110 @@
+---
+import { PROFILE, SITE } from "@site-config"
+import Link from "@/components/base/Link.astro"
+import ThemeToggle from "@/components/layout/ThemeToggle.astro"
+
+const cvHref = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv || "/CV_ComellaValerio.pdf"
+---
+
+<header class="site-header">
+  <div class="site-brand">
+    <Link href="/" class="site-title" transition:persist>
+      <span>{SITE.title}</span>
+    </Link>
+  </div>
+
+  <div class="site-actions">
+    <!-- Scarica CV Button -->
+    <a
+      href={cvHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cv-download-btn"
+      title="Scarica Curriculum Vitae (PDF)"
+    >
+      <svg class="cv-download-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+      </svg>
+      <span>Scarica CV</span>
+    </a>
+
+    <div class="theme-toggle-wrapper">
+      <ThemeToggle transition:persist />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    min-height: var(--control-size);
+    padding-block: var(--space-3xs);
+    width: 100%;
+  }
+
+  .site-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    min-inline-size: 0;
+  }
+
+  .site-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 1;
+    min-inline-size: 0;
+    overflow: hidden;
+    color: var(--foreground);
+    font-size: var(--step-0);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color var(--motion-duration-fast) var(--motion-ease);
+  }
+
+  .site-title:hover {
+    color: var(--primary);
+  }
+
+  .site-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .cv-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.82rem;
+    font-weight: var(--font-weight-semibold);
+    color: #FFFFFF;
+    background-color: var(--primary);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background-color var(--motion-duration-fast) var(--motion-ease), transform var(--motion-duration-fast);
+    box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--primary) 35%, transparent);
+  }
+
+  .cv-download-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .cv-download-icon {
+    flex-shrink: 0;
+  }
+
+  .theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+  }
+</style>

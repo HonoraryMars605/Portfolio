@@ -1,0 +1,55 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: ['class', '[data-theme="dark"]'],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        brand: {
+          50: '#fdf2f3',
+          100: '#fce7e9',
+          200: '#f9d1d5',
+          300: '#f3abb3',
+          400: '#ea7684',
+          500: '#dc4658',
+          600: '#ab2636',
+          700: '#8f1e2c',
+          800: '#771b26',
+          900: '#641a23',
+          950: '#380a10',
+          DEFAULT: '#ab2636',
+        },
+        primary: {
+          DEFAULT: 'var(--primary)',
+          hover: 'var(--primary-hover)',
+          foreground: 'var(--primary-foreground)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
+          foreground: 'var(--accent-foreground)',
+          soft: 'var(--accent-soft)',
+        },
+        surface: {
+          DEFAULT: 'var(--surface)',
+          border: 'var(--border)',
+        },
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
+        },
+        border: 'var(--border)',
+        ring: 'var(--ring)',
+      },
+      fontFamily: {
+        sans: ['"Didact Gothic"', 'var(--font-sans)', 'sans-serif'],
+        heading: ['"Alfa Slab One"', 'var(--font-heading)', 'cursive', 'sans-serif'],
+        display: ['"Alfa Slab One"', 'var(--font-heading)', 'cursive', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
+      },
+    },
+  },
+  plugins: [],
+};

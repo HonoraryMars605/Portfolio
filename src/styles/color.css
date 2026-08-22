@@ -1,0 +1,93 @@
+:root {
+  --background: light-dark(#ffffff, #121316);
+  --surface: light-dark(#f8f9fa, #1a1d21);
+  --foreground: light-dark(#202124, #f1f3f4);
+  --primary: light-dark(#ab2636, #d13d4f);
+  --primary-hover: light-dark(#8f1e2c, #e35465);
+  --primary-foreground: #ffffff;
+  --accent: light-dark(#ab2636, #d13d4f);
+  --accent-hover: light-dark(#8f1e2c, #e35465);
+  --accent-foreground: #ffffff;
+  --accent-soft: light-dark(#fdf2f3, rgba(209, 61, 79, 0.15));
+  --muted: light-dark(#f1f3f4, #1a1d21);
+  --muted-foreground: light-dark(#5f6368, #9aa0a6);
+  --border: light-dark(#dadce0, #2d3239);
+  --interactive-background: var(--accent-soft);
+  --interactive-border: color-mix(in srgb, var(--accent) 40%, var(--border));
+  --interactive-foreground: var(--foreground);
+  --destructive: light-dark(#d93025, #f28b82);
+  --ring: light-dark(#ab2636, #d13d4f);
+
+  color-scheme: light dark;
+}
+
+[data-theme="light"],
+.scheme-light {
+  color-scheme: light;
+  --background: #ffffff;
+  --surface: #f8f9fa;
+  --foreground: #202124;
+  --primary: #ab2636;
+  --primary-hover: #8f1e2c;
+  --primary-foreground: #ffffff;
+  --accent: #ab2636;
+  --accent-hover: #8f1e2c;
+  --accent-foreground: #ffffff;
+  --accent-soft: #fdf2f3;
+  --muted: #f1f3f4;
+  --muted-foreground: #5f6368;
+  --border: #dadce0;
+  --interactive-background: #fdf2f3;
+  --interactive-border: rgba(171, 38, 54, 0.3);
+  --interactive-foreground: #202124;
+  --destructive: #d93025;
+  --ring: #ab2636;
+}
+
+[data-theme="dark"],
+.scheme-dark,
+:root:has(#theme-toggle:checked) {
+  color-scheme: dark;
+  --background: #121316;
+  --surface: #1a1d21;
+  --foreground: #f1f3f4;
+  --primary: #d13d4f;
+  --primary-hover: #e35465;
+  --primary-foreground: #ffffff;
+  --accent: #d13d4f;
+  --accent-hover: #e35465;
+  --accent-foreground: #ffffff;
+  --accent-soft: rgba(209, 61, 79, 0.15);
+  --muted: #1a1d21;
+  --muted-foreground: #9aa0a6;
+  --border: #2d3239;
+  --interactive-background: rgba(209, 61, 79, 0.15);
+  --interactive-border: rgba(209, 61, 79, 0.35);
+  --interactive-foreground: #f1f3f4;
+  --destructive: #f28b82;
+  --ring: #d13d4f;
+}
+
+*,
+::before,
+::after,
+::backdrop,
+::file-selector-button {
+  border-color: var(--border);
+
+  &:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 0.25rem;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}

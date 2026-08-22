@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="it-IT" dir="ltr" data-astro-cid-sckkx6r4> <head><!-- Google Fonts: Alfa Slab One & Didact Gothic --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Didact+Gothic&display=swap" rel="stylesheet"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"><meta name="generator" content="Astro v4.16.19"><title>Lock Fight - Valerio Comella - Valerio Comella - Software...</title><meta name="description" content="Progetto: Lock Fight - Progetto videoludico incentrato sulle logiche di combattimento e gameplay loop in C#."><link rel="canonical" href="https://valeriocomella.github.io/"><meta name="robots" content="index, follow"><meta property="og:type" content="website"><meta property="og:site_name" content="Valerio Comella"><meta property="og:title" content="Lock Fight - Valerio Comella - Valerio Comella - Software..."><meta property="og:description" content="Progetto: Lock Fight - Progetto videoludico incentrato sulle logiche di combattimento e gameplay loop in C#."><meta property="og:image" content="https://valeriocomella.github.io/img/social-preview.png"><meta property="og:image:alt" content="Lock Fight - Valerio Comella"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://valeriocomella.github.io/"><meta property="og:locale" content="it-IT"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Lock Fight - Valerio Comella"><meta name="twitter:description" content="Progetto: Lock Fight - Progetto videoludico incentrato sulle logiche di combattimento e gameplay loop in C#."><meta name="twitter:image" content="https://valeriocomella.github.io/img/social-preview.png"><meta name="twitter:image:alt" content="Lock Fight - Valerio Comella"><meta name="theme-color" content="#15151f" media="(prefers-color-scheme: dark)"><meta name="theme-color" content="#eff1f5" media="(prefers-color-scheme: light)"><meta name="color-scheme" content="light dark"><meta name="HandheldFriendly" content="True"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Valerio Comella"><meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Valerio Comella" href="https://valeriocomella.github.iorss.xml"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>(function(){const siteLocale = "it-IT";
+
+    window.__SITE_LOCALE__ = siteLocale
+
+    function loadZoomAssets() {
+      if (!document.querySelector("link[data-medium-zoom-styles]")) {
+        const styles = document.createElement("link")
+        styles.rel = "stylesheet"
+        styles.href = "/styles/zoom.css"
+        styles.dataset.mediumZoomStyles = "true"
+        document.head.append(styles)
+      }
+
+      if (window.mediumZoom) return Promise.resolve()
+      if (window.__mediumZoomPromise) return window.__mediumZoomPromise
+
+      /* A rejected promise left in place would be awaited by every later
+         attempt, so one offline moment would disable zoom for the rest of the
+         session even after the network recovers. Clear it, and drop the dead
+         script tag, so the next navigation can retry. */
+      window.__mediumZoomPromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script")
+        script.src =
+          "https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"
+        script.async = true
+        script.addEventListener("load", resolve, { once: true })
+        script.addEventListener(
+          "error",
+          () => {
+            script.remove()
+            reject(new Error("medium-zoom failed to load"))
+          },
+          { once: true },
+        )
+        document.head.append(script)
+      }).catch((error) => {
+        window.__mediumZoomPromise = null
+        throw error
+      })
+
+      return window.__mediumZoomPromise
+    }
+
+    async function initializeImageZoom() {
+      const images = document.querySelectorAll(
+        "main img:not(a img):not(.card img)",
+      )
+      if (!images.length) return
+
+      try {
+        await loadZoomAssets()
+        window.__mediumZoomInstance?.detach()
+        window.__mediumZoomInstance = window.mediumZoom(images, {
+          margin: 24,
+          scrollOffset: 40,
+        })
+      } catch {
+        // Images remain fully usable if the optional enhancement cannot load.
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initializeImageZoom, {
+        once: true,
+      })
+    } else {
+      initializeImageZoom()
+    }
+    document.addEventListener("astro:after-swap", initializeImageZoom)
+  })();</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Lock Fight - Valerio Comella - Valerio Comella - Software...","description":"Progetto: Lock Fight - Progetto videoludico incentrato sulle logiche di combattimento e gameplay loop in C#.","url":"https://valeriocomella.github.io/","image":"https://valeriocomella.github.io/img/social-preview.png","author":{"@type":"Person","name":"Valerio Comella","email":"valeriocom@hotmail.it"},"publisher":{"@type":"Person","name":"Valerio Comella","logo":{"@type":"ImageObject","url":"https://valeriocomella.github.io/web-app-manifest-512x512.png"}}}</script><link rel="stylesheet" href="/_astro/index.-FHsIj18.css">
+<link rel="stylesheet" href="/_astro/_slug_.DNOOXhWc.css">
+<style>[data-astro-cid-z64c3wqy][data-link]{color:inherit;transition:color var(--motion-duration-fast) var(--motion-ease),text-decoration-color var(--motion-duration) var(--motion-ease)}@media (hover: hover) and (pointer: fine){[data-astro-cid-z64c3wqy][data-link]:hover{color:var(--accent)}}[data-astro-cid-z64c3wqy][data-link][data-underline]{--underline: var(--muted-foreground);-webkit-text-decoration-skip:ink;text-decoration-skip-ink:auto}[data-astro-cid-z64c3wqy][data-link][data-underline]:is(:hover,:focus-visible){text-decoration-color:currentColor}
+</style><script type="module" src="/_astro/hoisted.B3oUh28x.js"></script></head><body data-astro-cid-sckkx6r4> <div id="main-header" class="menu-bar" data-astro-cid-horbor3u>  <header class="site-header" data-astro-cid-qlfjksao> <div class="site-brand" data-astro-cid-qlfjksao> <a href="/" data-link class="site-title" data-astro-cid-qlfjksao data-astro-transition-persist="astro-iyz7q2hq-1" data-astro-cid-z64c3wqy>  <span data-astro-cid-qlfjksao>Valerio Comella</span>  </a>  </div> <div class="site-actions" data-astro-cid-qlfjksao> <!-- Scarica CV Button --> <a href="/CV_ComellaValerio.pdf" target="_blank" rel="noopener noreferrer" class="cv-download-btn" title="Scarica Curriculum Vitae (PDF)" data-astro-cid-qlfjksao> <svg class="cv-download-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" data-astro-cid-qlfjksao> <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" data-astro-cid-qlfjksao></path> </svg> <span data-astro-cid-qlfjksao>Scarica CV</span> </a> <div class="theme-toggle-wrapper" data-astro-cid-qlfjksao> <button type="button" data-button data-variant="ghost" data-size="square" class="theme-toggle-btn" id="theme-toggle-btn" title="Cambia tema (Light/Dark)" aria-label="Cambia tema (Light/Dark)" data-astro-cid-efubawbo data-astro-cid-steqimjr> <div class="theme-icon-stack" aria-hidden="true" data-astro-cid-efubawbo> <svg viewBox="0 0 24 24" data-astro-cid-efubawbo width="1.4rem" height="1.4rem" class="theme-icon-light" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 4V3m5.657 3.343l.707-.707M20 12h1m-3.343 5.657l.707.707M12 20v1m-5.657-3.343l-.707.707M4 12H3m3.343-5.657l-.707-.707M17 12a5 5 0 1 1-10 0a5 5 0 0 1 10 0Z"/> </svg>  <svg viewBox="0 0 24 24" data-astro-cid-efubawbo width="1.4rem" height="1.4rem" class="theme-icon-dark" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="currentColor" d="m13.38 4.121l-.91.412a1 1 0 0 1 1.082-1.397zM14 7h1zm-9.879 6.38l-.985.171a1 1 0 0 1 1.397-1.082zM20 12h1zm-6.62-7.879l.912-.412A8 8 0 0 1 15 7h-2c0-.88-.19-1.715-.53-2.467zM14 7h1a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6zm-7 7v1a8 8 0 0 1-3.29-.709l.411-.911l.412-.911A6 6 0 0 0 7 13zm-2.879-.62l.985-.171A7 7 0 0 0 12 19v2c-4.443 0-8.128-3.218-8.864-7.449zM12 20v-1a7 7 0 0 0 7-7h2a9 9 0 0 1-9 9zm8-8h-1a7 7 0 0 0-5.79-6.894l.17-.985l.172-.985C17.782 3.872 21 7.558 21 12z"/> </svg>  </div> </button>  <script>
+  function setupThemeToggle() {
+    const btn = document.getElementById("theme-toggle-btn")
+    if (!btn) return
+
+    btn.onclick = () => {
+      const current = document.documentElement.getAttribute("data-theme") || "light"
+      const next = current === "dark" ? "light" : "dark"
+      document.documentElement.setAttribute("data-theme", next)
+      document.documentElement.classList.remove("scheme-light", "scheme-dark")
+      document.documentElement.classList.add(next === "dark" ? "scheme-dark" : "scheme-light")
+      localStorage.setItem("theme", next)
+    }
+  }
+
+  (() => {
+    const stored = localStorage?.getItem("theme")
+    const isDark = stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    const resolved = isDark ? "dark" : "light"
+    document.documentElement.setAttribute("data-theme", resolved)
+    document.documentElement.classList.add(resolved === "dark" ? "scheme-dark" : "scheme-light")
+  })()
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupThemeToggle, { once: true })
+  } else {
+    setupThemeToggle()
+  }
+  document.addEventListener("astro:page-load", setupThemeToggle)
+</script> </div> </div> </header>   <div class="menu-bar-progress" aria-hidden="true" data-astro-cid-horbor3u> <span data-scroll-progress data-astro-cid-horbor3u></span> </div> </div>   <div class="breadcrumb-region" data-astro-cid-sckkx6r4> <nav aria-label="Breadcrumb navigation" data-astro-cid-fdlnsr2d> <ol class="breadcrumb-list" data-astro-cid-fdlnsr2d> <li class="breadcrumb-item" data-astro-cid-fdlnsr2d> <a href="/" class="breadcrumb-link stretched-link" aria-label="Navigate to home page" title="Go to home page" data-astro-cid-fdlnsr2d> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fdlnsr2d width="1.25rem" height="1.25rem" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-width="2" d="M4 9.5a1 1 0 0 1 .4-.8l7-5.25a1 1 0 0 1 1.2 0l7 5.25a1 1 0 0 1 .4.8V19a1 1 0 0 1-1 1h-4.9a.1.1 0 0 1-.1-.1V14a2 2 0 1 0-4 0v5.9a.1.1 0 0 1-.1.1H5a1 1 0 0 1-1-1z"/> </svg>  <span class="sr-only" data-astro-cid-fdlnsr2d>Home</span> </a> </li>  <li role="presentation" aria-hidden="true" data-astro-cid-fdlnsr2d> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fdlnsr2d width="1em" height="1em" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.343 6.343L15 12l-5.657 5.657"/> </svg>  </li> <li class="breadcrumb-item" data-astro-cid-fdlnsr2d> <a href="/#showcase" aria-label="Navigate to Game Showcase" title="Go to Game Showcase" class="breadcrumb-link stretched-link" data-astro-cid-fdlnsr2d> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fdlnsr2d width="1.25rem" height="1.25rem" class="breadcrumb-icon" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18 20H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5.52a1 1 0 0 1 .78.375l1.4 1.75a1 1 0 0 0 .78.375H19a1 1 0 0 1 1 1V10M4.353 20h13.903a1 1 0 0 0 .958-.713l2.4-8A1 1 0 0 0 20.656 10H6.745a1 1 0 0 0-.958.713l-2.392 8A1 1 0 0 0 4.353 20Z"/> </svg>  <span class="breadcrumb-label" data-astro-cid-fdlnsr2d>Game Showcase</span> </a> </li>  <li role="presentation" aria-hidden="true" data-astro-cid-fdlnsr2d> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fdlnsr2d width="1em" height="1em" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.343 6.343L15 12l-5.657 5.657"/> </svg>  </li> <li class="breadcrumb-item" data-astro-cid-fdlnsr2d> <span aria-current="page" class="breadcrumb-current" data-astro-cid-fdlnsr2d> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fdlnsr2d width="1.25rem" height="1.25rem" class="breadcrumb-icon" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-width="2" d="M13 3v5.5a.5.5 0 0 0 .5.5H19m-5.414-6H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.414a1 1 0 0 0-.293-.707l-4.414-4.414A1 1 0 0 0 13.586 3Z"/> </svg>  <span class="breadcrumb-label" data-astro-cid-fdlnsr2d>Lock Fight</span> </span> </li>  </ol> </nav>  </div> <main data-astro-cid-sckkx6r4>  <div class="project-detail-wrapper max-w-3xl mx-auto py-2" data-astro-cid-5uq7evlv> <a href="/#showcase" class="project-back-link text-sm font-medium mb-6 inline-flex items-center gap-1" data-astro-cid-5uq7evlv>
+&larr; Torna alla Homepage
+</a> <header class="project-header mb-8" data-astro-cid-5uq7evlv> <div class="project-title-row flex items-center justify-between gap-4 mb-2" data-astro-cid-5uq7evlv> <h1 class="project-title text-3xl font-bold" data-astro-cid-5uq7evlv>Lock Fight</h1> <span data-badge data-variant="default" class="featured-badge" data-astro-cid-5uq7evlv data-astro-cid-726jemmf> <svg viewBox="0 0 24 24" data-astro-cid-5uq7evlv width="1em" height="1em" class="featured-badge-icon" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-width="2" d="M11.784 2.87a.25.25 0 0 1 .432 0l2.961 5.085a.25.25 0 0 0 .164.119l5.75 1.245a.25.25 0 0 1 .134.41l-3.92 4.388a.25.25 0 0 0-.063.192l.593 5.854a.25.25 0 0 1-.35.254l-5.384-2.373a.25.25 0 0 0-.202 0l-5.384 2.373a.25.25 0 0 1-.35-.254l.593-5.854a.25.25 0 0 0-.062-.192L2.776 9.73a.25.25 0 0 1 .133-.411l5.75-1.245a.25.25 0 0 0 .164-.119z"/> </svg> 
+Featured
+</span> </div> <div class="project-meta-row flex flex-wrap items-center gap-2 mb-4" data-astro-cid-5uq7evlv> <p class="project-subtitle text-lg" data-astro-cid-5uq7evlv> Unity Developer (C#) · Settembre 2024 – Ottobre 2024 </p> <span data-badge data-variant="muted" data-astro-cid-5uq7evlv data-astro-cid-726jemmf>Product</span> </div> <div class="project-tags-row flex flex-wrap gap-2 mb-6" data-astro-cid-5uq7evlv> <span class="project-tag-chip" data-astro-cid-5uq7evlv> Unity </span><span class="project-tag-chip" data-astro-cid-5uq7evlv> C# </span><span class="project-tag-chip" data-astro-cid-5uq7evlv> Combat System </span><span class="project-tag-chip" data-astro-cid-5uq7evlv> Game Dev </span> </div> <p class="project-description leading-relaxed text-base mb-4" data-astro-cid-5uq7evlv>Progetto videoludico incentrato sulle logiche di combattimento e gameplay loop in C#.</p> <div class="project-links flex flex-wrap gap-2 mt-4" data-astro-cid-5uq7evlv> <a href="https://lock-fight.itch.io/lock-fight" target="_blank" rel="noopener noreferrer nofollow" data-link data-external data-button data-variant="accent-outline" data-size="default" data-astro-cid-5uq7evlv data-astro-cid-steqimjr data-astro-cid-z64c3wqy>  <svg viewBox="0 0 24 24" data-astro-cid-5uq7evlv width="1em" height="1em" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M10.863 12.999H11c3.148 0 6.934-1.108 9.762-3.063M10.862 13c-2.784-.037-5.59-1.205-7.6-3.161m7.6 3.16c.068 2.845 1.21 5.817 3.31 7.738M10.861 13c-.015-.68.03-1.351.138-2c.451-2.707 1.364-5.6 3.162-7.738M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z"/> </svg>  <span data-astro-cid-5uq7evlv>Website</span>  </a> <a href="https://lock-fight.itch.io/lock-fight" target="_blank" rel="noopener noreferrer nofollow" data-link data-external data-button data-variant="accent-outline" data-size="default" data-astro-cid-5uq7evlv data-astro-cid-steqimjr data-astro-cid-z64c3wqy>  <svg viewBox="0 0 24 24" data-astro-cid-5uq7evlv width="1em" height="1em" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="currentColor" d="M13 3a1 1 0 1 0-2 0zm-2 13a1 1 0 1 0 2 0zm-1.828-4a1 1 0 1 0-1.415 1.414l.707-.707zM12 16.243l-.707.707a1 1 0 0 0 1.414 0zm4.243-2.829A1 1 0 1 0 14.828 12l.708.707zM20 7h-1v13h2V7zm-1 14v-1H5v2h14zM4 20h1V7H3v13zM5 6v1h3V5H5zm11 0v1h3V5h-3zm-4-3h-1v13h2V3zm-3.536 9.707l-.707.707l3.536 3.536l.707-.707l.707-.707L9.172 12zM12 16.243l.707.707l3.536-3.536l-.707-.707l-.708-.707l-3.535 3.536zM4 7h1V5a2 2 0 0 0-2 2zm1 14v-1H3a2 2 0 0 0 2 2zm15-1h-1v2a2 2 0 0 0 2-2zm0-13h1a2 2 0 0 0-2-2v2z"/> </svg>  <span data-astro-cid-5uq7evlv>Release</span>  </a>  </div> </header> <section class="itch-embed-section my-8" data-astro-cid-5uq7evlv> <h2 class="itch-section-title text-xl font-semibold mb-4" data-astro-cid-5uq7evlv>Gioca / Prova su Itch.io</h2> <div class="itch-widget-container my-3 w-full" data-astro-cid-7veguehk> <!-- Widget per Light Mode --> <iframe class="itch-iframe itch-iframe-light w-full h-[167px] rounded-xl border border-cv-border shadow-sm" src="https://itch.io/embed/3086012?bg_color=F1F3F4&fg_color=202124&link_color=D85829&border_color=DADCE0" title="Gioca a Lock Fight su Itch.io" width="100%" height="167" data-astro-cid-7veguehk></iframe> <!-- Widget per Dark Mode --> <iframe class="itch-iframe itch-iframe-dark w-full h-[167px] rounded-xl border border-cv-border shadow-sm" src="https://itch.io/embed/3086012?bg_color=121316&fg_color=F1F3F4&link_color=E0693E&border_color=2D3239" title="Gioca a Lock Fight su Itch.io" width="100%" height="167" data-astro-cid-7veguehk></iframe> </div>  </section> <article class="project-content-article pt-6" data-astro-cid-5uq7evlv> <prose-content data-astro-cid-5uq7evlv> <h2 id="panoramica">Panoramica</h2>
+<p><strong>Lock Fight</strong> è un progetto videoludico realizzato in <strong>Unity</strong> (Settembre 2024 – Ottobre 2024).</p>
+<h3 id="dettagli-del-progetto">Dettagli del Progetto</h3>
+<ul>
+<li><strong>Ruolo:</strong> Unity Developer (C#)</li>
+<li><strong>Periodo:</strong> Settembre 2024 – Ottobre 2024</li>
+<li><strong>Tecnologie &#x26; Competenze:</strong> Unity, C#, Combat System, Game Dev</li>
+<li><strong>Descrizione:</strong> Sviluppo del sistema di combattimento, collisioni, animazioni e gameplay loop completo in C#.</li>
+</ul> </prose-content> </article> <div class="copy-markdown-wrapper copy-project-markdown mt-6" data-astro-cid-wsyg3svo> <button type="button" data-copy-btn data-copy-text="# Lock Fight
+
+Progetto videoludico incentrato sulle logiche di combattimento e gameplay loop in C#.
+
+Source: https://valeriocomella.github.io/projects/lock-fight  
+Date: 1 ott 2024
+
+## Panoramica
+
+**Lock Fight** è un progetto videoludico realizzato in **Unity** (Settembre 2024 – Ottobre 2024).
+
+### Dettagli del Progetto
+
+- **Ruolo:** Unity Developer (C#)
+- **Periodo:** Settembre 2024 – Ottobre 2024
+- **Tecnologie &#38; Competenze:** Unity, C#, Combat System, Game Dev
+- **Descrizione:** Sviluppo del sistema di combattimento, collisioni, animazioni e gameplay loop completo in C#.
+" data-copy-variant="plain" class="copy-button copy-markdown-button" title="Copy as Markdown" data-astro-cid-y3p5mngw> <svg viewBox="0 0 24 24" data-astro-cid-y3p5mngw width="1rem" height="1rem" class="copy-icon" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="currentColor" d="M8 11a1 1 0 1 0 0 2zm4 2a1 1 0 1 0 0-2zm-4 2a1 1 0 1 0 0 2zm2 2a1 1 0 1 0 0-2zm6-9h-1v12h2V8zm-1 13v-1H5v2h10zM4 20h1V8H3v12zM5 7v1h10V6H5zm3 5v1h4v-2H8zm0 4v1h2v-2H8zm12 0h1V4h-2v12zM19 3V2H9v2h10zM8 4H7v3h2V4zm8 13v1h3v-2h-3zM9 3V2a2 2 0 0 0-2 2h2zm11 1h1a2 2 0 0 0-2-2v2zm0 12h-1v2a2 2 0 0 0 2-2zM5 21v-1H3a2 2 0 0 0 2 2zm11-1h-1v2a2 2 0 0 0 2-2zm0-12h1a2 2 0 0 0-2-2v2zM4 8h1V6a2 2 0 0 0-2 2z"/> </svg>  <svg viewBox="0 0 24 24" hidden data-astro-cid-y3p5mngw width="1rem" height="1rem" class="check-icon" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3.514 11.83l5.657 5.656L20.485 6.172"/> </svg>  <span class="copy-label" data-astro-cid-y3p5mngw>Copy Markdown</span> </button> <script data-astro-rerun>
+  ;(function () {
+    function initCopyButtons() {
+      document.querySelectorAll("[data-copy-btn]").forEach(function (btn) {
+        if (btn.hasAttribute("data-copy-bound")) return
+        btn.setAttribute("data-copy-bound", "")
+
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation()
+          var text
+          var sel = btn.getAttribute("data-copy-selector")
+          if (sel) {
+            var parent = btn.parentElement
+            var target = parent && parent.querySelector(sel)
+            text = target ? target.textContent.trim() : ""
+          }
+          if (!text) {
+            text = btn.getAttribute("data-copy-text") || ""
+          }
+          if (!text) return
+
+          navigator.clipboard.writeText(text).then(function () {
+            var copyIcon = btn.querySelector(".copy-icon")
+            var checkIcon = btn.querySelector(".check-icon")
+            var label = btn.querySelector(".copy-label")
+            var origLabel = label ? label.textContent : ""
+
+            if (copyIcon) copyIcon.setAttribute("hidden", "")
+            if (checkIcon) checkIcon.removeAttribute("hidden")
+            if (label) label.textContent = "Copied!"
+
+            setTimeout(function () {
+              if (copyIcon) copyIcon.removeAttribute("hidden")
+              if (checkIcon) checkIcon.setAttribute("hidden", "")
+              if (label) label.textContent = origLabel
+            }, 1500)
+          })
+        })
+      })
+    }
+
+    initCopyButtons()
+    document.addEventListener("astro:after-swap", initCopyButtons)
+  })()
+</script>  </div>  <div class="project-nav-wrapper mt-8" data-astro-cid-5uq7evlv> <nav class="project-navigation" data-astro-cid-qh36ml6n> <a href="/projects/please-open-the-door.md" data-link data-button data-variant="outline" data-size="default" data-astro-cid-qh36ml6n data-astro-cid-steqimjr data-astro-cid-z64c3wqy>  <project-navigation-content data-direction="previous" data-astro-cid-qh36ml6n> <project-navigation-icon data-astro-cid-qh36ml6n><svg viewBox="0 0 24 24" data-astro-cid-qh36ml6n width="1em" height="1em" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h15m-10 5.657L4.343 12L10 6.343"/> </svg> </project-navigation-icon> <project-navigation-label data-astro-cid-qh36ml6n> <span data-astro-cid-qh36ml6n>Previous Project</span> <strong data-astro-cid-qh36ml6n> Please Open the Door! </strong> </project-navigation-label> </project-navigation-content>  </a>  <a href="/projects/rusheep.md" data-link data-button data-variant="outline" data-size="default" data-astro-cid-qh36ml6n data-astro-cid-steqimjr data-astro-cid-z64c3wqy>  <project-navigation-content data-direction="next" data-astro-cid-qh36ml6n> <project-navigation-label data-astro-cid-qh36ml6n> <span data-astro-cid-qh36ml6n>Next Project</span> <strong data-astro-cid-qh36ml6n> Rusheep </strong> </project-navigation-label> <project-navigation-icon data-astro-cid-qh36ml6n><svg viewBox="0 0 24 24" data-astro-cid-qh36ml6n width="1em" height="1em" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h15m-5 5.657L19.657 12L14 6.343"/> </svg> </project-navigation-icon> </project-navigation-content>  </a>  </nav>  </div> </div>  </main> <back-to-top data-astro-cid-7lunump5> <button type="button" data-button data-variant="outline" data-size="square" hidden title="Back to top" aria-label="Back to top" data-astro-cid-7lunump5 data-astro-cid-steqimjr> <back-to-top-icon data-astro-cid-7lunump5><svg viewBox="0 0 24 24" data-astro-cid-7lunump5 width="1.25rem" height="1.25rem" role="presentation" aria-hidden="true" data-astro-cid-dmndvspb> <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.95 12.702L12 7.752l-4.95 4.95M12 8v12M5 4h14"/> </svg> </back-to-top-icon> </button> </back-to-top>   <footer class="site-footer" data-astro-cid-35ed7um5> <div class="footer-inner" data-astro-cid-35ed7um5> <div class="footer-primary-row" data-astro-cid-35ed7um5> <span data-astro-cid-35ed7um5>&copy; <span id="current-year" data-astro-cid-35ed7um5>2026</span> <strong data-astro-cid-35ed7um5>Valerio Comella</strong></span> <span class="footer-dot" data-astro-cid-35ed7um5>·</span> <span data-astro-cid-35ed7um5>Built with <a href="https://astro.build/" target="_blank" rel="noopener noreferrer nofollow" data-link data-external data-underline class="footer-link" data-astro-cid-35ed7um5 data-astro-cid-z64c3wqy> Astro </a> </span> <span class="footer-dot" data-astro-cid-35ed7um5>·</span> <span data-astro-cid-35ed7um5><a href="https://github.com/valeriocomella/valeriocomella.github.io" target="_blank" rel="noopener noreferrer nofollow" data-link data-external data-underline class="footer-link" data-astro-cid-35ed7um5 data-astro-cid-z64c3wqy> Credits template </a> </span> </div> <div class="footer-secondary-row" data-astro-cid-35ed7um5> <p class="footer-ai-text" data-astro-cid-35ed7um5>Sviluppato con il supporto di IA (Antigravity)</p> </div> </div> </footer>   </body> </html>  

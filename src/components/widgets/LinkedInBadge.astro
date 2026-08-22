@@ -1,0 +1,39 @@
+---
+interface Props {
+  vanity?: string
+  theme?: "light" | "dark"
+  size?: "medium" | "large"
+  class?: string
+}
+
+const {
+  vanity = "valerio-comella-6a5693241",
+  theme = "dark",
+  size = "large",
+  class: className = "",
+} = Astro.props
+---
+
+<div class:list={["linkedin-badge-wrapper flex justify-center items-center my-4 overflow-hidden rounded-2xl", className]}>
+  <div
+    class="badge-base LI-profile-badge"
+    data-locale="it_IT"
+    data-size={size}
+    data-theme={theme}
+    data-type="VERTICAL"
+    data-vanity={vanity}
+    data-version="v1"
+  >
+    <a
+      class="badge-base__link LI-simple-link text-blue-600 hover:underline text-sm font-medium"
+      href={`https://it.linkedin.com/in/${vanity}?trk=profile-badge`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Valerio Comella
+    </a>
+  </div>
+</div>
+
+<!-- Caricamento asincrono dello script ufficiale LinkedIn -->
+<script is:inline src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>

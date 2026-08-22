@@ -1,0 +1,73 @@
+{
+  "description": "Competenze e tecnologie utilizzate nello sviluppo di applicazioni interattive, Mixed Reality e soluzioni Web Full Stack.",
+  "groups": [
+    {
+      "name": "Game Dev & XR",
+      "icon": "mingcute:game-2-line",
+      "items": [
+        "Unity (C#)",
+        "Unreal Engine 5 (Blueprint)",
+        "zSpace (Mixed Reality)",
+        "MR-HMI (Human-Machine Interface)",
+        "UGUI",
+        "Unity UI Toolkit",
+        "WebGL",
+        "Wrapper Multi SDK"
+      ]
+    },
+    {
+      "name": "Web & Backend",
+      "icon": "mingcute:server-line",
+      "items": [
+        "Java (Spring Boot)",
+        "Thymeleaf",
+        "HTML5",
+        "CSS3",
+        "Bootstrap",
+        "JavaScript",
+        "PostgreSQL",
+        "MySQL"
+      ]
+    },
+    {
+      "name": "Linguaggi & Paradigmi",
+      "icon": "mingcute:code-line",
+      "items": [
+        "C# (API Unity)",
+        "Java (Spring Boot)",
+        "Python",
+        "Programmazione ad Oggetti (OOP)"
+      ]
+    },
+    {
+      "name": "Strumenti & IDE",
+      "icon": "mingcute:terminal-box-line",
+      "items": [
+        "Git",
+        "GitHub",
+        "Visual Studio",
+        "VS Code",
+        "IntelliJ IDEA",
+        "Linux (NDG Linux Unhatched)"
+      ]
+    },
+    {
+      "name": "UI/UX & Design",
+      "icon": "mingcute:palette-line",
+      "items": [
+        "Figma",
+        "Canva"
+      ]
+    },
+    {
+      "name": "Project Management & Collaboration",
+      "icon": "mingcute:group-line",
+      "items": [
+        "Trello",
+        "Notion",
+        "Milanote",
+        "Miro"
+      ]
+    }
+  ]
+}

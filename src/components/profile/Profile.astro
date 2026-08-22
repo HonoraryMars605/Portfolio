@@ -1,0 +1,203 @@
+---
+import type { ProfileConfig } from "@/types"
+import { Image } from "astro:assets"
+
+import Badge from "@/components/base/Badge.astro"
+import Icon from "@/components/base/Icon.astro"
+import avatarImg from "@/assets/avatar.png"
+
+import EmailLink from "./EmailLink.astro"
+import ProfileLinks from "./ProfileLinks.astro"
+import { getProfileLinkPlacement } from "./helper"
+
+interface Props {
+  profile: ProfileConfig
+}
+
+const { profile } = Astro.props
+
+const aboutLinks = getProfileLinkPlacement("about")
+---
+
+<article id="profile" class="profile-article">
+  <div class="profile-container">
+    <!-- Left Column: Avatar -->
+    <div class="profile-avatar-column">
+      <Image
+        src={avatarImg}
+        alt={profile.name}
+        width={360}
+        height={360}
+        quality={95}
+        format="webp"
+        loading="eager"
+        fetchpriority="high"
+        class="profile-avatar-img rounded-2xl border-2 border-cv-border dark:border-zinc-700 object-cover shadow-sm"
+      />
+    </div>
+
+    <!-- Right Column: Info & Details -->
+    <div class="profile-info-column">
+      <div class="profile-heading">
+        <h1 class="profile-name">
+          {profile.name}
+          {profile.pronouns && (
+            <Badge variant="outline" class="profile-pronouns">
+              {profile.pronouns}
+            </Badge>
+          )}
+        </h1>
+        <p class="profile-tagline">{profile.tagline}</p>
+      </div>
+
+      <div class="profile-bio">
+        <p>
+          Unity Developer specializzato in <strong>C#</strong>, con esperienza nello sviluppo di applicazioni interattive, soluzioni <strong>Mixed Reality (zSpace/XR)</strong> e prodotti <strong>B2B WebGL</strong>. Solida formazione in <strong>Game Development & MR (ITS EQF5)</strong>, con competenze <strong>Full Stack</strong>.
+        </p>
+      </div>
+
+      <div class="profile-contact-meta">
+        <EmailLink email="valeriocom@hotmail.it" />
+
+        {profile.phone && (
+          <span class="profile-meta-item">
+            <Icon name="mingcute:phone-line" />
+            <span>{profile.phone}</span>
+          </span>
+        )}
+
+        {profile.location && (
+          <span class="profile-meta-item">
+            <Icon name="mingcute:map-pin-line" />
+            <span>{profile.location}</span>
+          </span>
+        )}
+      </div>
+    </div>
+  </div>
+</article>
+
+{aboutLinks.length > 0 && (
+  <footer class="profile-footer">
+    <ProfileLinks keys={aboutLinks} />
+  </footer>
+)}
+
+<style>
+  .profile-article {
+    margin-block-start: var(--space-s);
+    margin-block-end: var(--space-m);
+  }
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-m);
+
+    @media (width >= 48rem) {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--space-l);
+    }
+  }
+
+  .profile-avatar-column {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-avatar-img {
+    width: 180px;
+    height: 180px;
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: var(--radius-2xl, 1rem);
+    border: 2px solid var(--border);
+    object-fit: cover;
+    box-shadow: 0 4px 16px -3px color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+
+  .profile-info-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .profile-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .profile-name {
+    margin: 0;
+    font-size: var(--step-3);
+    font-weight: var(--font-weight-bold);
+    color: var(--foreground);
+    line-height: var(--line-height-tight);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    @media (width >= 48rem) {
+      justify-content: flex-start;
+    }
+  }
+
+  .profile-pronouns {
+    font-size: var(--step--1);
+    font-weight: normal;
+  }
+
+  .profile-tagline {
+    margin: 0;
+    font-size: var(--step-0);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary);
+  }
+
+  .profile-bio {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+
+  .profile-bio strong {
+    color: var(--foreground);
+  }
+
+  .profile-contact-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2xs) var(--space-s);
+    color: var(--muted-foreground);
+    font-size: var(--step--1);
+    margin-block-start: 0.25rem;
+
+    @media (width >= 48rem) {
+      justify-content: flex-start;
+    }
+  }
+
+  .profile-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .profile-meta-item :global(svg) {
+    inline-size: 1rem;
+    block-size: 1rem;
+    color: var(--muted-foreground);
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+interface Props {
+  gameId: string
+  title?: string
+  gameUrl?: string
+  darkBg?: string
+  lightBg?: string
+}
+
+const {
+  gameId,
+  title = "Play on Itch.io",
+  darkBg = "121316",
+  lightBg = "F1F3F4",
+} = Astro.props
+
+// Parametri palette: Accent #D85829 (light) / #E0693E (dark), Border #DADCE0 / #2D3239
+const lightEmbedSrc = `https://itch.io/embed/${gameId}?bg_color=${lightBg}&fg_color=202124&link_color=D85829&border_color=DADCE0`
+const darkEmbedSrc = `https://itch.io/embed/${gameId}?bg_color=${darkBg}&fg_color=F1F3F4&link_color=E0693E&border_color=2D3239`
+---
+
+<div class="itch-widget-container my-3 w-full">
+  <!-- Widget per Light Mode -->
+  <iframe
+    class="itch-iframe itch-iframe-light w-full h-[167px] rounded-xl border border-cv-border shadow-sm"
+    src={lightEmbedSrc}
+    title={title}
+    width="100%"
+    height="167"
+  ></iframe>
+
+  <!-- Widget per Dark Mode -->
+  <iframe
+    class="itch-iframe itch-iframe-dark w-full h-[167px] rounded-xl border border-cv-border shadow-sm"
+    src={darkEmbedSrc}
+    title={title}
+    width="100%"
+    height="167"
+  ></iframe>
+</div>
+
+<style>
+  .itch-widget-container {
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
+
+  .itch-iframe {
+    inline-size: 100%;
+    min-inline-size: 100%;
+    block-size: 167px;
+    min-block-size: 167px;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 2px 10px -2px color-mix(in srgb, var(--primary) 10%, transparent);
+    transition: border-color var(--motion-duration) var(--motion-ease);
+  }
+
+  .itch-iframe:hover {
+    border-color: var(--primary);
+  }
+
+  .itch-iframe-light {
+    display: block;
+  }
+
+  .itch-iframe-dark {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .itch-iframe-light {
+    display: none !important;
+  }
+
+  :global([data-theme="dark"]) .itch-iframe-dark {
+    display: block !important;
+  }
+</style>

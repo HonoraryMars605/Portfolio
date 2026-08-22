@@ -1,0 +1,189 @@
+---
+import "@/styles/callout.css"
+import "@/styles/sidenote.css"
+
+import { render, getCollection } from "astro:content"
+
+import Layout from "@/layouts/Layout.astro"
+import Badge from "@/components/base/Badge.astro"
+import Button from "@/components/base/Button.astro"
+import CopyMarkdown from "@/components/base/CopyMarkdown.astro"
+import Icon from "@/components/base/Icon.astro"
+import DateRange from "@/components/projects/DateRange.astro"
+import ProjectNavigation from "@/components/projects/ProjectNavigation.astro"
+import ItchEmbed from "@/components/widgets/ItchEmbed.astro"
+import { getProjectLinks, getProjectNavigation, getProjectTypeLabel } from "@/lib/projects"
+import { buildMarkdownDocument } from "@/lib/markdown-document"
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects")
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+const [{ Content }, navigation] = await Promise.all([
+  render(project),
+  getProjectNavigation(project.slug),
+])
+
+const {
+  title,
+  description,
+  selected,
+  fromDate,
+  toDate,
+  code,
+  doc,
+  paper,
+  url,
+  release,
+  types = [],
+  skills = [],
+  tags = [],
+  itchId,
+  itchUrl,
+  role,
+  date,
+} = project.data
+
+const displayTags = tags.length > 0 ? tags : skills
+const effectiveItchUrl = itchUrl || url || "https://honorarymars605.itch.io"
+const links = getProjectLinks(code, doc, paper, url, release)
+
+const rawMarkdown = project.body
+  ? buildMarkdownDocument(project.body, {
+      title,
+      description: project.data.description,
+      path: "/projects/" + project.slug,
+      date: toDate ?? fromDate,
+    })
+  : null
+---
+
+<Layout
+  title={title + " - Valerio Comella"}
+  description={"Progetto: " + title + " - " + (description || "")}
+  breadcrumbs={[
+    { href: "/#showcase", label: "Game Showcase", icon: "folder-open" },
+    { label: title, icon: "file" },
+  ]}
+>
+  <div class="project-detail-wrapper max-w-3xl mx-auto py-2">
+    <a href="/#showcase" class="project-back-link text-sm font-medium mb-6 inline-flex items-center gap-1">
+      &larr; Torna alla Homepage
+    </a>
+
+    <header class="project-header mb-8">
+      <div class="project-title-row flex items-center justify-between gap-4 mb-2">
+        <h1 class="project-title text-3xl font-bold">{title}</h1>
+        {selected && (
+          <Badge variant="default" class="featured-badge">
+            <Icon name="star" class="featured-badge-icon" />
+            Featured
+          </Badge>
+        )}
+      </div>
+
+      <div class="project-meta-row flex flex-wrap items-center gap-2 mb-4">
+        {(role || date || fromDate) && (
+          <p class="project-subtitle text-lg">
+            {role ? role : ""} {role && (date || fromDate) ? "·" : ""} {date ? date : (fromDate ? <DateRange fromDate={fromDate} toDate={toDate} /> : "")}
+          </p>
+        )}
+        {types.map((slug) => <Badge variant="muted">{getProjectTypeLabel(slug)}</Badge>)}
+      </div>
+
+      {displayTags.length > 0 && (
+        <div class="project-tags-row flex flex-wrap gap-2 mb-6">
+          {displayTags.map((tag: string) => (
+            <span class="project-tag-chip">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {description && (
+        <p class="project-description leading-relaxed text-base mb-4">{description}</p>
+      )}
+
+      {links.length > 0 && (
+        <div class="project-links flex flex-wrap gap-2 mt-4">
+          {links.map(({ href, icon, label }) => (
+            <Button href={href} variant="accent-outline" external>
+              <Icon name={icon} />
+              <span>{label}</span>
+            </Button>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {itchId && (
+      <section class="itch-embed-section my-8">
+        <h2 class="itch-section-title text-xl font-semibold mb-4">Gioca / Prova su Itch.io</h2>
+        <ItchEmbed gameId={itchId} gameUrl={effectiveItchUrl} title={"Gioca a " + title + " su Itch.io"} />
+      </section>
+    )}
+
+    <article class="project-content-article pt-6">
+      <prose-content>
+        <Content />
+      </prose-content>
+    </article>
+
+    {rawMarkdown && <CopyMarkdown markdown={rawMarkdown} class="copy-project-markdown mt-6" />}
+
+    <div class="project-nav-wrapper mt-8">
+      <ProjectNavigation prev={navigation.prev} next={navigation.next} />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .project-back-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: opacity var(--motion-duration-fast);
+  }
+  .project-back-link:hover {
+    text-decoration: underline;
+  }
+
+  .project-title {
+    margin: 0;
+    color: var(--foreground);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .project-subtitle {
+    color: var(--muted-foreground);
+    margin: 0;
+  }
+
+  .project-tag-chip {
+    padding: 0.25rem 0.65rem;
+    font-size: var(--step--1);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-full);
+    background: var(--surface);
+    color: var(--primary);
+    border: 1px solid var(--border);
+  }
+
+  .project-description {
+    color: var(--foreground);
+  }
+
+  .itch-section-title {
+    color: var(--foreground);
+    margin: 0 0 var(--space-xs) 0;
+  }
+
+  .project-content-article {
+    border-block-start: 1px solid var(--border);
+  }
+</style>

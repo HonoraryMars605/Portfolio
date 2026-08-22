@@ -1,0 +1,56 @@
+---
+import { getEntry } from "astro:content"
+import { PROFILE } from "@site-config"
+import Layout from "@/layouts/Layout.astro"
+import Section from "@/components/layout/Section.astro"
+import HeroProfile from "@/components/profile/HeroProfile.astro"
+import ExperienceTimeline from "@/components/timeline/ExperienceTimeline.astro"
+import GithubLive from "@/components/widgets/GithubLive.astro"
+import ItchShowcase from "@/components/widgets/ItchShowcase.astro"
+import CombinedSkills from "@/components/widgets/CombinedSkills.astro"
+
+const experienceEntry = await getEntry("data", "experience")
+const workData = experienceEntry?.data?.work || []
+const educationData = experienceEntry?.data?.education || []
+const cvHref = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv
+---
+
+<Layout title="Home">
+  <!-- Unified Hero Profile Section -->
+  <HeroProfile />
+
+  <!-- Game Showcase Section -->
+  <Section id="showcase" title="Game Showcase">
+    <ItchShowcase />
+  </Section>
+
+  <!-- Career: Formazione & Esperienze Lavorative Section -->
+  <Section
+    id="experience"
+    title="Esperienza & Formazione"
+    moreLink={cvHref}
+    moreText="scarica CV completo →"
+  >
+    <ExperienceTimeline work={workData} education={educationData} />
+  </Section>
+
+  <!-- Stack Tecnologico & Metriche Reali (Live Sync) Section -->
+  <Section
+    id="skills"
+    title="Stack Tecnologico & Metriche Reali"
+    moreLink="https://github.com/valeriocomella"
+    moreText="tutti i repository GitHub →"
+  >
+    <CombinedSkills />
+  </Section>
+
+  <!-- GitHub Public Repositories Section -->
+  <Section
+    id="projects"
+    title="Repository pubbliche"
+    moreLink="https://github.com/valeriocomella"
+    moreText="tutti i repository GitHub →"
+  >
+    <GithubLive username="valeriocomella" />
+  </Section>
+</Layout>
