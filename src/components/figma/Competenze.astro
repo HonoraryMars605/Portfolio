@@ -1,0 +1,83 @@
+---
+interface SkillCategory {
+  title: string
+  skills: {
+    name: string
+    icon: string
+  }[]
+}
+
+const categories: SkillCategory[] = [
+  {
+    title: "Front-end",
+    skills: [
+      { name: "Javascript", icon: "/assets/figma/skill-javascript.png" },
+      { name: "HTML5", icon: "/assets/figma/skill-html5.png" },
+      { name: "Css", icon: "/assets/figma/skill-css.png" },
+      { name: "Figma", icon: "/assets/figma/skill-figma.png" },
+    ],
+  },
+  {
+    title: "Back-end",
+    skills: [
+      { name: "PostgreSQL", icon: "/assets/figma/skill-postgresql.png" },
+      { name: "Java", icon: "/assets/figma/skill-java.png" },
+    ],
+  },
+  {
+    title: "Game-Dev",
+    skills: [
+      { name: "Unity", icon: "/assets/figma/skill-unity.png" },
+      { name: "UE5", icon: "/assets/figma/skill-ue5.png" },
+      { name: "Trello", icon: "/assets/figma/skill-trello.png" },
+      { name: "GitHub", icon: "/assets/figma/skill-github.png" },
+      { name: "Chat-gpt", icon: "/assets/figma/skill-chatgpt.png" },
+    ],
+  },
+]
+---
+
+<section id="competenze" class="w-full max-w-[1200px] flex flex-col gap-[30px]">
+  <!-- Intestazione Sezione -->
+  <div class="flex flex-col gap-[8px]">
+    <h2 class="font-heading text-2xl sm:text-3xl lg:text-[36px] text-[#9B1C2E] m-0">
+      Skill Tecniche
+    </h2>
+    <p class="font-sans text-base sm:text-[18px] text-[#333333] m-0">
+      Alcune tecnologie sono trasversali, ma indicate nel ruolo dove sono più rilevanti.
+    </p>
+  </div>
+
+  <!-- Categorie Competenze (3 Colonne) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
+    {
+      categories.map((cat) => (
+        <div class="bg-white rounded-[8px] p-[24px] flex flex-col gap-[30px] md:min-h-[389px] transition-all hover:shadow-md">
+          <!-- Categoria -->
+          <h3 class="font-heading text-[28px] text-[#111111] m-0">
+            {cat.title}
+          </h3>
+
+          <!-- Lista Tecnologie -->
+          <ul class="list-none p-0 m-0 flex flex-col gap-[16px]">
+            {cat.skills.map((skill) => (
+              <li class="flex items-center gap-[16px] group">
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  width="32"
+                  height="32"
+                  class="w-[32px] h-[32px] rounded-[4px] object-contain flex-shrink-0 transition-transform group-hover:scale-110"
+                  loading="lazy"
+                />
+                <span class="font-sans text-[18px] text-[#333333] group-hover:text-[#111111] transition-colors">
+                  {skill.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>

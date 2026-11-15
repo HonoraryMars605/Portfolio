@@ -1,56 +1,41 @@
 ---
-import { getEntry } from "astro:content"
-import { PROFILE } from "@site-config"
-import Layout from "@/layouts/Layout.astro"
-import Section from "@/components/layout/Section.astro"
-import HeroProfile from "@/components/profile/HeroProfile.astro"
-import ExperienceTimeline from "@/components/timeline/ExperienceTimeline.astro"
-import GithubLive from "@/components/widgets/GithubLive.astro"
-import ItchShowcase from "@/components/widgets/ItchShowcase.astro"
-import CombinedSkills from "@/components/widgets/CombinedSkills.astro"
-
-const experienceEntry = await getEntry("data", "experience")
-const workData = experienceEntry?.data?.work || []
-const educationData = experienceEntry?.data?.education || []
-const cvHref = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv
+import PortfolioLayout from "@/layouts/PortfolioLayout.astro"
+import Navigazione from "@/components/figma/Navigazione.astro"
+import Presentazione from "@/components/figma/Presentazione.astro"
+import Progetti from "@/components/figma/Progetti.astro"
+import Competenze from "@/components/figma/Competenze.astro"
+import Esperienze from "@/components/figma/Esperienze.astro"
+import Formazione from "@/components/figma/Formazione.astro"
+import Certificazioni from "@/components/figma/Certificazioni.astro"
+import Contatti from "@/components/figma/Contatti.astro"
 ---
 
-<Layout title="Home">
-  <!-- Unified Hero Profile Section -->
-  <HeroProfile />
+<PortfolioLayout
+  title="Valerio Comella - Portfolio"
+  description="Portfolio completo di Valerio Comella - Aspirante Game dev, Web developer in formazione, Unity (C#) e Full Stack Developer."
+  image="/assets/figma/hero-monitor.png"
+>
+  <!-- 1. Navigazione (Navbar) -->
+  <Navigazione />
 
-  <!-- Game Showcase Section -->
-  <Section id="showcase" title="Game Showcase">
-    <ItchShowcase />
-  </Section>
+  <!-- 2. Presentazione (Hero Card) -->
+  <Presentazione />
 
-  <!-- Career: Formazione & Esperienze Lavorative Section -->
-  <Section
-    id="experience"
-    title="Esperienza & Formazione"
-    moreLink={cvHref}
-    moreText="scarica CV completo →"
-  >
-    <ExperienceTimeline work={workData} education={educationData} />
-  </Section>
+  <!-- 3. Progetti (Projects Grid) -->
+  <Progetti />
 
-  <!-- Stack Tecnologico & Metriche Reali (Live Sync) Section -->
-  <Section
-    id="skills"
-    title="Stack Tecnologico & Metriche Reali"
-    moreLink="https://github.com/valeriocomella"
-    moreText="tutti i repository GitHub →"
-  >
-    <CombinedSkills />
-  </Section>
+  <!-- 4. Competenze (Skill Tecniche) -->
+  <Competenze />
 
-  <!-- GitHub Public Repositories Section -->
-  <Section
-    id="projects"
-    title="Repository pubbliche"
-    moreLink="https://github.com/valeriocomella"
-    moreText="tutti i repository GitHub →"
-  >
-    <GithubLive username="valeriocomella" />
-  </Section>
-</Layout>
+  <!-- 5. Esperienze (Work Experiences) -->
+  <Esperienze />
+
+  <!-- 6. Formazione (Education Timeline) -->
+  <Formazione />
+
+  <!-- 7. Certificazioni (Certificates Badges) -->
+  <Certificazioni />
+
+  <!-- 8. Contatti (Contact & Email) -->
+  <Contatti />
+</PortfolioLayout>

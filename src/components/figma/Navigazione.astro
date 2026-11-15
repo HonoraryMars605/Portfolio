@@ -1,0 +1,97 @@
+---
+import { PROFILE } from "@site-config"
+
+const getHref = (link: unknown): string => {
+  if (typeof link === "string") return link
+  if (typeof link === "object" && link !== null && "href" in link) {
+    return (link as { href: string }).href
+  }
+  return ""
+}
+
+const githubUrl = getHref(PROFILE.links.github) || "https://github.com/valeriocomella"
+const linkedinUrl = getHref(PROFILE.links.linkedin) || "https://www.linkedin.com/in/valerio-comella-6a5693241/"
+const cvUrl = getHref(PROFILE.links.cv) || "/CV_ComellaValerio.pdf"
+---
+
+<header class="w-full max-w-[1200px] flex flex-wrap items-center justify-between gap-4 md:gap-8 relative z-20">
+  <!-- Identità (Left) -->
+  <a href="#home" class="flex items-center gap-[12px] group no-underline">
+    <img
+      src="/assets/figma/avatar.png"
+      alt="Valerio Comella"
+      width="32"
+      height="48"
+      class="w-[32px] h-[48px] rounded-[8px] object-cover transition-transform group-hover:scale-105"
+      loading="eager"
+    />
+    <span class="font-heading text-[22px] sm:text-[24px] text-[#111111] tracking-wide group-hover:text-[#9B1C2E] transition-colors">
+      Valerio Comella
+    </span>
+  </a>
+
+  <!-- Navigation Links (Center) -->
+  <nav class="flex items-center gap-[24px] sm:gap-[30px] font-sans text-[16px] text-[#333333]">
+    <a href="#home" class="hover:text-[#9B1C2E] transition-colors py-1">Home</a>
+    <a href="#progetti" class="hover:text-[#9B1C2E] transition-colors py-1">Progetti</a>
+    <a href="#esperienze" class="hover:text-[#9B1C2E] transition-colors py-1">Esperienze</a>
+  </nav>
+
+  <!-- Azioni profilo (Right) -->
+  <div class="flex items-center gap-[12px]">
+    <!-- GitHub Button -->
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Profilo GitHub di Valerio Comella"
+      class="w-[44px] h-[44px] rounded-[8px] bg-[#0077B5] hover:bg-[#00669C] active:scale-95 transition-all flex items-center justify-center p-[8px] shadow-sm"
+      title="GitHub"
+    >
+      <img
+        src="/assets/figma/icon-github-social.png"
+        alt="GitHub"
+        width="28"
+        height="28"
+        class="w-[28px] h-[28px] object-contain"
+      />
+    </a>
+
+    <!-- LinkedIn Button -->
+    <a
+      href={linkedinUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Profilo LinkedIn di Valerio Comella"
+      class="w-[44px] h-[44px] rounded-[8px] bg-[#0077B5] hover:bg-[#00669C] active:scale-95 transition-all flex items-center justify-center p-[8px] shadow-sm"
+      title="LinkedIn"
+    >
+      <img
+        src="/assets/figma/icon-linkedin-social.png"
+        alt="LinkedIn"
+        width="28"
+        height="28"
+        class="w-[28px] h-[28px] object-contain"
+      />
+    </a>
+
+    <!-- Scarica CV Button -->
+    <a
+      href={cvUrl}
+      download
+      target="_blank"
+      rel="noopener noreferrer"
+      class="h-[48px] px-[20px] sm:px-[24px] py-[12px] rounded-[8px] bg-[#0077B5] hover:bg-[#00669C] active:scale-95 transition-all flex items-center gap-[12px] text-white font-sans text-[16px] font-medium shadow-sm whitespace-nowrap"
+      title="Scarica Curriculum Vitae"
+    >
+      <img
+        src="/assets/figma/icon-download.png"
+        alt="Download"
+        width="18"
+        height="18"
+        class="w-[18px] h-[18px] object-contain"
+      />
+      <span>Scarica CV</span>
+    </a>
+  </div>
+</header>

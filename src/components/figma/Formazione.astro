@@ -1,0 +1,97 @@
+---
+interface EducationItem {
+  id: string
+  title: string
+  locationPeriod: string
+  qualification?: string
+  logo: string
+}
+
+const educations: EducationItem[] = [
+  {
+    id: "protom",
+    title: "Protom  Full Stack Developer",
+    locationPeriod: "Presenziale - Napoli - Set 2025 - Ott 2025",
+    qualification: "-",
+    logo: "/assets/figma/edu-protom-logo.png",
+  },
+  {
+    id: "its-lazio",
+    title: "ITS LAZIO DIGITAL",
+    locationPeriod: "Presenziale - Roma - Nov 2024 - Aprile 2025",
+    qualification: "Diploma di Tecnico Superiore Augmented, Virtual e Mixed Reality",
+    logo: "/assets/figma/edu-its-logo.png",
+  },
+  {
+    id: "isas",
+    title: "ISAS Videogames Academy - Presenziale - Napoli",
+    locationPeriod: "ottobre 2022 - settembre 2023",
+    qualification: "",
+    logo: "/assets/figma/edu-isas-logo.png",
+  },
+  {
+    id: "volta",
+    title: "Istituto Tecnico Industriale Statale \"Alessandro Volta\" - Presenziale - Napoli",
+    locationPeriod: "ottobre 2002 - settembre 2023",
+    qualification: "Diploma Istituto Tecnico e Professionale",
+    logo: "/assets/figma/edu-volta-logo.png",
+  },
+]
+---
+
+<section id="formazione" class="w-full max-w-[1200px] flex flex-col gap-[30px]">
+  <!-- Intestazione Sezione -->
+  <div class="flex flex-col gap-[8px]">
+    <h2 class="font-heading text-2xl sm:text-3xl lg:text-[36px] text-[#9B1C2E] uppercase m-0">
+      FORMAZIONE
+    </h2>
+  </div>
+
+  <!-- Percorso Formativo (4 Schede) -->
+  <div class="flex flex-col gap-[30px]">
+    {
+      educations.map((item) => (
+        <div class="bg-white rounded-[8px] p-6 sm:p-[28px] flex flex-col sm:flex-row gap-[30px] items-start transition-all hover:shadow-md">
+          <!-- Logo Istituto -->
+          <div class="w-[72px] h-[72px] rounded-[8px] bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-gray-100 overflow-hidden">
+            <img
+              src={item.logo}
+              alt={item.title}
+              width="72"
+              height="72"
+              class="w-full h-full object-contain p-1"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Dettagli Formazione -->
+          <div class="flex flex-col gap-[8px] sm:gap-[12px] flex-1">
+            <h3 class="font-heading text-lg sm:text-[22px] text-[#111111] leading-snug m-0">
+              {item.title}
+            </h3>
+            <p class="font-sans text-[16px] text-[#333333] m-0">
+              {item.locationPeriod}
+            </p>
+            {item.qualification && (
+              <p class="font-sans text-[16px] text-[#333333] m-0">
+                {item.qualification}
+              </p>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Pulsante · Espandi formazione -->
+  <div>
+    <a
+      href="/CV_ComellaValerio.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block px-[24px] py-[12px] bg-[#9B1C2E]/[0.06] hover:bg-[#9B1C2E]/[0.12] rounded-[8px] text-[#9B1C2E] font-sans text-[16px] font-medium transition-colors no-underline"
+    >
+      Espandi formazione
+    </a>
+  </div>
+</section>

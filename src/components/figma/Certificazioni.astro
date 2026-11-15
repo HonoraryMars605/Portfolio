@@ -1,0 +1,44 @@
+---
+const certifications = [
+  {
+    name: "EIPASS",
+    image: "/assets/figma/cert-epass.png",
+    description: "Certificazione Informatica Europea",
+  },
+  {
+    name: "CISCO",
+    image: "/assets/figma/cert-cisco.png",
+    description: "Cisco Networking Academy Certification",
+  },
+]
+---
+
+<section id="certificazioni" class="w-full max-w-[1200px] flex flex-col gap-[30px]">
+  <!-- Intestazione Sezione -->
+  <div class="flex flex-col gap-[8px]">
+    <h2 class="font-heading text-2xl sm:text-3xl lg:text-[36px] text-[#9B1C2E] m-0">
+      Certificazioni
+    </h2>
+  </div>
+
+  <!-- Attestazioni -->
+  <div class="flex flex-wrap items-center gap-[30px]">
+    {
+      certifications.map((cert) => (
+        <div
+          class="w-[150px] sm:w-[176px] h-[150px] sm:h-[176px] bg-white rounded-[8px] p-[24px] sm:p-[28px] flex items-center justify-center shadow-sm hover:shadow-md transition-all hover:scale-105"
+          title={`${cert.name} - ${cert.description}`}
+        >
+          <img
+            src={cert.image}
+            alt={cert.name}
+            width="120"
+            height="120"
+            class="w-full h-full object-contain rounded-[8px]"
+            loading="lazy"
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>

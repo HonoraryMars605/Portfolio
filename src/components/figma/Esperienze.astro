@@ -1,0 +1,181 @@
+---
+interface ExperienceItem {
+  id: string
+  company: string
+  location: string
+  status: string
+  period: string
+  description: string
+  skills: string
+  logo?: string
+}
+
+const primaryExperience: ExperienceItem = {
+  id: "katabasi-studio",
+  company: "Katabasi Studio - Remote",
+  location: "Remoto (Napoli)",
+  status: "Completato",
+  period: "Nov 2024 - Apr 2025",
+  description:
+    "Durante i 5 mesi di stage (oltre 720 ore) ho collaborato attivamente allo sviluppo di due prodotti B2B realizzati con Unity, occupandomi di più aspetti: dalla programmazione in C# alla configurazione dell’editor, dal testing all’ottimizzazione per la piattaforma WebGL.",
+  skills: "Unity · C# · WebGL · Game Development · B2B Solutions",
+  logo: "/assets/figma/exp-katabasi-logo.png",
+}
+
+const extraExperiences: ExperienceItem[] = [
+  {
+    id: "abcd-edutainment",
+    company: "L'ABCD Edutainment",
+    location: "Presenziale - Napoli",
+    status: "Completato",
+    period: "Gen 2026 - Apr 2026",
+    description:
+      "Collaborazione alla ricerca e sviluppo di progetti orientati alla didattica per piattaforma Mixed Reality (MR) zSpace e MR-HMI (Human-Machine Interface). Sviluppo in C# dei sistemi e wrapper multi SDK. Concept UI/UX su Figma/Canva e implementazione tramite UGUI (480 ore).",
+    skills: "Unity · C# · Mixed Reality · zSpace · UGUI · Figma · UX/UI",
+  },
+  {
+    id: "protom-work",
+    company: "Protom - Front End Developer",
+    location: "Presenziale - Napoli",
+    status: "Completato",
+    period: "Ott 2025 - Nov 2025",
+    description:
+      "Co-sviluppo piattaforma web focalizzato sul Front-end tramite HTML5, CSS3 e JavaScript (80 ore).",
+    skills: "HTML5 · CSS3 · JavaScript · Web Development",
+  },
+  {
+    id: "skill-factory",
+    company: "Skill Factory",
+    location: "Presenziale - Napoli",
+    status: "Completato",
+    period: "Luglio 2026",
+    description:
+      "Sviluppo piattaforma web focalizzato sul Back-end tramite Java/Spring Boot + Thymeleaf (72 ore).",
+    skills: "Java · Spring Boot · Thymeleaf · Backend Architecture",
+  },
+]
+---
+
+<section id="esperienze" class="w-full max-w-[1200px] flex flex-col gap-[30px]">
+  <!-- Intestazione Sezione -->
+  <div class="flex flex-col gap-[8px]">
+    <h2 class="font-heading text-2xl sm:text-3xl lg:text-[36px] text-[#9B1C2E] uppercase m-0">
+      ESPERIENZE
+    </h2>
+  </div>
+
+  <!-- Esperienza Principale (Katabasi Studio) -->
+  <div class="bg-white rounded-[8px] p-6 sm:p-8 lg:p-[32px] flex flex-col md:flex-row gap-[30px] items-start transition-all hover:shadow-md">
+    <!-- Logo Katabasi Studio -->
+    <div class="w-[140px] sm:w-[180px] h-[140px] sm:h-[180px] rounded-[8px] overflow-hidden bg-black flex-shrink-0 flex items-center justify-center">
+      <img
+        src={primaryExperience.logo}
+        alt={primaryExperience.company}
+        width="180"
+        height="180"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Dettagli Esperienza -->
+    <div class="flex flex-col gap-[12px] flex-1">
+      <h3 class="font-heading text-xl sm:text-2xl lg:text-[24px] text-[#111111] m-0">
+        {primaryExperience.company}
+      </h3>
+      <div class="flex items-center gap-3">
+        <span class="font-sans text-[16px] text-[#9B1C2E] font-medium">
+          {primaryExperience.status}
+        </span>
+        <span class="text-gray-300">•</span>
+        <span class="font-sans text-[16px] text-[#333333]">
+          {primaryExperience.period}
+        </span>
+      </div>
+      <p class="font-sans text-base sm:text-[16px] text-[#333333] leading-relaxed m-0">
+        {primaryExperience.description}
+      </p>
+      <!-- Tecnologie Utilizzate Pill -->
+      <div class="w-full bg-[#F4F4F5] rounded-[8px] p-[12px] font-sans text-[14px] text-[#333333] mt-2">
+        {primaryExperience.skills}
+      </div>
+    </div>
+  </div>
+
+  <!-- Esperienze Espandibili (Toggle interattivo) -->
+  <div id="extra-experiences" class="hidden flex-col gap-[30px] transition-all duration-300">
+    {
+      extraExperiences.map((exp) => (
+        <div class="bg-white rounded-[8px] p-6 sm:p-8 lg:p-[32px] flex flex-col md:flex-row gap-[30px] items-start transition-all hover:shadow-md">
+          <div class="w-[140px] sm:w-[180px] h-[140px] sm:h-[180px] rounded-[8px] overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center p-4">
+            <span class="font-heading text-center text-gray-500 text-lg">
+              {exp.company.split(" ")[0]}
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-[12px] flex-1">
+            <h3 class="font-heading text-xl sm:text-2xl lg:text-[24px] text-[#111111] m-0">
+              {exp.company}
+            </h3>
+            <div class="flex items-center gap-3">
+              <span class="font-sans text-[16px] text-[#9B1C2E] font-medium">
+                {exp.status}
+              </span>
+              <span class="text-gray-300">•</span>
+              <span class="font-sans text-[16px] text-[#333333]">
+                {exp.period}
+              </span>
+            </div>
+            <p class="font-sans text-base sm:text-[16px] text-[#333333] leading-relaxed m-0">
+              {exp.description}
+            </p>
+            <div class="w-full bg-[#F4F4F5] rounded-[8px] p-[12px] font-sans text-[14px] text-[#333333] mt-2">
+              {exp.skills}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Pulsante · Espandi esperienze -->
+  <div>
+    <button
+      id="btn-toggle-experiences"
+      type="button"
+      class="px-[24px] py-[12px] bg-[#9B1C2E]/[0.06] hover:bg-[#9B1C2E]/[0.12] rounded-[8px] text-[#9B1C2E] font-sans text-[16px] font-medium transition-colors cursor-pointer border-none outline-none inline-flex items-center gap-2"
+    >
+      <span id="btn-toggle-text">Espandi esperienze</span>
+      <span id="btn-toggle-icon" class="transition-transform duration-200">↓</span>
+    </button>
+  </div>
+</section>
+
+<script>
+  function setupExperienceToggle() {
+    const btn = document.getElementById("btn-toggle-experiences")
+    const container = document.getElementById("extra-experiences")
+    const text = document.getElementById("btn-toggle-text")
+    const icon = document.getElementById("btn-toggle-icon")
+
+    if (!btn || !container) return
+
+    btn.onclick = () => {
+      const isHidden = container.classList.contains("hidden")
+      if (isHidden) {
+        container.classList.remove("hidden")
+        container.classList.add("flex")
+        if (text) text.textContent = "Riduci esperienze"
+        if (icon) icon.textContent = "↑"
+      } else {
+        container.classList.add("hidden")
+        container.classList.remove("flex")
+        if (text) text.textContent = "Espandi esperienze"
+        if (icon) icon.textContent = "↓"
+      }
+    }
+  }
+
+  setupExperienceToggle()
+  document.addEventListener("astro:after-swap", setupExperienceToggle)
+</script>

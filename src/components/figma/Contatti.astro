@@ -1,0 +1,31 @@
+---
+import { PROFILE } from "@site-config"
+
+const email = PROFILE.email || "Valeriocom@hotmail.it"
+---
+
+<section id="contatti" class="w-full max-w-[1200px] bg-white rounded-[8px] p-6 sm:p-10 lg:p-[40px] flex flex-col gap-[12px] shadow-sm transition-all hover:shadow-md">
+  <!-- Titolo sezione -->
+  <h2 class="font-heading text-2xl sm:text-3xl lg:text-[36px] text-[#9B1C2E] m-0">
+    Contatti
+  </h2>
+
+  <!-- Indirizzo email -->
+  <div>
+    <a
+      href={`mailto:${email}`}
+      class="font-sans text-xl sm:text-[24px] text-[#111111] hover:text-[#9B1C2E] transition-colors no-underline inline-flex items-center gap-2 group"
+      title="Invia un'email"
+    >
+      <span>{email}</span>
+      <span class="opacity-0 group-hover:opacity-100 transition-opacity text-base text-[#9B1C2E]">
+        ✉️ Invia email
+      </span>
+    </a>
+  </div>
+
+  <!-- Ringraziamento -->
+  <p class="font-sans text-base sm:text-[17px] text-[#333333] m-0">
+    Grazie per aver visitato il mio portfolio
+  </p>
+</section>

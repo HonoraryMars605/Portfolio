@@ -1,0 +1,99 @@
+---
+import "@/styles/global.css"
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+}
+
+const {
+  title = "Valerio Comella - Portfolio",
+  description = "Portfolio completo di Valerio Comella - Aspirante Game dev, Web developer in formazione, Unity (C#) e Full Stack Developer.",
+  image = "/assets/figma/hero-monitor.png",
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valeriocomella.github.io")
+---
+
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Google Fonts: Alfa Slab One & Didact Gothic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Didact+Gothic&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <style is:global>
+      :root {
+        --color-bg: #e9e9eb;
+        --color-card-bg: #ffffff;
+        --color-text-primary: #111111;
+        --color-text-secondary: #333333;
+        --color-text-muted: #6b6b70;
+        --color-accent: #9b1c2e;
+        --color-accent-dark: #7a1624;
+        --color-accent-soft: rgba(155, 28, 46, 0.06);
+        --color-accent-border: rgba(155, 28, 46, 0.18);
+        --color-skill-bg: #f4f4f5;
+        --color-skill-border: #e5e5e7;
+        --color-linkedin: #0077b5;
+        --color-linkedin-dark: #00669c;
+      }
+
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text-primary);
+        font-family: 'Didact Gothic', sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .font-heading {
+        font-family: 'Alfa Slab One', cursive, system-ui, sans-serif;
+        font-weight: 400;
+      }
+
+      .font-sans {
+        font-family: 'Didact Gothic', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-[#E9E9EB] text-[#111111] antialiased">
+    <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-[120px] pt-[40px] pb-[60px] flex flex-col gap-[72px]">
+      <slot />
+    </div>
+  </body>
+</html>
