@@ -1,0 +1,139 @@
+---
+import { PROFILE } from "@site-config"
+
+const getHref = (link: unknown): string => {
+  if (typeof link === "string") return link
+  if (typeof link === "object" && link !== null && "href" in link) {
+    return (link as { href: string }).href
+  }
+  return ""
+}
+
+const githubUrl = getHref(PROFILE.links.github) || "https://github.com/valeriocomella"
+const linkedinUrl = getHref(PROFILE.links.linkedin) || "https://www.linkedin.com/in/valerio-comella-6a5693241/"
+const cvUrl = getHref(PROFILE.links.cv) || "/CV_ComellaValerio.pdf"
+---
+
+<aside class="w-full lg:w-[420px] flex flex-col gap-[28px] flex-shrink-0">
+  <!-- Nome & Cognome -->
+  <div class="flex flex-col">
+    <h1 class="font-heading text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] text-black m-0 tracking-tight">
+      Valerio<br />Comella
+    </h1>
+  </div>
+
+  <!-- Profilo Professionale -->
+  <div class="flex flex-col gap-[8px]">
+    <h2 class="text-[20px] font-bold text-black m-0">
+      Profilo Professionale
+    </h2>
+    <p class="text-[13.5px] leading-relaxed text-[#1E1E1E] m-0">
+      Unity Developer specializzato in C#, con esperienza nello sviluppo di applicazioni interattive, soluzioni Mixed Reality e prodotti B2B. Solida formazione in Game Development e Mixed Reality (ITS EQF5), con competenze Full Stack
+    </p>
+  </div>
+
+  <!-- Info -->
+  <div class="flex flex-col gap-[6px]">
+    <h2 class="text-[20px] font-bold text-black m-0 mb-1">
+      Info
+    </h2>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">Luogo:</span>
+      <span class="text-[#111827]">Napoli</span>
+    </div>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">Telefono:</span>
+      <a href="tel:3339959271" class="text-[#111827] hover:text-[#8B1E2D] transition-colors no-underline">
+        3339959271
+      </a>
+    </div>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">E-mail:</span>
+      <a href="mailto:valeriocom@hotmail.it" class="text-[#111827] hover:text-[#8B1E2D] transition-colors no-underline">
+        valeriocom@hotmail.it
+      </a>
+    </div>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">Data di nascita:</span>
+      <span class="text-[#111827]">23 Luglio 2002</span>
+    </div>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">Patente:</span>
+      <span class="text-[#111827]">B</span>
+    </div>
+  </div>
+
+  <!-- Competenze Linguistiche -->
+  <div class="flex flex-col gap-[6px]">
+    <h2 class="text-[20px] font-bold text-black m-0 mb-1">
+      Competenze Linguistiche
+    </h2>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">Italiano:</span>
+      <span class="text-[#111827]">Madrelingua</span>
+    </div>
+    <div class="flex items-center gap-[6px] text-[13.5px]">
+      <span class="font-medium text-[#8B1E2D]">Inglese:</span>
+      <span class="text-[#111827]">A2</span>
+    </div>
+  </div>
+
+  <!-- Competenze Tecniche -->
+  <div class="flex flex-col gap-[8px]">
+    <h2 class="text-[20px] font-bold text-black m-0 mb-1">
+      Competenze Tecniche
+    </h2>
+    <ul class="list-none p-0 m-0 flex flex-col gap-[8px] text-[13px] text-[#111827] leading-snug">
+      <li>• Game Engine: Unity (C#) , Unreal Engine 5 (Blueprint)</li>
+      <li>• Web Stack: HTML5, CSS3, Bootstrap, JavaScript, PostgreSQL, MySQL</li>
+      <li>• Linguaggi: C# (Framework Unity), Java (Spring Boot), C, Python | OOP</li>
+      <li>• Tools: Git/GitHub, Bash/Shell, Visual Studio/VS Code, Intellij IDEA</li>
+      <li>• Design &amp; UI/UX: Figma, Canva</li>
+      <li>• Project Management: Trello, Notion, Milanote, Miro</li>
+    </ul>
+  </div>
+
+  <!-- CV e Social 📑 -->
+  <div class="flex flex-col gap-[10px] mt-2">
+    <h2 class="text-[20px] font-bold text-black m-0">
+      CV e Social 📑
+    </h2>
+    
+    <div class="flex flex-col gap-[10px]">
+      <!-- GitHub Button -->
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-[240px] h-[42px] bg-[#6E5494] hover:bg-[#5b447c] text-white rounded-[20px] font-semibold text-[14px] flex items-center justify-center no-underline transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+      >
+        GitHub
+      </a>
+
+      <!-- LinkedIn Button -->
+      <a
+        href={linkedinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-[240px] h-[42px] bg-[#0077B5] hover:bg-[#00669C] text-white rounded-[20px] font-semibold text-[14px] flex items-center justify-center no-underline transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+      >
+        Linkedin
+      </a>
+
+      <!-- Scarica CV Button -->
+      <a
+        href={cvUrl}
+        download
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-[240px] h-[42px] bg-[#F3F4F6] hover:bg-[#E5E7EB] text-[#111827] border border-[#D1D5DB] rounded-[20px] font-semibold text-[14px] flex items-center justify-center no-underline transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+      >
+        Scarica CV
+      </a>
+    </div>
+
+    <span class="text-[12px] text-[#4B5563] pl-1 tracking-wide">
+      Cliccami 👆
+    </span>
+  </div>
+</aside>

@@ -1,41 +1,27 @@
 ---
-import PortfolioLayout from "@/layouts/PortfolioLayout.astro"
-import Navigazione from "@/components/figma/Navigazione.astro"
-import Presentazione from "@/components/figma/Presentazione.astro"
-import Progetti from "@/components/figma/Progetti.astro"
-import Competenze from "@/components/figma/Competenze.astro"
-import Esperienze from "@/components/figma/Esperienze.astro"
-import Formazione from "@/components/figma/Formazione.astro"
-import Certificazioni from "@/components/figma/Certificazioni.astro"
-import Contatti from "@/components/figma/Contatti.astro"
+import Variant6Layout from "@/layouts/Variant6Layout.astro"
+import HeaderBar from "@/components/variant6/HeaderBar.astro"
+import LeftColumn from "@/components/variant6/LeftColumn.astro"
+import RightColumn from "@/components/variant6/RightColumn.astro"
+import FooterBar from "@/components/variant6/FooterBar.astro"
 ---
 
-<PortfolioLayout
-  title="Valerio Comella - Portfolio"
-  description="Portfolio completo di Valerio Comella - Aspirante Game dev, Web developer in formazione, Unity (C#) e Full Stack Developer."
-  image="/assets/figma/hero-monitor.png"
+<Variant6Layout
+  title="Valerio Comella - CV Resume Pure"
+  description="Portfolio & Curriculum Vitae di Valerio Comella - Software Engineer | Unity (C#) & Full Stack Developer."
 >
-  <!-- 1. Navigazione (Navbar) -->
-  <Navigazione />
+  <!-- Top CV Header Bar -->
+  <HeaderBar />
 
-  <!-- 2. Presentazione (Hero Card) -->
-  <Presentazione />
+  <!-- Two-Column Layout Container (1440px canvas, 1296px content) -->
+  <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12 lg:px-[72px] pt-[36px] sm:pt-[44px] pb-[48px] flex flex-col lg:flex-row gap-[40px] lg:gap-[56px] items-start justify-center flex-1">
+    <!-- Left Column: Bio, Info, Skills, Social & CV -->
+    <LeftColumn />
 
-  <!-- 3. Progetti (Projects Grid) -->
-  <Progetti />
+    <!-- Right Column: Esperienze, Istruzione, Specializzazioni, Progetti -->
+    <RightColumn />
+  </div>
 
-  <!-- 4. Competenze (Skill Tecniche) -->
-  <Competenze />
-
-  <!-- 5. Esperienze (Work Experiences) -->
-  <Esperienze />
-
-  <!-- 6. Formazione (Education Timeline) -->
-  <Formazione />
-
-  <!-- 7. Certificazioni (Certificates Badges) -->
-  <Certificazioni />
-
-  <!-- 8. Contatti (Contact & Email) -->
-  <Contatti />
-</PortfolioLayout>
+  <!-- Bottom GDPR Footer Bar -->
+  <FooterBar />
+</Variant6Layout>

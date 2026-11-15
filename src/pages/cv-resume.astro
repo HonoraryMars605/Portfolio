@@ -1,0 +1,24 @@
+---
+import Variant6Layout from "@/layouts/Variant6Layout.astro"
+import HeaderBar from "@/components/variant6/HeaderBar.astro"
+import LeftColumn from "@/components/variant6/LeftColumn.astro"
+import RightColumn from "@/components/variant6/RightColumn.astro"
+import FooterBar from "@/components/variant6/FooterBar.astro"
+---
+
+<Variant6Layout
+  title="Valerio Comella - CV Resume Pure"
+  description="Portfolio & Curriculum Vitae di Valerio Comella - Software Engineer | Unity (C#) & Full Stack Developer."
+>
+  <!-- Top CV Header Bar -->
+  <HeaderBar />
+
+  <!-- Two-Column Layout Container -->
+  <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12 lg:px-[72px] pt-[36px] sm:pt-[44px] pb-[48px] flex flex-col lg:flex-row gap-[40px] lg:gap-[56px] items-start justify-center flex-1">
+    <LeftColumn />
+    <RightColumn />
+  </div>
+
+  <!-- Bottom GDPR Footer Bar -->
+  <FooterBar />
+</Variant6Layout>
