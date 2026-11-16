@@ -1,0 +1,97 @@
+---
+const dispatchPhrases = [
+  "Building Worlds with Code",
+  "Interactive XR Specialist (1200+ Hours)",
+  "Clean Architecture & Systems",
+  "Virtual, Augmented & Mixed Reality (zSpace, XR)",
+  "High-Performance Unity C# & WebGL Pipeline",
+]
+---
+
+<div class="w-full bg-[#9B1C2E]/[0.05] border border-[#9B1C2E]/15 rounded-[8px] p-3.5 sm:p-4 flex flex-col gap-2.5 overflow-hidden shadow-2xs">
+  <!-- Top Dispatch Header Bar -->
+  <div class="flex items-center justify-between text-[11px] font-mono tracking-wider">
+    <div class="flex items-center gap-2 text-[#9B1C2E] font-bold">
+      <span class="animate-pulse">✦</span>
+      <span>ROTATING EDITORIAL DISPATCH</span>
+    </div>
+    <span id="dispatch-snap-counter" class="text-gray-400 font-medium">
+      AUTOPLAY SNAP [01 OF 05]
+    </span>
+  </div>
+
+  <!-- Primary Rotating Text Box -->
+  <div class="h-[28px] sm:h-[32px] overflow-hidden relative flex items-center">
+    <div id="dispatch-rotator-track" class="transition-transform duration-500 ease-in-out flex flex-col">
+      {
+        dispatchPhrases.map((phrase) => (
+          <div class="h-[28px] sm:h-[32px] flex items-center text-sm sm:text-base font-sans font-medium text-[#111111] whitespace-nowrap">
+            &rdquo;{phrase}&rdquo;
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Continuous Scrolling Marquee Ticker -->
+  <div class="border-t border-[#9B1C2E]/10 pt-2 overflow-hidden whitespace-nowrap select-none">
+    <div class="inline-flex gap-8 animate-marquee font-mono text-[11px] text-[#9B1C2E]/80 tracking-wider">
+      <span>✦ GAME ENGINE ARCHITECTURE</span>
+      <span>✦ 1200+ ORE XR &amp; MIXED REALITY</span>
+      <span>✦ 6 SHIPPED GAMES</span>
+      <span>✦ UNITY C# EXPERT</span>
+      <span>✦ FULL STACK WEBGL</span>
+      <span>✦ ZSPACE &amp; XR SPECIALIST</span>
+      <span>✦ ITALIAN GAME 2025 SELECTION</span>
+      <span>✦ GAME ENGINE ARCHITECTURE</span>
+      <span>✦ 1200+ ORE XR &amp; MIXED REALITY</span>
+      <span>✦ 6 SHIPPED GAMES</span>
+      <span>✦ UNITY C# EXPERT</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: inline-flex;
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
+
+<script>
+  function setupDispatchRotator() {
+    const track = document.getElementById("dispatch-rotator-track")
+    const counter = document.getElementById("dispatch-snap-counter")
+    const totalPhrases = 5
+    let currentIdx = 0
+
+    if (!track) return
+
+    setInterval(() => {
+      currentIdx = (currentIdx + 1) % totalPhrases
+      // Height per item is 32px or 28px depending on screen
+      const itemHeight = track.children[0] ? (track.children[0] as HTMLElement).offsetHeight : 30
+      track.style.transform = `translateY(-${currentIdx * itemHeight}px)`
+
+      if (counter) {
+        counter.textContent = `AUTOPLAY SNAP [0${currentIdx + 1} OF 0${totalPhrases}]`
+      }
+    }, 3200)
+  }
+
+  setupDispatchRotator()
+  document.addEventListener("astro:after-swap", setupDispatchRotator)
+</script>

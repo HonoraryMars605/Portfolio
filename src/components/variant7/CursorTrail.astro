@@ -1,0 +1,128 @@
+---
+---
+
+<canvas
+  id="cursor-telemetry-canvas"
+  class="pointer-events-none fixed inset-0 z-40 w-full h-full"
+  aria-hidden="true"
+></canvas>
+
+<script>
+  interface Particle {
+    x: number
+    y: number
+    text: string
+    alpha: number
+    decay: number
+    vx: number
+    vy: number
+  }
+
+  function initCursorTelemetry() {
+    // Only run on non-touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return
+
+    const canvas = document.getElementById("cursor-telemetry-canvas") as HTMLCanvasElement
+    if (!canvas) return
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let width = (canvas.width = window.innerWidth)
+    let height = (canvas.height = window.innerHeight)
+
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth
+      height = canvas.height = window.innerHeight
+    })
+
+    const particles: Particle[] = []
+    let lastX = 0
+    let lastY = 0
+    let lastSpawnTime = 0
+
+    const codeTokens = [
+      "0x7F",
+      "[ptr:0x2A]",
+      "C#",
+      "vec2",
+      "XR_OK",
+      "fps:60",
+      "Δt:16ms",
+      "GL_DEPTH",
+      "mem:alloc",
+    ]
+
+    function spawnParticle(x: number, y: number) {
+      const now = performance.now()
+      if (now - lastSpawnTime < 45) return
+      lastSpawnTime = now
+
+      // Coordinate token or random developer engine token
+      const isCoord = Math.random() > 0.45
+      const text = isCoord
+        ? `x:${Math.round(x)}, y:${Math.round(y)}`
+        : codeTokens[Math.floor(Math.random() * codeTokens.length)]
+
+      particles.push({
+        x: x + (Math.random() * 12 - 6),
+        y: y + (Math.random() * 12 - 6),
+        text,
+        alpha: 0.65,
+        decay: 0.022,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: -0.4 - Math.random() * 0.3,
+      })
+
+      if (particles.length > 35) {
+        particles.shift()
+      }
+    }
+
+    window.addEventListener("pointermove", (e) => {
+      const dx = e.clientX - lastX
+      const dy = e.clientY - lastY
+      const dist = Math.sqrt(dx * dx + dy * dy)
+
+      if (dist > 18) {
+        spawnParticle(e.clientX, e.clientY)
+        lastX = e.clientX
+        lastY = e.clientY
+      }
+    })
+
+    function render() {
+      if (!ctx) return
+      ctx.clearRect(0, 0, width, height)
+
+      ctx.font = "10px monospace"
+      ctx.textBaseline = "middle"
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i]
+        p.x += p.vx
+        p.y += p.vy
+        p.alpha -= p.decay
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1)
+          continue
+        }
+
+        // Color style: Swiss bordeaux / technical slate
+        ctx.fillStyle = `rgba(155, 28, 46, ${p.alpha})`
+        ctx.fillText(p.text, p.x, p.y)
+      }
+
+      requestAnimationFrame(render)
+    }
+
+    render()
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCursorTelemetry)
+  } else {
+    initCursorTelemetry()
+  }
+</script>

@@ -1,0 +1,198 @@
+---
+import "@/styles/global.css"
+import SoundManager from "@/components/variant7/SoundManager.astro"
+import Preloader from "@/components/variant7/Preloader.astro"
+import CursorTrail from "@/components/variant7/CursorTrail.astro"
+import TopNavbar from "@/components/variant7/TopNavbar.astro"
+import FloatingNavRail from "@/components/variant7/FloatingNavRail.astro"
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = "Valerio Comella - Swiss Editorial Portfolio",
+  description = "Swiss Editorial Portfolio di Valerio Comella - Software Engineer | Unity (C#) & Full Stack Developer. Navigazione a scorrimento orizzontale, coordinate telemetry e sound design.",
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valeriocomella.github.io")
+---
+
+<!doctype html>
+<html lang="it" class="h-full overflow-hidden select-none-subtle">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Google Fonts: Alfa Slab One & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <style is:global>
+      :root {
+        --color-editorial-bg: #FAF9F5;
+        --color-editorial-accent: #9B1C2E;
+        --color-editorial-dark: #111111;
+      }
+
+      html, body {
+        background-color: var(--color-editorial-bg);
+        color: #111827;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .font-heading {
+        font-family: 'Alfa Slab One', cursive, system-ui, sans-serif;
+        font-weight: 400;
+      }
+
+      /* Custom Subtle Scrollbar for Horizontal Slider & Slides */
+      #horizontal-slider-container::-webkit-scrollbar {
+        height: 6px;
+      }
+      #horizontal-slider-container::-webkit-scrollbar-track {
+        background: #F1EFEA;
+      }
+      #horizontal-slider-container::-webkit-scrollbar-thumb {
+        background: #D1D5DB;
+        border-radius: 3px;
+      }
+      #horizontal-slider-container::-webkit-scrollbar-thumb:hover {
+        background: var(--color-editorial-accent);
+      }
+
+      .section-slide::-webkit-scrollbar {
+        width: 5px;
+      }
+      .section-slide::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .section-slide::-webkit-scrollbar-thumb {
+        background: #E5E7EB;
+        border-radius: 3px;
+      }
+      .section-slide::-webkit-scrollbar-thumb:hover {
+        background: #9CA3AF;
+      }
+
+      /* Subtle noise/grid background overlay for Swiss aesthetic */
+      .swiss-grid-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 24px 24px;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body class="bg-[#FAF9F5] text-[#111827] antialiased h-full w-full flex flex-col relative overflow-hidden">
+    <!-- Grid overlay texture -->
+    <div class="swiss-grid-overlay"></div>
+
+    <!-- Procedural Web Audio Sound Engine -->
+    <SoundManager />
+
+    <!-- Fictional Developer Preloader Splash (Portfolio · PC · 1920 Inspiration) -->
+    <Preloader />
+
+    <!-- Interactive Cursor Telemetry Trail (x, y coords & hex tokens) -->
+    <CursorTrail />
+
+    <!-- Fixed Top Editorial Navigation Bar -->
+    <TopNavbar />
+
+    <!-- Fixed Floating Right Navigation Rail -->
+    <FloatingNavRail />
+
+    <!-- Horizontal Scroll Sections Container -->
+    <main
+      id="horizontal-slider-container"
+      class="relative z-10 mt-[68px] sm:mt-[72px] h-[calc(100vh-68px)] sm:h-[calc(100vh-72px)] w-full overflow-x-auto overflow-y-hidden flex flex-row flex-nowrap snap-x snap-mandatory scroll-smooth"
+      tabindex="0"
+      aria-label="Portfolio Swiss Editorial Orizzontale"
+    >
+      <slot />
+    </main>
+
+    <!-- Horizontal Wheel & Keyboard Translation Script -->
+    <script>
+      function setupHorizontalScroll() {
+        const container = document.getElementById("horizontal-slider-container")
+        if (!container) return
+
+        // Intercept mousewheel deltaY to scroll horizontally
+        container.addEventListener(
+          "wheel",
+          (e: WheelEvent) => {
+            const target = e.target as HTMLElement
+            // If the user is inside a vertically scrollable card/section that is not at its bounds, let it scroll vertically
+            const scrollableSection = target.closest(".section-slide") as HTMLElement
+            if (scrollableSection) {
+              const hasVerticalScroll = scrollableSection.scrollHeight > scrollableSection.clientHeight
+              if (hasVerticalScroll) {
+                const atTop = scrollableSection.scrollTop <= 0 && e.deltaY < 0
+                const atBottom =
+                  Math.ceil(scrollableSection.scrollTop + scrollableSection.clientHeight) >=
+                    scrollableSection.scrollHeight && e.deltaY > 0
+
+                // If not at vertical boundary, let vertical scrolling happen naturally
+                if (!atTop && !atBottom) {
+                  return
+                }
+              }
+            }
+
+            // Convert vertical wheel rotation to horizontal smooth translation
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+              e.preventDefault()
+              container.scrollBy({
+                left: e.deltaY * 1.5,
+                behavior: "auto",
+              })
+            }
+          },
+          { passive: false }
+        )
+
+        // Keyboard arrow navigation
+        window.addEventListener("keydown", (e: KeyboardEvent) => {
+          if (e.key === "ArrowRight" || e.key === "PageDown") {
+            e.preventDefault()
+            container.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" })
+            if ((window as any).playSfx) (window as any).playSfx("slide")
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            e.preventDefault()
+            container.scrollBy({ left: -window.innerWidth * 0.85, behavior: "smooth" })
+            if ((window as any).playSfx) (window as any).playSfx("slide")
+          }
+        })
+      }
+
+      setupHorizontalScroll()
+      document.addEventListener("astro:after-swap", setupHorizontalScroll)
+    </script>
+  </body>
+</html>

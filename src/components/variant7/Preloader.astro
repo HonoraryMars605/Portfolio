@@ -1,0 +1,147 @@
+---
+---
+
+<div
+  id="preloader-overlay"
+  class="fixed inset-0 z-50 bg-[#F4F4F6] flex items-center justify-center p-4 transition-opacity duration-700 select-none"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Caricamento portfolio"
+>
+  <!-- Finestra Scheda Profilo (ispirata a Portfolio · PC · 1920) -->
+  <div class="w-full max-w-[560px] bg-white rounded-[12px] p-6 sm:p-8 shadow-2xl border border-gray-200/80 flex flex-col gap-6 transform transition-all duration-500">
+    <!-- Header profilo -->
+    <div class="flex flex-col gap-1 border-b border-gray-100 pb-4">
+      <div class="flex items-center justify-between">
+        <h2 class="font-heading text-2xl sm:text-3xl text-[#111111] m-0">
+          Valerio Comella
+        </h2>
+        <span class="text-[11px] font-mono font-bold tracking-wider px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
+          v7.0 // SWISS PC
+        </span>
+      </div>
+      <p class="font-sans text-[14px] sm:text-[15px] text-[#4B5563] m-0">
+        Software Engineer | Unity (C#) &amp; Full Stack
+      </p>
+    </div>
+
+    <!-- Box Stato del portfolio (da node 5:42) -->
+    <div class="w-full bg-[#9B1C2E]/[0.06] rounded-[8px] p-4 flex items-center justify-between border border-[#9B1C2E]/10">
+      <span class="font-sans text-[15px] font-medium text-[#111111]">
+        Portfolio in costruzione
+      </span>
+      <!-- Indicatore di caricamento a 3 punti (Punto 1, Punto 2, Punto 3) -->
+      <div class="flex items-center gap-1.5" aria-hidden="true">
+        <div class="w-2 h-2 rounded-full bg-[#9B1C2E] animate-bounce" style="animation-delay: 0s;"></div>
+        <div class="w-2 h-2 rounded-full bg-[#9B1C2E] animate-bounce" style="animation-delay: 0.15s;"></div>
+        <div class="w-2 h-2 rounded-full bg-[#9B1C2E] animate-bounce" style="animation-delay: 0.3s;"></div>
+      </div>
+    </div>
+
+    <!-- Terminale Game Engine / Developer Boot Logs -->
+    <div class="w-full bg-[#111827] text-emerald-400 font-mono text-[12px] rounded-[8px] p-3.5 flex flex-col gap-1 shadow-inner h-[80px] overflow-hidden">
+      <div id="loader-log-line-1" class="truncate opacity-80">&gt; [INIT] Initializing Swiss Editorial engine...</div>
+      <div id="loader-log-line-2" class="truncate opacity-90 text-white">&gt; [COMPILER] Loading Unity C# and WebGL modules...</div>
+      <div id="loader-log-line-3" class="truncate text-emerald-400 font-bold">&gt; [STATUS] Compiling horizontal viewport grid...</div>
+    </div>
+
+    <!-- Progress bar & percentage -->
+    <div class="flex flex-col gap-2">
+      <div class="flex justify-between items-center text-xs font-mono text-gray-500">
+        <span>ENGINE BOOTSTRAP</span>
+        <span id="loader-percentage" class="font-bold text-[#9B1C2E]">0%</span>
+      </div>
+      <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden border border-gray-200">
+        <div
+          id="loader-progress-bar"
+          class="h-full bg-[#9B1C2E] transition-all duration-100 ease-out rounded-full"
+          style="width: 0%;"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Footer preloader con tasto Skip -->
+    <div class="flex items-center justify-between pt-1 text-xs text-gray-400">
+      <span class="font-mono">INITIALIZING TELEMETRY</span>
+      <button
+        id="btn-skip-preloader"
+        type="button"
+        class="text-gray-500 hover:text-[#9B1C2E] transition-colors underline font-sans cursor-pointer bg-transparent border-none p-0"
+      >
+        Salta introduzione [ESC]
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function runPreloader() {
+    const overlay = document.getElementById("preloader-overlay")
+    const percentEl = document.getElementById("loader-percentage")
+    const barEl = document.getElementById("loader-progress-bar")
+    const log1 = document.getElementById("loader-log-line-1")
+    const log2 = document.getElementById("loader-log-line-2")
+    const log3 = document.getElementById("loader-log-line-3")
+    const skipBtn = document.getElementById("btn-skip-preloader")
+
+    if (!overlay || !percentEl || !barEl) return
+
+    let currentPercent = 0
+    let isDismissed = false
+
+    const dismissPreloader = () => {
+      if (isDismissed) return
+      isDismissed = true
+      overlay.style.opacity = "0"
+      overlay.style.pointerEvents = "none"
+      setTimeout(() => {
+        overlay.style.display = "none"
+        if ((window as any).playSfx) (window as any).playSfx("success")
+      }, 700)
+    }
+
+    if (skipBtn) skipBtn.onclick = dismissPreloader
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") dismissPreloader()
+    })
+
+    const interval = setInterval(() => {
+      if (isDismissed) {
+        clearInterval(interval)
+        return
+      }
+
+      currentPercent += Math.floor(Math.random() * 12) + 6
+      if (currentPercent >= 100) {
+        currentPercent = 100
+        clearInterval(interval)
+
+        percentEl.textContent = "100%"
+        barEl.style.width = "100%"
+        if (log3) log3.textContent = "> [OK] System ready. Welcome to Variant 7."
+
+        setTimeout(dismissPreloader, 400)
+        return
+      }
+
+      percentEl.textContent = `${currentPercent}%`
+      barEl.style.width = `${currentPercent}%`
+
+      if (currentPercent > 15 && log1) {
+        log1.textContent = "> [BOOT] Kernel initialized. Swiss Core mounted."
+      }
+      if (currentPercent > 45 && log2) {
+        log2.textContent = "> [MEMORY] Mounting 6 Shipped Games & XR Assets..."
+      }
+      if (currentPercent > 75 && log3) {
+        log3.textContent = "> [AUDIO] Interactive sound design active."
+      }
+    }, 90)
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runPreloader)
+  } else {
+    runPreloader()
+  }
+</script>

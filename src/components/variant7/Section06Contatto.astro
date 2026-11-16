@@ -1,0 +1,154 @@
+---
+// Section 06: Certificazioni & Contatto + Section 07 Footer
+import { PROFILE } from "@site-config"
+
+const cvUrl = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv || "/CV_ComellaValerio.pdf"
+const githubUrl = typeof PROFILE.links.github === "object" ? PROFILE.links.github?.href : PROFILE.links.github || "https://github.com/valeriocomella"
+const linkedinUrl = typeof PROFILE.links.linkedin === "object" ? PROFILE.links.linkedin?.href : PROFILE.links.linkedin || "https://linkedin.com/in/valerio-comella"
+---
+
+<section
+  id="section-06"
+  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start lg:justify-center shrink-0 snap-start py-6 sm:py-8"
+>
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-center gap-5 my-auto">
+  <!-- Section Editorial Header -->
+  <div class="flex flex-col gap-1 border-b border-gray-200/80 pb-3">
+    <div class="flex items-center justify-between text-[11px] font-mono tracking-wider text-gray-500">
+      <span class="font-bold text-[#9B1C2E]">06 // CERTIFICAZIONI &amp; CONTATTO</span>
+      <span class="hidden sm:inline">OFFICIAL ACCREDITATION &amp; DIRECT REACH</span>
+    </div>
+    <h2 class="font-heading text-2xl sm:text-3xl text-[#111111] tracking-tight mt-1 m-0">
+      Certificazioni Ufficiali &amp; Opportunità di Collaborazione
+    </h2>
+    <p class="text-[13.5px] text-[#4B5563] max-w-4xl m-0 leading-normal">
+      Attestazioni di competenza tecnica e canali diretti per colloqui, contratti ed incarichi di sviluppo.
+    </p>
+  </div>
+
+  <!-- Certifications Strip (3 Cards) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+    <!-- Cert 1: Epass -->
+    <div class="bg-white/90 backdrop-blur-xs border border-gray-200/90 rounded-[8px] p-4 flex items-start gap-3.5 shadow-2xs hover:border-[#9B1C2E]/40 transition-all">
+      <img src="/assets/figma/cert-epass.png" alt="Epass" class="w-10 h-10 object-contain shrink-0 mt-0.5" />
+      <div class="flex flex-col">
+        <h4 class="font-bold text-[14px] text-[#111827] m-0">Epass 7 Moduli User</h4>
+        <span class="text-[11.5px] font-medium text-[#9B1C2E]">Competenze Digitali Europee</span>
+        <p class="text-[11.5px] text-gray-500 mt-1 leading-snug m-0">
+          Certificazione informatica europea accreditata su software, sicurezza dati e produttività.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cert 2: Cisco -->
+    <div class="bg-white/90 backdrop-blur-xs border border-gray-200/90 rounded-[8px] p-4 flex items-start gap-3.5 shadow-2xs hover:border-[#9B1C2E]/40 transition-all">
+      <img src="/assets/figma/cert-cisco.png" alt="Cisco" class="w-10 h-10 object-contain shrink-0 mt-0.5" />
+      <div class="flex flex-col">
+        <h4 class="font-bold text-[14px] text-[#111827] m-0">Cisco Cybersecurity &amp; Net</h4>
+        <span class="text-[11.5px] font-medium text-blue-900">Architettura Reti &amp; Sicurezza</span>
+        <p class="text-[11.5px] text-gray-500 mt-1 leading-snug m-0">
+          Attestazione su concetti di rete, protocolli di comunicazione, switching e cyber threat management.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cert 3: Rome Video Game Lab -->
+    <div class="bg-white/90 backdrop-blur-xs border border-gray-200/90 rounded-[8px] p-4 flex items-start gap-3.5 shadow-2xs hover:border-[#9B1C2E]/40 transition-all">
+      <div class="w-10 h-10 rounded-[6px] bg-amber-500/10 text-amber-800 font-heading text-lg flex items-center justify-center shrink-0 mt-0.5">
+        🏆
+      </div>
+      <div class="flex flex-col">
+        <h4 class="font-bold text-[14px] text-[#111827] m-0">Rome Video Game Lab</h4>
+        <span class="text-[11.5px] font-medium text-amber-900">Industry Workshop &amp; Networking</span>
+        <p class="text-[11.5px] text-gray-500 mt-1 leading-snug m-0">
+          Partecipazione ufficiale e attestato di frequenza ai workshop dedicati al game development e XR.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Direct Contact Card (Dark Swiss Container matching Figma) -->
+  <div class="bg-white/95 backdrop-blur-xs border border-gray-200/90 rounded-[12px] p-6 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+    <!-- Contact Left Info (7 Cols) -->
+    <div class="lg:col-span-7 flex flex-col gap-3">
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-emerald-50 border border-emerald-200/60 text-emerald-900 font-mono text-[11px] font-bold tracking-wider uppercase w-fit">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        DISPONIBILE DA SUBITO · ROMA / REMOTE
+      </div>
+
+      <div>
+        <h3 class="font-heading text-3xl sm:text-4xl text-[#111111] tracking-tight m-0">
+          VALERIO COMELLA
+        </h3>
+        <p class="font-mono text-[13px] font-semibold text-[#9B1C2E] mt-1 m-0">
+          Software Engineer | Unity (C#) &amp; Full Stack
+        </p>
+      </div>
+
+      <p class="text-[13.5px] text-[#374151] leading-relaxed m-0">
+        Cerchi uno sviluppatore con forte padronanza di Unity (C#), solide basi di ingegneria del software e rapidità di inserimento in team di produzione? Inviami un messaggio o fissa un colloquio conoscitivo.
+      </p>
+
+      <!-- Coordinates Ledger -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-gray-100 font-mono text-[11.5px] text-gray-600">
+        <div>✉️ valeriocom@hotmail.it</div>
+        <div>📞 3339959271</div>
+        <div>📍 Roma (Napoli 2002)</div>
+        <div>🚗 Patente B</div>
+      </div>
+    </div>
+
+    <!-- Contact Right Action Buttons (5 Cols) -->
+    <div class="lg:col-span-5 flex flex-col gap-2.5">
+      <!-- Email Direct -->
+      <a
+        href="mailto:valeriocom@hotmail.it"
+        class="flex items-center justify-center gap-2 px-4 py-3 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] text-white font-mono text-[12.5px] font-bold tracking-wide transition-all shadow-sm no-underline active:scale-98"
+      >
+        <span>✉️</span> Invia E-mail Diretta (valeriocom@hotmail.it)
+      </a>
+
+      <!-- GitHub -->
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-[6px] bg-[#111827] hover:bg-black text-white font-mono text-[12px] font-semibold transition-all no-underline active:scale-98"
+      >
+        <span>🌐</span> GitHub: github.com/valeriocomella
+      </a>
+
+      <!-- LinkedIn -->
+      <a
+        href={linkedinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-[6px] bg-[#0A66C2] hover:bg-[#084e96] text-white font-mono text-[12px] font-semibold transition-all no-underline active:scale-98"
+      >
+        <span>💼</span> LinkedIn: Valerio Comella
+      </a>
+
+      <!-- CV Download -->
+      <a
+        href={cvUrl}
+        download
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-[6px] bg-gray-100 hover:bg-gray-200 text-gray-800 font-mono text-[12px] font-semibold border border-gray-200 transition-all no-underline active:scale-98"
+      >
+        <span>📑</span> Scarica Curriculum Vitae Ufficiale (PDF)
+      </a>
+    </div>
+  </div>
+
+  <!-- Section 07 // GDPR & Copyright Footer Bar -->
+  <footer class="pt-4 mt-2 border-t border-gray-200/80 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-gray-500 text-center sm:text-left">
+    <p class="m-0">
+      © 2026 Valerio Comella. Autorizzo il trattamento dei miei dati personali ai sensi del Gdpr 679/16 e del D.lgs 196/03.
+    </p>
+    <p class="m-0 text-gray-400">
+      Grazie per aver visitato il mio portfolio · Made with Precision &amp; Passion
+    </p>
+  </footer>
+  </div>
+</section>

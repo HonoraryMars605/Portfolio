@@ -1,0 +1,117 @@
+---
+import { PROFILE } from "@site-config"
+
+const getHref = (link: unknown): string => {
+  if (typeof link === "string") return link
+  if (typeof link === "object" && link !== null && "href" in link) {
+    return (link as { href: string }).href
+  }
+  return ""
+}
+
+const cvUrl = getHref(PROFILE.links.cv) || "/CV_ComellaValerio.pdf"
+---
+
+<header class="fixed top-0 left-0 right-0 h-[68px] sm:h-[72px] bg-white/90 backdrop-blur-md border-b border-gray-200 z-40 px-4 sm:px-8 lg:px-12 flex items-center justify-between transition-all">
+  <!-- Brand Title (Left) -->
+  <div class="flex items-center gap-2.5">
+    <a href="#section-01" class="flex items-center gap-2 no-underline text-black group">
+      <span class="font-heading text-lg sm:text-xl tracking-tight text-[#111111] group-hover:text-[#9B1C2E] transition-colors">
+        VALERIO COMELLA
+      </span>
+      <span class="text-gray-300 font-light hidden md:inline">/</span>
+      <span class="text-[11px] sm:text-[12px] font-mono font-bold tracking-wider text-[#9B1C2E] uppercase hidden md:inline">
+        SOFTWARE &amp; XR ENGINEER
+      </span>
+    </a>
+  </div>
+
+  <!-- Center Navigation (Jump to horizontal viewports) -->
+  <nav class="hidden lg:flex items-center gap-4 xl:gap-6 font-mono text-[11px] xl:text-[12px] font-bold text-gray-600">
+    <button type="button" data-nav-target="01" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      01 HERO
+    </button>
+    <button type="button" data-nav-target="02" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      02 PROFILO
+    </button>
+    <button type="button" data-nav-target="03" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      03 ESPERIENZE
+    </button>
+    <button type="button" data-nav-target="04" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      04 PROGETTI
+    </button>
+    <button type="button" data-nav-target="05" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      05 FORMAZIONE
+    </button>
+    <button type="button" data-nav-target="06" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      06 CONTATTO
+    </button>
+  </nav>
+
+  <!-- Right Actions (SFX Toggle, Status Badge, Scarica CV) -->
+  <div class="flex items-center gap-2.5 sm:gap-4">
+    <!-- SFX Audio Toggle Button -->
+    <button
+      id="btn-sound-toggle"
+      type="button"
+      class="px-2.5 py-1.5 rounded-[6px] border border-gray-200 bg-gray-50 hover:bg-gray-100 text-[11px] font-mono text-gray-700 transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
+      title="Attiva/Disattiva effetti sonori interattivi"
+    >
+      <span id="sound-toggle-icon">🔊</span>
+      <span id="sound-toggle-label" class="hidden sm:inline">SFX ON</span>
+    </button>
+
+    <!-- Status badge -->
+    <div class="hidden md:flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-full text-[11px] font-mono font-medium whitespace-nowrap">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>AVAILABLE FOR HIRE · ROMA / REMOTE</span>
+    </div>
+
+    <!-- Scarica CV Button -->
+    <a
+      href={cvUrl}
+      download
+      target="_blank"
+      rel="noopener noreferrer"
+      class="px-4 py-2 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] active:scale-95 text-white font-mono text-[12px] font-bold tracking-wider uppercase transition-all shadow-sm no-underline whitespace-nowrap"
+      title="Scarica Curriculum Vitae Ufficiale"
+    >
+      Scarica CV
+    </a>
+  </div>
+</header>
+
+<script>
+  function setupNavbar() {
+    // Sound button toggle
+    const soundBtn = document.getElementById("btn-sound-toggle")
+    const soundIcon = document.getElementById("sound-toggle-icon")
+    const soundLabel = document.getElementById("sound-toggle-label")
+
+    if (soundBtn) {
+      soundBtn.onclick = () => {
+        if ((window as any).soundEngine) {
+          const isMuted = (window as any).soundEngine.toggleMute()
+          if (soundIcon) soundIcon.textContent = isMuted ? "🔇" : "🔊"
+          if (soundLabel) soundLabel.textContent = isMuted ? "SFX OFF" : "SFX ON"
+        }
+      }
+    }
+
+    // Nav jump buttons to horizontal scroll sections
+    const jumpBtns = document.querySelectorAll(".nav-jump-btn")
+    jumpBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = (btn as HTMLElement).dataset.navTarget
+        const sec = document.getElementById(`section-${target}`)
+        if (sec) {
+          sec.scrollIntoView({ behavior: "smooth", inline: "start" })
+          if ((window as any).playSfx) (window as any).playSfx("slide")
+        }
+      })
+    })
+  }
+
+  setupNavbar()
+  document.addEventListener("astro:after-swap", setupNavbar)
+</script>

@@ -1,0 +1,110 @@
+---
+import RotatingDispatch from "./RotatingDispatch.astro"
+import { PROFILE } from "@site-config"
+
+const cvUrl = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv || "/CV_ComellaValerio.pdf"
+---
+
+<section
+  id="section-01"
+  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start lg:justify-center shrink-0 snap-start py-6 sm:py-8"
+>
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-center gap-6 my-auto">
+    <!-- Section Editorial Label -->
+    <div class="flex items-center justify-between border-b border-gray-200 pb-2 text-[11px] font-mono tracking-wider text-gray-500">
+      <span class="font-bold text-[#9B1C2E]">01 // HERO &amp; PRESENTATION</span>
+      <span class="hidden sm:inline">SNAP VIEWPORT 01/06 · SWISS EDITORIAL MASTER</span>
+    </div>
+
+  <!-- Hero Main Grid (Left Bio & Rights Monitor Mockup) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <!-- Left Column: Content & Metrics (7 Cols) -->
+    <div class="lg:col-span-7 flex flex-col gap-5">
+      <div>
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] text-[#111111] tracking-tight m-0">
+          VALERIO COMELLA
+        </h1>
+        <h2 class="text-lg sm:text-[20px] font-bold text-[#111111] mt-2 tracking-wide font-sans m-0">
+          SOFTWARE ENGINEER | UNITY (C#) &amp; FULL STACK
+        </h2>
+      </div>
+
+      <!-- Rotating Editorial Dispatch -->
+      <RotatingDispatch />
+
+      <!-- Bio Paragraph -->
+      <p class="text-[14px] sm:text-[15px] leading-relaxed text-[#374151] m-0">
+        Unity Developer specializzato in C#, con oltre 1200 ore di esperienza su motori interattivi, soluzioni Mixed Reality e prodotti B2B. Solida formazione in Game Development e Mixed Reality (ITS EQF5), con competenze Full Stack.
+      </p>
+
+      <!-- Action Buttons Row -->
+      <div class="flex flex-wrap items-center gap-3 pt-1">
+        <a
+          href="mailto:valeriocom@hotmail.it"
+          class="px-5 py-2.5 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] text-white font-mono text-[12.5px] font-bold tracking-wider transition-all shadow-sm no-underline active:scale-95"
+        >
+          Contatta Subito (valeriocom@hotmail.it)
+        </a>
+        <button
+          type="button"
+          data-nav-target="04"
+          class="nav-jump-btn px-4 py-2.5 rounded-[6px] bg-white border border-gray-300 hover:border-black text-[#111827] font-mono text-[12.5px] font-semibold transition-all shadow-2xs cursor-pointer active:scale-95"
+        >
+          Esplora Progetti (6 Shipped)
+        </button>
+        <a
+          href={cvUrl}
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2.5 rounded-[6px] bg-gray-100 hover:bg-gray-200 text-gray-700 font-mono text-[12px] font-medium transition-all no-underline"
+        >
+          Scarica CV Ufficiale
+        </a>
+      </div>
+
+      <!-- Metrics Ledger (Bottom Row of Left Column) -->
+      <div class="grid grid-cols-3 gap-3 pt-3 border-t border-gray-200">
+        <div class="flex flex-col">
+          <span class="font-heading text-lg sm:text-xl text-[#9B1C2E]">1200+ ORE XR</span>
+          <span class="text-[11px] font-mono text-gray-500">Engine &amp; Mixed Reality</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading text-lg sm:text-xl text-[#111111]">6 SHIPPED GAMES</span>
+          <span class="text-[11px] font-mono text-gray-500">B2B, VR &amp; Game Jams</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading text-lg sm:text-xl text-[#111111]">101/110 &amp; 100/100</span>
+          <span class="text-[11px] font-mono text-gray-500">EQF5 &amp; ITIS A. Volta</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Visual Monitor Card (5 Cols) -->
+    <div class="lg:col-span-5 flex flex-col items-center">
+      <div class="w-full max-w-[460px] bg-white rounded-[12px] p-6 shadow-md border border-gray-200/80 flex flex-col items-center gap-4 transition-transform hover:scale-[1.01]">
+        <img
+          src="/assets/figma/hero-monitor.png"
+          alt="Monitor Setup Retro Sunset"
+          width="504"
+          height="520"
+          class="w-full h-auto object-contain max-h-[340px]"
+          loading="eager"
+        />
+
+        <div class="w-full flex flex-col gap-1 border-t border-gray-100 pt-3 text-[11.5px] text-gray-600 font-mono">
+          <span class="font-bold text-black uppercase tracking-wider">
+            VALERIO COMELLA · SOFTWARE &amp; GAME ENGINEER
+          </span>
+          <span>📍 Roma, Italia · Nato a Napoli (23 Luglio 2002) · Patente B</span>
+          <div class="flex flex-wrap gap-2 text-gray-500">
+            <span>✉ valeriocom@hotmail.it</span>
+            <span>📞 3339959271</span>
+            <span>🇮🇹 Italiano (Madrelingua) / Inglese (A2)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

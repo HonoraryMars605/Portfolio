@@ -1,27 +1,32 @@
 ---
-import Variant6Layout from "@/layouts/Variant6Layout.astro"
-import HeaderBar from "@/components/variant6/HeaderBar.astro"
-import LeftColumn from "@/components/variant6/LeftColumn.astro"
-import RightColumn from "@/components/variant6/RightColumn.astro"
-import FooterBar from "@/components/variant6/FooterBar.astro"
+import Variant7Layout from "@/layouts/Variant7Layout.astro"
+import Section01Hero from "@/components/variant7/Section01Hero.astro"
+import Section02Profilo from "@/components/variant7/Section02Profilo.astro"
+import Section03Esperienze from "@/components/variant7/Section03Esperienze.astro"
+import Section04Progetti from "@/components/variant7/Section04Progetti.astro"
+import Section05Formazione from "@/components/variant7/Section05Formazione.astro"
+import Section06Contatto from "@/components/variant7/Section06Contatto.astro"
 ---
 
-<Variant6Layout
-  title="Valerio Comella - CV Resume Pure"
-  description="Portfolio & Curriculum Vitae di Valerio Comella - Software Engineer | Unity (C#) & Full Stack Developer."
+<Variant7Layout
+  title="Valerio Comella - Swiss Editorial CV · PC · 1440"
+  description="Swiss Editorial Portfolio & Curriculum Vitae di Valerio Comella - Software Engineer | Unity (C#) & Full Stack Developer."
 >
-  <!-- Top CV Header Bar -->
-  <HeaderBar />
+  <!-- 01 // HERO & PRESENTATION -->
+  <Section01Hero />
 
-  <!-- Two-Column Layout Container (1440px canvas, 1296px content) -->
-  <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12 lg:px-[72px] pt-[36px] sm:pt-[44px] pb-[48px] flex flex-col lg:flex-row gap-[40px] lg:gap-[56px] items-start justify-center flex-1">
-    <!-- Left Column: Bio, Info, Skills, Social & CV -->
-    <LeftColumn />
+  <!-- 02 // PROFILO & COMPETENZE -->
+  <Section02Profilo />
 
-    <!-- Right Column: Esperienze, Istruzione, Specializzazioni, Progetti -->
-    <RightColumn />
-  </div>
+  <!-- 03 // ESPERIENZE PROFESSIONALI -->
+  <Section03Esperienze />
 
-  <!-- Bottom GDPR Footer Bar -->
-  <FooterBar />
-</Variant6Layout>
+  <!-- 04 // PROGETTI IN EVIDENZA -->
+  <Section04Progetti />
+
+  <!-- 05 // FORMAZIONE ACCADEMICA -->
+  <Section05Formazione />
+
+  <!-- 06 // CERTIFICAZIONI & CONTATTO + 07 // GDPR FOOTER -->
+  <Section06Contatto />
+</Variant7Layout>

@@ -1,0 +1,146 @@
+---
+const sections = [
+  { id: "01", label: "Hero" },
+  { id: "02", label: "Profilo" },
+  { id: "03", label: "Esperienze" },
+  { id: "04", label: "Progetti" },
+  { id: "05", label: "Formazione" },
+  { id: "06", label: "Contatto" },
+]
+---
+
+<aside
+  class="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-md border border-gray-200/90 rounded-full py-3 px-1.5 flex flex-col items-center gap-1.5 shadow-lg select-none"
+  aria-label="Navigazione rapida sezioni orizzontali"
+>
+  <span class="text-[9px] font-mono font-bold text-gray-400 mb-0.5 tracking-tighter">
+    SNAP
+  </span>
+
+  <!-- Prev Button -->
+  <button
+    id="rail-prev-btn"
+    type="button"
+    class="w-7 h-7 rounded-full flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-100 transition-colors text-xs font-bold border-none bg-transparent cursor-pointer"
+    title="Sezione precedente"
+  >
+    ‹
+  </button>
+
+  <!-- Number Dots -->
+  <div class="flex flex-col gap-1">
+    {
+      sections.map((sec) => (
+        <button
+          type="button"
+          data-rail-target={sec.id}
+          class="rail-dot w-7 h-7 rounded-full flex items-center justify-center font-mono text-[11px] font-bold text-gray-500 hover:text-[#9B1C2E] hover:bg-red-50/50 transition-all border-none bg-transparent cursor-pointer"
+          title={`Sezione ${sec.id} - ${sec.label}`}
+        >
+          {sec.id}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Next Button -->
+  <button
+    id="rail-next-btn"
+    type="button"
+    class="w-7 h-7 rounded-full flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-100 transition-colors text-xs font-bold border-none bg-transparent cursor-pointer"
+    title="Sezione successiva"
+  >
+    ›
+  </button>
+</aside>
+
+<script>
+  function setupRail() {
+    const dots = document.querySelectorAll(".rail-dot")
+    const container = document.getElementById("horizontal-slider-container")
+    const prevBtn = document.getElementById("rail-prev-btn")
+    const nextBtn = document.getElementById("rail-next-btn")
+
+    let currentSectionIdx = 0
+    const sectionIds = ["01", "02", "03", "04", "05", "06"]
+
+    function updateActiveDot(idx: number) {
+      currentSectionIdx = idx
+      dots.forEach((d, i) => {
+        if (i === idx) {
+          d.classList.add("bg-[#9B1C2E]", "text-white")
+          d.classList.remove("text-gray-500")
+        } else {
+          d.classList.remove("bg-[#9B1C2E]", "text-white")
+          d.classList.add("text-gray-500")
+        }
+      })
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        const targetId = (dot as HTMLElement).dataset.railTarget
+        const sec = document.getElementById(`section-${targetId}`)
+        if (sec) {
+          sec.scrollIntoView({ behavior: "smooth", inline: "start" })
+          updateActiveDot(idx)
+          if ((window as any).playSfx) (window as any).playSfx("slide")
+        }
+      })
+    })
+
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        if (currentSectionIdx > 0) {
+          const targetId = sectionIds[currentSectionIdx - 1]
+          const sec = document.getElementById(`section-${targetId}`)
+          if (sec) {
+            sec.scrollIntoView({ behavior: "smooth", inline: "start" })
+            updateActiveDot(currentSectionIdx - 1)
+            if ((window as any).playSfx) (window as any).playSfx("slide")
+          }
+        }
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        if (currentSectionIdx < sectionIds.length - 1) {
+          const targetId = sectionIds[currentSectionIdx + 1]
+          const sec = document.getElementById(`section-${targetId}`)
+          if (sec) {
+            sec.scrollIntoView({ behavior: "smooth", inline: "start" })
+            updateActiveDot(currentSectionIdx + 1)
+            if ((window as any).playSfx) (window as any).playSfx("slide")
+          }
+        }
+      }
+    }
+
+    // IntersectionObserver to update active dot on scroll
+    if (container) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const secId = entry.target.id.replace("section-", "")
+              const idx = sectionIds.indexOf(secId)
+              if (idx !== -1) updateActiveDot(idx)
+            }
+          })
+        },
+        { root: container, threshold: 0.5 }
+      )
+
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(`section-${id}`)
+        if (el) observer.observe(el)
+      })
+    }
+
+    updateActiveDot(0)
+  }
+
+  setupRail()
+  document.addEventListener("astro:after-swap", setupRail)
+</script>
