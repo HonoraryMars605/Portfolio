@@ -1,89 +1,106 @@
 ---
-import { PROFILE } from "@site-config"
-
-const getHref = (link: unknown): string => {
-  if (typeof link === "string") return link
-  if (typeof link === "object" && link !== null && "href" in link) {
-    return (link as { href: string }).href
-  }
-  return ""
-}
-
-const cvUrl = getHref(PROFILE.links.cv) || "/CV_ComellaValerio.pdf"
+// Top Editorial Navigation Bar (Variant 7 Swiss)
 ---
 
-<header class="fixed top-0 left-0 right-0 h-[68px] sm:h-[72px] bg-white/90 backdrop-blur-md border-b border-gray-200 z-40 px-4 sm:px-8 lg:px-12 flex items-center justify-between transition-all">
-  <!-- Brand Title (Left) -->
+<header class="fixed top-0 left-0 right-0 h-[68px] sm:h-[72px] bg-[#FAF9F5]/90 dark:bg-[#111827]/90 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-800/80 z-40 px-4 sm:px-6 lg:px-10 flex items-center justify-between transition-colors duration-200">
+  <!-- Brand Group (Left): Monogram VC + Valerio Comella -->
   <div class="flex items-center gap-2.5">
-    <a href="#section-01" class="flex items-center gap-2 no-underline text-black group">
-      <span class="font-heading text-lg sm:text-xl tracking-tight text-[#111111] group-hover:text-[#9B1C2E] transition-colors">
+    <a href="#section-01" class="flex items-center gap-2.5 no-underline text-black dark:text-white group">
+      <div class="w-[30px] h-[30px] rounded-[6px] bg-[#9B1C2E] flex items-center justify-center text-white font-mono font-bold text-[13px] tracking-tight shadow-2xs group-hover:scale-105 transition-transform">
+        VC
+      </div>
+      <span class="font-heading text-lg sm:text-xl tracking-tight text-[#111111] dark:text-white group-hover:text-[#9B1C2E] transition-colors">
         VALERIO COMELLA
       </span>
-      <span class="text-gray-300 font-light hidden md:inline">/</span>
-      <span class="text-[11px] sm:text-[12px] font-mono font-bold tracking-wider text-[#9B1C2E] uppercase hidden md:inline">
+      <span class="text-gray-300 dark:text-gray-600 font-light hidden lg:inline">/</span>
+      <span class="text-[11px] sm:text-[12px] font-mono font-bold tracking-wider text-[#9B1C2E] uppercase hidden lg:inline">
         SOFTWARE &amp; XR ENGINEER
       </span>
     </a>
   </div>
 
   <!-- Center Navigation (Jump to horizontal viewports) -->
-  <nav class="hidden lg:flex items-center gap-4 xl:gap-6 font-mono text-[11px] xl:text-[12px] font-bold text-gray-600">
-    <button type="button" data-nav-target="01" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+  <nav class="hidden 2xl:flex items-center gap-4 xl:gap-5 font-mono text-[11.5px] font-bold text-gray-600 dark:text-gray-400">
+    <button type="button" data-nav-target="01" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
       01 HERO
     </button>
-    <button type="button" data-nav-target="02" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+    <button type="button" data-nav-target="02" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
       02 PROFILO
     </button>
-    <button type="button" data-nav-target="03" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+    <button type="button" data-nav-target="03" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
       03 ESPERIENZE
     </button>
-    <button type="button" data-nav-target="04" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+    <button type="button" data-nav-target="04" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
       04 PROGETTI
     </button>
-    <button type="button" data-nav-target="05" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+    <button type="button" data-nav-target="05" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
       05 FORMAZIONE
     </button>
-    <button type="button" data-nav-target="06" class="nav-jump-btn hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      06 CONTATTO
+    <button type="button" data-nav-target="06" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      06 COSA MI PIACE
+    </button>
+    <button type="button" data-nav-target="07" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
+      07 CONTATTO
     </button>
   </nav>
 
-  <!-- Right Actions (SFX Toggle, Status Badge, Scarica CV) -->
-  <div class="flex items-center gap-2.5 sm:gap-4">
-    <!-- SFX Audio Toggle Button -->
+  <!-- Right Actions Group: 3 Buttons (SFX, Dark/Light, ITA/EN) + Status + Visualizza PDF -->
+  <div class="flex items-center gap-2 sm:gap-2.5">
+    <!-- BTN 1: SFX Audio Toggle Button -->
     <button
       id="btn-sound-toggle"
       type="button"
-      class="px-2.5 py-1.5 rounded-[6px] border border-gray-200 bg-gray-50 hover:bg-gray-100 text-[11px] font-mono text-gray-700 transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
+      class="h-[36px] px-2.5 rounded-[6px] border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-800/90 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
       title="Attiva/Disattiva effetti sonori interattivi"
     >
       <span id="sound-toggle-icon">🔊</span>
-      <span id="sound-toggle-label" class="hidden sm:inline">SFX ON</span>
+      <span id="sound-toggle-label" class="hidden sm:inline font-semibold">SFX ON</span>
     </button>
 
-    <!-- Status badge -->
-    <div class="hidden md:flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-full text-[11px] font-mono font-medium whitespace-nowrap">
+    <!-- BTN 2: Dark/Light Mode Toggle Button -->
+    <button
+      id="btn-theme-toggle"
+      type="button"
+      class="h-[36px] px-2.5 rounded-[6px] border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-800/90 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      title="Passa da modalità Chiara a Scura"
+    >
+      <span id="theme-toggle-icon">🌓</span>
+      <span id="theme-toggle-label" class="hidden sm:inline font-semibold">Dark/Light</span>
+    </button>
+
+    <!-- BTN 3: Language Toggle Button (ITA/EN) -->
+    <button
+      id="btn-lang-toggle"
+      type="button"
+      class="h-[36px] px-2.5 rounded-[6px] border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-800/90 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      title="Cambia lingua / Switch language"
+    >
+      <span id="lang-toggle-icon">🌐</span>
+      <span id="lang-toggle-label" class="font-semibold">ITA/EN</span>
+    </button>
+
+    <!-- Status badge (Available for Hire) -->
+    <div class="hidden xl:flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 rounded-full text-[10.5px] font-mono font-medium whitespace-nowrap">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span>AVAILABLE FOR HIRE · ROMA / REMOTE</span>
+      <span data-i18n-status>AVAILABLE FOR HIRE</span>
     </div>
 
-    <!-- Scarica CV Button -->
-    <a
-      href={cvUrl}
-      download
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-4 py-2 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] active:scale-95 text-white font-mono text-[12px] font-bold tracking-wider uppercase transition-all shadow-sm no-underline whitespace-nowrap"
-      title="Scarica Curriculum Vitae Ufficiale"
+    <!-- Visualizza PDF Button (Modal Viewer) -->
+    <button
+      type="button"
+      id="btn-nav-view-pdf"
+      class="btn-view-pdf h-[36px] px-3 sm:px-4 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] active:scale-95 text-white font-mono text-[11.5px] font-bold tracking-wider uppercase transition-all shadow-sm border-none cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
+      title="Visualizza Curriculum Vitae (PDF)"
     >
-      Scarica CV
-    </a>
+      <span>📑</span>
+      <span data-i18n-pdf-label>Visualizza PDF</span>
+    </button>
   </div>
 </header>
 
 <script>
   function setupNavbar() {
-    // Sound button toggle
+    // 1. Sound Button Toggle
     const soundBtn = document.getElementById("btn-sound-toggle")
     const soundIcon = document.getElementById("sound-toggle-icon")
     const soundLabel = document.getElementById("sound-toggle-label")
@@ -98,7 +115,64 @@ const cvUrl = getHref(PROFILE.links.cv) || "/CV_ComellaValerio.pdf"
       }
     }
 
-    // Nav jump buttons to horizontal scroll sections
+    // 2. Dark/Light Theme Toggle
+    const themeBtn = document.getElementById("btn-theme-toggle")
+    const themeIcon = document.getElementById("theme-toggle-icon")
+    const root = document.documentElement
+
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "dark") {
+      root.classList.add("dark")
+      if (themeIcon) themeIcon.textContent = "🌙"
+    } else {
+      root.classList.remove("dark")
+      if (themeIcon) themeIcon.textContent = "☀️"
+    }
+
+    if (themeBtn) {
+      themeBtn.onclick = () => {
+        const isDark = root.classList.toggle("dark")
+        localStorage.setItem("theme", isDark ? "dark" : "light")
+        if (themeIcon) themeIcon.textContent = isDark ? "🌙" : "☀️"
+        if ((window as any).playSfx) (window as any).playSfx("click")
+      }
+    }
+
+    // 3. Language Toggle (ITA / EN)
+    const langBtn = document.getElementById("btn-lang-toggle")
+    const langLabel = document.getElementById("lang-toggle-label")
+
+    let currentLang = localStorage.getItem("lang") || "it"
+    function updateLang(lang: string) {
+      currentLang = lang
+      localStorage.setItem("lang", lang)
+      root.setAttribute("data-lang", lang)
+      if (langLabel) langLabel.textContent = lang === "it" ? "ITA" : "ENG"
+
+      // Update text nodes with data-i18n attributes
+      const statusText = document.querySelector("[data-i18n-status]")
+      if (statusText) {
+        statusText.textContent = lang === "it" ? "DISPONIBILE SUBITO" : "AVAILABLE FOR HIRE"
+      }
+      const pdfText = document.querySelector("[data-i18n-pdf-label]")
+      if (pdfText) {
+        pdfText.textContent = lang === "it" ? "Visualizza PDF" : "View PDF"
+      }
+
+      window.dispatchEvent(new CustomEvent("lang-change", { detail: { lang } }))
+    }
+
+    updateLang(currentLang)
+
+    if (langBtn) {
+      langBtn.onclick = () => {
+        const next = currentLang === "it" ? "en" : "it"
+        updateLang(next)
+        if ((window as any).playSfx) (window as any).playSfx("click")
+      }
+    }
+
+    // 4. Nav jump buttons to horizontal scroll sections
     const jumpBtns = document.querySelectorAll(".nav-jump-btn")
     jumpBtns.forEach((btn) => {
       btn.addEventListener("click", () => {

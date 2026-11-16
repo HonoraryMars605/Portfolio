@@ -1,15 +1,14 @@
 ---
 import RotatingDispatch from "./RotatingDispatch.astro"
-import { PROFILE } from "@site-config"
-
-const cvUrl = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv || "/CV_ComellaValerio.pdf"
+import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 ---
 
 <section
   id="section-01"
-  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start lg:justify-center shrink-0 snap-start py-6 sm:py-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start py-6 sm:py-10"
 >
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-center gap-6 my-auto">
+  <SectionPatternCanvas theme="minimal" />
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-6 relative z-10">
     <!-- Section Editorial Label -->
     <div class="flex items-center justify-between border-b border-gray-200 pb-2 text-[11px] font-mono tracking-wider text-gray-500">
       <span class="font-bold text-[#9B1C2E]">01 // HERO &amp; PRESENTATION</span>
@@ -52,15 +51,12 @@ const cvUrl = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PR
         >
           Esplora Progetti (6 Shipped)
         </button>
-        <a
-          href={cvUrl}
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-4 py-2.5 rounded-[6px] bg-gray-100 hover:bg-gray-200 text-gray-700 font-mono text-[12px] font-medium transition-all no-underline"
+        <button
+          type="button"
+          class="btn-view-pdf px-4 py-2.5 rounded-[6px] bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-mono text-[12px] font-medium transition-all border-none cursor-pointer"
         >
-          Scarica CV Ufficiale
-        </a>
+          Visualizza CV (PDF)
+        </button>
       </div>
 
       <!-- Metrics Ledger (Bottom Row of Left Column) -->

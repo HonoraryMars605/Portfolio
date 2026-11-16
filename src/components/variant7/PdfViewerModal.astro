@@ -1,0 +1,142 @@
+---
+// Modal Viewer for PDF CV (Visualizza PDF)
+---
+
+<div
+  id="pdf-modal-container"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-black/70 backdrop-blur-md opacity-0 transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Visualizzatore Curriculum Vitae"
+>
+  <div
+    class="relative w-full max-w-5xl h-[90vh] bg-white dark:bg-[#111827] rounded-[10px] shadow-2xl border border-gray-300 dark:border-gray-700 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300"
+    id="pdf-modal-card"
+  >
+    <!-- Modal Header Bar -->
+    <div class="h-12 px-4 bg-[#FAF9F5] dark:bg-[#1F2937] border-b border-gray-200 dark:border-gray-700 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#9B1C2E]"></span>
+        <span class="font-mono text-[12px] font-bold text-gray-800 dark:text-gray-100 uppercase tracking-wider">
+          VALERIO COMELLA · CURRICULUM VITAE (PDF)
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Download option inside modal -->
+        <a
+          href="/CV_ComellaValerio.pdf"
+          download
+          class="px-2.5 py-1 rounded-[4px] bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 font-mono text-[11px] text-gray-700 dark:text-gray-200 transition-colors flex items-center gap-1 no-underline"
+          title="Scarica copia PDF"
+        >
+          <span>📥</span>
+          <span class="hidden sm:inline">Scarica</span>
+        </a>
+
+        <!-- Print option -->
+        <button
+          type="button"
+          id="btn-print-pdf"
+          class="px-2.5 py-1 rounded-[4px] bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 font-mono text-[11px] text-gray-700 dark:text-gray-200 transition-colors cursor-pointer border-none flex items-center gap-1"
+          title="Stampa documento"
+        >
+          <span>🖨️</span>
+          <span class="hidden sm:inline">Stampa</span>
+        </button>
+
+        <!-- Close button -->
+        <button
+          type="button"
+          id="btn-close-pdf"
+          class="px-2.5 py-1 rounded-[4px] bg-[#9B1C2E] hover:bg-[#7A1624] text-white font-mono text-[11px] font-bold transition-colors cursor-pointer border-none flex items-center gap-1"
+          title="Chiudi [ESC]"
+        >
+          <span>✕</span>
+          <span>Chiudi [ESC]</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal PDF Frame -->
+    <div class="flex-1 w-full h-full bg-gray-100 dark:bg-gray-900 overflow-hidden relative">
+      <iframe
+        id="pdf-frame"
+        src="/CV_ComellaValerio.pdf#toolbar=0"
+        class="w-full h-full border-none"
+        title="Curriculum Vitae di Valerio Comella"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupPdfModal() {
+    const modal = document.getElementById("pdf-modal-container")
+    const card = document.getElementById("pdf-modal-card")
+    const closeBtn = document.getElementById("btn-close-pdf")
+    const printBtn = document.getElementById("btn-print-pdf")
+    const frame = document.getElementById("pdf-frame") as HTMLIFrameElement | null
+
+    if (!modal || !card) return
+
+    function openModal() {
+      if (!modal || !card) return
+      modal.classList.remove("hidden")
+      modal.classList.add("flex")
+      setTimeout(() => {
+        modal.classList.remove("opacity-0")
+        modal.classList.add("opacity-100")
+        card.classList.remove("scale-95")
+        card.classList.add("scale-100")
+      }, 10)
+      if ((window as any).playSfx) (window as any).playSfx("click")
+    }
+
+    function closeModal() {
+      if (!modal || !card) return
+      modal.classList.remove("opacity-100")
+      modal.classList.add("opacity-0")
+      card.classList.remove("scale-100")
+      card.classList.add("scale-95")
+      setTimeout(() => {
+        modal.classList.remove("flex")
+        modal.classList.add("hidden")
+      }, 300)
+      if ((window as any).playSfx) (window as any).playSfx("click")
+    }
+
+    // Attach to any element with data-open-pdf or .btn-view-pdf
+    document.querySelectorAll("[data-open-pdf], .btn-view-pdf").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault()
+        openModal()
+      })
+    })
+
+    if (closeBtn) closeBtn.onclick = closeModal
+
+    if (printBtn && frame) {
+      printBtn.onclick = () => {
+        frame.contentWindow?.print()
+      }
+    }
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal()
+    })
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal()
+      }
+    })
+
+    // Expose globally
+    ;(window as any).openPdfModal = openModal
+    ;(window as any).closePdfModal = closeModal
+  }
+
+  setupPdfModal()
+  document.addEventListener("astro:after-swap", setupPdfModal)
+</script>

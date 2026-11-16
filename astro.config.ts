@@ -10,6 +10,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
     site: 'https://valeriocomella.github.io',
     base: '/',
+    server: {
+        host: true, // Accetta connessioni da qualsiasi IP della rete locale (0.0.0.0)
+        port: 4321, // Porta predefinita
+    },
     integrations: [tailwind(), mdx(), sitemap()],
     vite: {
         resolve: {

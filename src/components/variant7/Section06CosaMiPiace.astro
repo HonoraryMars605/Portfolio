@@ -1,0 +1,252 @@
+---
+// Section 06: Cosa Mi Piace (Passioni, Ispirazioni, Giochi, Film & Serie TV)
+const games = [
+  {
+    tag: "ACTION / NARRATIVE",
+    title: "The Last of Us",
+    year: "2013",
+    author: "Naughty Dog / Sony",
+    desc: "Narrazione viscerale e character writing di riferimento.",
+    image: "/assets/figma/poster-the-last-of-us.png"
+  },
+  {
+    tag: "SCI-FI RPG",
+    title: "Mass Effect",
+    year: "2007–2012",
+    author: "BioWare / EA",
+    desc: "World-building sci-fi e bivi morali insuperati.",
+    image: "/assets/figma/poster-mass-effect.png"
+  },
+  {
+    tag: "COVER SHOOTER",
+    title: "Gears of War",
+    year: "2006",
+    author: "Epic Games / Xbox",
+    desc: "Game loop granitico e innovazione del combat design.",
+    image: "/assets/figma/poster-gears-of-war.png"
+  }
+]
+
+const movies = [
+  {
+    tag: "CYBERPUNK NEO-NOIR",
+    title: "Blade Runner",
+    year: "1982",
+    author: "Ridley Scott",
+    desc: "Estetica, identità dell'androide e Vangelis OST.",
+    image: "/assets/figma/poster-blade-runner.png"
+  },
+  {
+    tag: "DYSTOPIA / REGIA",
+    title: "Children of Men",
+    year: "2006",
+    author: "Alfonso Cuarón",
+    desc: "Piani sequenza leggendari e tensione immersiva.",
+    image: "/assets/figma/poster-children-of-men.png"
+  },
+  {
+    tag: "HARD SCI-FI / SPAZIO",
+    title: "Interstellar",
+    year: "2014",
+    author: "Christopher Nolan",
+    desc: "Fisica relativistica, tempo e ambizione cosmica.",
+    image: "/assets/figma/poster-interstellar.png"
+  },
+  {
+    tag: "SURVIVAL APOCALYPSE",
+    title: "World War Z",
+    year: "2013",
+    author: "Marc Forster",
+    desc: "Scala globale, dinamica delle orde e ritmo visivo.",
+    image: "/assets/figma/poster-world-war-z.png"
+  }
+]
+
+const series = [
+  {
+    tag: "UTOPIAN SCI-FI",
+    title: "Star Trek",
+    year: "1966–Presente",
+    author: "Gene Roddenberry",
+    desc: "Esplorazione spaziale, ottimismo e dilemma etico.",
+    image: "/assets/figma/poster-star-trek.png"
+  },
+  {
+    tag: "THRILLER PSICOLOGICO",
+    title: "Severance",
+    year: "2022–Oggi",
+    author: "Dan Erickson / Ben Stiller",
+    desc: "Dissonanza cognitiva aziendale e regia chirurgica.",
+    image: "/assets/figma/poster-severance.png"
+  },
+  {
+    tag: "ANIMATION / STEAMPUNK",
+    title: "Arcane",
+    year: "2021–Oggi",
+    author: "Riot Games / Fortiche",
+    desc: "Stile pittorico ibrido 2D/3D e regia magistrale.",
+    image: "/assets/figma/poster-arcane.png"
+  }
+]
+---
+
+<section
+  id="section-06"
+  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start py-6 sm:py-8"
+>
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-5">
+    <!-- Section Editorial Header -->
+    <div class="flex flex-col gap-1 border-b border-gray-200/80 dark:border-gray-800 pb-3">
+      <div class="flex items-center justify-between text-[11px] font-mono tracking-wider text-gray-500 dark:text-gray-400">
+        <span class="font-bold text-[#9B1C2E]">06 // COSA MI PIACE</span>
+        <span class="hidden sm:inline">PASSIONI &amp; ISPIRAZIONI CULTURALI</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mt-1">
+        <h2 class="font-heading text-2xl sm:text-3xl text-[#111111] dark:text-white tracking-tight m-0">
+          Cosa Mi Piace
+        </h2>
+        <div class="flex items-center gap-2 px-3 py-1 rounded-[6px] bg-red-50/70 dark:bg-red-950/30 border border-red-200/60 dark:border-red-900/50 text-[12px] font-mono text-[#9B1C2E] dark:text-red-300">
+          <span>💬</span>
+          <span class="font-medium">« Sono uno sviluppatore ma anche un appassionato! »</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Shelves Container -->
+    <div class="flex flex-col gap-4">
+      <!-- Shelf 1: Giochi Preferiti -->
+      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-4 shadow-2xs">
+        <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2 mb-3">
+          <div class="flex items-center gap-2 font-mono text-[11px]">
+            <span class="font-bold text-[#9B1C2E]">01 // GIOCHI PREFERITI</span>
+            <span class="text-gray-400">·</span>
+            <span class="text-gray-600 dark:text-gray-300">VIDEO GAMES · GAMEPLAY &amp; DESIGN</span>
+          </div>
+          <span class="font-mono text-[10px] text-gray-500 dark:text-gray-400">01 / 03</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          {
+            games.map((g) => (
+              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[8px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 flex gap-3 items-center hover:border-[#9B1C2E]/50 transition-all group">
+                <img
+                  src={g.image}
+                  alt={g.title}
+                  class="w-[72px] h-[98px] rounded-[5px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
+                />
+                <div class="flex flex-col justify-between h-full py-0.5 overflow-hidden">
+                  <div>
+                    <span class="text-[9.5px] font-mono text-[#9B1C2E] font-bold uppercase tracking-wider block">
+                      {g.tag}
+                    </span>
+                    <h4 class="font-bold text-[14px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#9B1C2E] transition-colors truncate">
+                      {g.title}
+                    </h4>
+                    <span class="text-[11px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5">
+                      {g.year} · {g.author}
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
+                    {g.desc}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Shelf 2: Film di Riferimento -->
+      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-4 shadow-2xs">
+        <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2 mb-3">
+          <div class="flex items-center gap-2 font-mono text-[11px]">
+            <span class="font-bold text-[#9B1C2E]">02 // FILM DI RIFERIMENTO</span>
+            <span class="text-gray-400">·</span>
+            <span class="text-gray-600 dark:text-gray-300">CINEMA · SCI-FI &amp; REGIA</span>
+          </div>
+          <span class="font-mono text-[10px] text-gray-500 dark:text-gray-400">01 / 04</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          {
+            movies.map((m) => (
+              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[8px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 flex gap-3 items-center hover:border-[#9B1C2E]/50 transition-all group">
+                <img
+                  src={m.image}
+                  alt={m.title}
+                  class="w-[66px] h-[92px] rounded-[5px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
+                />
+                <div class="flex flex-col justify-between h-full py-0.5 overflow-hidden">
+                  <div>
+                    <span class="text-[9.5px] font-mono text-[#9B1C2E] font-bold uppercase tracking-wider block">
+                      {m.tag}
+                    </span>
+                    <h4 class="font-bold text-[13.5px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#9B1C2E] transition-colors truncate">
+                      {m.title}
+                    </h4>
+                    <span class="text-[10.5px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5 truncate">
+                      {m.year} · {m.author}
+                    </span>
+                  </div>
+                  <p class="text-[10.5px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
+                    {m.desc}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Shelf 3: Serie TV -->
+      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-4 shadow-2xs">
+        <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2 mb-3">
+          <div class="flex items-center gap-2 font-mono text-[11px]">
+            <span class="font-bold text-[#9B1C2E]">03 // SERIE TV</span>
+            <span class="text-gray-400">·</span>
+            <span class="text-gray-600 dark:text-gray-300">SERIAL STORYTELLING · WORLD BUILDING</span>
+          </div>
+          <span class="font-mono text-[10px] text-gray-500 dark:text-gray-400">01 / 03</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          {
+            series.map((s) => (
+              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[8px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 flex gap-3 items-center hover:border-[#9B1C2E]/50 transition-all group">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  class="w-[72px] h-[98px] rounded-[5px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
+                />
+                <div class="flex flex-col justify-between h-full py-0.5 overflow-hidden">
+                  <div>
+                    <span class="text-[9.5px] font-mono text-[#9B1C2E] font-bold uppercase tracking-wider block">
+                      {s.tag}
+                    </span>
+                    <h4 class="font-bold text-[14px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#9B1C2E] transition-colors truncate">
+                      {s.title}
+                    </h4>
+                    <span class="text-[11px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5">
+                      {s.year} · {s.author}
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
+                    {s.desc}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- System Extensibility Footer Bar -->
+    <div class="border-t border-gray-200/70 dark:border-gray-800 pt-2.5 flex flex-col sm:flex-row items-center justify-between text-[10.5px] font-mono text-gray-500 dark:text-gray-400">
+      <span>MODULAR CAROUSEL ARCHITECTURE // SWISS EDITORIAL SYSTEM</span>
+      <span class="text-[#9B1C2E] dark:text-red-400 font-semibold cursor-pointer hover:underline">
+        ESPANSIONE FUTURA: LIBRI, MANGA &amp; HARDWARE SETUP [+]
+      </span>
+    </div>
+  </div>
+</section>

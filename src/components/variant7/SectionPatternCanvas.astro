@@ -1,0 +1,466 @@
+---
+interface Props {
+  theme: "minimal" | "abstract" | "code" | "gamedev" | "space"
+}
+
+const { theme } = Astro.props
+---
+
+<canvas
+  class="section-pattern-canvas pointer-events-none absolute inset-0 w-full h-full z-0 opacity-40 select-none"
+  data-theme={theme}
+  aria-hidden="true"
+></canvas>
+
+<script>
+  // ==========================================
+  // MULTI-THEME GPU CANVAS ENGINE FOR SECTIONS
+  // ==========================================
+  type ThemeKey = "minimal" | "abstract" | "code" | "gamedev" | "space"
+
+  interface ThemeConfig {
+    colors: string[]
+    shapes: string[]
+    gravity: number
+    speed: number
+    particleCount: number
+    radius: number
+  }
+
+  const THEME_CONFIGS: Record<ThemeKey, ThemeConfig> = {
+    minimal: {
+      colors: ["#9B1C2E", "#111111", "#475569", "#94A3B8", "#CBD5E1"],
+      shapes: ["crosshair", "dotgrid", "target", "squareHairline", "telemetryPlus"],
+      gravity: -0.015,
+      speed: 0.65,
+      particleCount: 35,
+      radius: 140,
+    },
+    abstract: {
+      colors: ["#9B1C2E", "#2563EB", "#059669", "#D97706", "#7C3AED"],
+      shapes: ["squiggle", "torus", "arc", "diamond", "pill"],
+      gravity: 0.02,
+      speed: 0.7,
+      particleCount: 32,
+      radius: 140,
+    },
+    code: {
+      colors: ["#059669", "#0284C7", "#9B1C2E", "#1E293B", "#7C3AED"],
+      shapes: ["braces", "tag", "prompt", "semicolon", "binary"],
+      gravity: -0.02,
+      speed: 0.7,
+      particleCount: 36,
+      radius: 140,
+    },
+    gamedev: {
+      colors: ["#E11D48", "#0891B2", "#D97706", "#7C3AED", "#111111"],
+      shapes: ["heart", "dpad", "cube", "star8", "coin"],
+      gravity: -0.035,
+      speed: 0.75,
+      particleCount: 34,
+      radius: 150,
+    },
+    space: {
+      colors: ["#6366F1", "#0284C7", "#9B1C2E", "#D97706", "#334155"],
+      shapes: ["spark", "planet", "orbit", "moon", "asteroid"],
+      gravity: 0,
+      speed: 0.6,
+      particleCount: 38,
+      radius: 140,
+    },
+  }
+
+  // Global sprite texture cache across all instances
+  const spriteCache: Record<string, HTMLCanvasElement> = {}
+
+  function getCachedSprite(color: string, shape: string): HTMLCanvasElement {
+    const key = `${color}-${shape}`
+    if (spriteCache[key]) return spriteCache[key]
+
+    const size = 96
+    const center = size / 2
+    const drawSize = 42
+
+    const c = document.createElement("canvas")
+    c.width = size
+    c.height = size
+    const cx = c.getContext("2d")
+    if (!cx) return c
+
+    cx.shadowColor = "rgba(0,0,0,0.08)"
+    cx.shadowBlur = 5
+    cx.shadowOffsetX = 1
+    cx.shadowOffsetY = 1
+
+    cx.fillStyle = color
+    cx.strokeStyle = color
+    cx.lineWidth = 2.5
+    cx.lineCap = "round"
+    cx.lineJoin = "round"
+
+    cx.translate(center, center)
+    cx.beginPath()
+
+    // 1. MINIMAL (Swiss Precision)
+    if (shape === "crosshair") {
+      const arm = drawSize * 0.4
+      cx.moveTo(-arm, 0); cx.lineTo(arm, 0)
+      cx.moveTo(0, -arm); cx.lineTo(0, arm)
+      cx.stroke()
+    } else if (shape === "dotgrid") {
+      const step = drawSize * 0.22
+      for (let r = -1; r <= 1; r++) {
+        for (let col = -1; col <= 1; col++) {
+          cx.fillRect(col * step - 1.5, r * step - 1.5, 3, 3)
+        }
+      }
+    } else if (shape === "target") {
+      cx.arc(0, 0, drawSize * 0.35, 0, Math.PI * 2)
+      cx.stroke()
+      cx.beginPath()
+      cx.arc(0, 0, 3, 0, Math.PI * 2)
+      cx.fill()
+    } else if (shape === "squareHairline") {
+      cx.rect(-drawSize * 0.3, -drawSize * 0.3, drawSize * 0.6, drawSize * 0.6)
+      cx.stroke()
+      cx.fillRect(-2, -2, 4, 4)
+    } else if (shape === "telemetryPlus") {
+      const arm = drawSize * 0.35
+      cx.moveTo(-arm, 0); cx.lineTo(arm, 0)
+      cx.moveTo(0, -arm); cx.lineTo(0, arm)
+      cx.stroke()
+      cx.strokeRect(-arm, -arm, arm * 2, arm * 2)
+
+    // 2. ABSTRACT (Bauhaus & Memphis)
+    } else if (shape === "squiggle") {
+      cx.moveTo(-drawSize * 0.4, 0)
+      cx.bezierCurveTo(-drawSize * 0.2, -drawSize * 0.35, 0, drawSize * 0.35, drawSize * 0.2, -drawSize * 0.2)
+      cx.bezierCurveTo(drawSize * 0.3, -drawSize * 0.35, drawSize * 0.35, 0, drawSize * 0.45, 0)
+      cx.stroke()
+    } else if (shape === "torus") {
+      cx.arc(0, 0, drawSize * 0.36, 0, Math.PI * 2)
+      cx.stroke()
+      cx.beginPath()
+      cx.arc(0, 0, drawSize * 0.16, 0, Math.PI * 2)
+      cx.fill()
+    } else if (shape === "arc") {
+      cx.arc(0, 0, drawSize * 0.38, 0, Math.PI * 1.25)
+      cx.stroke()
+    } else if (shape === "diamond") {
+      cx.moveTo(0, -drawSize * 0.42)
+      cx.lineTo(drawSize * 0.42, 0)
+      cx.lineTo(0, drawSize * 0.42)
+      cx.lineTo(-drawSize * 0.42, 0)
+      cx.closePath()
+      cx.stroke()
+    } else if (shape === "pill") {
+      cx.roundRect(-drawSize * 0.35, -drawSize * 0.16, drawSize * 0.7, drawSize * 0.32, 10)
+      cx.fill()
+
+    // 3. CODE (Developer Syntax)
+    } else if (shape === "braces") {
+      cx.font = "bold 30px 'Fira Code', monospace"
+      cx.textAlign = "center"
+      cx.textBaseline = "middle"
+      cx.fillText("{}", 0, 0)
+    } else if (shape === "tag") {
+      cx.font = "bold 24px 'Fira Code', monospace"
+      cx.textAlign = "center"
+      cx.textBaseline = "middle"
+      cx.fillText("</>", 0, 0)
+    } else if (shape === "prompt") {
+      cx.font = "bold 28px 'Fira Code', monospace"
+      cx.textAlign = "center"
+      cx.textBaseline = "middle"
+      cx.fillText(">_", 0, 0)
+    } else if (shape === "semicolon") {
+      cx.font = "bold 34px 'Fira Code', monospace"
+      cx.textAlign = "center"
+      cx.textBaseline = "middle"
+      cx.fillText(";", 0, 0)
+    } else if (shape === "binary") {
+      cx.font = "bold 20px 'Fira Code', monospace"
+      cx.textAlign = "center"
+      cx.textBaseline = "middle"
+      cx.fillText("01", 0, 0)
+
+    // 4. GAME DEV (Retro & Unity)
+    } else if (shape === "heart") {
+      const s = drawSize / 10
+      ;[
+        [-3,-2],[-2,-2],[2,-2],[3,-2],
+        [-4,-1],[-3,-1],[-2,-1],[-1,-1],[1,-1],[2,-1],[3,-1],[4,-1],
+        [-4,0],[-3,0],[-2,0],[-1,0],[0,0],[1,0],[2,0],[3,0],[4,0],
+        [-3,1],[-2,1],[-1,1],[0,1],[1,1],[2,1],[3,1],
+        [-2,2],[-1,2],[0,2],[1,2],[2,2],
+        [-1,3],[0,3],[1,3],
+        [0,4]
+      ].forEach(([px, py]) => cx.fillRect(px * s, py * s, s, s))
+    } else if (shape === "dpad") {
+      const arm = drawSize * 0.42
+      const thick = drawSize * 0.26
+      cx.fillRect(-thick / 2, -arm, thick, arm * 2)
+      cx.fillRect(-arm, -thick / 2, arm * 2, thick)
+    } else if (shape === "cube") {
+      const r = drawSize * 0.4
+      for (let i = 0; i < 6; i++) {
+        const a = (i * Math.PI) / 3 - Math.PI / 6
+        const x = Math.cos(a) * r
+        const y = Math.sin(a) * r
+        if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y)
+      }
+      cx.closePath()
+      cx.stroke()
+      cx.moveTo(0, 0); cx.lineTo(0, r)
+      cx.moveTo(0, 0); cx.lineTo(Math.cos(-Math.PI / 6) * r, Math.sin(-Math.PI / 6) * r)
+      cx.moveTo(0, 0); cx.lineTo(Math.cos(-5 * Math.PI / 6) * r, Math.sin(-5 * Math.PI / 6) * r)
+      cx.stroke()
+    } else if (shape === "star8") {
+      const r1 = drawSize * 0.44
+      const r2 = drawSize * 0.18
+      for (let i = 0; i < 8; i++) {
+        const a = (i * Math.PI) / 4 - Math.PI / 2
+        const r = (i % 2 === 0) ? r1 : r2
+        const x = Math.cos(a) * r
+        const y = Math.sin(a) * r
+        if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y)
+      }
+      cx.closePath()
+      cx.fill()
+    } else if (shape === "coin") {
+      cx.arc(0, 0, drawSize * 0.36, 0, Math.PI * 2)
+      cx.stroke()
+      cx.beginPath()
+      cx.arc(0, 0, drawSize * 0.2, 0, Math.PI * 2)
+      cx.stroke()
+
+    // 5. SPACE (Cosmic Orbit)
+    } else if (shape === "spark") {
+      const r1 = drawSize * 0.46
+      const r2 = drawSize * 0.1
+      for (let i = 0; i < 8; i++) {
+        const a = (i * Math.PI) / 4 - Math.PI / 2
+        const r = (i % 2 === 0) ? r1 : r2
+        const x = Math.cos(a) * r
+        const y = Math.sin(a) * r
+        if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y)
+      }
+      cx.closePath()
+      cx.fill()
+    } else if (shape === "planet") {
+      cx.arc(0, 0, drawSize * 0.26, 0, Math.PI * 2)
+      cx.fill()
+      cx.beginPath()
+      cx.ellipse(0, 0, drawSize * 0.46, drawSize * 0.15, -Math.PI / 6, 0, Math.PI * 2)
+      cx.stroke()
+    } else if (shape === "orbit") {
+      cx.arc(0, 0, drawSize * 0.38, 0, Math.PI * 2)
+      cx.stroke()
+      cx.beginPath()
+      cx.arc(drawSize * 0.34, 0, 3.5, 0, Math.PI * 2)
+      cx.fill()
+    } else if (shape === "moon") {
+      cx.arc(0, 0, drawSize * 0.34, -Math.PI * 0.3, Math.PI * 0.7)
+      cx.quadraticCurveTo(drawSize * 0.1, 0, Math.cos(-Math.PI * 0.3) * drawSize * 0.34, Math.sin(-Math.PI * 0.3) * drawSize * 0.34)
+      cx.fill()
+    } else if (shape === "asteroid") {
+      cx.rect(-drawSize * 0.24, -drawSize * 0.24, drawSize * 0.48, drawSize * 0.48)
+      cx.stroke()
+    } else {
+      cx.arc(0, 0, drawSize * 0.28, 0, Math.PI * 2)
+      cx.fill()
+    }
+
+    spriteCache[key] = c
+    return c
+  }
+
+  // Particle Class for individual instances
+  class SectionParticle {
+    x: number = 0
+    y: number = 0
+    vx: number = 0
+    vy: number = 0
+    visualSize: number = 18
+    color: string = "#111111"
+    shape: string = "crosshair"
+    rotation: number = 0
+    rotationSpeed: number = 0
+    depth: number = 1
+    sprite: HTMLCanvasElement | null = null
+    themeConfig: ThemeConfig
+
+    constructor(private width: number, private height: number, themeConfig: ThemeConfig, index: number) {
+      this.themeConfig = themeConfig
+      this.init(true, index)
+    }
+
+    init(randomY: boolean = false, index: number = 0) {
+      this.x = Math.random() * this.width
+      this.y = randomY ? Math.random() * this.height : this.height + 50
+      this.visualSize = Math.random() * 14 + 14
+
+      this.vx = (Math.random() - 0.5) * 1.8 * this.themeConfig.speed
+      this.vy = (Math.random() - 0.5) * 1.8 * this.themeConfig.speed
+
+      if (this.themeConfig.gravity < 0) {
+        this.vy -= (Math.random() * 0.6 + 0.2) * Math.abs(this.themeConfig.gravity * 25)
+      } else if (this.themeConfig.gravity > 0) {
+        this.y = randomY ? Math.random() * this.height : -50
+        this.vy += Math.random() * 0.4
+      }
+
+      this.color = this.themeConfig.colors[Math.floor(Math.random() * this.themeConfig.colors.length)]
+      this.shape = this.themeConfig.shapes[index % this.themeConfig.shapes.length]
+      this.rotation = Math.random() * Math.PI * 2
+      this.rotationSpeed = (Math.random() - 0.5) * 0.025
+      this.depth = Math.random() * 0.6 + 0.6
+      this.sprite = getCachedSprite(this.color, this.shape)
+    }
+
+    update(mx: number, my: number, width: number, height: number) {
+      this.width = width
+      this.height = height
+
+      this.vy += this.themeConfig.gravity * 2 * this.depth
+      this.x += this.vx * this.depth
+      this.y += this.vy * this.depth
+      this.rotation += this.rotationSpeed
+
+      // Mouse repulsion
+      const dx = this.x - mx
+      const dy = this.y - my
+      const dist = Math.sqrt(dx * dx + dy * dy)
+
+      if (dist < this.themeConfig.radius) {
+        const force = (this.themeConfig.radius - dist) / this.themeConfig.radius
+        const angle = Math.atan2(dy, dx)
+        const push = force * 5.5
+        this.vx += Math.cos(angle) * push
+        this.vy += Math.sin(angle) * push
+      }
+
+      this.vx *= 0.96
+      this.vy *= 0.96
+
+      // Screen boundaries
+      if (this.x < -50) this.x = width + 50
+      if (this.x > width + 50) this.x = -50
+      if (this.themeConfig.gravity <= 0) {
+        if (this.y < -60) this.init(false)
+      } else {
+        if (this.y > height + 60) this.init(false)
+      }
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+      if (!this.sprite) return
+      ctx.save()
+      ctx.translate(this.x, this.y)
+      ctx.rotate(this.rotation)
+
+      const scale = (this.visualSize * this.depth) / 42
+      const renderSize = 96 * scale
+
+      ctx.drawImage(this.sprite, -renderSize / 2, -renderSize / 2, renderSize, renderSize)
+      ctx.restore()
+    }
+  }
+
+  // Active instances manager
+  function initSectionCanvases() {
+    const canvases = document.querySelectorAll<HTMLCanvasElement>(".section-pattern-canvas")
+    if (!canvases.length) return
+
+    let globalMouseX = -9999
+    let globalMouseY = -9999
+
+    window.addEventListener("mousemove", (e) => {
+      globalMouseX = e.clientX
+      globalMouseY = e.clientY
+    })
+
+    window.addEventListener("mouseleave", () => {
+      globalMouseX = -9999
+      globalMouseY = -9999
+    })
+
+    canvases.forEach((canvas) => {
+      const themeKey = (canvas.dataset.theme as ThemeKey) || "minimal"
+      const themeConfig = THEME_CONFIGS[themeKey] || THEME_CONFIGS.minimal
+      const rawCtx = canvas.getContext("2d", { alpha: true, desynchronized: true })
+      if (!rawCtx) return
+      const ctx: CanvasRenderingContext2D = rawCtx
+
+      let width = 0
+      let height = 0
+      let isVisible = false
+      let particles: SectionParticle[] = []
+
+      function resize() {
+        const parent = canvas.parentElement
+        if (!parent) return
+        const rect = parent.getBoundingClientRect()
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+
+        width = rect.width
+        height = rect.height
+
+        canvas.width = width * dpr
+        canvas.height = height * dpr
+        canvas.style.width = `${width}px`
+        canvas.style.height = `${height}px`
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
+        ctx.scale(dpr, dpr)
+        ctx.imageSmoothingEnabled = true
+        ctx.imageSmoothingQuality = "high"
+
+        if (particles.length === 0) {
+          particles = []
+          for (let i = 0; i < themeConfig.particleCount; i++) {
+            particles.push(new SectionParticle(width, height, themeConfig, i))
+          }
+        }
+      }
+
+      // Intersection observer to only render when in view
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isVisible = entry.isIntersecting
+          })
+        },
+        { threshold: 0.05 }
+      )
+
+      if (canvas.parentElement) {
+        observer.observe(canvas.parentElement)
+      }
+
+      resize()
+      window.addEventListener("resize", resize)
+
+      function loop() {
+        if (isVisible && width > 0 && height > 0) {
+          ctx.clearRect(0, 0, width, height)
+
+          const rect = canvas.getBoundingClientRect()
+          const localMx = globalMouseX - rect.left
+          const localMy = globalMouseY - rect.top
+
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update(localMx, localMy, width, height)
+            particles[i].draw(ctx)
+          }
+        }
+        requestAnimationFrame(loop)
+      }
+
+      requestAnimationFrame(loop)
+    })
+  }
+
+  initSectionCanvases()
+  document.addEventListener("astro:after-swap", initSectionCanvases)
+</script>

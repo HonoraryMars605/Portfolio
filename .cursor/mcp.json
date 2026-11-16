@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "penpot": {
+      "url": "https://design.penpot.app/mcp/stream?userToken=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.9XHo1t0FRJfJN0PJgjOQT_mY8iliZc-Pc4-O503Zybj4ra3OKHO5gA.8sX0dq2mEY-bTvec.mk_8xYiUZLG0C3NIkdvf3vm3A6Mrxbc8XWurYS5C8JIx8_L-dGBGu41x2G5-EmY14GXm3vrznUsboinkZvo_PROMnbuL5nZBsYPoelxVJbd3O29cRScPkfMJi2Oj3OI5Sk1PGSbGUr0lFDyV787AFNYmWPysBAZ2E7zAiS-cnSPup4OqCLA3Kvc_p_JCajw1eLRJszNXEdUNX7oEH5O2gtA.ZtbxwqntMLbbZbUONUZzOw"
+    },
+    "DesignWithAI": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "design-with-ai@latest",
+        "--server=my-figma-mcp.onrender.com"
+      ]
+    },
+    "figma-local": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\valerio\\figma-bridge\\server\\mcp-server.js"
+      ]
+    }
+  }
+}

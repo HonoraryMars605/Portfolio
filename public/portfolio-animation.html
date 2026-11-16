@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valerio Comella · Portfolio Interactive Animation (5 Themes)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAF9F5;
+            --text-color: #111111;
+            --accent-color: #9B1C2E;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(17, 17, 17, 0.1);
+        }
+
+        body.dark-mode {
+            --card-bg: rgba(17, 24, 39, 0.85);
+            --card-border: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        /* Center Content Overlay */
+        #content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+            max-width: 680px;
+            padding: 24px;
+        }
+
+        .badge-telemetry {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(155, 28, 46, 0.08);
+            color: var(--accent-color);
+            border: 1px solid rgba(155, 28, 46, 0.2);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Alfa Slab One', cursive, sans-serif;
+            font-size: 38px;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        p.subtitle {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 24px;
+        }
+
+        /* Top Theme Selector Bar */
+        #theme-bar {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--card-border);
+            padding: 6px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            pointer-events: auto;
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-btn.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(155, 28, 46, 0.35);
+        }
+
+        /* Bottom Controls Widget */
+        #controls {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            z-index: 20;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--card-border);
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+            font-size: 12px;
+            width: 270px;
+            pointer-events: auto;
+        }
+
+        .control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .control-row label {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.75;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .control-row input[type="range"] {
+            width: 130px;
+            accent-color: var(--accent-color);
+        }
+
+        .control-row select {
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+            background: transparent;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 6px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid var(--card-border);
+            background: transparent;
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        /* Telemetry HUD in Corner */
+        #telemetry-hud {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            z-index: 20;
+            font-family: 'Fira Code', monospace;
+            font-size: 10px;
+            opacity: 0.6;
+            line-height: 1.6;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            #theme-bar {
+                top: 12px;
+                max-width: 95%;
+                overflow-x: auto;
+            }
+            #controls {
+                display: none;
+            }
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Themes Navigation Bar (5 Themes) -->
+    <div id="theme-bar">
+        <button class="theme-btn" data-theme="gamedev">🎮 Game Dev</button>
+        <button class="theme-btn" data-theme="code">💻 Code</button>
+        <button class="theme-btn" data-theme="space">🚀 Space</button>
+        <button class="theme-btn" data-theme="abstract">🎨 Abstract</button>
+        <button class="theme-btn active" data-theme="minimal">📐 Swiss Minimal</button>
+    </div>
+
+    <!-- Background Canvas for GPU Particles -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Center Hero Content -->
+    <div id="content">
+        <div class="badge-telemetry" id="theme-badge">● VARIANT 05 // SWISS MINIMAL</div>
+        <h1 id="theme-title">Valerio Comella</h1>
+        <p class="subtitle" id="theme-desc">Software Engineer · Unity (C#) & Full-Stack Architect. Muovi il mouse per interagire con i vettori cinetici in tempo reale.</p>
+    </div>
+
+    <!-- HUD Telemetry in bottom-left -->
+    <div id="telemetry-hud">
+        SYS.CANVAS: GPU_ACCELERATED<br>
+        PARTICLES: <span id="hud-count">55</span> | FPS: <span id="hud-fps">60</span><br>
+        COORDS: [<span id="hud-coords">X:000, Y:000</span>]
+    </div>
+
+    <!-- Interactive Tuning Widget in bottom-right -->
+    <div id="controls">
+        <div class="control-row">
+            <label>Velocità</label>
+            <input type="range" id="ctrl-speed" min="0.2" max="2.5" step="0.1" value="0.8">
+        </div>
+        <div class="control-row">
+            <label>Particelle</label>
+            <input type="range" id="ctrl-count" min="20" max="120" step="5" value="55">
+        </div>
+        <div class="control-row">
+            <label>Raggio Cursore</label>
+            <input type="range" id="ctrl-radius" min="60" max="250" step="10" value="140">
+        </div>
+        <div class="mode-toggle">
+            <button class="mode-btn active" id="btn-mode-float">Flottante</button>
+            <button class="mode-btn" id="btn-mode-orbit">Orbita Centro</button>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 5 THEME DEFINITIONS & ASSET CONFIGURATIONS
+        // ==========================================
+        const THEMES = {
+            gamedev: {
+                name: "Game Dev",
+                badge: "● VARIANT 01 // RETRO GAME DEV",
+                title: "Game Engineering",
+                desc: "Asset fisici arcade e pixel art: d-pad, cuori 8-bit, poly-gemme Unity e stelle bonus.",
+                bg: "#0B0F19",
+                dark: true,
+                accent: "#FF2E63",
+                colors: ["#FF2E63", "#08D9D6", "#252A34", "#FFDE7D", "#F38181"],
+                shapes: ["heart", "dpad", "cube", "star8", "coin"],
+                gravity: -0.04,
+                glow: true
+            },
+            code: {
+                name: "Code",
+                badge: "● VARIANT 02 // CODE ARCHITECTURE",
+                title: "Syntax & Systems",
+                desc: "Token di sintassi e token tecnici: curly braces { }, tag HTML </>, prompt terminale > e bit binari.",
+                bg: "#10141D",
+                dark: true,
+                accent: "#00FF66",
+                colors: ["#00FF66", "#38BDF8", "#F43F5E", "#E2E8F0", "#A855F7"],
+                shapes: ["braces", "tag", "prompt", "semicolon", "binary"],
+                gravity: -0.02,
+                glow: true
+            },
+            space: {
+                name: "Space",
+                badge: "● VARIANT 03 // SPACE ODYSSEY",
+                title: "Orbital Cosmos",
+                desc: "Particelle spaziali in gravità zero: stelle a 4 punte, anelli orbitali, pianeti e lune crescenti.",
+                bg: "#05060A",
+                dark: true,
+                accent: "#6366F1",
+                colors: ["#818CF8", "#C084FC", "#38BDF8", "#FDE047", "#FFFFFF"],
+                shapes: ["spark", "planet", "orbit", "moon", "asteroid"],
+                gravity: 0,
+                glow: true
+            },
+            abstract: {
+                name: "Abstract",
+                badge: "● VARIANT 04 // ABSTRACT MODERNISM",
+                title: "Geometric Kinetics",
+                desc: "Geometrie Bauhaus e Memphis in sospensione: squiggles, anelli toroidali, sfere e archi asimmetrici.",
+                bg: "#F4F1EA",
+                dark: false,
+                accent: "#FF5722",
+                colors: ["#FF5722", "#3F51B5", "#009688", "#FFC107", "#E91E63"],
+                shapes: ["squiggle", "torus", "arc", "diamond", "pill"],
+                gravity: 0.03,
+                glow: false
+            },
+            minimal: {
+                name: "Swiss Minimal",
+                badge: "● VARIANT 05 // SWISS EDITORIAL",
+                title: "Swiss Precision",
+                desc: "Asset telemetrici ispirati a Figma Variant 7: croci telemetriche +, mirini, coordinate e micro-dot grid.",
+                bg: "#FAF9F5",
+                dark: false,
+                accent: "#9B1C2E",
+                colors: ["#9B1C2E", "#111111", "#475569", "#94A3B8", "#CBD5E1"],
+                shapes: ["crosshair", "dotgrid", "target", "squareHairline", "telemetryPlus"],
+                gravity: -0.01,
+                glow: false
+            }
+        };
+
+        // --- URL Param / Initial State ---
+        const urlParams = new URLSearchParams(window.location.search);
+        let activeThemeKey = urlParams.get('theme') || 'minimal';
+        if (!THEMES[activeThemeKey]) activeThemeKey = 'minimal';
+
+        let currentTheme = THEMES[activeThemeKey];
+        let particleCount = parseInt(urlParams.get('count')) || 55;
+        let speedFactor = parseFloat(urlParams.get('speed')) || 0.8;
+        let interactionRadius = 140;
+        let usePattern = urlParams.get('pattern') === 'true';
+
+        // --- DOM Elements ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true, willReadFrequently: false });
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const badgeElem = document.getElementById('theme-badge');
+        const titleElem = document.getElementById('theme-title');
+        const descElem = document.getElementById('theme-desc');
+        const hudCoords = document.getElementById('hud-coords');
+        const hudCount = document.getElementById('hud-count');
+        const hudFps = document.getElementById('hud-fps');
+
+        let width, height;
+        const spriteCache = {};
+
+        // ==========================================
+        // PROCEDURAL SPRITE GENERATOR (INDIVIDUAL ASSETS)
+        // High-res offscreen rendering for 60fps GPU drawImage
+        // ==========================================
+        function getAssetSprite(color, shapeName) {
+            const cacheKey = `${color}-${shapeName}`;
+            if (spriteCache[cacheKey]) return spriteCache[cacheKey];
+
+            const size = 96; // 96x96 canvas for sharp high-DPI
+            const center = size / 2;
+            const drawSize = 44;
+
+            const c = document.createElement('canvas');
+            c.width = size;
+            c.height = size;
+            const cx = c.getContext('2d');
+
+            if (currentTheme.glow) {
+                cx.shadowColor = color;
+                cx.shadowBlur = 10;
+            } else {
+                cx.shadowColor = "rgba(0,0,0,0.06)";
+                cx.shadowBlur = 6;
+                cx.shadowOffsetX = 2;
+                cx.shadowOffsetY = 2;
+            }
+
+            cx.fillStyle = color;
+            cx.strokeStyle = color;
+            cx.lineWidth = 3;
+            cx.lineCap = "round";
+            cx.lineJoin = "round";
+
+            cx.translate(center, center);
+            cx.beginPath();
+
+            // 1. GAME DEV THEME ASSETS
+            if (shapeName === 'heart') {
+                // 8-bit Pixel Heart
+                const s = drawSize / 10;
+                cx.fillStyle = color;
+                [
+                    [-3,-2],[-2,-2],[2,-2],[3,-2],
+                    [-4,-1],[-3,-1],[-2,-1],[-1,-1],[1,-1],[2,-1],[3,-1],[4,-1],
+                    [-4,0],[-3,0],[-2,0],[-1,0],[0,0],[1,0],[2,0],[3,0],[4,0],
+                    [-3,1],[-2,1],[-1,1],[0,1],[1,1],[2,1],[3,1],
+                    [-2,2],[-1,2],[0,2],[1,2],[2,2],
+                    [-1,3],[0,3],[1,3],
+                    [0,4]
+                ].forEach(([px, py]) => cx.fillRect(px*s, py*s, s, s));
+            } else if (shapeName === 'dpad') {
+                // Gamepad D-pad Plus
+                const arm = drawSize * 0.45;
+                const thick = drawSize * 0.28;
+                cx.fillRect(-thick/2, -arm, thick, arm*2);
+                cx.fillRect(-arm, -thick/2, arm*2, thick);
+            } else if (shapeName === 'cube') {
+                // Isometric Unity Cube
+                const r = drawSize * 0.4;
+                cx.beginPath();
+                for (let i = 0; i < 6; i++) {
+                    const a = (i * Math.PI) / 3 - Math.PI / 6;
+                    const x = Math.cos(a) * r;
+                    const y = Math.sin(a) * r;
+                    if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y);
+                }
+                cx.closePath();
+                cx.stroke();
+                cx.moveTo(0, 0); cx.lineTo(0, r);
+                cx.moveTo(0, 0); cx.lineTo(Math.cos(-Math.PI/6)*r, Math.sin(-Math.PI/6)*r);
+                cx.moveTo(0, 0); cx.lineTo(Math.cos(-5*Math.PI/6)*r, Math.sin(-5*Math.PI/6)*r);
+                cx.stroke();
+            } else if (shapeName === 'star8') {
+                // Pixel / Arcade Star
+                const r1 = drawSize * 0.45;
+                const r2 = drawSize * 0.18;
+                for (let i = 0; i < 8; i++) {
+                    const a = (i * Math.PI) / 4 - Math.PI / 2;
+                    const r = (i % 2 === 0) ? r1 : r2;
+                    const x = Math.cos(a) * r;
+                    const y = Math.sin(a) * r;
+                    if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y);
+                }
+                cx.closePath();
+                cx.fill();
+            } else if (shapeName === 'coin') {
+                cx.arc(0, 0, drawSize*0.38, 0, Math.PI*2);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(0, 0, drawSize*0.22, 0, Math.PI*2);
+                cx.stroke();
+
+            // 2. CODE THEME ASSETS
+            } else if (shapeName === 'braces') {
+                cx.font = "bold 32px 'Fira Code', monospace";
+                cx.textAlign = "center";
+                cx.textBaseline = "middle";
+                cx.fillText("{}", 0, 0);
+            } else if (shapeName === 'tag') {
+                cx.font = "bold 26px 'Fira Code', monospace";
+                cx.textAlign = "center";
+                cx.textBaseline = "middle";
+                cx.fillText("</>", 0, 0);
+            } else if (shapeName === 'prompt') {
+                cx.font = "bold 30px 'Fira Code', monospace";
+                cx.textAlign = "center";
+                cx.textBaseline = "middle";
+                cx.fillText(">_", 0, 0);
+            } else if (shapeName === 'semicolon') {
+                cx.font = "bold 36px 'Fira Code', monospace";
+                cx.textAlign = "center";
+                cx.textBaseline = "middle";
+                cx.fillText(";", 0, 0);
+            } else if (shapeName === 'binary') {
+                cx.font = "bold 22px 'Fira Code', monospace";
+                cx.textAlign = "center";
+                cx.textBaseline = "middle";
+                cx.fillText("01", 0, 0);
+
+            // 3. SPACE THEME ASSETS
+            } else if (shapeName === 'spark') {
+                // 4-point Diamond Star
+                const r1 = drawSize * 0.48;
+                const r2 = drawSize * 0.1;
+                for (let i = 0; i < 8; i++) {
+                    const a = (i * Math.PI) / 4 - Math.PI / 2;
+                    const r = (i % 2 === 0) ? r1 : r2;
+                    const x = Math.cos(a) * r;
+                    const y = Math.sin(a) * r;
+                    if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y);
+                }
+                cx.closePath();
+                cx.fill();
+            } else if (shapeName === 'planet') {
+                cx.arc(0, 0, drawSize * 0.28, 0, Math.PI * 2);
+                cx.fill();
+                // Orbit ring
+                cx.beginPath();
+                cx.ellipse(0, 0, drawSize * 0.48, drawSize * 0.16, -Math.PI / 6, 0, Math.PI * 2);
+                cx.stroke();
+            } else if (shapeName === 'orbit') {
+                cx.arc(0, 0, drawSize * 0.4, 0, Math.PI * 2);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(drawSize * 0.35, 0, 4, 0, Math.PI * 2);
+                cx.fill();
+            } else if (shapeName === 'moon') {
+                cx.arc(0, 0, drawSize * 0.36, -Math.PI * 0.3, Math.PI * 0.7);
+                cx.quadraticCurveTo(drawSize * 0.1, 0, Math.cos(-Math.PI * 0.3) * drawSize * 0.36, Math.sin(-Math.PI * 0.3) * drawSize * 0.36);
+                cx.fill();
+            } else if (shapeName === 'asteroid') {
+                cx.rect(-drawSize*0.25, -drawSize*0.25, drawSize*0.5, drawSize*0.5);
+                cx.stroke();
+
+            // 4. ABSTRACT THEME ASSETS
+            } else if (shapeName === 'squiggle') {
+                cx.beginPath();
+                cx.moveTo(-drawSize*0.4, 0);
+                cx.bezierCurveTo(-drawSize*0.2, -drawSize*0.35, 0, drawSize*0.35, drawSize*0.2, -drawSize*0.2);
+                cx.bezierCurveTo(drawSize*0.3, -drawSize*0.35, drawSize*0.35, 0, drawSize*0.45, 0);
+                cx.stroke();
+            } else if (shapeName === 'torus') {
+                cx.arc(0, 0, drawSize * 0.36, 0, Math.PI * 2);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(0, 0, drawSize * 0.16, 0, Math.PI * 2);
+                cx.fill();
+            } else if (shapeName === 'arc') {
+                cx.arc(0, 0, drawSize * 0.38, 0, Math.PI * 1.2);
+                cx.stroke();
+            } else if (shapeName === 'diamond') {
+                cx.moveTo(0, -drawSize*0.42);
+                cx.lineTo(drawSize*0.42, 0);
+                cx.lineTo(0, drawSize*0.42);
+                cx.lineTo(-drawSize*0.42, 0);
+                cx.closePath();
+                cx.stroke();
+            } else if (shapeName === 'pill') {
+                cx.roundRect(-drawSize*0.35, -drawSize*0.16, drawSize*0.7, drawSize*0.32, 12);
+                cx.fill();
+
+            // 5. SWISS MINIMAL ASSETS
+            } else if (shapeName === 'crosshair') {
+                // Precision Crosshair +
+                const arm = drawSize * 0.4;
+                cx.lineWidth = 2.5;
+                cx.moveTo(-arm, 0); cx.lineTo(arm, 0);
+                cx.moveTo(0, -arm); cx.lineTo(0, arm);
+                cx.stroke();
+            } else if (shapeName === 'dotgrid') {
+                // 3x3 Micro Dot Grid
+                const step = drawSize * 0.22;
+                for (let r = -1; r <= 1; r++) {
+                    for (let c = -1; c <= 1; c++) {
+                        cx.fillRect(c * step - 1.5, r * step - 1.5, 3, 3);
+                    }
+                }
+            } else if (shapeName === 'target') {
+                // Telemetry Target ◎
+                cx.lineWidth = 1.5;
+                cx.arc(0, 0, drawSize * 0.35, 0, Math.PI * 2);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(0, 0, 3, 0, Math.PI * 2);
+                cx.fill();
+            } else if (shapeName === 'squareHairline') {
+                // Hairline Minimal Box
+                cx.lineWidth = 1.5;
+                cx.rect(-drawSize*0.3, -drawSize*0.3, drawSize*0.6, drawSize*0.6);
+                cx.stroke();
+                cx.fillRect(-2, -2, 4, 4);
+            } else if (shapeName === 'telemetryPlus') {
+                // Telemetry Anchor with Corner Ticks
+                const arm = drawSize * 0.35;
+                cx.lineWidth = 1.8;
+                cx.moveTo(-arm, 0); cx.lineTo(arm, 0);
+                cx.moveTo(0, -arm); cx.lineTo(0, arm);
+                cx.stroke();
+                cx.strokeRect(-arm, -arm, arm*2, arm*2);
+            } else {
+                cx.arc(0, 0, drawSize * 0.3, 0, Math.PI * 2);
+                cx.fill();
+            }
+
+            spriteCache[cacheKey] = c;
+            return c;
+        }
+
+        // ==========================================
+        // PARTICLE PHYSICS ENGINE
+        // ==========================================
+        class Particle {
+            constructor(index) {
+                this.index = index;
+                this.init(true);
+            }
+
+            init(randomY = false) {
+                this.x = Math.random() * width;
+                this.y = randomY ? Math.random() * height : height + 60;
+                this.visualSize = Math.random() * 16 + 14; // Crisp readable size
+
+                this.vx = (Math.random() - 0.5) * 2 * speedFactor;
+                this.vy = (Math.random() - 0.5) * 2 * speedFactor;
+
+                if (!usePattern) {
+                    if (currentTheme.gravity < 0) {
+                        this.vy -= (Math.random() * 0.8 + 0.2) * Math.abs(currentTheme.gravity * 30);
+                    } else if (currentTheme.gravity > 0) {
+                        this.y = randomY ? Math.random() * height : -60;
+                        this.vy += Math.random() * 0.5;
+                    }
+                } else if (!randomY) {
+                    this.x = width / 2;
+                    this.y = height / 2;
+                }
+
+                this.color = currentTheme.colors[Math.floor(Math.random() * currentTheme.colors.length)];
+                this.shape = currentTheme.shapes[this.index % currentTheme.shapes.length];
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+                this.depth = Math.random() * 0.8 + 0.6;
+                this.sprite = getAssetSprite(this.color, this.shape);
+            }
+
+            getPatternTarget() {
+                const cx = width / 2;
+                const cy = height / 2;
+                const r = Math.min(width, height) * 0.32;
+                const t = this.index / particleCount;
+                const angle = t * Math.PI * 2 - Math.PI / 2;
+                return {
+                    x: cx + Math.cos(angle) * r,
+                    y: cy + Math.sin(angle) * r
+                };
+            }
+
+            update(mx, my) {
+                if (usePattern) {
+                    const target = this.getPatternTarget();
+                    const dx = target.x - this.x;
+                    const dy = target.y - this.y;
+                    this.vx += dx * 0.0035;
+                    this.vy += dy * 0.0035;
+                } else {
+                    this.vy += currentTheme.gravity * 2.5 * this.depth;
+                }
+
+                this.x += this.vx * this.depth;
+                this.y += this.vy * this.depth;
+                this.rotation += this.rotationSpeed;
+
+                // Mouse interaction physics
+                const dx = this.x - mx;
+                const dy = this.y - my;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < interactionRadius) {
+                    const force = (interactionRadius - dist) / interactionRadius;
+                    const angle = Math.atan2(dy, dx);
+                    const push = force * 6.5;
+                    this.vx += Math.cos(angle) * push;
+                    this.vy += Math.sin(angle) * push;
+                }
+
+                this.vx *= 0.96;
+                this.vy *= 0.96;
+
+                // Screen wraps
+                if (!usePattern) {
+                    if (this.x < -60) this.x = width + 60;
+                    if (this.x > width + 60) this.x = -60;
+                    if (currentTheme.gravity <= 0) {
+                        if (this.y < -70) this.init(false);
+                    } else {
+                        if (this.y > height + 70) this.init(false);
+                    }
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+
+                const scale = (this.visualSize * this.depth) / 44;
+                const renderSize = 96 * scale;
+
+                ctx.drawImage(this.sprite, -renderSize / 2, -renderSize / 2, renderSize, renderSize);
+                ctx.restore();
+            }
+        }
+
+        // ==========================================
+        // INIT PARTICLES & RESIZE
+        // ==========================================
+        let particles = [];
+        function rebuildParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(i));
+            }
+            if (hudCount) hudCount.textContent = particleCount;
+        }
+
+        function resize() {
+            const dpr = window.devicePixelRatio || 1;
+            width = window.innerWidth;
+            height = window.innerHeight;
+
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            ctx.scale(dpr, dpr);
+
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        rebuildParticles();
+
+        // ==========================================
+        // MOUSE & TOUCH TRACKING
+        // ==========================================
+        let mouseX = -9999;
+        let mouseY = -9999;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (hudCoords) hudCoords.textContent = `X:${Math.round(mouseX)}, Y:${Math.round(mouseY)}`;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+            }
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouseX = -9999;
+            mouseY = -9999;
+        });
+
+        // ==========================================
+        // THEME SWITCHER LOGIC
+        // ==========================================
+        function applyTheme(key) {
+            activeThemeKey = key;
+            currentTheme = THEMES[key];
+
+            document.documentElement.style.setProperty('--bg-color', currentTheme.bg);
+            document.documentElement.style.setProperty('--accent-color', currentTheme.accent);
+
+            if (currentTheme.dark) {
+                document.body.classList.add('dark-mode');
+                document.documentElement.style.setProperty('--text-color', '#F8FAFC');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.documentElement.style.setProperty('--text-color', '#111827');
+            }
+
+            badgeElem.textContent = currentTheme.badge;
+            titleElem.textContent = currentTheme.title;
+            descElem.textContent = currentTheme.desc;
+
+            themeBtns.forEach(btn => {
+                if (btn.dataset.theme === key) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Rebuild particles with new sprites
+            rebuildParticles();
+        }
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTheme(btn.dataset.theme);
+            });
+        });
+
+        // Initialize with default theme
+        applyTheme(activeThemeKey);
+
+        // ==========================================
+        // UI CONTROLS WIDGET
+        // ==========================================
+        const ctrlSpeed = document.getElementById('ctrl-speed');
+        const ctrlCount = document.getElementById('ctrl-count');
+        const ctrlRadius = document.getElementById('ctrl-radius');
+        const btnFloat = document.getElementById('btn-mode-float');
+        const btnOrbit = document.getElementById('btn-mode-orbit');
+
+        ctrlSpeed.addEventListener('input', (e) => {
+            speedFactor = parseFloat(e.target.value);
+        });
+
+        ctrlCount.addEventListener('input', (e) => {
+            particleCount = parseInt(e.target.value);
+            rebuildParticles();
+        });
+
+        ctrlRadius.addEventListener('input', (e) => {
+            interactionRadius = parseInt(e.target.value);
+        });
+
+        btnFloat.addEventListener('click', () => {
+            usePattern = false;
+            btnFloat.classList.add('active');
+            btnOrbit.classList.remove('active');
+            rebuildParticles();
+        });
+
+        btnOrbit.addEventListener('click', () => {
+            usePattern = true;
+            btnOrbit.classList.add('active');
+            btnFloat.classList.remove('active');
+            rebuildParticles();
+        });
+
+        // ==========================================
+        // ANIMATION LOOP & FPS COUNTER
+        // ==========================================
+        let frameCount = 0;
+        let lastFpsUpdate = performance.now();
+
+        function animate(currentTime) {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update(mouseX, mouseY);
+                particles[i].draw();
+            }
+
+            // FPS calculation
+            frameCount++;
+            if (currentTime - lastFpsUpdate >= 1000) {
+                if (hudFps) hudFps.textContent = frameCount;
+                frameCount = 0;
+                lastFpsUpdate = currentTime;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+    </script>
+</body>
+</html>

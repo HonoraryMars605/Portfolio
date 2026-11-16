@@ -1,5 +1,6 @@
 ---
 // Section 06: Certificazioni & Contatto + Section 07 Footer
+import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 import { PROFILE } from "@site-config"
 
 const cvUrl = typeof PROFILE.links.cv === "object" ? PROFILE.links.cv?.href : PROFILE.links.cv || "/CV_ComellaValerio.pdf"
@@ -9,9 +10,10 @@ const linkedinUrl = typeof PROFILE.links.linkedin === "object" ? PROFILE.links.l
 
 <section
   id="section-06"
-  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start lg:justify-center shrink-0 snap-start py-6 sm:py-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start lg:justify-center shrink-0 snap-start py-6 sm:py-8"
 >
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-center gap-5 my-auto">
+  <SectionPatternCanvas theme="minimal" />
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-center gap-5 my-auto relative z-10">
   <!-- Section Editorial Header -->
   <div class="flex flex-col gap-1 border-b border-gray-200/80 pb-3">
     <div class="flex items-center justify-between text-[11px] font-mono tracking-wider text-gray-500">

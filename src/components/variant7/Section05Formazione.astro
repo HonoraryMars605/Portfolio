@@ -1,12 +1,14 @@
 ---
 // Section 05: Formazione Accademica
+import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 ---
 
 <section
   id="section-05"
-  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start lg:justify-center shrink-0 snap-start py-6 sm:py-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start py-6 sm:py-8"
 >
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-center gap-5 my-auto">
+  <SectionPatternCanvas theme="space" />
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-5 relative z-10">
   <!-- Section Editorial Header -->
   <div class="flex flex-col gap-1 border-b border-gray-200/80 pb-3">
     <div class="flex items-center justify-between text-[11px] font-mono tracking-wider text-gray-500">

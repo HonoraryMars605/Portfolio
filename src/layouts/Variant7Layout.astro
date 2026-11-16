@@ -5,6 +5,7 @@ import Preloader from "@/components/variant7/Preloader.astro"
 import CursorTrail from "@/components/variant7/CursorTrail.astro"
 import TopNavbar from "@/components/variant7/TopNavbar.astro"
 import FloatingNavRail from "@/components/variant7/FloatingNavRail.astro"
+import PdfViewerModal from "@/components/variant7/PdfViewerModal.astro"
 
 interface Props {
   title?: string
@@ -47,11 +48,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
         --color-editorial-bg: #FAF9F5;
         --color-editorial-accent: #9B1C2E;
         --color-editorial-dark: #111111;
+        --color-editorial-text: #111827;
+      }
+
+      html.dark {
+        --color-editorial-bg: #0C1017;
+        --color-editorial-accent: #B91C1C;
+        --color-editorial-dark: #FFFFFF;
+        --color-editorial-text: #F3F4F6;
+        color-scheme: dark;
       }
 
       html, body {
         background-color: var(--color-editorial-bg);
-        color: #111827;
+        color: var(--color-editorial-text);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         margin: 0;
         padding: 0;
@@ -60,6 +70,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
         overflow: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        transition: background-color 0.25s ease, color 0.25s ease;
       }
 
       .font-heading {
@@ -69,31 +80,40 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
 
       /* Custom Subtle Scrollbar for Horizontal Slider & Slides */
       #horizontal-slider-container::-webkit-scrollbar {
-        height: 6px;
+        height: 5px;
       }
       #horizontal-slider-container::-webkit-scrollbar-track {
         background: #F1EFEA;
       }
+      html.dark #horizontal-slider-container::-webkit-scrollbar-track {
+        background: #111827;
+      }
       #horizontal-slider-container::-webkit-scrollbar-thumb {
         background: #D1D5DB;
         border-radius: 3px;
+      }
+      html.dark #horizontal-slider-container::-webkit-scrollbar-thumb {
+        background: #374151;
       }
       #horizontal-slider-container::-webkit-scrollbar-thumb:hover {
         background: var(--color-editorial-accent);
       }
 
       .section-slide::-webkit-scrollbar {
-        width: 5px;
+        width: 6px;
       }
       .section-slide::-webkit-scrollbar-track {
         background: transparent;
       }
       .section-slide::-webkit-scrollbar-thumb {
-        background: #E5E7EB;
+        background: #D1D5DB;
         border-radius: 3px;
       }
+      html.dark .section-slide::-webkit-scrollbar-thumb {
+        background: #374151;
+      }
       .section-slide::-webkit-scrollbar-thumb:hover {
-        background: #9CA3AF;
+        background: #9B1C2E;
       }
 
       /* Subtle noise/grid background overlay for Swiss aesthetic */
@@ -105,10 +125,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
         background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
         background-size: 24px 24px;
         opacity: 0.6;
+        transition: opacity 0.25s ease;
+      }
+
+      html.dark .swiss-grid-overlay {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        opacity: 0.4;
       }
     </style>
   </head>
-  <body class="bg-[#FAF9F5] text-[#111827] antialiased h-full w-full flex flex-col relative overflow-hidden">
+  <body class="bg-[#FAF9F5] dark:bg-[#0C1017] text-[#111827] dark:text-[#F3F4F6] antialiased h-full w-full flex flex-col relative overflow-hidden transition-colors duration-200">
     <!-- Grid overlay texture -->
     <div class="swiss-grid-overlay"></div>
 
@@ -127,6 +153,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
     <!-- Fixed Floating Right Navigation Rail -->
     <FloatingNavRail />
 
+    <!-- PDF Viewer Modal (Visualizza PDF) -->
+    <PdfViewerModal />
+
     <!-- Horizontal Scroll Sections Container -->
     <main
       id="horizontal-slider-container"
@@ -143,29 +172,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
         const container = document.getElementById("horizontal-slider-container")
         if (!container) return
 
-        // Intercept mousewheel deltaY to scroll horizontally
+        // Intercept mousewheel deltaY to scroll horizontally or vertically
         container.addEventListener(
           "wheel",
           (e: WheelEvent) => {
             const target = e.target as HTMLElement
-            // If the user is inside a vertically scrollable card/section that is not at its bounds, let it scroll vertically
-            const scrollableSection = target.closest(".section-slide") as HTMLElement
-            if (scrollableSection) {
-              const hasVerticalScroll = scrollableSection.scrollHeight > scrollableSection.clientHeight
-              if (hasVerticalScroll) {
-                const atTop = scrollableSection.scrollTop <= 0 && e.deltaY < 0
-                const atBottom =
-                  Math.ceil(scrollableSection.scrollTop + scrollableSection.clientHeight) >=
-                    scrollableSection.scrollHeight && e.deltaY > 0
 
-                // If not at vertical boundary, let vertical scrolling happen naturally
+            // Check if user is hovering over any vertically scrollable container (cards, section slide, etc.)
+            let el: HTMLElement | null = target
+            while (el && el !== container) {
+              const overflowY = window.getComputedStyle(el).overflowY
+              if ((overflowY === "auto" || overflowY === "scroll") && el.scrollHeight > el.clientHeight) {
+                const atTop = el.scrollTop <= 1 && e.deltaY < 0
+                const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2 && e.deltaY > 0
+
+                // If not at vertical bound, let the user scroll vertically inside the card list / section!
                 if (!atTop && !atBottom) {
                   return
                 }
               }
+              el = el.parentElement
             }
 
-            // Convert vertical wheel rotation to horizontal smooth translation
+            // If vertical scroll is exhausted or not scrollable, translate vertical wheel to horizontal section slide
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
               e.preventDefault()
               container.scrollBy({
@@ -179,6 +208,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
 
         // Keyboard arrow navigation
         window.addEventListener("keydown", (e: KeyboardEvent) => {
+          // If modal is open, let modal handle keys
+          const modal = document.getElementById("pdf-modal-container")
+          if (modal && !modal.classList.contains("hidden")) return
+
           if (e.key === "ArrowRight" || e.key === "PageDown") {
             e.preventDefault()
             container.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" })
