@@ -29,11 +29,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Google Fonts: Alfa Slab One & Inter -->
+    <!-- Google Fonts: Inter & Fira Code (Swiss Editorial Precision) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -159,7 +159,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
     <!-- Horizontal Scroll Sections Container -->
     <main
       id="horizontal-slider-container"
-      class="relative z-10 mt-[68px] sm:mt-[72px] h-[calc(100vh-68px)] sm:h-[calc(100vh-72px)] w-full overflow-x-auto overflow-y-hidden flex flex-row flex-nowrap snap-x snap-mandatory scroll-smooth"
+      class="relative z-10 h-screen w-full overflow-x-auto overflow-y-hidden flex flex-row flex-nowrap snap-x snap-mandatory scroll-smooth"
       tabindex="0"
       aria-label="Portfolio Swiss Editorial Orizzontale"
     >

@@ -1,0 +1,424 @@
+---
+// Runner / Anteprima Dinamica - Figma 65:744 (1311x172)
+---
+
+<div
+  id="runner-container"
+  class="relative w-full max-w-[1311px] h-[172px] mx-auto bg-white dark:bg-[#0F172A] border-2 border-[#8B1E2D] rounded-[10px] overflow-hidden select-none shadow-md group"
+  tabindex="0"
+  role="region"
+  aria-label="Runner Anteprima Dinamica - Mini-gioco interattivo XR"
+>
+  <!-- HUD Header Overlay -->
+  <div class="absolute top-2 inset-x-4 z-20 flex items-center justify-between pointer-events-none text-[10px] sm:text-[11px] font-sans">
+    <!-- Runner / Stato (Figma 65:746) -->
+    <div class="flex items-center gap-2 pointer-events-auto">
+      <span class="w-2 h-2 rounded-full bg-[#8B1E2D] animate-ping"></span>
+      <span id="runner-mode-badge" class="font-bold tracking-wider uppercase text-[#8B1E2D] dark:text-red-400">
+        AUTO_RUNNER // IDLE_BUILD
+      </span>
+      <button
+        type="button"
+        id="runner-toggle-mode"
+        class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-[4px] bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] font-bold cursor-pointer hover:bg-red-100 transition-colors"
+      >
+        MODALITÀ: AUTO (PREMI SPAZIO PER GIOCARE)
+      </button>
+    </div>
+
+    <!-- Runner / Distanza (Figma 65:747) -->
+    <div class="flex items-center gap-3 font-mono">
+      <span class="text-gray-400 dark:text-gray-500 text-[10px] hidden sm:inline" id="runner-best-score">BEST: 00000m</span>
+      <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[4px] bg-gray-100 dark:bg-gray-800 text-[#0F172A] dark:text-gray-100 font-bold">
+        <span>🏃</span>
+        <span id="runner-distance">00042m</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Hint Floating Pill -->
+  <div class="absolute bottom-2.5 right-4 z-20 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity">
+    <span class="px-2 py-0.5 rounded-[4px] bg-[#8B1E2D]/10 dark:bg-red-950/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9px] font-bold">
+      [SPAZIO / CLICK PER SALTARE]
+    </span>
+  </div>
+
+  <!-- Runner Canvas (Full 2D Game Engine Loop) -->
+  <canvas
+    id="runner-canvas"
+    class="w-full h-full block cursor-pointer"
+    width="1311"
+    height="172"
+  ></canvas>
+</div>
+
+<script>
+  function initRunner() {
+    const canvas = document.getElementById("runner-canvas") as HTMLCanvasElement
+    const container = document.getElementById("runner-container")
+    const distanceEl = document.getElementById("runner-distance")
+    const bestScoreEl = document.getElementById("runner-best-score")
+    const modeBadge = document.getElementById("runner-mode-badge")
+    const modeBtn = document.getElementById("runner-toggle-mode")
+
+    if (!canvas || !container) return
+    const rawCtx = canvas.getContext("2d")
+    if (!rawCtx) return
+    const ctx: CanvasRenderingContext2D = rawCtx
+
+    // High DPI Canvas Scaling
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    let cw = canvas.parentElement?.clientWidth || 1311
+    const ch = 172
+
+    function resize() {
+      if (!canvas.parentElement) return
+      cw = canvas.parentElement.clientWidth
+      canvas.width = Math.round(cw * dpr)
+      canvas.height = Math.round(ch * dpr)
+    }
+    resize()
+    window.addEventListener("resize", resize)
+
+    // Game State
+    let distance = 42
+    let bestScore = 42
+    const speed = 4.2
+    let isAutoMode = true
+
+    // Ground Configuration (matching Figma Linea terreno at y ~ 138)
+    const groundY = 138
+
+    // Ground Hashes (Traccia terreno 03..09)
+    interface GroundTick {
+      x: number
+      w: number
+    }
+    const groundTicks: GroundTick[] = [
+      { x: 81, w: 9 },
+      { x: 199, w: 5 },
+      { x: 371, w: 11 },
+      { x: 542, w: 7 },
+      { x: 750, w: 9 },
+      { x: 945, w: 5 },
+      { x: 1153, w: 11 },
+    ]
+
+    // Player State (Giocatore XR)
+    const player = {
+      x: 115,
+      y: groundY - 38,
+      w: 28,
+      h: 38,
+      vy: 0,
+      gravity: 0.72,
+      jumpForce: -11.5,
+      isGrounded: true,
+      legCycle: 0,
+    }
+
+    // Obstacles State (bug, cube, double)
+    interface Obstacle {
+      x: number
+      y: number
+      w: number
+      h: number
+      type: "bug" | "cube" | "double"
+    }
+
+    let obstacles: Obstacle[] = [
+      { x: 480, y: groundY - 24, w: 24, h: 24, type: "bug" },
+      { x: 880, y: groundY - 26, w: 26, h: 26, type: "cube" },
+      { x: 1260, y: groundY - 28, w: 42, h: 28, type: "double" },
+    ]
+
+    function jump() {
+      if (player.isGrounded) {
+        player.vy = player.jumpForce
+        player.isGrounded = false
+        playJumpSfx()
+      }
+    }
+
+    function playJumpSfx() {
+      try {
+        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext
+        if (!AudioCtx) return
+        const actx = new AudioCtx()
+        const osc = actx.createOscillator()
+        const gain = actx.createGain()
+        osc.type = "sine"
+        osc.frequency.setValueAtTime(320, actx.currentTime)
+        osc.frequency.exponentialRampToValueAtTime(750, actx.currentTime + 0.12)
+        gain.gain.setValueAtTime(0.06, actx.currentTime)
+        gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.12)
+        osc.connect(gain)
+        gain.connect(actx.destination)
+        osc.start()
+        osc.stop(actx.currentTime + 0.12)
+      } catch {}
+    }
+
+    function playHitSfx() {
+      try {
+        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext
+        if (!AudioCtx) return
+        const actx = new AudioCtx()
+        const osc = actx.createOscillator()
+        const gain = actx.createGain()
+        osc.type = "sawtooth"
+        osc.frequency.setValueAtTime(220, actx.currentTime)
+        osc.frequency.exponentialRampToValueAtTime(60, actx.currentTime + 0.18)
+        gain.gain.setValueAtTime(0.08, actx.currentTime)
+        gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.18)
+        osc.connect(gain)
+        gain.connect(actx.destination)
+        osc.start()
+        osc.stop(actx.currentTime + 0.18)
+      } catch {}
+    }
+
+    // Input Listeners
+    container.addEventListener("pointerdown", () => {
+      isAutoMode = false
+      updateHud()
+      jump()
+    })
+
+    window.addEventListener("keydown", (e) => {
+      // Check if user is scrolling or on this section
+      const activeEl = document.activeElement
+      if (activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA")) return
+      if (e.code === "Space") {
+        const rect = container.getBoundingClientRect()
+        // If in viewport
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          e.preventDefault()
+          isAutoMode = false
+          updateHud()
+          jump()
+        }
+      }
+    })
+
+    if (modeBtn) {
+      modeBtn.onclick = (e) => {
+        e.stopPropagation()
+        isAutoMode = !isAutoMode
+        updateHud()
+      }
+    }
+
+    function updateHud() {
+      if (!modeBadge || !modeBtn) return
+      if (isAutoMode) {
+        modeBadge.textContent = "AUTO_RUNNER // IDLE_BUILD"
+        modeBadge.className = "font-bold tracking-wider uppercase text-[#8B1E2D] dark:text-red-400"
+        modeBtn.textContent = "MODALITÀ: AUTO (PREMI SPAZIO PER GIOCARE)"
+      } else {
+        modeBadge.textContent = "INTERACTIVE // RUNNING"
+        modeBadge.className = "font-bold tracking-wider uppercase text-emerald-600 dark:text-emerald-400"
+        modeBtn.textContent = "MODALITÀ: INTERATTIVA (AUTO DISATTIVATO)"
+      }
+    }
+
+    // Main Game Loop
+    let lastTime = performance.now()
+    function loop(time: number) {
+      const dt = Math.min((time - lastTime) / 1000, 0.05)
+      lastTime = time
+
+      // Distance increment
+      distance += speed * dt * 2.5
+      if (distanceEl) {
+        distanceEl.textContent = `${Math.floor(distance).toString().padStart(5, "0")}m`
+      }
+      if (distance > bestScore) {
+        bestScore = distance
+        if (bestScoreEl) {
+          bestScoreEl.textContent = `BEST: ${Math.floor(bestScore).toString().padStart(5, "0")}m`
+        }
+      }
+
+      // Physics
+      player.vy += player.gravity
+      player.y += player.vy
+      if (player.y >= groundY - player.h) {
+        player.y = groundY - player.h
+        player.vy = 0
+        player.isGrounded = true
+      }
+      player.legCycle += speed * dt * 8
+
+      // Ground ticks scroll
+      for (let i = 0; i < groundTicks.length; i++) {
+        groundTicks[i].x -= speed
+        if (groundTicks[i].x < -20) {
+          groundTicks[i].x = cw + Math.random() * 40
+        }
+      }
+
+      // Obstacles update & Auto-jump / Collision check
+      for (let i = 0; i < obstacles.length; i++) {
+        const obs = obstacles[i]
+        obs.x -= speed
+
+        // Auto jump AI logic
+        if (isAutoMode && player.isGrounded) {
+          const distToObs = obs.x - (player.x + player.w)
+          if (distToObs > 0 && distToObs < 65) {
+            jump()
+          }
+        }
+
+        // Collision Check
+        if (
+          player.x < obs.x + obs.w - 4 &&
+          player.x + player.w > obs.x + 4 &&
+          player.y < obs.y + obs.h - 4 &&
+          player.y + player.h > obs.y + 4
+        ) {
+          // Hit!
+          playHitSfx()
+          if (!isAutoMode) {
+            // Flash red on hit
+            distance = Math.max(0, distance - 20)
+            obs.x = cw + Math.random() * 200
+          }
+        }
+
+        // Recycle offscreen obstacles
+        if (obs.x < -60) {
+          const rightmostX = Math.max(...obstacles.map((o) => o.x))
+          obs.x = Math.max(rightmostX + 280 + Math.random() * 180, cw + 40)
+          const types: ("bug" | "cube" | "double")[] = ["bug", "cube", "double"]
+          obs.type = types[Math.floor(Math.random() * types.length)]
+          if (obs.type === "bug") {
+            obs.w = 24
+            obs.h = 24
+            obs.y = groundY - 24
+          } else if (obs.type === "cube") {
+            obs.w = 26
+            obs.h = 26
+            obs.y = groundY - 26
+          } else {
+            obs.w = 44
+            obs.h = 28
+            obs.y = groundY - 28
+          }
+        }
+      }
+
+      // Render
+      ctx.save()
+      ctx.scale(dpr, dpr)
+      ctx.clearRect(0, 0, cw, ch)
+
+      const isDark = document.documentElement.classList.contains("dark")
+      const primaryColor = isDark ? "#F87171" : "#8B1E2D"
+      const tickColor = isDark ? "#94A3B8" : "#8B1E2D"
+
+      // Draw Ground Line (Figma 65:748)
+      ctx.beginPath()
+      ctx.moveTo(32, groundY)
+      ctx.lineTo(cw - 32, groundY)
+      ctx.strokeStyle = primaryColor
+      ctx.lineWidth = 1.5
+      ctx.stroke()
+
+      // Draw Ground Ticks (Figma 65:749-755)
+      ctx.fillStyle = tickColor
+      for (const tick of groundTicks) {
+        if (tick.x >= 32 && tick.x <= cw - 32) {
+          ctx.fillRect(tick.x, groundY + 4, tick.w, 2)
+        }
+      }
+
+      // Draw Player XR Character (Figma 65:756)
+      ctx.save()
+      ctx.translate(player.x, player.y)
+
+      // Body (Dark Charcoal/Crimson Outfit)
+      ctx.fillStyle = isDark ? "#E2E8F0" : "#0F172A"
+      ctx.fillRect(6, 12, 16, 18)
+
+      // XR Headset / Visor (Cyan Glowing Bar)
+      ctx.fillStyle = isDark ? "#FFFFFF" : "#1E293B"
+      ctx.fillRect(6, 0, 16, 11) // Head
+      ctx.fillStyle = "#06B6D4" // VR Visor glow
+      ctx.fillRect(14, 3, 9, 4)
+
+      // Backpack / XR Rig
+      ctx.fillStyle = "#8B1E2D"
+      ctx.fillRect(2, 14, 4, 12)
+
+      // Legs Animation
+      const legOffset = Math.sin(player.legCycle) * 4
+      ctx.fillStyle = isDark ? "#CBD5E1" : "#334155"
+      if (player.isGrounded) {
+        // Leg 1
+        ctx.fillRect(8, 30, 4, 8 + legOffset)
+        // Leg 2
+        ctx.fillRect(16, 30, 4, 8 - legOffset)
+      } else {
+        // Jumping legs (bent)
+        ctx.fillRect(7, 30, 4, 5)
+        ctx.fillRect(17, 30, 4, 5)
+      }
+      ctx.restore()
+
+      // Draw Obstacles (Figma 65:757 Bug, 65:758 Cubo, 65:759 Doppio)
+      for (const obs of obstacles) {
+        ctx.save()
+        ctx.translate(obs.x, obs.y)
+
+        if (obs.type === "bug") {
+          // Bug Icon
+          ctx.fillStyle = "#DC2626"
+          ctx.fillRect(4, 4, 16, 16)
+          // Antennae
+          ctx.fillRect(2, 0, 3, 4)
+          ctx.fillRect(19, 0, 3, 4)
+          // Legs
+          ctx.fillRect(0, 8, 3, 2)
+          ctx.fillRect(21, 8, 3, 2)
+          ctx.fillRect(0, 14, 3, 2)
+          ctx.fillRect(21, 14, 3, 2)
+          // Inner Code Pixel
+          ctx.fillStyle = "#FFFFFF"
+          ctx.fillRect(8, 8, 8, 8)
+        } else if (obs.type === "cube") {
+          // Isometric 3D Wireframe Cube
+          ctx.fillStyle = isDark ? "#38BDF8" : "#0284C7"
+          ctx.fillRect(2, 2, obs.w - 4, obs.h - 4)
+          ctx.strokeStyle = isDark ? "#E0F2FE" : "#0C4A6E"
+          ctx.lineWidth = 1.5
+          ctx.strokeRect(2, 2, obs.w - 4, obs.h - 4)
+          // Inner Cross
+          ctx.beginPath()
+          ctx.moveTo(2, 2)
+          ctx.lineTo(obs.w - 2, obs.h - 2)
+          ctx.moveTo(obs.w - 2, 2)
+          ctx.lineTo(2, obs.h - 2)
+          ctx.stroke()
+        } else {
+          // Double Obstacle (Two Staggered Prisms)
+          ctx.fillStyle = "#8B1E2D"
+          ctx.fillRect(2, 6, 18, obs.h - 6)
+          ctx.fillStyle = "#B91C1C"
+          ctx.fillRect(22, 0, 18, obs.h)
+        }
+
+        ctx.restore()
+      }
+
+      ctx.restore()
+      requestAnimationFrame(loop)
+    }
+
+    requestAnimationFrame(loop)
+  }
+
+  initRunner()
+  document.addEventListener("astro:after-swap", initRunner)
+</script>

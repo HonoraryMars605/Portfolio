@@ -1,100 +1,86 @@
 ---
-// Top Editorial Navigation Bar (Variant 7 Swiss)
+// Top Editorial Floating Navigation Bar (Figma Variant 7 Swiss 34:2795)
 ---
 
-<header class="fixed top-0 left-0 right-0 h-[68px] sm:h-[72px] bg-[#FAF9F5]/90 dark:bg-[#111827]/90 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-800/80 z-40 px-4 sm:px-6 lg:px-10 flex items-center justify-between transition-colors duration-200">
-  <!-- Brand Group (Left): Monogram VC + Valerio Comella -->
-  <div class="flex items-center gap-2.5">
-    <a href="#section-01" class="flex items-center gap-2.5 no-underline text-black dark:text-white group">
-      <div class="w-[30px] h-[30px] rounded-[6px] bg-[#9B1C2E] flex items-center justify-center text-white font-mono font-bold text-[13px] tracking-tight shadow-2xs group-hover:scale-105 transition-transform">
+<header class="fixed top-5 inset-x-0 mx-auto max-w-[1400px] w-[calc(100%-32px)] sm:w-[calc(100%-48px)] h-[56px] bg-[#F9FAFB]/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[16px] z-40 px-4 sm:px-8 flex items-center justify-between shadow-sm transition-colors duration-200">
+  <!-- Marchio / Monogramma VC (Figma 34:2796 & 34:2797) -->
+  <div class="flex items-center gap-3">
+    <a href="#section-01" class="flex items-center gap-2.5 no-underline text-[#0F172A] dark:text-white group" title="Torna a 01 // CHI SONO?">
+      <div class="w-[31px] h-[32px] rounded-[6px] bg-[#8B1E2D] flex items-center justify-center text-white font-sans font-bold text-[13px] tracking-tight shadow-2xs group-hover:scale-105 transition-transform">
         VC
       </div>
-      <span class="font-heading text-lg sm:text-xl tracking-tight text-[#111111] dark:text-white group-hover:text-[#9B1C2E] transition-colors">
+      <span class="text-[14.5px] font-bold tracking-[-0.02em] text-[#0F172A] dark:text-white group-hover:text-[#8B1E2D] transition-colors hidden md:inline">
         VALERIO COMELLA
-      </span>
-      <span class="text-gray-300 dark:text-gray-600 font-light hidden lg:inline">/</span>
-      <span class="text-[11px] sm:text-[12px] font-mono font-bold tracking-wider text-[#9B1C2E] uppercase hidden lg:inline">
-        SOFTWARE &amp; XR ENGINEER
       </span>
     </a>
   </div>
 
-  <!-- Center Navigation (Jump to horizontal viewports) -->
-  <nav class="hidden 2xl:flex items-center gap-4 xl:gap-5 font-mono text-[11.5px] font-bold text-gray-600 dark:text-gray-400">
-    <button type="button" data-nav-target="01" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      01 HERO
-    </button>
-    <button type="button" data-nav-target="02" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      02 PROFILO
-    </button>
-    <button type="button" data-nav-target="03" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      03 ESPERIENZE
-    </button>
-    <button type="button" data-nav-target="04" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      04 PROGETTI
-    </button>
-    <button type="button" data-nav-target="05" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      05 FORMAZIONE
-    </button>
-    <button type="button" data-nav-target="06" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      06 COSA MI PIACE
-    </button>
-    <button type="button" data-nav-target="07" class="nav-jump-btn hover:text-[#9B1C2E] dark:hover:text-[#9B1C2E] transition-colors cursor-pointer bg-transparent border-none p-1">
-      07 CONTATTO
-    </button>
-  </nav>
-
-  <!-- Right Actions Group: 3 Buttons (SFX, Dark/Light, ITA/EN) + Status + Visualizza PDF -->
-  <div class="flex items-center gap-2 sm:gap-2.5">
-    <!-- BTN 1: SFX Audio Toggle Button -->
+  <!-- Navigazione / Preferenze e collegamenti (Figma 38:3784) -->
+  <div class="flex items-center gap-1.5 sm:gap-2">
+    <!-- Preferenze / Audio (Figma 37:3161) -->
     <button
       id="btn-sound-toggle"
       type="button"
-      class="h-[36px] px-2.5 rounded-[6px] border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-800/90 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      class="h-[32px] px-2.5 rounded-[6px] border border-[#E5E7EB] dark:border-gray-700 bg-[#F9FAFB] dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-[11px] font-sans font-bold text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
       title="Attiva/Disattiva effetti sonori interattivi"
     >
       <span id="sound-toggle-icon">🔊</span>
-      <span id="sound-toggle-label" class="hidden sm:inline font-semibold">SFX ON</span>
+      <span id="sound-toggle-label" class="hidden sm:inline">SFX ON</span>
     </button>
 
-    <!-- BTN 2: Dark/Light Mode Toggle Button -->
+    <!-- Preferenze / Tema (Figma 37:3164) -->
     <button
       id="btn-theme-toggle"
       type="button"
-      class="h-[36px] px-2.5 rounded-[6px] border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-800/90 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      class="h-[32px] px-2.5 rounded-[6px] border border-[#E5E7EB] dark:border-gray-700 bg-[#F9FAFB] dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-[11px] font-sans font-bold text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
       title="Passa da modalità Chiara a Scura"
     >
       <span id="theme-toggle-icon">🌓</span>
-      <span id="theme-toggle-label" class="hidden sm:inline font-semibold">Dark/Light</span>
+      <span id="theme-toggle-label" class="hidden sm:inline">Dark/Light</span>
     </button>
 
-    <!-- BTN 3: Language Toggle Button (ITA/EN) -->
+    <!-- Preferenze / Lingua (Figma 34:2819) -->
     <button
       id="btn-lang-toggle"
       type="button"
-      class="h-[36px] px-2.5 rounded-[6px] border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-800/90 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] font-mono text-gray-700 dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      class="h-[32px] px-2.5 rounded-[6px] border border-[#E5E7EB] dark:border-gray-700 bg-[#F9FAFB] dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-[11px] font-sans font-bold text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
       title="Cambia lingua / Switch language"
     >
       <span id="lang-toggle-icon">🌐</span>
-      <span id="lang-toggle-label" class="font-semibold">ITA/EN</span>
+      <span id="lang-toggle-label">ITA/EN</span>
     </button>
 
-    <!-- Status badge (Available for Hire) -->
-    <div class="hidden xl:flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 rounded-full text-[10.5px] font-mono font-medium whitespace-nowrap">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span data-i18n-status>AVAILABLE FOR HIRE</span>
-    </div>
-
-    <!-- Visualizza PDF Button (Modal Viewer) -->
+    <!-- Collegamento / CV (Figma 34:2806 & 34:2808) -->
     <button
       type="button"
       id="btn-nav-view-pdf"
-      class="btn-view-pdf h-[36px] px-3 sm:px-4 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] active:scale-95 text-white font-mono text-[11.5px] font-bold tracking-wider uppercase transition-all shadow-sm border-none cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
+      class="btn-view-pdf h-[32px] px-3.5 rounded-full bg-[#8B1E2D] hover:bg-[#6e1622] active:scale-95 text-white font-sans text-[11px] font-bold tracking-wide transition-all shadow-2xs border-none cursor-pointer flex items-center justify-center whitespace-nowrap"
       title="Visualizza Curriculum Vitae (PDF)"
     >
-      <span>📑</span>
-      <span data-i18n-pdf-label>Visualizza PDF</span>
+      CV
     </button>
+
+    <!-- Collegamento / LinkedIn (Figma 65:795 & 65:797) -->
+    <a
+      href="https://www.linkedin.com/in/valerio-comella-6a5693241/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="h-[32px] px-3.5 rounded-full bg-[#8B1E2D] hover:bg-[#6e1622] active:scale-95 text-white font-sans text-[11px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
+      title="Profilo LinkedIn ufficiale"
+    >
+      Linkedin
+    </a>
+
+    <!-- Collegamento / GitHub (Figma 65:787 & 65:789) -->
+    <a
+      href="https://github.com/valeriocomella"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="h-[32px] px-3.5 rounded-full bg-[#8B1E2D] hover:bg-[#6e1622] active:scale-95 text-white font-sans text-[11px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
+      title="Profilo GitHub ufficiale"
+    >
+      GitHub
+    </a>
   </div>
 </header>
 

@@ -1,179 +1,178 @@
 ---
-// Section 02: Profilo & Competenze with 8-Card Auto Carousel
-const metrics = [
-  {
-    tag: "ORE SPECIALISTICHE",
-    value: "1.200+ Ore",
-    title: "Sviluppo XR & Unity (C#)",
-    desc: "Esperienza sul campo su Unity (C#), zSpace Mixed Reality, WebGL, Custom Editor Tools e Unreal Engine 5."
-  },
-  {
-    tag: "TITOLI RILASCIATI",
-    value: "9 Titoli",
-    title: "Progetti & Produzioni B2B",
-    desc: "Videogiochi rilasciati tra game jam, prodotti B2B e selezione ufficiale Italian Game 2025."
-  },
-  {
-    tag: "DIPLOMA EQF 5",
-    value: "101 / 110",
-    title: "Tecnico Superiore XR",
-    desc: "Augmented, Virtual & Mixed Reality conseguito presso ITS Lazio Digital (EQF 5)."
-  },
-  {
-    tag: "PERITO INFORMATICO",
-    value: "100 / 100",
-    title: "Con Lode di Merito",
-    desc: "Informatica e Telecomunicazioni presso ITIS Alessandro Volta con lode accademica."
-  },
-  {
-    tag: "COLLABORAZIONI AZIENDALI",
-    value: "4 Aziende",
-    title: "Esperienza Sul Campo",
-    desc: "Collaborazioni attive tra tirocinio curriculare/extracurriculare e somministrazione (Protom, Katabasi, Skill Factory, L'ABCD)."
-  },
-  {
-    tag: "TECNOLOGIE & STACK",
-    value: "12+ Stack & SDK",
-    title: "Profilo T-Shaped",
-    desc: "C#, C, C++, Java / Spring Boot, Python, SQL, JS/TS, Docker e motori real-time Unity / Unreal Engine 5."
-  },
-  {
-    tag: "SVILUPPO WEB APPLICATIVO",
-    value: "160+ Ore",
-    title: "Full Stack (Front + Back)",
-    desc: "Esperienza pratica aziendale su piattaforme web enterprise in Java / Spring Boot & HTML5 / CSS3 / JavaScript."
-  },
-  {
-    tag: "FORMAZIONE SPECIALISTICA",
-    value: "1.955+ Ore",
-    title: "Studio Post-Diploma",
-    desc: "Percorsi specialistici post-diploma in Game Development (ISAS), Mixed Reality (ITS) e Common Core (42 Roma)."
-  }
-]
+// Section 02: Competenze (Figma 17:6710)
 ---
 
 <section
   id="section-02"
-  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start py-6 sm:py-8"
+  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
 >
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-6">
-    <!-- Section Editorial Header -->
-    <div class="flex flex-col gap-1 border-b border-gray-200/80 dark:border-gray-800 pb-3">
-      <div class="flex items-center justify-between text-[11px] font-mono tracking-wider text-gray-500 dark:text-gray-400">
-        <span class="font-bold text-[#9B1C2E]">02 // PROFILO &amp; COMPETENZE</span>
-        <span class="hidden sm:inline">TECHNICAL ARCHITECTURE &amp; CAPABILITIES</span>
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-6 sm:gap-7">
+    <!-- Badge sezione / 02 // COSA SO FARE? (Figma 17:6712 & 17:6711) -->
+    <div class="flex flex-col gap-1.5 border-b border-gray-200/80 dark:border-gray-800 pb-3">
+      <div class="flex items-center gap-3">
+        <div class="inline-flex items-center px-3 py-1 rounded-[6px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] tracking-wide">
+          02 // COSA SO FARE?
+        </div>
+        <span class="text-[#94A3B8] dark:text-gray-400 font-medium tracking-wider text-[11px] hidden sm:inline">
+          TECHNICAL ARCHITECTURE &amp; CAPABILITIES
+        </span>
       </div>
-      <h2 class="font-heading text-2xl sm:text-3xl text-[#111111] dark:text-white tracking-tight mt-1 m-0">
-        Architettura, Motori di Gioco e Sviluppo Full Stack
+      <h2 class="text-2xl sm:text-[32px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] mt-1 m-0">
+        Il mio Stack
       </h2>
-      <p class="text-[13.5px] text-[#4B5563] dark:text-gray-300 max-w-4xl m-0 leading-normal">
-        Un profilo ibrido ad alto rendimento: la rigorosa logica del game programming unita all'architettura web moderna e all'efficienza sistemistica.
+      <p class="text-[14px] sm:text-[15px] text-[#64748B] dark:text-gray-300 max-w-4xl m-0 leading-normal">
+        Dal game programming alle architetture full-stack: la mappa completa delle competenze e dei tool che impiego quotidianamente.
       </p>
     </div>
 
-    <!-- Swiss Metrics Ledger (4-Columns Carousel con Scorrimento Automatico) -->
-    <div class="flex flex-col gap-2 relative group/carousel" id="metrics-ledger-wrapper">
-      <!-- Carousel Subhead Controls -->
-      <div class="flex items-center justify-between text-[10.5px] font-mono text-gray-500 dark:text-gray-400">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-[#9B1C2E] animate-pulse"></span>
-          <span class="font-bold tracking-wider uppercase text-gray-700 dark:text-gray-300">SWISS METRICS LEDGER</span>
-          <span class="text-gray-400">· CAROSELLO AUTOMATICO</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span id="metrics-carousel-page" class="font-bold text-[#9B1C2E]">01 / 02</span>
-          <div class="flex items-center gap-1">
-            <button
-              type="button"
-              id="btn-metrics-prev"
-              class="w-6 h-6 rounded-[4px] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 flex items-center justify-center font-bold text-xs cursor-pointer shadow-2xs active:scale-95"
-              title="Metriche precedenti"
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              id="btn-metrics-next"
-              class="w-6 h-6 rounded-[4px] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 flex items-center justify-center font-bold text-xs cursor-pointer shadow-2xs active:scale-95"
-              title="Metriche successive"
-            >
-              ›
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Carousel Track Container -->
-      <div
-        id="metrics-carousel-track"
-        class="flex gap-3.5 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-1"
-        style="scrollbar-width: none;"
-      >
-        {
-          metrics.map((m) => (
-            <div class="min-w-[280px] sm:min-w-[310px] lg:min-w-[calc(25%-10.5px)] max-w-[330px] lg:max-w-none snap-start bg-white/85 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[8px] p-4 flex flex-col justify-between hover:border-[#9B1C2E]/50 dark:hover:border-[#9B1C2E]/60 transition-all hover:shadow-xs group shrink-0">
-              <div>
-                <div class="text-[10px] font-mono uppercase tracking-wider text-[#9B1C2E] font-semibold">
-                  {m.tag}
-                </div>
-                <div class="font-heading text-2xl sm:text-[26px] text-[#111111] dark:text-white group-hover:text-[#9B1C2E] transition-colors mt-0.5">
-                  {m.value}
-                </div>
-              </div>
-              <div class="mt-2.5 pt-2 border-t border-gray-100 dark:border-gray-800">
-                <div class="text-[12.5px] font-semibold text-[#1F2937] dark:text-gray-200">
-                  {m.title}
-                </div>
-                <p class="text-[11.5px] text-gray-500 dark:text-gray-400 mt-0.5 leading-snug m-0 line-clamp-2">
-                  {m.desc}
-                </p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <!-- 3-Column Swiss Competence Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <!-- Col 1: Game Dev & Engine Systems -->
-      <div class="bg-white/90 dark:bg-gray-900/85 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col gap-4 shadow-2xs hover:border-gray-300 dark:hover:border-gray-700 transition-all">
+    <!-- Competenze / Griglia categorie (Figma 17:6733 - 3 Colonne) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <!-- Categoria 1: Game development e motori (Figma) -->
+      <div class="bg-white/95 dark:bg-gray-900/90 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col gap-4 shadow-2xs hover:border-[#8B1E2D]/40 transition-all">
         <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
-          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#9B1C2E]/10 text-[#9B1C2E] font-mono text-[10.5px] font-bold tracking-wider uppercase mb-1.5">
-            GAME ENGINES
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#8B1E2D]/10 text-[#8B1E2D] font-mono text-[10.5px] font-bold tracking-wider uppercase mb-1.5">
+            GAME DEV &amp; ENGINE
           </div>
-          <h3 class="font-bold text-[16px] text-[#111827] dark:text-white m-0">GAME DEV &amp; ENGINE SYSTEMS</h3>
+          <h3 class="font-bold text-[16px] text-[#0F172A] dark:text-white m-0">GAME DEV &amp; ENGINE</h3>
           <p class="text-[12px] text-gray-500 dark:text-gray-400 mt-1 m-0">
-            Sistemi in tempo reale, simulazione fisica e integrazione SDK per Mixed Reality.
+            Sistemi in tempo reale, simulazione fisica e integrazione tool custom.
           </p>
         </div>
 
-        <div class="flex flex-col gap-2.5">
+        <div class="flex flex-col gap-3">
           <!-- Unity -->
-          <div class="flex items-start gap-3 p-2.5 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
             <img src="/assets/figma/skill-unity.png" alt="Unity" class="w-6 h-6 object-contain mt-0.5 shrink-0" />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#111827] dark:text-gray-100">Unity (C#)</span>
-              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Custom Editor Tools, uGUI, WebGL, Profiler &amp; ottimizzazione</span>
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Unity (C#)</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Custom Editor Tools, uGUI, UI Toolkit, Monobehaviour, WebGL</span>
             </div>
           </div>
 
           <!-- Unreal Engine 5 -->
-          <div class="flex items-start gap-3 p-2.5 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
             <img src="/assets/figma/skill-ue5.png" alt="Unreal Engine" class="w-6 h-6 object-contain mt-0.5 shrink-0" />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#111827] dark:text-gray-100">Unreal Engine 5</span>
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Unreal Engine 5 (Blueprint - C++)</span>
               <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Blueprint Visual Scripting, Gameplay Framework, Level Design</span>
             </div>
           </div>
 
           <!-- Mixed Reality SDKs -->
-          <div class="flex items-start gap-3 p-2.5 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-            <div class="w-6 h-6 rounded-[4px] bg-[#9B1C2E]/10 text-[#9B1C2E] flex items-center justify-center font-mono font-bold text-[11px] shrink-0 mt-0.5">XR</div>
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <div class="w-6 h-6 rounded-[4px] bg-[#8B1E2D]/10 text-[#8B1E2D] flex items-center justify-center font-mono font-bold text-[11px] shrink-0 mt-0.5">XR</div>
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#111827] dark:text-gray-100">Mixed Reality SDKs</span>
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Mixed Reality SDKs</span>
               <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">zSpace, MR-HMI, Multi-SDK Wrappers, OpenXR, WebXR</span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categoria 2: Full stack development (Figma) -->
+      <div class="bg-white/95 dark:bg-gray-900/90 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col gap-4 shadow-2xs hover:border-[#8B1E2D]/40 transition-all">
+        <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#0F172A]/10 dark:bg-gray-700 text-[#0F172A] dark:text-gray-200 font-mono text-[10.5px] font-bold tracking-wider uppercase mb-1.5">
+            FULL STACK DEV
+          </div>
+          <h3 class="font-bold text-[16px] text-[#0F172A] dark:text-white m-0">FULL STACK DEV</h3>
+          <p class="text-[12px] text-gray-500 dark:text-gray-400 mt-1 m-0">
+            Architetture backend scalabili, API REST e basi di dati relazionali.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <!-- Java & Spring Boot -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <img src="/assets/figma/skill-java.png" alt="Java" class="w-6 h-6 object-contain mt-0.5 shrink-0" />
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Java &amp; Spring Boot</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Thymeleaf, REST API, architettura MVC e logica di business</span>
+            </div>
+          </div>
+
+          <!-- PostgreSQL & MySQL -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <img src="/assets/figma/skill-postgres.png" alt="Database" class="w-6 h-6 object-contain mt-0.5 shrink-0" />
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">PostgreSQL &amp; MySQL</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Database relazionali, schema design, persistenza dati e query</span>
+            </div>
+          </div>
+
+          <!-- HTML5, CSS3 & JavaScript -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <div class="w-6 h-6 rounded-[4px] bg-amber-500/10 text-amber-600 flex items-center justify-center font-mono font-bold text-[11px] shrink-0 mt-0.5">JS</div>
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">HTML5, CSS3 &amp; JavaScript</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Front-end responsive, Bootstrap, DOM scripting e performance</span>
+            </div>
+          </div>
+
+          <!-- C & Python -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <div class="w-6 h-6 rounded-[4px] bg-blue-500/10 text-blue-600 flex items-center justify-center font-mono font-bold text-[11px] shrink-0 mt-0.5">C</div>
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">C &amp; Python</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Competenze fondamentali di programmazione procedurale e script</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categoria 3: Workflow, strumenti e design (Figma) -->
+      <div class="bg-white/95 dark:bg-gray-900/90 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col gap-4 shadow-2xs hover:border-[#8B1E2D]/40 transition-all">
+        <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#0F172A]/10 dark:bg-gray-700 text-[#0F172A] dark:text-gray-200 font-mono text-[10.5px] font-bold tracking-wider uppercase mb-1.5">
+            WORKFLOW &amp; TOOLS
+          </div>
+          <h3 class="font-bold text-[16px] text-[#0F172A] dark:text-white m-0">WORKFLOW, TOOLING &amp; DESIGN</h3>
+          <p class="text-[12px] text-gray-500 dark:text-gray-400 mt-1 m-0">
+            Version control, collaborative design system, metodologie agili e AI tooling.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <!-- Git & GitHub -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <img src="/assets/figma/skill-git.png" alt="Git" class="w-6 h-6 object-contain mt-0.5 shrink-0" />
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Git &amp; GitHub</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Version control distribuito, pull request, branching e code review</span>
+            </div>
+          </div>
+
+          <!-- Figma & Canva -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <img src="/assets/figma/skill-figma.png" alt="Figma" class="w-6 h-6 object-contain mt-0.5 shrink-0" />
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Figma &amp; Canva</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Design UI/UX, wireframe, prototipazione interattiva e design system</span>
+            </div>
+          </div>
+
+          <!-- Trello, Notion, Milanote, Miro -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <div class="w-6 h-6 rounded-[4px] bg-indigo-500/10 text-indigo-600 flex items-center justify-center font-mono font-bold text-[11px] shrink-0 mt-0.5">PM</div>
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Trello, Notion, Milanote, Miro</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Gestione sprint agili, documentazione e roadmapping</span>
+            </div>
+          </div>
+
+          <!-- IDEs & AI -->
+          <div class="flex items-start gap-3 p-3 rounded-[6px] bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <div class="w-6 h-6 rounded-[4px] bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-mono font-bold text-[11px] shrink-0 mt-0.5">AI</div>
+            <div class="flex flex-col">
+              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Visual Studio, VS Code, Antigravity &amp; AI</span>
+              <span class="text-[11.5px] text-gray-600 dark:text-gray-400 leading-snug">Ambienti Code-first &amp; Agent-first, automazione workflow e testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
           </div>
 
           <!-- Sistemi & Architettura -->

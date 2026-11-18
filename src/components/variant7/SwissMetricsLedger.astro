@@ -1,0 +1,192 @@
+---
+// Swiss Metrics Ledger (8 Cards Carousel) - Figma 63:322
+const metrics = [
+  {
+    tag: "PERITO INFORMATICO",
+    value: "100 / 100",
+    title: "Con Lode di Merito",
+    desc: "Informatica e Telecomunicazioni presso ITIS Alessandro Volta con lode accademica."
+  },
+  {
+    tag: "ESPERIENZA SUL CAMPO",
+    value: "4 Aziende",
+    title: "Collaborazioni Attive",
+    desc: "Collaborazioni attive tra tirocinio curriculare/extracurriculare e somministrazione (Protom, Katabasi, Skill Factory, L'ABCD)."
+  },
+  {
+    tag: "SVILUPPO XR & UNITY(C#)",
+    value: "1.200+ Ore",
+    title: "Engine & Mixed Reality",
+    desc: "Esperienza sul campo su Unity (C#), zSpace Mixed Reality, WebGL, Custom Editor Tools e Unreal Engine 5."
+  },
+  {
+    tag: "PROFILO T-SHAPED",
+    value: "12+ Stack",
+    title: "Linguaggi & SDK",
+    desc: "C#, C, C++, Java / Spring Boot, Python, SQL, JS/TS, Docker e motori real-time Unity / Unreal Engine 5."
+  },
+  {
+    tag: "DIPLOMA TECNICO SUPERIORE",
+    value: "101 / 110",
+    title: "Tecnico Superiore XR (EQF 5)",
+    desc: "Augmented, Virtual & Mixed Reality conseguito presso ITS Lazio Digital con votazione di 101/110."
+  },
+  {
+    tag: "SVILUPPO WEB APPLICATIVO",
+    value: "160+ Ore",
+    title: "Full Stack (Front + Back)",
+    desc: "Esperienza pratica aziendale su piattaforme web in Java / Spring Boot & HTML5 / CSS3 / JavaScript."
+  },
+  {
+    tag: "FORMAZIONE SPECIALISTICA",
+    value: "1.955+ Ore",
+    title: "Percorsi Post-Diploma",
+    desc: "Percorsi specialistici post-diploma in Game Development (ISAS), Mixed Reality (ITS) e Common Core (42 Roma)."
+  },
+  {
+    tag: "PROGETTI & PRODUZIONI B2B",
+    value: "9 Titoli",
+    title: "Giochi & Soluzioni Rilasciate",
+    desc: "Videogiochi rilasciati tra game jam, prodotti B2B e selezione ufficiale Italian Game 2025."
+  }
+]
+---
+
+<div class="flex flex-col gap-2 relative group/carousel w-full" id="metrics-ledger-wrapper">
+  <!-- Carousel Controls Bar -->
+  <div class="flex items-center justify-between text-[11px] font-sans text-gray-500 dark:text-gray-400">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[#8B1E2D] animate-pulse"></span>
+      <span class="font-bold tracking-wider uppercase text-gray-700 dark:text-gray-300">SWISS METRICS LEDGER</span>
+      <span class="text-gray-400 hidden sm:inline">· SCORRIMENTO DINAMICO</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span id="metrics-carousel-page" class="font-bold text-[#8B1E2D] font-mono text-[11px]">01 / 02</span>
+      <div class="flex items-center gap-1">
+        <button
+          type="button"
+          id="btn-metrics-prev"
+          class="w-6 h-6 rounded-[4px] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 flex items-center justify-center font-bold text-xs cursor-pointer shadow-2xs active:scale-95"
+          title="Metriche precedenti"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          id="btn-metrics-next"
+          class="w-6 h-6 rounded-[4px] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 flex items-center justify-center font-bold text-xs cursor-pointer shadow-2xs active:scale-95"
+          title="Metriche successive"
+        >
+          ›
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Track (Snap horizontal) -->
+  <div
+    id="metrics-carousel-track"
+    class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none py-1 scroll-smooth"
+    tabindex="0"
+    role="region"
+    aria-label="Carosello metriche chiave"
+  >
+    {
+      metrics.map((m, idx) => (
+        <div class="min-w-[280px] sm:min-w-[305px] lg:min-w-[316px] max-w-[320px] bg-white dark:bg-gray-800/90 border border-gray-200/90 dark:border-gray-700/80 rounded-[8px] p-4 flex flex-col justify-between shrink-0 snap-start shadow-2xs hover:border-[#8B1E2D]/50 transition-all group">
+          <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-700/60 pb-2">
+            <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+              {m.tag}
+            </span>
+            <span class="text-[10px] font-mono text-gray-400 group-hover:text-[#8B1E2D] transition-colors">
+              0{idx + 1}
+            </span>
+          </div>
+
+          <div class="py-2.5 flex flex-col gap-0.5">
+            <span class="text-[26px] sm:text-[28px] font-extrabold tracking-[-0.03em] text-[#0F172A] dark:text-white leading-tight">
+              {m.value}
+            </span>
+            <span class="text-[12px] font-sans font-bold text-[#8B1E2D] dark:text-red-400">
+              {m.title}
+            </span>
+          </div>
+
+          <p class="text-[11px] font-sans text-gray-600 dark:text-gray-300 leading-[1.4] m-0 border-t border-gray-100 dark:border-gray-700/60 pt-2">
+            {m.desc}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  function setupMetricsCarousel() {
+    const track = document.getElementById("metrics-carousel-track")
+    const pageInd = document.getElementById("metrics-carousel-page")
+    const prev = document.getElementById("btn-metrics-prev")
+    const next = document.getElementById("btn-metrics-next")
+    const wrapper = document.getElementById("metrics-ledger-wrapper")
+    if (!track) return
+
+    let isPaused = false
+    let autoTimer: any = null
+
+    function updatePageIndicator() {
+      if (!track || !pageInd) return
+      const maxScroll = track.scrollHeight > 0 ? track.scrollWidth - track.clientWidth : 1
+      const isSecondHalf = track.scrollLeft > maxScroll / 2
+      pageInd.textContent = isSecondHalf ? "02 / 02" : "01 / 02"
+    }
+
+    function scrollNext() {
+      if (!track) return
+      const maxScroll = track.scrollWidth - track.clientWidth
+      if (track.scrollLeft >= maxScroll - 20) {
+        track.scrollTo({ left: 0, behavior: "smooth" })
+      } else {
+        track.scrollBy({ left: track.clientWidth * 0.75, behavior: "smooth" })
+      }
+      setTimeout(updatePageIndicator, 350)
+      if ((window as any).playSfx) (window as any).playSfx("slide")
+    }
+
+    function scrollPrev() {
+      if (!track) return
+      if (track.scrollLeft <= 20) {
+        track.scrollTo({ left: track.scrollWidth, behavior: "smooth" })
+      } else {
+        track.scrollBy({ left: -track.clientWidth * 0.75, behavior: "smooth" })
+      }
+      setTimeout(updatePageIndicator, 350)
+      if ((window as any).playSfx) (window as any).playSfx("slide")
+    }
+
+    if (next) next.onclick = scrollNext
+    if (prev) prev.onclick = scrollPrev
+
+    track.addEventListener("scroll", updatePageIndicator, { passive: true })
+
+    function startAutoScroll() {
+      clearInterval(autoTimer)
+      autoTimer = setInterval(() => {
+        if (!isPaused) {
+          scrollNext()
+        }
+      }, 3500)
+    }
+
+    if (wrapper) {
+      wrapper.addEventListener("mouseenter", () => { isPaused = true })
+      wrapper.addEventListener("mouseleave", () => { isPaused = false })
+      wrapper.addEventListener("touchstart", () => { isPaused = true }, { passive: true })
+      wrapper.addEventListener("touchend", () => { isPaused = false }, { passive: true })
+    }
+
+    startAutoScroll()
+  }
+
+  setupMetricsCarousel()
+  document.addEventListener("astro:after-swap", setupMetricsCarousel)
+</script>

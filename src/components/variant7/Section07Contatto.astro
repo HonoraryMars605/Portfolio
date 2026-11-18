@@ -1,72 +1,49 @@
 ---
-// Section 07: Certificazioni & Contatto + Section 07 Footer
+// Section 07: Contatti e crediti (Figma 65:614)
+import RunnerAnteprimaDinamica from "./RunnerAnteprimaDinamica.astro"
 import { PROFILE } from "@site-config"
 
 const githubUrl = typeof PROFILE.links.github === "object" ? PROFILE.links.github?.href : PROFILE.links.github || "https://github.com/valeriocomella"
-const linkedinUrl = typeof PROFILE.links.linkedin === "object" ? PROFILE.links.linkedin?.href : PROFILE.links.linkedin || "https://linkedin.com/in/valerio-comella"
+const linkedinUrl = typeof PROFILE.links.linkedin === "object" ? PROFILE.links.linkedin?.href : PROFILE.links.linkedin || "https://www.linkedin.com/in/valerio-comella-6a5693241/"
 ---
 
 <section
   id="section-07"
-  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start py-6 sm:py-8"
+  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
 >
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-5">
-    <!-- Section Editorial Header -->
-    <div class="flex flex-col gap-1 border-b border-gray-200/80 dark:border-gray-800 pb-3">
-      <div class="flex items-center justify-between text-[11px] font-mono tracking-wider text-gray-500 dark:text-gray-400">
-        <span class="font-bold text-[#9B1C2E]">07 // CERTIFICAZIONI &amp; CONTATTO</span>
-        <span class="hidden sm:inline">OFFICIAL ACCREDITATION &amp; DIRECT REACH</span>
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-6 sm:gap-7">
+    <!-- Badge sezione / 07 // RIMANIAMO IN CONTATTO? (Figma 65:616 & 65:615) -->
+    <div class="flex flex-col gap-1.5 border-b border-gray-200/80 dark:border-gray-800 pb-3">
+      <div class="flex items-center gap-3">
+        <div class="inline-flex items-center px-3 py-1 rounded-[6px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] tracking-wide">
+          07 // RIMANIAMO IN CONTATTO?
+        </div>
+        <span class="text-[#94A3B8] dark:text-gray-400 font-medium tracking-wider text-[11px] hidden sm:inline">
+          OFFICIAL ACCREDITATION &amp; DIRECT REACH
+        </span>
       </div>
-      <h2 class="font-heading text-2xl sm:text-3xl text-[#111111] dark:text-white tracking-tight mt-1 m-0">
-        Certificazioni Ufficiali &amp; Opportunità di Collaborazione
+      <h2 class="text-2xl sm:text-[32px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] mt-1 m-0">
+        Grazie per avere visitato il mio potfolio!
       </h2>
-      <p class="text-[13.5px] text-[#4B5563] dark:text-gray-300 max-w-4xl m-0 leading-normal">
-        Attestazioni di competenza tecnica e canali diretti per colloqui, contratti ed incarichi di sviluppo.
+      <p class="text-[12.5px] sm:text-[13.5px] font-mono text-[#8B1E2D] dark:text-red-400 max-w-4xl m-0 leading-normal font-semibold uppercase tracking-wider">
+        BUILT WITH ASTRO · TYPESCRIPT · TAILWIND CSS · NATIVE CANVAS &amp; WEB AUDIO API
       </p>
     </div>
 
-    <!-- Certifications Strip (3 Cards) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-      <!-- Cert 1: Epass -->
-      <div class="bg-white/90 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[8px] p-4 flex items-start gap-3.5 shadow-2xs hover:border-[#9B1C2E]/40 transition-all">
-        <img src="/assets/figma/cert-epass.png" alt="Epass" class="w-10 h-10 object-contain shrink-0 mt-0.5" />
-        <div class="flex flex-col">
-          <h4 class="font-bold text-[14px] text-[#111827] dark:text-gray-100 m-0">Epass 7 Moduli User</h4>
-          <span class="text-[11.5px] font-medium text-[#9B1C2E]">Competenze Digitali Europee</span>
-          <p class="text-[11.5px] text-gray-500 dark:text-gray-400 mt-1 leading-snug m-0">
-            Certificazione informatica europea accreditata su software, sicurezza dati e produttività.
-          </p>
-        </div>
+    <!-- Runner / Anteprima Dinamica (Figma 65:744 - 1311x172) -->
+    <div class="w-full flex flex-col gap-2">
+      <div class="flex items-center justify-between text-[11px] font-sans text-gray-500 dark:text-gray-400">
+        <span class="font-bold tracking-wider uppercase text-gray-700 dark:text-gray-300">
+          RUNNER / ANTEPRIMA DINAMICA
+        </span>
+        <span class="font-mono text-[10.5px] text-[#8B1E2D] dark:text-red-400">
+          MINI-GIOCO PROCEDURALE INTEGRATO
+        </span>
       </div>
-
-      <!-- Cert 2: Cisco -->
-      <div class="bg-white/90 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[8px] p-4 flex items-start gap-3.5 shadow-2xs hover:border-[#9B1C2E]/40 transition-all">
-        <img src="/assets/figma/cert-cisco.png" alt="Cisco" class="w-10 h-10 object-contain shrink-0 mt-0.5" />
-        <div class="flex flex-col">
-          <h4 class="font-bold text-[14px] text-[#111827] dark:text-gray-100 m-0">Cisco Cybersecurity &amp; Net</h4>
-          <span class="text-[11.5px] font-medium text-blue-900 dark:text-blue-300">Architettura Reti &amp; Sicurezza</span>
-          <p class="text-[11.5px] text-gray-500 dark:text-gray-400 mt-1 leading-snug m-0">
-            Attestazione su concetti di rete, protocolli di comunicazione, switching e cyber threat management.
-          </p>
-        </div>
-      </div>
-
-      <!-- Cert 3: Rome Video Game Lab -->
-      <div class="bg-white/90 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[8px] p-4 flex items-start gap-3.5 shadow-2xs hover:border-[#9B1C2E]/40 transition-all">
-        <div class="w-10 h-10 rounded-[6px] bg-amber-500/10 text-amber-800 dark:text-amber-300 font-heading text-lg flex items-center justify-center shrink-0 mt-0.5">
-          🏆
-        </div>
-        <div class="flex flex-col">
-          <h4 class="font-bold text-[14px] text-[#111827] dark:text-gray-100 m-0">Rome Video Game Lab</h4>
-          <span class="text-[11.5px] font-medium text-amber-900 dark:text-amber-300">Industry Workshop &amp; Networking</span>
-          <p class="text-[11.5px] text-gray-500 dark:text-gray-400 mt-1 leading-snug m-0">
-            Partecipazione ufficiale e attestato di frequenza ai workshop dedicati al game development e XR.
-          </p>
-        </div>
-      </div>
+      <RunnerAnteprimaDinamica />
     </div>
 
-    <!-- Direct Contact Card (Dark Swiss Container matching Figma) -->
+    <!-- Direct Contact Card (Swiss Container with Coordinates and Action CTAs) -->
     <div class="bg-white/95 dark:bg-gray-900/90 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[12px] p-6 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
       <!-- Contact Left Info (7 Cols) -->
       <div class="lg:col-span-7 flex flex-col gap-3">
@@ -76,10 +53,10 @@ const linkedinUrl = typeof PROFILE.links.linkedin === "object" ? PROFILE.links.l
         </div>
 
         <div>
-          <h3 class="font-heading text-3xl sm:text-4xl text-[#111111] dark:text-white tracking-tight m-0">
+          <h3 class="text-3xl sm:text-[34px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] m-0">
             VALERIO COMELLA
           </h3>
-          <p class="font-mono text-[13px] font-semibold text-[#9B1C2E] mt-1 m-0">
+          <p class="font-sans text-[15px] font-semibold text-[#8B1E2D] dark:text-red-400 mt-1 m-0">
             Software Engineer | Unity (C#) &amp; Full Stack
           </p>
         </div>
@@ -97,54 +74,52 @@ const linkedinUrl = typeof PROFILE.links.linkedin === "object" ? PROFILE.links.l
         </div>
       </div>
 
-      <!-- Contact Right Action Buttons (5 Cols) -->
-      <div class="lg:col-span-5 flex flex-col gap-2.5">
-        <!-- Email Direct -->
+      <!-- Contact Right Channels (5 Cols) -->
+      <div class="lg:col-span-5 flex flex-col gap-3 justify-center">
         <a
           href="mailto:valeriocom@hotmail.it"
-          class="flex items-center justify-center gap-2 px-4 py-3 rounded-[6px] bg-[#9B1C2E] hover:bg-[#7A1624] text-white font-mono text-[12.5px] font-bold tracking-wide transition-all shadow-sm no-underline active:scale-98"
+          class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-[8px] bg-[#8B1E2D] hover:bg-[#6e1622] text-white font-sans text-[13px] font-bold tracking-wide transition-all shadow-sm no-underline active:scale-98"
         >
           <span>✉️</span> Invia E-mail Diretta (valeriocom@hotmail.it)
         </a>
 
-        <!-- GitHub -->
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-[6px] bg-[#111827] dark:bg-gray-800 hover:bg-black dark:hover:bg-gray-700 text-white font-mono text-[12px] font-semibold transition-all no-underline active:scale-98"
-        >
-          <span>🌐</span> GitHub: github.com/valeriocomella
-        </a>
+        <div class="grid grid-cols-2 gap-2.5">
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-[8px] bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#8B1E2D] dark:hover:border-red-400 text-gray-800 dark:text-gray-200 font-sans text-[12px] font-semibold no-underline transition-all"
+          >
+            <span>🌐</span> GitHub
+          </a>
 
-        <!-- LinkedIn -->
-        <a
-          href={linkedinUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-[6px] bg-[#0A66C2] hover:bg-[#084e96] text-white font-mono text-[12px] font-semibold transition-all no-underline active:scale-98"
-        >
-          <span>💼</span> LinkedIn: Valerio Comella
-        </a>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-[8px] bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#8B1E2D] dark:hover:border-red-400 text-gray-800 dark:text-gray-200 font-sans text-[12px] font-semibold no-underline transition-all"
+          >
+            <span>💼</span> LinkedIn
+          </a>
+        </div>
 
-        <!-- Visualizza CV Modal Button -->
         <button
           type="button"
-          class="btn-view-pdf flex items-center justify-center gap-2 px-4 py-2.5 rounded-[6px] bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-mono text-[12px] font-semibold border border-gray-200 dark:border-gray-700 transition-all cursor-pointer active:scale-98"
+          class="btn-view-pdf flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-[8px] bg-white dark:bg-gray-800 border border-[#8B1E2D] text-[#8B1E2D] dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 font-sans text-[12px] font-bold tracking-wide transition-all cursor-pointer"
         >
           <span>📑</span> Visualizza Curriculum Vitae (PDF)
         </button>
       </div>
     </div>
 
-    <!-- Section 07 // GDPR & Copyright Footer Bar -->
-    <footer class="pt-4 mt-2 border-t border-gray-200/80 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-gray-500 dark:text-gray-400 text-center sm:text-left">
-      <p class="m-0">
+    <!-- GDPR Legal Footer -->
+    <footer class="pt-2 pb-6 border-t border-gray-200/70 dark:border-gray-800 text-center text-[11px] font-sans text-gray-500 dark:text-gray-400 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
         © 2026 Valerio Comella. Autorizzo il trattamento dei miei dati personali ai sensi del Gdpr 679/16 e del D.lgs 196/03.
-      </p>
-      <p class="m-0 text-gray-400 dark:text-gray-500">
-        Grazie per aver visitato il mio portfolio · Made with Precision &amp; Passion
-      </p>
+      </div>
+      <div class="font-mono text-[10.5px] text-gray-400">
+        Made with Precision &amp; Passion · Swiss Editorial PC 1440
+      </div>
     </footer>
   </div>
 </section>
