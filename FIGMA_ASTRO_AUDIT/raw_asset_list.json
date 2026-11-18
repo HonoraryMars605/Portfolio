@@ -1,0 +1,867 @@
+[
+  {
+    "nodeId": "17:6705",
+    "nodeName": "Immagine / Presentazione",
+    "type": "IMAGE",
+    "imageHash": "804913e4432d2702eabf402e152737e88b651526",
+    "width": 504,
+    "height": 274
+  },
+  {
+    "nodeId": "17:6738",
+    "nodeName": "Icona / Unity (C#)",
+    "type": "IMAGE",
+    "imageHash": "07bdd7bdd8bd1caefee7ba0855f0ef191c114dcb",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6738",
+    "nodeName": "Icona / Unity (C#)",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6743",
+    "nodeName": "Icona / Unreal Engine 5 (Blueprint - C++)",
+    "type": "IMAGE",
+    "imageHash": "84a0e959bccb6f05ca8ea7e300db4bbe12d930c7",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6743",
+    "nodeName": "Icona / Unreal Engine 5 (Blueprint - C++)",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6763",
+    "nodeName": "Icona / Java & Spring Boot · 01",
+    "type": "IMAGE",
+    "imageHash": "6539b5b4c27411018ea9093f10de77614e670907",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6763",
+    "nodeName": "Icona / Java & Spring Boot · 01",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:361",
+    "nodeName": "Icona / Java & Spring Boot · 02",
+    "type": "IMAGE",
+    "imageHash": "6539b5b4c27411018ea9093f10de77614e670907",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:361",
+    "nodeName": "Icona / Java & Spring Boot · 02",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:113",
+    "nodeName": "Icone / PostgreSQL & MySQL",
+    "type": "VECTOR",
+    "width": 56,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6768",
+    "nodeName": "Icona / PostgreSQL & MySQL · 01",
+    "type": "IMAGE",
+    "imageHash": "456161e9174b71c1f7ba327089f3c7e53def6d3e",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6768",
+    "nodeName": "Icona / PostgreSQL & MySQL · 01",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:111",
+    "nodeName": "Icona / PostgreSQL & MySQL · 02",
+    "type": "IMAGE",
+    "imageHash": "456161e9174b71c1f7ba327089f3c7e53def6d3e",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:111",
+    "nodeName": "Icona / PostgreSQL & MySQL · 02",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:110",
+    "nodeName": "Icone / HTML5, CSS3 & JavaScript",
+    "type": "VECTOR",
+    "width": 76,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6773",
+    "nodeName": "Icona / HTML5, CSS3 & JavaScript · 01",
+    "type": "IMAGE",
+    "imageHash": "c921d063facd55b06b214756e6cfdf6d7ae15715",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6773",
+    "nodeName": "Icona / HTML5, CSS3 & JavaScript · 01",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:108",
+    "nodeName": "Icona / HTML5, CSS3 & JavaScript · 02",
+    "type": "IMAGE",
+    "imageHash": "c921d063facd55b06b214756e6cfdf6d7ae15715",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:108",
+    "nodeName": "Icona / HTML5, CSS3 & JavaScript · 02",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:109",
+    "nodeName": "Icona / HTML5, CSS3 & JavaScript · 03",
+    "type": "IMAGE",
+    "imageHash": "c921d063facd55b06b214756e6cfdf6d7ae15715",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:109",
+    "nodeName": "Icona / HTML5, CSS3 & JavaScript · 03",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6778",
+    "nodeName": "Icona / C & Python · 01",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:115",
+    "nodeName": "Icona / C & Python · 02",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6787",
+    "nodeName": "Icona / Git & GitHub",
+    "type": "IMAGE",
+    "imageHash": "c8f451336d2b7dc0d4170610b7bf25acde40d626",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6787",
+    "nodeName": "Icona / Git & GitHub",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6792",
+    "nodeName": "Icona / Figma & Canva · 01",
+    "type": "IMAGE",
+    "imageHash": "3529c4f94f753e0f0b59efac391da21854edb303",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6792",
+    "nodeName": "Icona / Figma & Canva · 01",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:114",
+    "nodeName": "Icona / Figma & Canva · 02",
+    "type": "IMAGE",
+    "imageHash": "3529c4f94f753e0f0b59efac391da21854edb303",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:114",
+    "nodeName": "Icona / Figma & Canva · 02",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6797",
+    "nodeName": "Icona / Trello, Notion, Milanote, Miro",
+    "type": "IMAGE",
+    "imageHash": "42e1d966e9dfbdde9afd18ab0c9d29dd94d63220",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6797",
+    "nodeName": "Icona / Trello, Notion, Milanote, Miro",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:357",
+    "nodeName": "Icona / Visual Studio, VS Code, IntelliJ IDEA, Antigravity",
+    "type": "IMAGE",
+    "imageHash": "42e1d966e9dfbdde9afd18ab0c9d29dd94d63220",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "63:357",
+    "nodeName": "Icona / Visual Studio, VS Code, IntelliJ IDEA, Antigravity",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6802",
+    "nodeName": "Icona / AI & Prompt Eng.",
+    "type": "IMAGE",
+    "imageHash": "5ef244159a9d89b672c51d892141e64df9233e8e",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6802",
+    "nodeName": "Icona / AI & Prompt Eng.",
+    "type": "VECTOR",
+    "width": 36,
+    "height": 36
+  },
+  {
+    "nodeId": "17:6817",
+    "nodeName": "Identità / Monogramma",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:6848",
+    "nodeName": "Identità / Monogramma",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:6880",
+    "nodeName": "Icona / Protom Group",
+    "type": "IMAGE",
+    "imageHash": "925a27742bcc95a9a1a00149015a08aaf052f45b",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:6880",
+    "nodeName": "Icona / Protom Group",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:6908",
+    "nodeName": "Icona / Katabasi Studio",
+    "type": "IMAGE",
+    "imageHash": "8b86bec8ba17ef4b4cc772f6ff532129cb694d4e",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:6908",
+    "nodeName": "Icona / Katabasi Studio",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "36:3034",
+    "nodeName": "Icona / Example for future card (non generare)",
+    "type": "IMAGE",
+    "imageHash": "8b86bec8ba17ef4b4cc772f6ff532129cb694d4e",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "36:3034",
+    "nodeName": "Icona / Example for future card (non generare)",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "36:3064",
+    "nodeName": "Icona / Example for future card (non generare)",
+    "type": "IMAGE",
+    "imageHash": "8b86bec8ba17ef4b4cc772f6ff532129cb694d4e",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "36:3064",
+    "nodeName": "Icona / Example for future card (non generare)",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:6944",
+    "nodeName": "Immagine progetto / Violinum",
+    "type": "IMAGE",
+    "imageHash": "bf75d80ee060d6305c0a3112de92eae62902e8a6",
+    "width": 644,
+    "height": 240
+  },
+  {
+    "nodeId": "17:6962",
+    "nodeName": "Immagine progetto / Lock Fight",
+    "type": "IMAGE",
+    "imageHash": "62f781e13506e3cf0f8410c26b60d57d2f602520",
+    "width": 644,
+    "height": 240
+  },
+  {
+    "nodeId": "17:6981",
+    "nodeName": "Immagine progetto / Rusheep",
+    "type": "IMAGE",
+    "imageHash": "eeb2bca4eba61de408ed31499fc232fce6aa14fe",
+    "width": 421,
+    "height": 180
+  },
+  {
+    "nodeId": "17:6995",
+    "nodeName": "Immagine progetto / Sfuryatell - ISAS",
+    "type": "IMAGE",
+    "imageHash": "fd8e4a0a1fc38f89ec673837222b53e9053f6f6a",
+    "width": 421,
+    "height": 180
+  },
+  {
+    "nodeId": "17:7011",
+    "nodeName": "Immagine progetto / Project Works - ITS Lazio Digital",
+    "type": "IMAGE",
+    "imageHash": "4a2575f002cef569a18d92e37e8dcba50ff5ed0d",
+    "width": 421,
+    "height": 180
+  },
+  {
+    "nodeId": "17:7027",
+    "nodeName": "Icona / GAME JAMS & EXPERIMENTAL TITLES",
+    "type": "IMAGE",
+    "imageHash": "66d2f5d4b8e46702da7f063e9804910966dd5fa6",
+    "width": 180,
+    "height": 100
+  },
+  {
+    "nodeId": "17:7027",
+    "nodeName": "Icona / GAME JAMS & EXPERIMENTAL TITLES",
+    "type": "VECTOR",
+    "width": 180,
+    "height": 100
+  },
+  {
+    "nodeId": "36:3106",
+    "nodeName": "Icona / GAME JAMS & EXPERIMENTAL TITLES",
+    "type": "IMAGE",
+    "imageHash": "66d2f5d4b8e46702da7f063e9804910966dd5fa6",
+    "width": 180,
+    "height": 100
+  },
+  {
+    "nodeId": "36:3106",
+    "nodeName": "Icona / GAME JAMS & EXPERIMENTAL TITLES",
+    "type": "VECTOR",
+    "width": 180,
+    "height": 100
+  },
+  {
+    "nodeId": "17:7051",
+    "nodeName": "Icona / 42 Roma ELIS",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:7080",
+    "nodeName": "Icona / ITS Lazio Digital",
+    "type": "IMAGE",
+    "imageHash": "7fed08166190bcd914b83a6fdfe8b28330e56267",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:7080",
+    "nodeName": "Icona / ITS Lazio Digital",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:7109",
+    "nodeName": "Icona / ITIS Alessandro Volta",
+    "type": "IMAGE",
+    "imageHash": "3c8e87db2b1545d7045cce47fa9d4c3689f43e8b",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:7109",
+    "nodeName": "Icona / ITIS Alessandro Volta",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:7137",
+    "nodeName": "Icona / ISAS Videogames Academy",
+    "type": "IMAGE",
+    "imageHash": "10f8c9915824d3a8482ad3a642ebb832c812d61a",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "17:7137",
+    "nodeName": "Icona / ISAS Videogames Academy",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "65:894",
+    "nodeName": "Icona / Skill Factory",
+    "type": "IMAGE",
+    "imageHash": "3c8e87db2b1545d7045cce47fa9d4c3689f43e8b",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "65:894",
+    "nodeName": "Icona / Skill Factory",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "65:924",
+    "nodeName": "Icona / Protom",
+    "type": "IMAGE",
+    "imageHash": "10f8c9915824d3a8482ad3a642ebb832c812d61a",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "65:924",
+    "nodeName": "Icona / Protom",
+    "type": "IMAGE",
+    "imageHash": "925a27742bcc95a9a1a00149015a08aaf052f45b",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "65:924",
+    "nodeName": "Icona / Protom",
+    "type": "VECTOR",
+    "width": 40,
+    "height": 40
+  },
+  {
+    "nodeId": "37:3142",
+    "nodeName": "Icona / Epass 7 Moduli User",
+    "type": "IMAGE",
+    "imageHash": "b12d7b877e0de82f27c4873a9a28285955916248",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "nodeId": "37:3142",
+    "nodeName": "Icona / Epass 7 Moduli User",
+    "type": "VECTOR",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "nodeId": "37:3143",
+    "nodeName": "Icone / Epass 7 Moduli User",
+    "type": "VECTOR",
+    "width": 119,
+    "height": 15
+  },
+  {
+    "nodeId": "37:3148",
+    "nodeName": "Icona / NDG Linux Unhatched",
+    "type": "IMAGE",
+    "imageHash": "8d6fb627f2fa41db7d44cf2d4235046dddc72735",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "nodeId": "37:3148",
+    "nodeName": "Icona / NDG Linux Unhatched",
+    "type": "VECTOR",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "nodeId": "37:3149",
+    "nodeName": "Icone / NDG Linux Unhatched",
+    "type": "VECTOR",
+    "width": 129,
+    "height": 15
+  },
+  {
+    "nodeId": "37:3154",
+    "nodeName": "Icona / Gaming Week",
+    "type": "IMAGE",
+    "imageHash": "424dc03d12cf9cd0e19bb99fb3898b26daa0461b",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "nodeId": "37:3154",
+    "nodeName": "Icona / Gaming Week",
+    "type": "VECTOR",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "nodeId": "37:3156",
+    "nodeName": "Icone / Gaming Week",
+    "type": "VECTOR",
+    "width": 82,
+    "height": 15
+  },
+  {
+    "nodeId": "44:4008",
+    "nodeName": "Icone / 01 // GIOCHI PREFERITI",
+    "type": "VECTOR",
+    "width": 198,
+    "height": 16
+  },
+  {
+    "nodeId": "44:4022",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "01473f310f3624f5c1168fa2ffcb5baca2ea293d",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4024",
+    "nodeName": "Icone / ACTION / NARRATIVE",
+    "type": "VECTOR",
+    "width": 109,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4031",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "8dcf5f30ea02614c2f57d70ba3a11e457bbc74e2",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4033",
+    "nodeName": "Icone / SCI-FI RPG",
+    "type": "VECTOR",
+    "width": 62,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4040",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "8546197998787a06c05315f6a18b7c8105e610ca",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4042",
+    "nodeName": "Icone / COVER SHOOTER",
+    "type": "VECTOR",
+    "width": 92,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4052",
+    "nodeName": "Icone / 02 // FILM DI RIFERIMENTO",
+    "type": "VECTOR",
+    "width": 135,
+    "height": 16
+  },
+  {
+    "nodeId": "44:4067",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "0d5896b3e07fe3603442a01e4aa515e4896222bc",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4069",
+    "nodeName": "Icone / CYBERPUNK NEO-NOIR",
+    "type": "VECTOR",
+    "width": 118,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4076",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "fbca5fd27f4e85ee5e0f59a701d08d7f8e0aaa49",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4078",
+    "nodeName": "Icone / DYSTOPIA / REGIA",
+    "type": "VECTOR",
+    "width": 96,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4085",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "e36a86f445d059aaa2dba06c2999013707dea765",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4087",
+    "nodeName": "Icone / HARD SCI-FI / SPAZIO",
+    "type": "VECTOR",
+    "width": 111,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4094",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "2b75d6036b0a62e3fd731abc229e0e2586ed5bdb",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4096",
+    "nodeName": "Icone / SURVIVAL APOCALYPSE",
+    "type": "VECTOR",
+    "width": 123,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4106",
+    "nodeName": "Icone / 03 // SERIE TV",
+    "type": "VECTOR",
+    "width": 223,
+    "height": 16
+  },
+  {
+    "nodeId": "44:4120",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "a93e9c894be22c77ebd96b9f442c845c5f55a3f4",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4122",
+    "nodeName": "Icone / UTOPIAN SCI-FI",
+    "type": "VECTOR",
+    "width": 85,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4129",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "1e8c54df8b103a29998effe99336a14dbc28e12e",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4131",
+    "nodeName": "Icone / THRILLER PSICOLOGICO",
+    "type": "VECTOR",
+    "width": 122,
+    "height": 17
+  },
+  {
+    "nodeId": "44:4138",
+    "nodeName": "Immagine / Copertina",
+    "type": "IMAGE",
+    "imageHash": "0da16e1f4d287340657c56ab76e206eaaf056f20",
+    "width": 100,
+    "height": 145
+  },
+  {
+    "nodeId": "44:4140",
+    "nodeName": "Icone / ANIMATION / STEAMPUNK",
+    "type": "VECTOR",
+    "width": 132,
+    "height": 17
+  },
+  {
+    "nodeId": "65:745",
+    "nodeName": "Runner / Sfondo",
+    "type": "VECTOR",
+    "width": 1309,
+    "height": 170
+  },
+  {
+    "nodeId": "65:748",
+    "nodeName": "Runner / Linea terreno",
+    "type": "VECTOR",
+    "width": 1248,
+    "height": 0
+  },
+  {
+    "nodeId": "65:749",
+    "nodeName": "Runner / Traccia terreno 03",
+    "type": "VECTOR",
+    "width": 9,
+    "height": 3
+  },
+  {
+    "nodeId": "65:750",
+    "nodeName": "Runner / Traccia terreno 04",
+    "type": "VECTOR",
+    "width": 5,
+    "height": 3
+  },
+  {
+    "nodeId": "65:751",
+    "nodeName": "Runner / Traccia terreno 05",
+    "type": "VECTOR",
+    "width": 11,
+    "height": 3
+  },
+  {
+    "nodeId": "65:752",
+    "nodeName": "Runner / Traccia terreno 06",
+    "type": "VECTOR",
+    "width": 7,
+    "height": 3
+  },
+  {
+    "nodeId": "65:753",
+    "nodeName": "Runner / Traccia terreno 07",
+    "type": "VECTOR",
+    "width": 9,
+    "height": 3
+  },
+  {
+    "nodeId": "65:754",
+    "nodeName": "Runner / Traccia terreno 08",
+    "type": "VECTOR",
+    "width": 5,
+    "height": 3
+  },
+  {
+    "nodeId": "65:755",
+    "nodeName": "Runner / Traccia terreno 09",
+    "type": "VECTOR",
+    "width": 11,
+    "height": 3
+  },
+  {
+    "nodeId": "65:757",
+    "nodeName": "Runner / Visore 01",
+    "type": "VECTOR",
+    "width": 25,
+    "height": 18
+  },
+  {
+    "nodeId": "65:758",
+    "nodeName": "Runner / Corpo 02",
+    "type": "VECTOR",
+    "width": 16,
+    "height": 7
+  },
+  {
+    "nodeId": "65:759",
+    "nodeName": "Runner / Braccio 03",
+    "type": "VECTOR",
+    "width": 20,
+    "height": 16
+  },
+  {
+    "nodeId": "65:760",
+    "nodeName": "Runner / Gamba sinistra 04",
+    "type": "VECTOR",
+    "width": 7,
+    "height": 11
+  },
+  {
+    "nodeId": "65:761",
+    "nodeName": "Runner / Gamba destra 05",
+    "type": "VECTOR",
+    "width": 7,
+    "height": 7
+  },
+  {
+    "nodeId": "65:763",
+    "nodeName": "Runner / Sagoma 01",
+    "type": "VECTOR",
+    "width": 14,
+    "height": 36
+  },
+  {
+    "nodeId": "65:764",
+    "nodeName": "Runner / Sagoma 02",
+    "type": "VECTOR",
+    "width": 27,
+    "height": 9
+  },
+  {
+    "nodeId": "65:766",
+    "nodeName": "Runner / Sagoma 01",
+    "type": "VECTOR",
+    "width": 33,
+    "height": 31
+  },
+  {
+    "nodeId": "65:768",
+    "nodeName": "Runner / Sagoma 01",
+    "type": "VECTOR",
+    "width": 20,
+    "height": 27
+  },
+  {
+    "nodeId": "65:769",
+    "nodeName": "Runner / Sagoma 02",
+    "type": "VECTOR",
+    "width": 23,
+    "height": 34
+  }
+]
