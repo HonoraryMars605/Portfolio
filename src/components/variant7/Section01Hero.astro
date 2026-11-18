@@ -1,5 +1,4 @@
 ---
-import RotatingDispatch from "./RotatingDispatch.astro"
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 import SwissMetricsLedger from "./SwissMetricsLedger.astro"
 ---
@@ -20,86 +19,39 @@ import SwissMetricsLedger from "./SwissMetricsLedger.astro"
       </span>
     </div>
 
-    <!-- Presentazione / Contenuto e immagine (Figma 17:6668) -->
+    <!-- Presentazione / Contenuto e immagine (Figma 83:257) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       <!-- Presentazione / Profilo (Left 7 cols) -->
-      <div class="lg:col-span-7 flex flex-col gap-4 sm:gap-5">
+      <div class="lg:col-span-7 flex flex-col gap-4">
         <!-- Presentazione / Nome e ruolo -->
-        <div class="flex flex-col gap-1.5">
-          <h1 class="text-4xl sm:text-5xl lg:text-[52px] font-extrabold leading-[1.08] text-[#0F172A] dark:text-white tracking-[-0.03em] m-0">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-4xl sm:text-5xl lg:text-[52px] leading-[56px] text-[#0F172A] dark:text-white tracking-[-0.02em] m-0 font-heading">
             VALERIO COMELLA
           </h1>
-          <h2 class="text-lg sm:text-[20px] font-semibold text-[#8B1E2D] dark:text-red-400 tracking-[-0.01em] m-0">
+          <h2 class="text-lg sm:text-[20px] font-semibold text-[#8B1E2D] dark:text-red-400 tracking-[-0.005em] m-0">
             SOFTWARE ENGINEER | UNITY (C#) &amp; FULL STACK DEVELOPER
           </h2>
         </div>
 
-        <!-- Rotating Editorial Dispatch Ticker -->
-        <RotatingDispatch />
-
         <!-- Biografia -->
-        <p class="text-[14px] sm:text-[15px] leading-[1.6] text-[#334155] dark:text-gray-300 m-0">
+        <p class="text-[14px] sm:text-[15px] leading-[24px] text-[#334155] dark:text-gray-300 m-0 max-w-xl">
           Unity Developer specializzato in <strong class="text-[#0F172A] dark:text-white font-semibold">C#</strong>, con esperienza nello sviluppo di <strong class="text-[#0F172A] dark:text-white font-semibold">applicazioni interattive</strong>, soluzioni Mixed Reality e prodotti B2B. Solida formazione in <strong class="text-[#0F172A] dark:text-white font-semibold">Game Development e Mixed Reality (ITS EQF5)</strong>, con competenze Full Stack.
         </p>
-
-        <!-- Azioni Rapide / Quick Actions -->
-        <div class="flex flex-wrap items-center gap-3 pt-1">
-          <a
-            href="mailto:valeriocom@hotmail.it"
-            class="px-5 py-2.5 rounded-[8px] bg-[#8B1E2D] hover:bg-[#6e1622] text-white text-[12px] font-bold tracking-wide transition-all shadow-sm no-underline active:scale-95"
-          >
-            Contatta Subito (valeriocom@hotmail.it)
-          </a>
-          <button
-            type="button"
-            data-nav-target="04"
-            class="nav-jump-btn px-5 py-2.5 rounded-[8px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#0F172A] dark:hover:border-white text-[#0F172A] dark:text-white text-[12px] font-bold transition-all shadow-2xs cursor-pointer active:scale-95"
-          >
-            Esplora Progetti (6 Shipped)
-          </button>
-          <button
-            type="button"
-            class="btn-view-pdf px-4 py-2.5 rounded-[8px] bg-[#F9FAFB] dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-[#334155] dark:text-gray-200 text-[11.5px] font-bold transition-all cursor-pointer active:scale-95"
-          >
-            Visualizza CV (PDF)
-          </button>
-        </div>
       </div>
 
       <!-- Immagine / Presentazione (Right 5 cols) -->
-      <div class="lg:col-span-5 flex justify-center lg:justify-end">
-        <div class="relative w-full max-w-[480px] lg:max-w-[504px] h-[360px] sm:h-[400px] lg:h-[420px] rounded-[16px] overflow-hidden border border-gray-200 dark:border-gray-800 shadow-md flex flex-col justify-end p-4 group">
-          <!-- Background Artwork -->
-          <img
-            src="/assets/variant7/17_6705_Immagine___Presentazione.png"
-            alt="Valerio Comella - Setup Retro Artwork"
-            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="eager"
-          />
-
-          <!-- Gradient overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-
-          <!-- Card Metadata Overlay -->
-          <div class="relative z-10 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700 rounded-[12px] p-3.5 flex flex-col gap-1 shadow-lg">
-            <span class="text-[12px] font-bold text-[#0F172A] dark:text-white uppercase tracking-wider">
-              VALERIO COMELLA · SOFTWARE &amp; GAME ENGINEER
-            </span>
-            <span class="text-[11px] font-medium text-[#334155] dark:text-gray-300">
-              📍 Roma, Italia · Nato a Napoli (23 Luglio 2002) · Patente B
-            </span>
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-semibold text-[#8B1E2D] dark:text-red-400 pt-0.5">
-              <span>✉️ valeriocom@hotmail.it</span>
-              <span>📞 3339959271</span>
-              <span>🌐 Italiano (Madrelingua) / Inglese (A2)</span>
-            </div>
-          </div>
-        </div>
+      <div class="lg:col-span-5 flex justify-center lg:justify-end items-center">
+        <img
+          src="/assets/variant7/hero-monitor-stand.png"
+          alt="Valerio Comella - Setup Monitor"
+          class="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-[460px] object-contain drop-shadow-md select-none"
+          loading="eager"
+        />
       </div>
     </div>
 
     <!-- Metriche / Griglia riepilogativa (Figma 63:322 - 8 Cards Swiss Metrics Ledger) -->
-    <div class="pt-2 border-t border-gray-200/80 dark:border-gray-800">
+    <div class="pt-2">
       <SwissMetricsLedger />
     </div>
   </div>
