@@ -88,13 +88,16 @@ const series = [
     image: "/assets/variant7/44_4138_Immagine___Copertina.png"
   }
 ]
+
+import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 ---
 
 <section
   id="section-06"
-  class="section-slide w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
 >
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-5">
+  <SectionPatternCanvas theme="abstract" />
+  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-5 relative z-10">
     <!-- Section Editorial Header (Figma 44:3994 & 44:3993) -->
     <div class="flex flex-col gap-1.5 pb-2">
       <div class="flex items-center gap-3">

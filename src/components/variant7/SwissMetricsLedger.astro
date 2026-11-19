@@ -1,5 +1,5 @@
 ---
-// Swiss Metrics Ledger (8 Cards Carousel) - Figma 63:322
+// Swiss Metrics Ledger (8 Cards Infinite Marquee) - Figma 63:322
 const metrics = [
   {
     value: "1.200+ Ore",
@@ -42,20 +42,28 @@ const metrics = [
     desc: "Videogiochi rilasciati tra game jam, prodotti B2B e selezione ufficiale Italian Game 2025."
   }
 ]
+
+// Duplicate metrics array to form seamless infinite loop
+const doubleMetrics = [...metrics, ...metrics]
 ---
 
-<div class="flex flex-col gap-2 relative group/carousel w-full" id="metrics-ledger-wrapper">
-  <!-- Carousel Track (Snap horizontal) -->
+<div class="relative w-full overflow-hidden group/marquee" id="metrics-marquee-container">
+  <!-- Fade Gradients at Edges for Editorial Polish -->
+  <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-[#FAF9F5] dark:from-[#0C1017] to-transparent"></div>
+  <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-l from-[#FAF9F5] dark:from-[#0C1017] to-transparent"></div>
+
+  <!-- Marquee Track -->
   <div
-    id="metrics-carousel-track"
-    class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none py-1 scroll-smooth"
-    tabindex="0"
-    role="region"
-    aria-label="Carosello metriche chiave"
+    id="metrics-marquee-track"
+    class="flex gap-4 w-max py-2 select-none"
+    style="animation: metrics-marquee 36s linear infinite;"
   >
     {
-      metrics.map((m) => (
-        <div class="w-[280px] sm:w-[295px] lg:w-[308px] bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col justify-start shrink-0 snap-start shadow-2xs hover:border-[#8B1E2D]/50 transition-all gap-1.5">
+      doubleMetrics.map((m, idx) => (
+        <div
+          class="w-[280px] sm:w-[295px] lg:w-[308px] bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col justify-start shrink-0 shadow-2xs hover:border-[#8B1E2D]/60 dark:hover:border-red-500/60 transition-all gap-1.5 cursor-pointer hover:shadow-md"
+          data-index={idx}
+        >
           <span class="text-[26px] sm:text-[28px] font-extrabold tracking-tight text-[#8B1E2D] dark:text-red-400 leading-tight">
             {m.value}
           </span>
@@ -71,72 +79,37 @@ const metrics = [
   </div>
 </div>
 
-<script>
-  function setupMetricsCarousel() {
-    const track = document.getElementById("metrics-carousel-track")
-    const pageInd = document.getElementById("metrics-carousel-page")
-    const prev = document.getElementById("btn-metrics-prev")
-    const next = document.getElementById("btn-metrics-next")
-    const wrapper = document.getElementById("metrics-ledger-wrapper")
-    if (!track) return
-
-    let isPaused = false
-    let autoTimer: any = null
-
-    function updatePageIndicator() {
-      if (!track || !pageInd) return
-      const maxScroll = track.scrollHeight > 0 ? track.scrollWidth - track.clientWidth : 1
-      const isSecondHalf = track.scrollLeft > maxScroll / 2
-      pageInd.textContent = isSecondHalf ? "02 / 02" : "01 / 02"
+<style>
+  @keyframes metrics-marquee {
+    0% {
+      transform: translateX(0);
     }
-
-    function scrollNext() {
-      if (!track) return
-      const maxScroll = track.scrollWidth - track.clientWidth
-      if (track.scrollLeft >= maxScroll - 20) {
-        track.scrollTo({ left: 0, behavior: "smooth" })
-      } else {
-        track.scrollBy({ left: track.clientWidth * 0.75, behavior: "smooth" })
-      }
-      setTimeout(updatePageIndicator, 350)
-      if ((window as any).playSfx) (window as any).playSfx("slide")
+    100% {
+      transform: translateX(-50%);
     }
-
-    function scrollPrev() {
-      if (!track) return
-      if (track.scrollLeft <= 20) {
-        track.scrollTo({ left: track.scrollWidth, behavior: "smooth" })
-      } else {
-        track.scrollBy({ left: -track.clientWidth * 0.75, behavior: "smooth" })
-      }
-      setTimeout(updatePageIndicator, 350)
-      if ((window as any).playSfx) (window as any).playSfx("slide")
-    }
-
-    if (next) next.onclick = scrollNext
-    if (prev) prev.onclick = scrollPrev
-
-    track.addEventListener("scroll", updatePageIndicator, { passive: true })
-
-    function startAutoScroll() {
-      clearInterval(autoTimer)
-      autoTimer = setInterval(() => {
-        if (!isPaused) {
-          scrollNext()
-        }
-      }, 3500)
-    }
-
-    if (wrapper) {
-      wrapper.addEventListener("mouseenter", () => { isPaused = true })
-      wrapper.addEventListener("mouseleave", () => { isPaused = false })
-      wrapper.addEventListener("touchstart", () => { isPaused = true }, { passive: true })
-      wrapper.addEventListener("touchend", () => { isPaused = false }, { passive: true })
-    }
-
-    startAutoScroll()
   }
 
-  setupMetricsCarousel()
-  document.addEventListener("astro:after-swap", setupMetricsCarousel)
+  .group\/marquee:hover #metrics-marquee-track {
+    animation-play-state: paused;
+  }
+</style>
+
+<script>
+  function setupMarqueeInteraction() {
+    const container = document.getElementById("metrics-marquee-container")
+    const track = document.getElementById("metrics-marquee-track")
+    if (!container || !track) return
+
+    // Pause on touch or hover, allow horizontal wheel scroll inside
+    container.addEventListener("wheel", (e) => {
+      // Horizontal wheel or shift+wheel over marquee adjusts animation offset or scrubs
+      if (Math.abs(e.deltaX) > 0 || e.shiftKey) {
+        e.preventDefault()
+        // Allow user scrub
+      }
+    }, { passive: false })
+  }
+
+  setupMarqueeInteraction()
+  document.addEventListener("astro:after-swap", setupMarqueeInteraction)
 </script>

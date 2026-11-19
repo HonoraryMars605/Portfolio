@@ -37,6 +37,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
       rel="stylesheet"
     />
 
+    <!-- Prevent Dark Mode Flicker / Hydrate Theme before paint -->
+    <script is:inline>
+      (function () {
+        try {
+          const savedTheme = localStorage.getItem("theme")
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+          if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add("dark")
+            document.documentElement.setAttribute("data-theme", "dark")
+          } else {
+            document.documentElement.classList.remove("dark")
+            document.documentElement.setAttribute("data-theme", "light")
+          }
+        } catch (e) {}
+      })()
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
@@ -51,7 +68,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
         --color-editorial-text: #111827;
       }
 
-      html.dark {
+      html.dark,
+      html[data-theme="dark"] {
         --color-editorial-bg: #0C1017;
         --color-editorial-accent: #B91C1C;
         --color-editorial-dark: #FFFFFF;

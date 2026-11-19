@@ -1,19 +1,30 @@
 ---
+// Procedural Web Audio Engine: Interactive SFX + Procedural Ambient Background Music (BGM)
 ---
 
 <script>
   class ProceduralSoundEngine {
     private ctx: AudioContext | null = null
     public isMuted: boolean = false
+    private ambientGain: GainNode | null = null
+    private ambientOscs: OscillatorNode[] = []
+    private isAmbientRunning: boolean = false
 
     constructor() {
       // Check stored mute preference
       const savedMute = sessionStorage.getItem("portfolio_sfx_muted")
       this.isMuted = savedMute === "true"
 
-      // Attach global click & hover handlers
-      document.addEventListener("pointerdown", () => this.initContext(), { once: true })
-      document.addEventListener("keydown", () => this.initContext(), { once: true })
+      // Attach first interaction triggers to initialize AudioContext
+      const startOnInteraction = () => {
+        this.initContext()
+        if (!this.isMuted && !this.isAmbientRunning) {
+          this.startAmbient()
+        }
+      }
+
+      document.addEventListener("pointerdown", startOnInteraction, { once: true })
+      document.addEventListener("keydown", startOnInteraction, { once: true })
 
       this.setupAutoTriggers()
     }
@@ -33,12 +44,111 @@
     public toggleMute(): boolean {
       this.isMuted = !this.isMuted
       sessionStorage.setItem("portfolio_sfx_muted", String(this.isMuted))
-      if (!this.isMuted) {
+
+      if (this.isMuted) {
+        this.stopAmbient()
+      } else {
+        this.initContext()
+        this.startAmbient()
         this.playHover()
       }
       return this.isMuted
     }
 
+    /**
+     * Procedural Ambient Background Music (BGM)
+     * Generates a warm, evolving generative ambient pad using detuned oscillators,
+     * lowpass ladder filter, and slow breathing LFO modulation.
+     */
+    public startAmbient() {
+      if (this.isMuted) return
+      this.initContext()
+      if (!this.ctx) return
+      if (this.isAmbientRunning) return
+
+      try {
+        const now = this.ctx.currentTime
+
+        // Master Ambient Gain Node
+        this.ambientGain = this.ctx.createGain()
+        this.ambientGain.gain.setValueAtTime(0.0001, now)
+        this.ambientGain.gain.exponentialRampToValueAtTime(0.022, now + 2.5) // Gentle non-intrusive volume (~0.022)
+
+        // Master Lowpass Filter for warm, analog tape-style pad
+        const filter = this.ctx.createBiquadFilter()
+        filter.type = "lowpass"
+        filter.frequency.setValueAtTime(420, now)
+
+        // LFO for slow timbral breathing (0.08 Hz)
+        const lfo = this.ctx.createOscillator()
+        const lfoGain = this.ctx.createGain()
+        lfo.type = "sine"
+        lfo.frequency.setValueAtTime(0.08, now)
+        lfoGain.gain.setValueAtTime(140, now) // Modulates cutoff between 280Hz - 560Hz
+        lfo.connect(lfoGain)
+        lfoGain.connect(filter.frequency)
+        lfo.start(now)
+
+        // Chords: Pentatonic / Dorian Ambient Drone (C3, G3, D4, E4)
+        const freqs = [130.81, 196.00, 293.66, 329.63]
+        this.ambientOscs = []
+
+        freqs.forEach((freq, idx) => {
+          if (!this.ctx || !this.ambientGain) return
+          // Twin detuned oscillators for chorus shimmer
+          const osc1 = this.ctx.createOscillator()
+          const osc2 = this.ctx.createOscillator()
+
+          osc1.type = idx % 2 === 0 ? "sine" : "triangle"
+          osc2.type = "sine"
+
+          osc1.frequency.setValueAtTime(freq, now)
+          osc2.frequency.setValueAtTime(freq * 1.0035, now) // subtle detune
+
+          const voiceGain = this.ctx.createGain()
+          voiceGain.gain.setValueAtTime(0.25, now)
+
+          osc1.connect(voiceGain)
+          osc2.connect(voiceGain)
+          voiceGain.connect(filter)
+
+          osc1.start(now)
+          osc2.start(now)
+
+          this.ambientOscs.push(osc1, osc2)
+        })
+
+        filter.connect(this.ambientGain)
+        this.ambientGain.connect(this.ctx.destination)
+        this.isAmbientRunning = true
+      } catch (e) {
+        console.warn("Ambient BGM failed to start", e)
+      }
+    }
+
+    public stopAmbient() {
+      if (!this.ctx || !this.ambientGain || !this.isAmbientRunning) return
+      try {
+        const now = this.ctx.currentTime
+        this.ambientGain.gain.setValueAtTime(this.ambientGain.gain.value, now)
+        this.ambientGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2)
+
+        setTimeout(() => {
+          this.ambientOscs.forEach((osc) => {
+            try {
+              osc.stop()
+              osc.disconnect()
+            } catch (e) {}
+          })
+          this.ambientOscs = []
+          this.isAmbientRunning = false
+        }, 1300)
+      } catch (e) {
+        this.isAmbientRunning = false
+      }
+    }
+
+    // Interactive SFX
     public playHover() {
       if (this.isMuted) return
       this.initContext()

@@ -1,5 +1,6 @@
 ---
 // Runner / Anteprima Dinamica - Figma 65:744 (1311x172)
+// Supporta Avvio (Play), Pausa (Pause), Stop (Reset) e modalità Auto/Manuale
 ---
 
 <div
@@ -11,24 +12,59 @@
 >
   <!-- HUD Header Overlay -->
   <div class="absolute top-2 inset-x-4 z-20 flex items-center justify-between pointer-events-none text-[10px] sm:text-[11px] font-sans">
-    <!-- Runner / Stato (Figma 65:746) -->
+    <!-- Runner / Status & Controls (Figma 65:746) -->
     <div class="flex items-center gap-2 pointer-events-auto">
-      <span class="w-2 h-2 rounded-full bg-[#8B1E2D] animate-ping"></span>
-      <span id="runner-mode-badge" class="font-bold tracking-wider uppercase text-[#8B1E2D] dark:text-red-400">
-        AUTO_RUNNER // IDLE_BUILD
+      <span id="runner-ping-dot" class="w-2 h-2 rounded-full bg-[#8B1E2D] animate-ping"></span>
+      <span id="runner-mode-badge" class="font-bold tracking-wider uppercase text-[#8B1E2D] dark:text-red-400 font-mono text-[10px]">
+        AUTO_RUNNER // RUNNING
       </span>
+
+      <!-- Controls: Play, Pause, Stop -->
+      <div class="flex items-center gap-1 ml-2">
+        <button
+          type="button"
+          id="runner-btn-play"
+          class="inline-flex items-center gap-1 px-2 py-0.5 rounded-[4px] bg-[#8B1E2D] hover:bg-[#701622] text-white font-mono text-[9.5px] font-bold cursor-pointer transition-colors shadow-2xs active:scale-95"
+          title="Avvia o riprendi il runner"
+        >
+          <span>▶</span>
+          <span>AVVIA</span>
+        </button>
+
+        <button
+          type="button"
+          id="runner-btn-pause"
+          class="inline-flex items-center gap-1 px-2 py-0.5 rounded-[4px] bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-[#0F172A] dark:text-gray-200 font-mono text-[9.5px] font-bold cursor-pointer transition-colors shadow-2xs active:scale-95"
+          title="Metti in pausa il runner"
+        >
+          <span>⏸</span>
+          <span>PAUSA</span>
+        </button>
+
+        <button
+          type="button"
+          id="runner-btn-stop"
+          class="inline-flex items-center gap-1 px-2 py-0.5 rounded-[4px] bg-red-100 hover:bg-red-200 dark:bg-red-950/60 dark:hover:bg-red-900/80 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] font-bold cursor-pointer transition-colors shadow-2xs active:scale-95"
+          title="Ferma e ripristina il runner"
+        >
+          <span>⏹</span>
+          <span>STOP</span>
+        </button>
+      </div>
+
+      <!-- Mode Toggle (Auto / Manual) -->
       <button
         type="button"
         id="runner-toggle-mode"
         class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-[4px] bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] font-bold cursor-pointer hover:bg-red-100 transition-colors"
       >
-        MODALITÀ: AUTO (PREMI SPAZIO PER GIOCARE)
+        MODO: AUTO (CLICCA PER MANUALE)
       </button>
     </div>
 
     <!-- Runner / Distanza (Figma 65:747) -->
     <div class="flex items-center gap-3 font-mono">
-      <span class="text-gray-400 dark:text-gray-500 text-[10px] hidden sm:inline" id="runner-best-score">BEST: 00000m</span>
+      <span class="text-gray-400 dark:text-gray-500 text-[10px] hidden sm:inline" id="runner-best-score">BEST: 00042m</span>
       <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[4px] bg-gray-100 dark:bg-gray-800 text-[#0F172A] dark:text-gray-100 font-bold">
         <span>🏃</span>
         <span id="runner-distance">00042m</span>
@@ -38,8 +74,8 @@
 
   <!-- Interactive Hint Floating Pill -->
   <div class="absolute bottom-2.5 right-4 z-20 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity">
-    <span class="px-2 py-0.5 rounded-[4px] bg-[#8B1E2D]/10 dark:bg-red-950/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9px] font-bold">
-      [SPAZIO / CLICK PER SALTARE]
+    <span id="runner-control-hint" class="px-2 py-0.5 rounded-[4px] bg-[#8B1E2D]/10 dark:bg-red-950/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9px] font-bold">
+      [SPAZIO / CLICK SUL CANVAS PER SALTARE]
     </span>
   </div>
 
@@ -60,6 +96,12 @@
     const bestScoreEl = document.getElementById("runner-best-score")
     const modeBadge = document.getElementById("runner-mode-badge")
     const modeBtn = document.getElementById("runner-toggle-mode")
+    const pingDot = document.getElementById("runner-ping-dot")
+    const hintEl = document.getElementById("runner-control-hint")
+
+    const btnPlay = document.getElementById("runner-btn-play")
+    const btnPause = document.getElementById("runner-btn-pause")
+    const btnStop = document.getElementById("runner-btn-stop")
 
     if (!canvas || !container) return
     const rawCtx = canvas.getContext("2d")
@@ -71,20 +113,13 @@
     let cw = canvas.parentElement?.clientWidth || 1311
     const ch = 172
 
-    function resize() {
-      if (!canvas.parentElement) return
-      cw = canvas.parentElement.clientWidth
-      canvas.width = Math.round(cw * dpr)
-      canvas.height = Math.round(ch * dpr)
-    }
-    resize()
-    window.addEventListener("resize", resize)
-
-    // Game State
+    // Game Loop States: "running" | "paused" | "stopped"
+    let gameState: "running" | "paused" | "stopped" = "running"
     let distance = 42
     let bestScore = 42
     const speed = 4.2
     let isAutoMode = true
+    let animFrameId: number | null = null
 
     // Ground Configuration (matching Figma Linea terreno at y ~ 138)
     const groundY = 138
@@ -94,30 +129,31 @@
       x: number
       w: number
     }
-    const groundTicks: GroundTick[] = [
+    const initialTicks: GroundTick[] = [
       { x: 81, w: 9 },
       { x: 199, w: 5 },
       { x: 371, w: 11 },
-      { x: 542, w: 7 },
-      { x: 750, w: 9 },
-      { x: 945, w: 5 },
-      { x: 1153, w: 11 },
+      { x: 539, w: 11 },
+      { x: 747, w: 11 },
+      { x: 940, w: 6 },
+      { x: 1152, w: 14 },
     ]
+    let groundTicks: GroundTick[] = JSON.parse(JSON.stringify(initialTicks))
 
-    // Player State (Giocatore XR)
+    // Player Model (XR Rig Sprite)
     const player = {
-      x: 115,
-      y: groundY - 38,
+      x: 104,
+      y: 98,
       w: 28,
-      h: 38,
+      h: 40,
       vy: 0,
-      gravity: 0.72,
-      jumpForce: -11.5,
       isGrounded: true,
+      jumpForce: -9.5,
+      gravity: 0.48,
       legCycle: 0,
     }
 
-    // Obstacles State (bug, cube, double)
+    // Obstacles
     interface Obstacle {
       x: number
       y: number
@@ -126,190 +162,121 @@
       type: "bug" | "cube" | "double"
     }
 
-    let obstacles: Obstacle[] = [
-      { x: 480, y: groundY - 24, w: 24, h: 24, type: "bug" },
-      { x: 880, y: groundY - 26, w: 26, h: 26, type: "cube" },
-      { x: 1260, y: groundY - 28, w: 42, h: 28, type: "double" },
+    const initialObstacles: Obstacle[] = [
+      { x: 268, y: groundY - 32, w: 28, h: 32, type: "bug" },
+      { x: 597, y: groundY - 26, w: 26, h: 26, type: "cube" },
+      { x: 994, y: groundY - 28, w: 44, h: 28, type: "double" },
+      { x: 1400, y: groundY - 32, w: 28, h: 32, type: "bug" },
     ]
+    let obstacles: Obstacle[] = JSON.parse(JSON.stringify(initialObstacles))
+
+    function resetToInitial() {
+      distance = 0
+      player.x = 104
+      player.y = groundY - player.h
+      player.vy = 0
+      player.isGrounded = true
+      player.legCycle = 0
+      groundTicks = JSON.parse(JSON.stringify(initialTicks))
+      obstacles = JSON.parse(JSON.stringify(initialObstacles))
+      if (distanceEl) distanceEl.textContent = "00000m"
+    }
 
     function jump() {
+      if (gameState === "stopped") {
+        setRunning()
+      }
       if (player.isGrounded) {
         player.vy = player.jumpForce
         player.isGrounded = false
-        playJumpSfx()
+        if ((window as any).playSfx) (window as any).playSfx("hover")
       }
     }
 
-    function playJumpSfx() {
-      try {
-        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext
-        if (!AudioCtx) return
-        const actx = new AudioCtx()
-        const osc = actx.createOscillator()
-        const gain = actx.createGain()
-        osc.type = "sine"
-        osc.frequency.setValueAtTime(320, actx.currentTime)
-        osc.frequency.exponentialRampToValueAtTime(750, actx.currentTime + 0.12)
-        gain.gain.setValueAtTime(0.06, actx.currentTime)
-        gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.12)
-        osc.connect(gain)
-        gain.connect(actx.destination)
-        osc.start()
-        osc.stop(actx.currentTime + 0.12)
-      } catch {}
+    function setRunning() {
+      if (gameState === "stopped") {
+        resetToInitial()
+      }
+      gameState = "running"
+      if (modeBadge) {
+        modeBadge.textContent = isAutoMode ? "AUTO_RUNNER // RUNNING" : "MANUAL_RUNNER // ACTIVE"
+        modeBadge.className = "font-bold tracking-wider uppercase text-[#8B1E2D] dark:text-red-400 font-mono text-[10px]"
+      }
+      if (pingDot) pingDot.className = "w-2 h-2 rounded-full bg-[#8B1E2D] animate-ping"
+      if (hintEl) hintEl.textContent = isAutoMode ? "[MODALITÀ AUTO ATTIVA]" : "[SPAZIO / CLICK PER SALTARE]"
+      if (btnPlay) {
+        btnPlay.classList.add("bg-[#8B1E2D]", "text-white")
+        btnPlay.classList.remove("bg-gray-100", "text-[#0F172A]")
+      }
+      if ((window as any).playSfx) (window as any).playSfx("click")
+      if (!animFrameId) {
+        animFrameId = requestAnimationFrame(loop)
+      }
     }
 
-    function playHitSfx() {
-      try {
-        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext
-        if (!AudioCtx) return
-        const actx = new AudioCtx()
-        const osc = actx.createOscillator()
-        const gain = actx.createGain()
-        osc.type = "sawtooth"
-        osc.frequency.setValueAtTime(220, actx.currentTime)
-        osc.frequency.exponentialRampToValueAtTime(60, actx.currentTime + 0.18)
-        gain.gain.setValueAtTime(0.08, actx.currentTime)
-        gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.18)
-        osc.connect(gain)
-        gain.connect(actx.destination)
-        osc.start()
-        osc.stop(actx.currentTime + 0.18)
-      } catch {}
+    function setPaused() {
+      if (gameState === "stopped") return
+      gameState = "paused"
+      if (modeBadge) {
+        modeBadge.textContent = "RUNNER // PAUSED"
+        modeBadge.className = "font-bold tracking-wider uppercase text-amber-600 dark:text-amber-400 font-mono text-[10px]"
+      }
+      if (pingDot) pingDot.className = "w-2 h-2 rounded-full bg-amber-500"
+      if (hintEl) hintEl.textContent = "[GIOCO IN PAUSA - CLICCA AVVIA PER RIPRENDERE]"
+      if ((window as any).playSfx) (window as any).playSfx("click")
+      render()
     }
 
-    // Input Listeners
-    container.addEventListener("pointerdown", () => {
-      isAutoMode = false
-      updateHud()
+    function setStopped() {
+      gameState = "stopped"
+      resetToInitial()
+      if (modeBadge) {
+        modeBadge.textContent = "RUNNER // STOPPED"
+        modeBadge.className = "font-bold tracking-wider uppercase text-gray-500 dark:text-gray-400 font-mono text-[10px]"
+      }
+      if (pingDot) pingDot.className = "w-2 h-2 rounded-full bg-gray-400"
+      if (hintEl) hintEl.textContent = "[FERMATO - CLICCA AVVIA PER COMINCIARE]"
+      if ((window as any).playSfx) (window as any).playSfx("click")
+      render()
+    }
+
+    // Attach Button Handlers
+    if (btnPlay) btnPlay.onclick = setRunning
+    if (btnPause) btnPause.onclick = setPaused
+    if (btnStop) btnStop.onclick = setStopped
+
+    // Input Handlers
+    canvas.addEventListener("click", () => {
+      if (isAutoMode) {
+        isAutoMode = false
+        if (modeBtn) modeBtn.textContent = "MODO: MANUALE (PREMI SPAZIO)"
+      }
       jump()
     })
 
     window.addEventListener("keydown", (e) => {
-      // Check if user is scrolling or on this section
-      const activeEl = document.activeElement
-      if (activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA")) return
-      if (e.code === "Space") {
-        const rect = container.getBoundingClientRect()
-        // If in viewport
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          e.preventDefault()
+      if (e.code === "Space" && document.activeElement === container) {
+        e.preventDefault()
+        if (isAutoMode) {
           isAutoMode = false
-          updateHud()
-          jump()
+          if (modeBtn) modeBtn.textContent = "MODO: MANUALE (PREMI SPAZIO)"
         }
+        jump()
       }
     })
 
     if (modeBtn) {
-      modeBtn.onclick = (e) => {
-        e.stopPropagation()
+      modeBtn.onclick = () => {
         isAutoMode = !isAutoMode
-        updateHud()
+        modeBtn.textContent = isAutoMode ? "MODO: AUTO (CLICCA PER MANUALE)" : "MODO: MANUALE (PREMI SPAZIO)"
+        if (modeBadge && gameState === "running") {
+          modeBadge.textContent = isAutoMode ? "AUTO_RUNNER // RUNNING" : "MANUAL_RUNNER // ACTIVE"
+        }
+        if ((window as any).playSfx) (window as any).playSfx("click")
       }
     }
 
-    function updateHud() {
-      if (!modeBadge || !modeBtn) return
-      if (isAutoMode) {
-        modeBadge.textContent = "AUTO_RUNNER // IDLE_BUILD"
-        modeBadge.className = "font-bold tracking-wider uppercase text-[#8B1E2D] dark:text-red-400"
-        modeBtn.textContent = "MODALITÀ: AUTO (PREMI SPAZIO PER GIOCARE)"
-      } else {
-        modeBadge.textContent = "INTERACTIVE // RUNNING"
-        modeBadge.className = "font-bold tracking-wider uppercase text-emerald-600 dark:text-emerald-400"
-        modeBtn.textContent = "MODALITÀ: INTERATTIVA (AUTO DISATTIVATO)"
-      }
-    }
-
-    // Main Game Loop
-    let lastTime = performance.now()
-    function loop(time: number) {
-      const dt = Math.min((time - lastTime) / 1000, 0.05)
-      lastTime = time
-
-      // Distance increment
-      distance += speed * dt * 2.5
-      if (distanceEl) {
-        distanceEl.textContent = `${Math.floor(distance).toString().padStart(5, "0")}m`
-      }
-      if (distance > bestScore) {
-        bestScore = distance
-        if (bestScoreEl) {
-          bestScoreEl.textContent = `BEST: ${Math.floor(bestScore).toString().padStart(5, "0")}m`
-        }
-      }
-
-      // Physics
-      player.vy += player.gravity
-      player.y += player.vy
-      if (player.y >= groundY - player.h) {
-        player.y = groundY - player.h
-        player.vy = 0
-        player.isGrounded = true
-      }
-      player.legCycle += speed * dt * 8
-
-      // Ground ticks scroll
-      for (let i = 0; i < groundTicks.length; i++) {
-        groundTicks[i].x -= speed
-        if (groundTicks[i].x < -20) {
-          groundTicks[i].x = cw + Math.random() * 40
-        }
-      }
-
-      // Obstacles update & Auto-jump / Collision check
-      for (let i = 0; i < obstacles.length; i++) {
-        const obs = obstacles[i]
-        obs.x -= speed
-
-        // Auto jump AI logic
-        if (isAutoMode && player.isGrounded) {
-          const distToObs = obs.x - (player.x + player.w)
-          if (distToObs > 0 && distToObs < 65) {
-            jump()
-          }
-        }
-
-        // Collision Check
-        if (
-          player.x < obs.x + obs.w - 4 &&
-          player.x + player.w > obs.x + 4 &&
-          player.y < obs.y + obs.h - 4 &&
-          player.y + player.h > obs.y + 4
-        ) {
-          // Hit!
-          playHitSfx()
-          if (!isAutoMode) {
-            // Flash red on hit
-            distance = Math.max(0, distance - 20)
-            obs.x = cw + Math.random() * 200
-          }
-        }
-
-        // Recycle offscreen obstacles
-        if (obs.x < -60) {
-          const rightmostX = Math.max(...obstacles.map((o) => o.x))
-          obs.x = Math.max(rightmostX + 280 + Math.random() * 180, cw + 40)
-          const types: ("bug" | "cube" | "double")[] = ["bug", "cube", "double"]
-          obs.type = types[Math.floor(Math.random() * types.length)]
-          if (obs.type === "bug") {
-            obs.w = 24
-            obs.h = 24
-            obs.y = groundY - 24
-          } else if (obs.type === "cube") {
-            obs.w = 26
-            obs.h = 26
-            obs.y = groundY - 26
-          } else {
-            obs.w = 44
-            obs.h = 28
-            obs.y = groundY - 28
-          }
-        }
-      }
-
-      // Render
+    function render() {
       ctx.save()
       ctx.scale(dpr, dpr)
       ctx.clearRect(0, 0, cw, ch)
@@ -326,7 +293,7 @@
       ctx.lineWidth = 1.5
       ctx.stroke()
 
-      // Draw Ground Ticks (Figma 65:749-755)
+      // Draw Ground Ticks
       ctx.fillStyle = tickColor
       for (const tick of groundTicks) {
         if (tick.x >= 32 && tick.x <= cw - 32) {
@@ -353,15 +320,12 @@
       ctx.fillRect(2, 14, 4, 12)
 
       // Legs Animation
-      const legOffset = Math.sin(player.legCycle) * 4
+      const legOffset = gameState === "running" ? Math.sin(player.legCycle) * 4 : 0
       ctx.fillStyle = isDark ? "#CBD5E1" : "#334155"
       if (player.isGrounded) {
-        // Leg 1
         ctx.fillRect(8, 30, 4, 8 + legOffset)
-        // Leg 2
         ctx.fillRect(16, 30, 4, 8 - legOffset)
       } else {
-        // Jumping legs (bent)
         ctx.fillRect(7, 30, 4, 5)
         ctx.fillRect(17, 30, 4, 5)
       }
@@ -373,28 +337,22 @@
         ctx.translate(obs.x, obs.y)
 
         if (obs.type === "bug") {
-          // Bug Icon
           ctx.fillStyle = "#DC2626"
           ctx.fillRect(4, 4, 16, 16)
-          // Antennae
           ctx.fillRect(2, 0, 3, 4)
           ctx.fillRect(19, 0, 3, 4)
-          // Legs
           ctx.fillRect(0, 8, 3, 2)
           ctx.fillRect(21, 8, 3, 2)
           ctx.fillRect(0, 14, 3, 2)
           ctx.fillRect(21, 14, 3, 2)
-          // Inner Code Pixel
           ctx.fillStyle = "#FFFFFF"
           ctx.fillRect(8, 8, 8, 8)
         } else if (obs.type === "cube") {
-          // Isometric 3D Wireframe Cube
           ctx.fillStyle = isDark ? "#38BDF8" : "#0284C7"
           ctx.fillRect(2, 2, obs.w - 4, obs.h - 4)
           ctx.strokeStyle = isDark ? "#E0F2FE" : "#0C4A6E"
           ctx.lineWidth = 1.5
           ctx.strokeRect(2, 2, obs.w - 4, obs.h - 4)
-          // Inner Cross
           ctx.beginPath()
           ctx.moveTo(2, 2)
           ctx.lineTo(obs.w - 2, obs.h - 2)
@@ -402,7 +360,6 @@
           ctx.lineTo(2, obs.h - 2)
           ctx.stroke()
         } else {
-          // Double Obstacle (Two Staggered Prisms)
           ctx.fillStyle = "#8B1E2D"
           ctx.fillRect(2, 6, 18, obs.h - 6)
           ctx.fillStyle = "#B91C1C"
@@ -413,10 +370,94 @@
       }
 
       ctx.restore()
-      requestAnimationFrame(loop)
     }
 
-    requestAnimationFrame(loop)
+    function resize() {
+      if (!canvas.parentElement) return
+      cw = canvas.parentElement.clientWidth
+      canvas.width = Math.round(cw * dpr)
+      canvas.height = Math.round(ch * dpr)
+      render()
+    }
+    resize()
+    window.addEventListener("resize", resize)
+
+    // Main Game Loop
+    function loop() {
+      if (gameState === "running") {
+        // Distance Counter
+        distance += 0.2
+        if (distanceEl) {
+          distanceEl.textContent = `${Math.floor(distance).toString().padStart(5, "0")}m`
+        }
+        if (distance > bestScore) {
+          bestScore = Math.floor(distance)
+          if (bestScoreEl) {
+            bestScoreEl.textContent = `BEST: ${bestScore.toString().padStart(5, "0")}m`
+          }
+        }
+
+        // Physics
+        player.vy += player.gravity
+        player.y += player.vy
+        if (player.y >= groundY - player.h) {
+          player.y = groundY - player.h
+          player.vy = 0
+          player.isGrounded = true
+        }
+
+        player.legCycle += 0.22
+
+        // Move Ground Ticks
+        for (const tick of groundTicks) {
+          tick.x -= speed
+          if (tick.x + tick.w < 32) {
+            tick.x = cw - 32 + Math.random() * 40
+          }
+        }
+
+        // Move Obstacles & Auto-jump
+        for (const obs of obstacles) {
+          obs.x -= speed
+
+          // Auto-Jump Logic
+          if (isAutoMode) {
+            const distToObstacle = obs.x - (player.x + player.w)
+            if (distToObstacle > 0 && distToObstacle < 68 && player.isGrounded) {
+              jump()
+            }
+          }
+
+          // Respawn obstacle
+          if (obs.x + obs.w < 0) {
+            const maxObsX = Math.max(...obstacles.map((o) => o.x))
+            obs.x = Math.max(cw + 60, maxObsX + 280 + Math.random() * 200)
+
+            const types: ("bug" | "cube" | "double")[] = ["bug", "cube", "double"]
+            obs.type = types[Math.floor(Math.random() * types.length)]
+            if (obs.type === "bug") {
+              obs.w = 28
+              obs.h = 32
+              obs.y = groundY - 32
+            } else if (obs.type === "cube") {
+              obs.w = 26
+              obs.h = 26
+              obs.y = groundY - 26
+            } else {
+              obs.w = 44
+              obs.h = 28
+              obs.y = groundY - 28
+            }
+          }
+        }
+
+        render()
+      }
+
+      animFrameId = requestAnimationFrame(loop)
+    }
+
+    animFrameId = requestAnimationFrame(loop)
   }
 
   initRunner()

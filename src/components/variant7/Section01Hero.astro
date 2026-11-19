@@ -28,9 +28,12 @@ import SwissMetricsLedger from "./SwissMetricsLedger.astro"
           <h1 class="text-4xl sm:text-5xl lg:text-[52px] leading-[56px] text-[#0F172A] dark:text-white tracking-[-0.02em] m-0 font-heading">
             VALERIO COMELLA
           </h1>
-          <h2 class="text-lg sm:text-[20px] font-semibold text-[#8B1E2D] dark:text-red-400 tracking-[-0.005em] m-0">
-            SOFTWARE ENGINEER | UNITY (C#) &amp; FULL STACK DEVELOPER
-          </h2>
+          <div class="h-[32px] flex items-center">
+            <h2 class="text-lg sm:text-[20px] font-semibold text-[#8B1E2D] dark:text-red-400 tracking-[-0.005em] m-0 font-mono flex items-center">
+              <span id="hero-typewriter-text">Software Engineer</span>
+              <span id="hero-typewriter-cursor" class="inline-block w-[2px] h-[19px] bg-[#8B1E2D] dark:bg-red-400 ml-1 animate-pulse"></span>
+            </h2>
+          </div>
         </div>
 
         <!-- Biografia -->
@@ -56,3 +59,54 @@ import SwissMetricsLedger from "./SwissMetricsLedger.astro"
     </div>
   </div>
 </section>
+
+<script>
+  function setupTypewriter() {
+    const targetEl = document.getElementById("hero-typewriter-text")
+    if (!targetEl) return
+
+    const phrases = [
+      "Software Engineer",
+      "Game Developer",
+      "Unity Developer (C#)",
+      "VR/XR/MR Developer",
+      "42 Student"
+    ]
+
+    let phraseIndex = 0
+    let charIndex = phrases[0].length
+    let isDeleting = true
+
+    function tick() {
+      if (!targetEl) return
+      const currentPhrase = phrases[phraseIndex]
+
+      if (isDeleting) {
+        charIndex--
+        targetEl.textContent = currentPhrase.substring(0, charIndex)
+        if (charIndex <= 0) {
+          isDeleting = false
+          phraseIndex = (phraseIndex + 1) % phrases.length
+          window.setTimeout(tick, 350)
+          return
+        }
+        window.setTimeout(tick, 45)
+      } else {
+        charIndex++
+        targetEl.textContent = currentPhrase.substring(0, charIndex)
+        if (charIndex >= currentPhrase.length) {
+          isDeleting = true
+          window.setTimeout(tick, 1800)
+          return
+        }
+        window.setTimeout(tick, 85)
+      }
+    }
+
+    // Start typing cycle after initial pause on first text
+    window.setTimeout(tick, 2000)
+  }
+
+  setupTypewriter()
+  document.addEventListener("astro:after-swap", setupTypewriter)
+</script>
