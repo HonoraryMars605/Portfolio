@@ -1,0 +1,532 @@
+[
+  {
+    "id": "17:6663",
+    "name": "01 · Presentazione",
+    "type": "FRAME",
+    "x": 0,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "17:6664",
+        "name": "Intestazione / Riga sezione",
+        "type": "FRAME",
+        "x": 65,
+        "y": 368,
+        "width": 181,
+        "height": 34,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Badge sezione / 01 // CHI SONO?"
+        ]
+      },
+      {
+        "id": "17:6668",
+        "name": "Presentazione / Contenuto e immagine",
+        "type": "FRAME",
+        "x": 65,
+        "y": 434,
+        "width": 1312,
+        "height": 274,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Presentazione / Profilo",
+          "Immagine / Presentazione"
+        ]
+      },
+      {
+        "id": "63:322",
+        "name": "Metriche / Griglia riepilogativa",
+        "type": "FRAME",
+        "x": 65,
+        "y": 740,
+        "width": 1312,
+        "height": 140,
+        "childrenCount": 8,
+        "childrenNames": [
+          "Metrica / Perito Informatico · 100 / 100",
+          "Metrica / Esperienza Sul Campo · 4 Aziende",
+          "Metrica / Sviluppo XR & Unity(C#) · 1.200+ Ore",
+          "Metrica / Profilo T-Shaped · 12+ Linguaggi & Stack",
+          "Metrica / Diploma Tecnico Superiore · 101 / 110",
+          "Metrica / Sviluppo Web (Frontend + Backend) · 160 ore+ Ore",
+          "Metrica / Formazione Specialistica (XR, Game Dev & Full Stack) · 1.955 ore+",
+          "Metrica / Progetti & Produzioni B2B · 9 Titoli"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17:6710",
+    "name": "02 · Competenze",
+    "type": "FRAME",
+    "x": 1440,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "17:6712",
+        "name": "Badge sezione / 02 // COSA SO FARE?",
+        "type": "FRAME",
+        "x": 65,
+        "y": 334.5,
+        "width": 232,
+        "height": 34,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Numero e titolo / 02 // COSA SO FARE?"
+        ]
+      },
+      {
+        "id": "17:6711",
+        "name": "Intestazione / Titolo e descrizione",
+        "type": "FRAME",
+        "x": 65,
+        "y": 404.5,
+        "width": 1312,
+        "height": 65,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Titolo / Il mio Stack",
+          "Descrizione / Dal game programming alle architetture full-stack: la mappa completa delle"
+        ]
+      },
+      {
+        "id": "17:6733",
+        "name": "Competenze / Griglia categorie",
+        "type": "FRAME",
+        "x": 65,
+        "y": 505.5,
+        "width": 1312,
+        "height": 408,
+        "childrenCount": 3,
+        "childrenNames": [
+          "Categoria / Game development e motori",
+          "Categoria / Full stack development",
+          "Categoria / Workflow, strumenti e design"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17:6806",
+    "name": "03 · Esperienze professionali",
+    "type": "FRAME",
+    "x": 2880,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "17:6808",
+        "name": "Badge sezione / 03 // DOVE HO LAVORATO?",
+        "type": "FRAME",
+        "x": 65,
+        "y": 238.5,
+        "width": 291,
+        "height": 34,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Numero e titolo / 03 // DOVE HO LAVORATO?"
+        ]
+      },
+      {
+        "id": "17:6807",
+        "name": "Intestazione / Titolo e descrizione",
+        "type": "FRAME",
+        "x": 65,
+        "y": 308.5,
+        "width": 1312,
+        "height": 65,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Titolo / Esperienze Lavorative & Percorso Professionale",
+          "Descrizione / Le collaborazioni e esperienze professionali fino ad oggi"
+        ]
+      },
+      {
+        "id": "17:6812",
+        "name": "Esperienze / Griglia schede",
+        "type": "FRAME",
+        "x": 65,
+        "y": 409.5,
+        "width": 1312,
+        "height": 600,
+        "childrenCount": 6,
+        "childrenNames": [
+          "Esperienza / Skill Factory",
+          "Esperienza / L'ABCD Edutainment",
+          "Esperienza / Protom Group",
+          "Esperienza / Katabasi Studio",
+          "Esperienza / Modello futuro 01",
+          "Esperienza / Modello futuro 02"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17:6935",
+    "name": "04 · Progetti",
+    "type": "FRAME",
+    "x": 4320,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "17:6937",
+        "name": "Badge sezione / 04 // COSA HO CREATO?",
+        "type": "FRAME",
+        "x": 65,
+        "y": 65,
+        "width": 266,
+        "height": 34,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Numero e titolo / 04 // COSA HO CREATO?"
+        ]
+      },
+      {
+        "id": "17:6936",
+        "name": "Intestazione / Titolo e descrizione",
+        "type": "FRAME",
+        "x": 65,
+        "y": 135,
+        "width": 1312,
+        "height": 65,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Titolo / Portfolio Opere & Produzioni Videoludiche",
+          "Descrizione / Demo-prototipi sviluppati e co-sviluppati durante i mie percorsi di studio"
+        ]
+      },
+      {
+        "id": "17:6941",
+        "name": "Progetti / Elenco",
+        "type": "FRAME",
+        "x": 65,
+        "y": 236,
+        "width": 1312,
+        "height": 947,
+        "childrenCount": 4,
+        "childrenNames": [
+          "Progetti / Riga 01",
+          "Progetti / Riga 02",
+          "Progetto / Game jam, prototipi e portfolio web",
+          "Progetto / Modello futuro"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17:7040",
+    "name": "05 · Formazione e certificazioni",
+    "type": "FRAME",
+    "x": 5760,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "17:7042",
+        "name": "Badge sezione / 05 // COME MI SONO FORMATO?",
+        "type": "FRAME",
+        "x": 65,
+        "y": 97,
+        "width": 344,
+        "height": 34,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Numero e titolo / 05 // COME MI SONO FORMATO?"
+        ]
+      },
+      {
+        "id": "17:7041",
+        "name": "Intestazione / Titolo e descrizione",
+        "type": "FRAME",
+        "x": 65,
+        "y": 167,
+        "width": 1312,
+        "height": 65,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Titolo / Istruzione, Alta Formazione, Specializzazioni & Certificazioni",
+          "Descrizione / La mie esperienze di formazione e certifazioni, in costante aggiornamento"
+        ]
+      },
+      {
+        "id": "17:7046",
+        "name": "Formazione / Elenco",
+        "type": "FRAME",
+        "x": 65,
+        "y": 268,
+        "width": 1312,
+        "height": 883,
+        "childrenCount": 4,
+        "childrenNames": [
+          "Formazione / Riga 01",
+          "Formazione / Riga 02",
+          "Formazione / Riga 03",
+          "Certificazioni / Elenco"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17:7166",
+    "name": "06 · Interessi personali",
+    "type": "FRAME",
+    "x": 7200,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "44:3994",
+        "name": "Intestazione / Riga sezione",
+        "type": "FRAME",
+        "x": 49,
+        "y": 165.5,
+        "width": 254,
+        "height": 32,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Badge sezione / 06 · Interessi personali"
+        ]
+      },
+      {
+        "id": "44:3993",
+        "name": "Intestazione / Sezione",
+        "type": "FRAME",
+        "x": 49,
+        "y": 213.5,
+        "width": 1342,
+        "height": 40,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Intestazione / Titolo"
+        ]
+      },
+      {
+        "id": "44:4004",
+        "name": "Carosello / Giochi Preferiti",
+        "type": "FRAME",
+        "x": 49,
+        "y": 269.5,
+        "width": 1342,
+        "height": 245,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Carosello / Intestazione e controlli",
+          "Carosello / Elenco schede"
+        ]
+      },
+      {
+        "id": "44:4048",
+        "name": "Carosello / Film di Riferimento",
+        "type": "FRAME",
+        "x": 49,
+        "y": 530.5,
+        "width": 1342,
+        "height": 245,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Carosello / Intestazione e controlli",
+          "Carosello / Elenco schede"
+        ]
+      },
+      {
+        "id": "44:4102",
+        "name": "Carosello / Serie TV",
+        "type": "FRAME",
+        "x": 49,
+        "y": 791.5,
+        "width": 1342,
+        "height": 245,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Carosello / Intestazione e controlli",
+          "Carosello / Elenco schede"
+        ]
+      },
+      {
+        "id": "44:4146",
+        "name": "Interessi / Nota e aggiornamenti",
+        "type": "FRAME",
+        "x": 49,
+        "y": 1052.5,
+        "width": 1342,
+        "height": 38,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Testo / *È solo un assaggio: la lista completa andrebbe in overflow!",
+          "Testo / COMING SOON: NUOVE SEZIONI E LISTA IN AGGIORNAMENTO [+]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "65:614",
+    "name": "07 · Contatti e crediti",
+    "type": "FRAME",
+    "x": 8640,
+    "y": 0,
+    "width": 1440,
+    "height": 1256,
+    "children": [
+      {
+        "id": "65:616",
+        "name": "Badge sezione / 07 // RIMANIAMO IN CONTATTO?",
+        "type": "FRAME",
+        "x": 65,
+        "y": 452.5,
+        "width": 347,
+        "height": 34,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Numero e titolo / 07 // RIMANIAMO IN CONTATTO?"
+        ]
+      },
+      {
+        "id": "65:615",
+        "name": "Intestazione / Titolo e descrizione",
+        "type": "FRAME",
+        "x": 65,
+        "y": 522.5,
+        "width": 1312,
+        "height": 65,
+        "childrenCount": 2,
+        "childrenNames": [
+          "Titolo / Grazie per avere visitato il mio potfolio!",
+          "Descrizione / BUILT WITH ASTRO · TYPESCRIPT · TAILWIND CSS · NATIVE CANVAS & WEB AUDIO A"
+        ]
+      },
+      {
+        "id": "65:744",
+        "name": "Runner / Anteprima Dinamica",
+        "type": "FRAME",
+        "x": 65,
+        "y": 623.5,
+        "width": 1311,
+        "height": 172,
+        "childrenCount": 15,
+        "childrenNames": [
+          "Runner / Sfondo",
+          "Runner / Stato",
+          "Runner / Distanza",
+          "Runner / Linea terreno",
+          "Runner / Traccia terreno 03",
+          "Runner / Traccia terreno 04",
+          "Runner / Traccia terreno 05",
+          "Runner / Traccia terreno 06",
+          "Runner / Traccia terreno 07",
+          "Runner / Traccia terreno 08",
+          "Runner / Traccia terreno 09",
+          "Runner / Giocatore XR",
+          "Runner / Ostacolo bug",
+          "Runner / Ostacolo cubo",
+          "Runner / Ostacolo doppio"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "44:3818",
+    "name": "Navigazione / Barra laterale",
+    "type": "FRAME",
+    "x": 1384,
+    "y": 450,
+    "width": 45,
+    "height": 282,
+    "children": [
+      {
+        "id": "44:3820",
+        "name": "Navigazione / Precedente",
+        "type": "FRAME",
+        "x": 19.5,
+        "y": 13,
+        "width": 6,
+        "height": 28,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Icona / ‹"
+        ]
+      },
+      {
+        "id": "44:3822",
+        "name": "Navigazione / Indicatori sezione",
+        "type": "FRAME",
+        "x": 7,
+        "y": 47,
+        "width": 31,
+        "height": 188,
+        "childrenCount": 6,
+        "childrenNames": [
+          "Navigazione / Sezione 01",
+          "Navigazione / Sezione 02",
+          "Navigazione / Sezione 03",
+          "Navigazione / Sezione 04",
+          "Navigazione / Sezione 05",
+          "Navigazione / Sezione 06"
+        ]
+      },
+      {
+        "id": "44:3829",
+        "name": "Navigazione / Successivo",
+        "type": "FRAME",
+        "x": 19.5,
+        "y": 241,
+        "width": 6,
+        "height": 28,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Icona / ›"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "34:2795",
+    "name": "Navigazione / Barra superiore",
+    "type": "FRAME",
+    "x": 21,
+    "y": 28,
+    "width": 1400,
+    "height": 56,
+    "children": [
+      {
+        "id": "34:2796",
+        "name": "Identità / Marchio",
+        "type": "FRAME",
+        "x": 49,
+        "y": 1,
+        "width": 31,
+        "height": 54,
+        "childrenCount": 1,
+        "childrenNames": [
+          "Marchio / Monogramma VC"
+        ]
+      },
+      {
+        "id": "38:3784",
+        "name": "Navigazione / Preferenze e collegamenti",
+        "type": "FRAME",
+        "x": 862,
+        "y": 1,
+        "width": 489,
+        "height": 54,
+        "childrenCount": 6,
+        "childrenNames": [
+          "Preferenze / Audio",
+          "Preferenze / Tema",
+          "Preferenze / Lingua",
+          "Collegamento / CV",
+          "Collegamento / LinkedIn",
+          "Collegamento / GitHub"
+        ]
+      }
+    ]
+  }
+]

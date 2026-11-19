@@ -5,171 +5,199 @@ import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 
 <section
   id="section-02"
-  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full"
 >
   <SectionPatternCanvas theme="code" />
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-6 relative z-10">
+  <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-6 2xl:gap-8 relative z-10">
     <!-- Section Editorial Header -->
     <div class="flex flex-col gap-1.5 pb-2">
       <div class="flex items-center gap-3">
-        <div class="inline-flex items-center px-3 py-1 rounded-[6px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] tracking-wide font-mono">
+        <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
           02 // COSA SO FARE?
         </div>
       </div>
-      <h2 class="text-2xl sm:text-[32px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] mt-1 m-0">
+      <h2 class="text-2xl sm:text-[32px] 2xl:text-[38px] 3xl:text-[44px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] mt-1 m-0">
         Il mio Stack
       </h2>
-      <p class="text-[14px] sm:text-[15px] text-[#64748B] dark:text-gray-300 max-w-4xl m-0 leading-normal">
+      <p class="text-[14px] sm:text-[15px] 2xl:text-[17px] 3xl:text-[19px] text-[#64748B] dark:text-gray-300 max-w-4xl 2xl:max-w-5xl m-0 leading-normal">
         Dal game programming alle architetture full-stack: la mappa completa delle competenze che ho curato nel tempo e che continuo ad approfondire
       </p>
     </div>
 
-    <!-- 3 Colonne Competenze (Figma 17:6727 / 83:252) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+    <!-- 3 Colonne Competenze (Figma 17:6727 / 83:252 - Match Image 1) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-8 items-start">
       <!-- Categoria 1: GAME DEV & ENGINE -->
-      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[12px] p-6 flex flex-col gap-5 shadow-2xs">
-        <h3 class="font-bold text-[12px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
+      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-6 2xl:p-7 flex flex-col gap-5 2xl:gap-6 shadow-2xs">
+        <h3 class="font-bold text-[12px] 2xl:text-[14px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
           GAME DEV &amp; ENGINE
         </h3>
 
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 2xl:gap-5">
           <!-- Unity -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6738_Icona___Unity__C__.svg" alt="Unity" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6738_Icona___Unity__C__.svg"
+              alt="Unity"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Unity (C#)</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Custom Editor Tools, uGUI, UI Toolkit, Monobehaviour</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Unity (C#)</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Custom Editor Tools, uGUI, UI Toolkit, Monobehaviour</span>
             </div>
           </div>
 
           <!-- Unreal Engine 5 -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6743_Icona___Unreal_Engine_5__Bluep.svg" alt="Unreal Engine" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6743_Icona___Unreal_Engine_5__Bluep.svg"
+              alt="Unreal Engine"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Unreal Engine 5 (Blueprint - C++)</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Blueprint Visual Scripting, Gameplay Framework, Level Design</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Unreal Engine 5 (Blueprint - C++)</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Blueprint Visual Scripting, Gameplay Framework, Level Design</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Categoria 2: FULL STACK DEV -->
-      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[12px] p-6 flex flex-col gap-5 shadow-2xs">
-        <h3 class="font-bold text-[12px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
+      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-6 2xl:p-7 flex flex-col gap-5 2xl:gap-6 shadow-2xs">
+        <h3 class="font-bold text-[12px] 2xl:text-[14px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
           FULL STACK DEV
         </h3>
 
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 2xl:gap-5">
           <!-- Java & Spring Boot -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6763_Icona___Java___Spring_Boot___0.svg" alt="Java" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6763_Icona___Java___Spring_Boot___0.svg"
+              alt="Java"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Java &amp; Spring Boot</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Thymeleaf, REST API, architettura MVC e logica di business</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Java &amp; Spring Boot</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Thymeleaf, REST API, architettura MVC e logica di business</span>
             </div>
           </div>
 
           <!-- PostgreSQL & MySQL -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6768_Icona___PostgreSQL___MySQL___0.svg" alt="Database" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6768_Icona___PostgreSQL___MySQL___0.svg"
+              alt="Database"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">PostgreSQL &amp; MySQL</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Database relazionali, schema design, persistenza dati e query</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">PostgreSQL &amp; MySQL</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Database relazionali, schema design, persistenza dati e query</span>
             </div>
           </div>
 
           <!-- HTML5, CSS3 & JavaScript -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6773_Icona___HTML5__CSS3___JavaScri.svg" alt="HTML5 CSS3 JS" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6773_Icona___HTML5__CSS3___JavaScri.svg"
+              alt="HTML5 CSS3 JS"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">HTML5, CSS3 &amp; JavaScript</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Front-end responsive, Bootstrap, DOM scripting e performance</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">HTML5, CSS3 &amp; JavaScript</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Front-end responsive, Bootstrap, DOM scripting e performance</span>
             </div>
           </div>
 
-          <!-- C & Python -->
-          <div class="flex items-center gap-3">
-            <div class="flex gap-1.5 shrink-0">
-              <div class="w-6 h-6 rounded-[5px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60"></div>
-              <div class="w-6 h-6 rounded-[5px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60"></div>
+          <!-- C & Python (Figma 17:6778 & 63:115) -->
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <img
+                src="/assets/variant7/17_6778_Icona___C___Python___01.svg"
+                alt="C"
+                class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+              />
+              <img
+                src="/assets/variant7/63_115_Icona___C___Python___02.svg"
+                alt="Python"
+                class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+              />
             </div>
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">C &amp; Python</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Competenze base</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">C &amp; Python</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Competenze base</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Categoria 3: WORKFLOW, TOOLING & DESIGN -->
-      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[12px] p-6 flex flex-col gap-5 shadow-2xs">
-        <h3 class="font-bold text-[12px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
+      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-6 2xl:p-7 flex flex-col gap-5 2xl:gap-6 shadow-2xs">
+        <h3 class="font-bold text-[12px] 2xl:text-[14px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
           WORKFLOW, TOOLING &amp; DESIGN
         </h3>
 
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 2xl:gap-5">
           <!-- Git & GitHub -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6787_Icona___Git___GitHub.svg" alt="Git" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6787_Icona___Git___GitHub.svg"
+              alt="Git"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Git &amp; GitHub</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Version control distribuito, pull request, branching e code review</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Git &amp; GitHub</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Version control distribuito, pull request, branching e code review</span>
             </div>
           </div>
 
           <!-- Figma & Canva -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6792_Icona___Figma___Canva___01.svg" alt="Figma" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6792_Icona___Figma___Canva___01.svg"
+              alt="Figma & Canva"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Figma &amp; Canva</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Design UI/UX, wireframe, prototipazione interattiva e design system</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Figma &amp; Canva</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Design UI/UX, wireframe, prototipazione interattiva e design system</span>
             </div>
           </div>
 
           <!-- Trello, Notion, Milanote, Miro -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/17_6797_Icona___Trello__Notion__Milano.svg" alt="Trello" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6797_Icona___Trello__Notion__Milano.svg"
+              alt="Project Tools"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Trello, Notion, Milanote, Miro</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Gestione sprint agili</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Trello, Notion, Milanote, Miro</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Gestione sprint agili</span>
             </div>
           </div>
 
           <!-- Visual Studio, VS Code, IntelliJ IDEA, Antigravity -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <img src="/assets/variant7/63_357_Icona___Visual_Studio__VS_Code.svg" alt="VS Code" class="w-full h-full object-contain invert" />
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/63_357_Icona___Visual_Studio__VS_Code.svg"
+              alt="IDEs"
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">Visual Studio, VS Code, IntelliJ IDEA, Antigravity</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">Ambienti di sviluppo Code firtst &amp; Agent first</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Visual Studio, VS Code, IntelliJ IDEA, Antigravity</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Ambienti di sviluppo Code firtst &amp; Agent first</span>
             </div>
           </div>
 
           <!-- AI & Prompt Eng. -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-[8px] bg-black flex items-center justify-center shrink-0 p-1.5 shadow-xs">
-              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.5 7.5"/><path d="M12 12v10"/></svg>
-            </div>
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <img
+              src="/assets/variant7/17_6802_Icona___AI___Prompt_Eng_.svg"
+              alt="AI & Prompt Eng."
+              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+            />
             <div class="flex flex-col">
-              <span class="text-[13px] font-bold text-[#0F172A] dark:text-gray-100">AI &amp; Prompt Eng.</span>
-              <span class="text-[11px] text-[#64748B] dark:text-gray-400 leading-snug">ChatGPT, Gemini automazione workflow e accelerazione code creation</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">AI &amp; Prompt Eng.</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">ChatGPT, Gemini automazione workflow e accelerazione code creation</span>
             </div>
           </div>
         </div>

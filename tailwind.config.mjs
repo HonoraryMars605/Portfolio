@@ -49,6 +49,10 @@ export default {
         display: ['"Inter"', 'var(--font-heading)', 'sans-serif'],
         mono: ['"Fira Code"', 'var(--font-mono)', 'monospace'],
       },
+      screens: {
+        '3xl': '1920px',
+        '4k': '2560px',
+      },
     },
   },
   plugins: [],

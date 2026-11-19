@@ -5,39 +5,39 @@ import SwissMetricsLedger from "./SwissMetricsLedger.astro"
 
 <section
   id="section-01"
-  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full"
 >
   <SectionPatternCanvas theme="minimal" />
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-6 sm:gap-7 relative z-10">
+  <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-6 sm:gap-7 2xl:gap-9 relative z-10">
     <!-- Intestazione / Riga sezione (Figma 17:6664) -->
-    <div class="flex items-center gap-3 border-b border-gray-200/80 dark:border-gray-800 pb-3 text-[11px] font-sans">
-      <div class="inline-flex items-center px-3 py-1 rounded-[6px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold tracking-wide">
+    <div class="flex items-center gap-3 border-b border-gray-200/80 dark:border-gray-800 pb-3 text-[11px] 2xl:text-[13px] font-sans">
+      <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold tracking-wide">
         01 // CHI SONO?
       </div>
-      <span class="text-[#94A3B8] dark:text-gray-400 font-medium tracking-wider text-[11px] hidden sm:inline">
+      <span class="text-[#94A3B8] dark:text-gray-400 font-medium tracking-wider text-[11px] 2xl:text-[13px] hidden sm:inline">
         PORTFOLIO · VARIANT 7 · SWISS EDITORIAL CV
       </span>
     </div>
 
-    <!-- Presentazione / Contenuto e immagine (Figma 83:257) -->
+    <!-- Presentazione / Contenuto e immagine (Figma 83:257 - Match Image 7) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       <!-- Presentazione / Profilo (Left 7 cols) -->
-      <div class="lg:col-span-7 flex flex-col gap-4">
+      <div class="lg:col-span-7 flex flex-col gap-4 2xl:gap-6">
         <!-- Presentazione / Nome e ruolo -->
-        <div class="flex flex-col gap-2">
-          <h1 class="text-4xl sm:text-5xl lg:text-[52px] leading-[56px] text-[#0F172A] dark:text-white tracking-[-0.02em] m-0 font-heading">
+        <div class="flex flex-col gap-2 2xl:gap-3">
+          <h1 class="text-4xl sm:text-5xl lg:text-[52px] 2xl:text-[64px] 3xl:text-[76px] leading-[1.1] text-[#0F172A] dark:text-white tracking-[-0.02em] m-0 font-heading">
             VALERIO COMELLA
           </h1>
-          <div class="h-[32px] flex items-center">
-            <h2 class="text-lg sm:text-[20px] font-semibold text-[#8B1E2D] dark:text-red-400 tracking-[-0.005em] m-0 font-mono flex items-center">
+          <div class="h-[32px] 2xl:h-[40px] flex items-center">
+            <h2 class="text-lg sm:text-[20px] 2xl:text-[24px] 3xl:text-[28px] font-semibold text-[#8B1E2D] dark:text-red-400 tracking-[-0.005em] m-0 font-mono flex items-center">
               <span id="hero-typewriter-text">Software Engineer</span>
-              <span id="hero-typewriter-cursor" class="inline-block w-[2px] h-[19px] bg-[#8B1E2D] dark:bg-red-400 ml-1 animate-pulse"></span>
+              <span id="hero-typewriter-cursor" class="inline-block w-[2px] 2xl:w-[3px] h-[19px] 2xl:h-[24px] bg-[#8B1E2D] dark:bg-red-400 ml-1 animate-pulse"></span>
             </h2>
           </div>
         </div>
 
         <!-- Biografia -->
-        <p class="text-[14px] sm:text-[15px] leading-[24px] text-[#334155] dark:text-gray-300 m-0 max-w-xl">
+        <p class="text-[14px] sm:text-[15px] 2xl:text-[17px] 3xl:text-[19px] leading-[24px] 2xl:leading-[28px] 3xl:leading-[32px] text-[#334155] dark:text-gray-300 m-0 max-w-xl 2xl:max-w-2xl">
           Unity Developer specializzato in <strong class="text-[#0F172A] dark:text-white font-semibold">C#</strong>, con esperienza nello sviluppo di <strong class="text-[#0F172A] dark:text-white font-semibold">applicazioni interattive</strong>, soluzioni Mixed Reality e prodotti B2B. Solida formazione in <strong class="text-[#0F172A] dark:text-white font-semibold">Game Development e Mixed Reality (ITS EQF5)</strong>, con competenze Full Stack.
         </p>
       </div>
@@ -47,14 +47,14 @@ import SwissMetricsLedger from "./SwissMetricsLedger.astro"
         <img
           src="/assets/variant7/hero-monitor-stand.png"
           alt="Valerio Comella - Setup Monitor"
-          class="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-[460px] object-contain drop-shadow-md select-none"
+          class="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-[460px] 2xl:max-w-[560px] 3xl:max-w-[660px] object-contain drop-shadow-md select-none"
           loading="eager"
         />
       </div>
     </div>
 
     <!-- Metriche / Griglia riepilogativa (Figma 63:322 - 8 Cards Swiss Metrics Ledger) -->
-    <div class="pt-2">
+    <div class="pt-2 2xl:pt-4">
       <SwissMetricsLedger />
     </div>
   </div>

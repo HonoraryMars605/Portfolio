@@ -1,5 +1,5 @@
 ---
-// Section 06: Cosa Mi Piace (Passioni, Ispirazioni, Giochi, Film & Serie TV)
+// Section 06: Cosa Mi Piace (Passioni, Ispirazioni, Giochi, Film & Serie TV - Match Image 5)
 const games = [
   {
     tag: "ACTION / NARRATIVE",
@@ -12,7 +12,7 @@ const games = [
   {
     tag: "SCI-FI RPG",
     title: "Mass Effect",
-    year: "2007–2012",
+    year: "2007-2012",
     author: "BioWare / EA",
     desc: "World-building sci-fi e bivi morali insuperati.",
     image: "/assets/variant7/44_4031_Immagine___Copertina.png"
@@ -66,7 +66,7 @@ const series = [
   {
     tag: "UTOPIAN SCI-FI",
     title: "Star Trek",
-    year: "1966–Presente",
+    year: "1966-Presente",
     author: "Gene Roddenberry",
     desc: "Esplorazione spaziale, ottimismo e dilemma etico.",
     image: "/assets/variant7/44_4120_Immagine___Copertina.png"
@@ -74,7 +74,7 @@ const series = [
   {
     tag: "THRILLER PSICOLOGICO",
     title: "Severance",
-    year: "2022–Oggi",
+    year: "2022-Oggi",
     author: "Dan Erickson / Ben Stiller",
     desc: "Dissonanza cognitiva aziendale e regia chirurgica.",
     image: "/assets/variant7/44_4129_Immagine___Copertina.png"
@@ -82,7 +82,7 @@ const series = [
   {
     tag: "ANIMATION / STEAMPUNK",
     title: "Arcane",
-    year: "2021–Oggi",
+    year: "2021-Oggi",
     author: "Riot Games / Fortiche",
     desc: "Stile pittorico ibrido 2D/3D e regia magistrale.",
     image: "/assets/variant7/44_4138_Immagine___Copertina.png"
@@ -94,59 +94,63 @@ import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 
 <section
   id="section-06"
-  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-24 sm:pt-28 pb-8"
+  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full"
 >
   <SectionPatternCanvas theme="abstract" />
-  <div class="w-full max-w-[1312px] mx-auto flex flex-col justify-start gap-5 relative z-10">
-    <!-- Section Editorial Header (Figma 44:3994 & 44:3993) -->
-    <div class="flex flex-col gap-1.5 pb-2">
+  <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-4 2xl:gap-6 relative z-10">
+    <!-- Section Editorial Header (Figma 44:3994 & 44:3993 - Match Image 5) -->
+    <div class="flex flex-col gap-1 pb-1">
       <div class="flex items-center gap-3">
-        <div class="inline-flex items-center px-3 py-1 rounded-[6px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] tracking-wide font-mono">
+        <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
           06 // OLTRE IL CODICE?
         </div>
       </div>
       <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mt-1">
-        <h2 class="text-2xl sm:text-[32px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] m-0">
+        <h2 class="text-2xl sm:text-[32px] 2xl:text-[38px] 3xl:text-[44px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] m-0">
           Cosa Mi Piace Nel Mio Tempo Libero
         </h2>
       </div>
     </div>
 
     <!-- 3 Shelves Container -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3.5 2xl:gap-5">
       <!-- Shelf 1: Giochi Preferiti -->
-      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-4 shadow-2xs">
+      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[12px] 2xl:rounded-[16px] p-4 2xl:p-5 shadow-2xs">
         <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2 mb-3">
-          <div class="flex items-center gap-2 font-mono text-[11px]">
-            <span class="font-bold text-[#9B1C2E]">01 // GIOCHI PREFERITI</span>
+          <div class="flex items-center gap-2 font-mono text-[11px] 2xl:text-[13px]">
+            <span class="font-bold text-[#8B1E2D] dark:text-red-400">01 // GIOCHI PREFERITI</span>
             <span class="text-gray-400">·</span>
-            <span class="text-gray-600 dark:text-gray-300">VIDEO GAMES · GAMEPLAY &amp; DESIGN</span>
+            <span class="text-gray-600 dark:text-gray-300">VIDEO GAMES - GAMEPLAY &amp; DESIGN</span>
           </div>
-          <span class="font-mono text-[10px] text-gray-500 dark:text-gray-400">01 / 03</span>
+          <div class="flex items-center gap-1.5 font-mono text-[10px] 2xl:text-[12px] text-gray-500 dark:text-gray-400">
+            <span class="tracking-widest">•••</span>
+            <span class="font-bold">01 / 03</span>
+            <span class="text-xs">‹ ›</span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 2xl:gap-5">
           {
             games.map((g) => (
-              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[8px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 flex gap-3 items-center hover:border-[#9B1C2E]/50 transition-all group">
+              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[10px] 2xl:rounded-[12px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 2xl:p-3 flex gap-3 2xl:gap-4 items-center hover:border-[#8B1E2D]/50 transition-all group">
                 <img
                   src={g.image}
                   alt={g.title}
-                  class="w-[72px] h-[98px] rounded-[5px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
+                  class="w-[72px] h-[98px] 2xl:w-[85px] 2xl:h-[115px] rounded-[6px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
                 />
                 <div class="flex flex-col justify-between h-full py-0.5 overflow-hidden">
                   <div>
-                    <span class="text-[9.5px] font-mono text-[#9B1C2E] font-bold uppercase tracking-wider block">
+                    <span class="text-[9.5px] 2xl:text-[11px] font-mono text-[#8B1E2D] dark:text-red-400 font-bold uppercase tracking-wider block">
                       {g.tag}
                     </span>
-                    <h4 class="font-bold text-[14px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#9B1C2E] transition-colors truncate">
+                    <h4 class="font-bold text-[14px] 2xl:text-[16px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#8B1E2D] transition-colors truncate">
                       {g.title}
                     </h4>
-                    <span class="text-[11px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5">
-                      {g.year} · {g.author}
+                    <span class="text-[11px] 2xl:text-[12.5px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5">
+                      {g.year} <br class="hidden sm:inline" /> {g.author}
                     </span>
                   </div>
-                  <p class="text-[11px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
+                  <p class="text-[11px] 2xl:text-[12.5px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
                     {g.desc}
                   </p>
                 </div>
@@ -157,38 +161,42 @@ import SectionPatternCanvas from "./SectionPatternCanvas.astro"
       </div>
 
       <!-- Shelf 2: Film di Riferimento -->
-      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-4 shadow-2xs">
+      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[12px] 2xl:rounded-[16px] p-4 2xl:p-5 shadow-2xs">
         <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2 mb-3">
-          <div class="flex items-center gap-2 font-mono text-[11px]">
-            <span class="font-bold text-[#9B1C2E]">02 // FILM DI RIFERIMENTO</span>
+          <div class="flex items-center gap-2 font-mono text-[11px] 2xl:text-[13px]">
+            <span class="font-bold text-[#8B1E2D] dark:text-red-400">02 // FILM DI RIFERIMENTO</span>
             <span class="text-gray-400">·</span>
-            <span class="text-gray-600 dark:text-gray-300">CINEMA · SCI-FI &amp; REGIA</span>
+            <span class="text-gray-600 dark:text-gray-300">CINEMA - SCI-FI &amp; REGIA</span>
           </div>
-          <span class="font-mono text-[10px] text-gray-500 dark:text-gray-400">01 / 04</span>
+          <div class="flex items-center gap-1.5 font-mono text-[10px] 2xl:text-[12px] text-gray-500 dark:text-gray-400">
+            <span class="tracking-widest">••••</span>
+            <span class="font-bold">01 / 04</span>
+            <span class="text-xs">‹ ›</span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 2xl:gap-5">
           {
             movies.map((m) => (
-              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[8px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 flex gap-3 items-center hover:border-[#9B1C2E]/50 transition-all group">
+              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[10px] 2xl:rounded-[12px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 2xl:p-3 flex gap-3 2xl:gap-3.5 items-center hover:border-[#8B1E2D]/50 transition-all group">
                 <img
                   src={m.image}
                   alt={m.title}
-                  class="w-[66px] h-[92px] rounded-[5px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
+                  class="w-[66px] h-[92px] 2xl:w-[78px] 2xl:h-[108px] rounded-[6px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
                 />
                 <div class="flex flex-col justify-between h-full py-0.5 overflow-hidden">
                   <div>
-                    <span class="text-[9.5px] font-mono text-[#9B1C2E] font-bold uppercase tracking-wider block">
+                    <span class="text-[9.5px] 2xl:text-[10.5px] font-mono text-[#8B1E2D] dark:text-red-400 font-bold uppercase tracking-wider block truncate">
                       {m.tag}
                     </span>
-                    <h4 class="font-bold text-[13.5px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#9B1C2E] transition-colors truncate">
+                    <h4 class="font-bold text-[13.5px] 2xl:text-[15.5px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#8B1E2D] transition-colors truncate">
                       {m.title}
                     </h4>
-                    <span class="text-[10.5px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5 truncate">
-                      {m.year} · {m.author}
+                    <span class="text-[10.5px] 2xl:text-[12px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5 truncate">
+                      {m.year} <br class="hidden sm:inline" /> {m.author}
                     </span>
                   </div>
-                  <p class="text-[10.5px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
+                  <p class="text-[10.5px] 2xl:text-[12px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
                     {m.desc}
                   </p>
                 </div>
@@ -199,38 +207,42 @@ import SectionPatternCanvas from "./SectionPatternCanvas.astro"
       </div>
 
       <!-- Shelf 3: Serie TV -->
-      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-4 shadow-2xs">
+      <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs border border-gray-200/90 dark:border-gray-800 rounded-[12px] 2xl:rounded-[16px] p-4 2xl:p-5 shadow-2xs">
         <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2 mb-3">
-          <div class="flex items-center gap-2 font-mono text-[11px]">
-            <span class="font-bold text-[#9B1C2E]">03 // SERIE TV</span>
+          <div class="flex items-center gap-2 font-mono text-[11px] 2xl:text-[13px]">
+            <span class="font-bold text-[#8B1E2D] dark:text-red-400">03 // SERIE TV</span>
             <span class="text-gray-400">·</span>
             <span class="text-gray-600 dark:text-gray-300">SERIAL STORYTELLING · WORLD BUILDING</span>
           </div>
-          <span class="font-mono text-[10px] text-gray-500 dark:text-gray-400">01 / 03</span>
+          <div class="flex items-center gap-1.5 font-mono text-[10px] 2xl:text-[12px] text-gray-500 dark:text-gray-400">
+            <span class="tracking-widest">•••</span>
+            <span class="font-bold">01 / 03</span>
+            <span class="text-xs">‹ ›</span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 2xl:gap-5">
           {
             series.map((s) => (
-              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[8px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 flex gap-3 items-center hover:border-[#9B1C2E]/50 transition-all group">
+              <div class="bg-gray-50/80 dark:bg-gray-800/60 rounded-[10px] 2xl:rounded-[12px] border border-gray-200/70 dark:border-gray-700/60 p-2.5 2xl:p-3 flex gap-3 2xl:gap-4 items-center hover:border-[#8B1E2D]/50 transition-all group">
                 <img
                   src={s.image}
                   alt={s.title}
-                  class="w-[72px] h-[98px] rounded-[5px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
+                  class="w-[72px] h-[98px] 2xl:w-[85px] 2xl:h-[115px] rounded-[6px] object-cover shrink-0 shadow-2xs group-hover:scale-102 transition-transform"
                 />
                 <div class="flex flex-col justify-between h-full py-0.5 overflow-hidden">
                   <div>
-                    <span class="text-[9.5px] font-mono text-[#9B1C2E] font-bold uppercase tracking-wider block">
+                    <span class="text-[9.5px] 2xl:text-[11px] font-mono text-[#8B1E2D] dark:text-red-400 font-bold uppercase tracking-wider block">
                       {s.tag}
                     </span>
-                    <h4 class="font-bold text-[14px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#9B1C2E] transition-colors truncate">
+                    <h4 class="font-bold text-[14px] 2xl:text-[16px] text-gray-900 dark:text-gray-100 m-0 group-hover:text-[#8B1E2D] transition-colors truncate">
                       {s.title}
                     </h4>
-                    <span class="text-[11px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5">
-                      {s.year} · {s.author}
+                    <span class="text-[11px] 2xl:text-[12.5px] font-mono text-gray-500 dark:text-gray-400 block mt-0.5">
+                      {s.year} <br class="hidden sm:inline" /> {s.author}
                     </span>
                   </div>
-                  <p class="text-[11px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
+                  <p class="text-[11px] 2xl:text-[12.5px] text-gray-600 dark:text-gray-300 leading-snug m-0 mt-1 line-clamp-2">
                     {s.desc}
                   </p>
                 </div>
@@ -241,8 +253,8 @@ import SectionPatternCanvas from "./SectionPatternCanvas.astro"
       </div>
     </div>
 
-    <!-- System Extensibility Footer Bar -->
-    <div class="pt-2 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-gray-500 dark:text-gray-400">
+    <!-- System Extensibility Footer Bar (Match Image 5) -->
+    <div class="pt-1 2xl:pt-2 flex flex-col sm:flex-row items-center justify-between text-[11px] 2xl:text-[13px] font-mono text-gray-500 dark:text-gray-400">
       <span>*È solo un assaggio: la lista completa andrebbe in overflow!</span>
       <span class="text-[#8B1E2D] dark:text-red-400 font-bold uppercase tracking-wider cursor-pointer hover:underline">
         COMING SOON: NUOVE SEZIONI E LISTA IN AGGIORNAMENTO [+]
