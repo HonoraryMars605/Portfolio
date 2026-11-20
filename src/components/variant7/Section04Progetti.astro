@@ -1,5 +1,5 @@
 ---
-// Section 04: Progetti in Evidenza (Figma 17:6937 / 83:252 - Match Image 3)
+// Section 04: Progetti in Evidenza (Figma 17:6935 / 83:720 - Match Attachment 3 & raw_structure_tree.json)
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 
 export interface Props {
@@ -15,7 +15,7 @@ const { class: className = "" } = Astro.props
 >
   <SectionPatternCanvas theme="gamedev" />
   <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-5 2xl:gap-7 relative z-10">
-    <!-- Section Editorial Header -->
+    <!-- Section Editorial Header (Figma 17:6937 & 17:6936) -->
     <div class="flex flex-col gap-1.5 pb-2">
       <div class="flex items-center gap-3">
         <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
@@ -23,16 +23,16 @@ const { class: className = "" } = Astro.props
         </div>
       </div>
       <h2 class="text-2xl sm:text-[32px] 2xl:text-[38px] 3xl:text-[44px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] mt-1 m-0">
-        Progetti personali
+        Portfolio Opere &amp; Produzioni Videoludiche
       </h2>
       <p class="text-[14px] sm:text-[15px] 2xl:text-[17px] 3xl:text-[19px] text-[#64748B] dark:text-gray-300 max-w-4xl 2xl:max-w-5xl m-0 leading-normal">
         Demo-prototipi sviluppati e co-sviluppati durante i mie percorsi di studio ed oltre
       </p>
     </div>
 
-    <!-- Row 1: Featured 2 Main Projects (Violinum & Lock Fight - Match Image media_1795184251051_2b2cbf21.jpg) -->
+    <!-- Row 1: Featured 2 Main Projects (Violinum & Lock Fight - Figma 17:6942) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 2xl:gap-6">
-      <!-- Violinum -->
+      <!-- Violinum (Figma 17:6943) -->
       <a
         href="/projects/violinum"
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-between shadow-2xs hover:border-swiss-crimson/50 transition-all no-underline"
@@ -45,6 +45,9 @@ const { class: className = "" } = Astro.props
           />
         </div>
         <div class="flex flex-col gap-2 2xl:gap-3 mt-2">
+          <div class="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] 2xl:text-[11px] font-bold tracking-wider uppercase w-fit">
+            ITALIAN GAME 2025 SELECTION · VR EXPERIENCE
+          </div>
           <h3 class="text-[20px] 2xl:text-[24px] font-bold text-[#0F172A] dark:text-white group-hover:text-swiss-crimson transition-colors m-0">
             Violinum
           </h3>
@@ -54,16 +57,14 @@ const { class: className = "" } = Astro.props
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Unity</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">C#</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Adventure Creator</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Virtual Reality</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">3D Audio</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Italian Game 2025</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">ITS Lazio Digital</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">2025</span>
           </div>
         </div>
       </a>
 
-      <!-- Lock Fight -->
+      <!-- Lock Fight (Figma 17:6961) -->
       <a
         href="/projects/lock-fight"
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-between shadow-2xs hover:border-swiss-crimson/50 transition-all no-underline"
@@ -76,6 +77,9 @@ const { class: className = "" } = Astro.props
           />
         </div>
         <div class="flex flex-col gap-2 2xl:gap-3 mt-2">
+          <div class="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] 2xl:text-[11px] font-bold tracking-wider uppercase w-fit">
+            TACTICAL STRATEGY GAME · SETTEMBRE - OTTOBRE 2024
+          </div>
           <h3 class="text-[20px] 2xl:text-[24px] font-bold text-[#0F172A] dark:text-white group-hover:text-swiss-crimson transition-colors m-0">
             Lock Fight
           </h3>
@@ -85,36 +89,36 @@ const { class: className = "" } = Astro.props
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Unity</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">C#</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Custom Editor Tools</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">2024</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Turn-based Tactics</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Grid Movement</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">AI State Machine</span>
           </div>
         </div>
       </a>
     </div>
 
-    <!-- Row 2: 3 Medium Projects (Rusheep, Sfuryatell, Project Works - Match Image 3) -->
+    <!-- Row 2: 3 Medium Project Cards (Rusheep, Sfuryatell, Project Works - Figma 17:6979) -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 2xl:gap-6">
-      <!-- Rusheep -->
-      <a
-        href="/projects/rusheep"
-        class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all no-underline"
+      <!-- Rusheep (Figma 17:6980) -->
+      <div
+        class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all"
       >
-        <div class="w-full h-[120px] 2xl:h-[150px] bg-white flex items-center justify-center p-3">
+        <div class="w-full h-[120px] 2xl:h-[150px] bg-[#FAF8F5] dark:bg-gray-800 flex items-center justify-center p-3">
           <img
             src="/assets/variant7/17_6981_Immagine_progetto___Rusheep.png"
             alt="Rusheep"
-            class="max-h-full object-contain group-hover:scale-103 transition-transform duration-300"
+            class="max-h-full object-contain"
           />
         </div>
         <div class="p-4 2xl:p-5 flex flex-col gap-1.5 2xl:gap-2">
           <div class="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] 2xl:text-[11px] font-bold tracking-wider uppercase w-fit">
             2D PHYSICS RUNNER · AGOSTO 2024
           </div>
-          <h4 class="font-bold text-[16px] 2xl:text-[18px] text-[#0F172A] dark:text-white group-hover:text-[#8B1E2D] transition-colors m-0">
+          <h4 class="font-bold text-[16px] 2xl:text-[18px] text-[#0F172A] dark:text-white m-0">
             Rusheep
           </h4>
           <p class="text-[12px] 2xl:text-[13.5px] text-[#64748B] dark:text-gray-300 leading-snug m-0">
-            Endless runner dinamico 2D basato sulla fisica dei corpi rigidi, generaz...
+            Endless runner dinamico 2D basato sulla fisica dei corpi rigidi, generazione procedurale degli ostacoli e feedback arcade immediato.
           </p>
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Unity 2D</span>
@@ -122,29 +126,29 @@ const { class: className = "" } = Astro.props
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Procedural</span>
           </div>
         </div>
-      </a>
+      </div>
 
-      <!-- Sfuryatell - ISAS -->
+      <!-- Sfuryatell - ISAS (Figma 17:6994) -->
       <a
         href="/projects/sfuryatell"
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all no-underline"
       >
-        <div class="w-full h-[120px] 2xl:h-[150px] bg-[#FED7AA] flex items-center justify-center p-3">
+        <div class="w-full h-[120px] 2xl:h-[150px] bg-[#EBAE26] flex items-center justify-center p-3">
           <img
             src="/assets/variant7/17_6995_Immagine_progetto___Sfuryatell.png"
-            alt="Sfuryatell"
-            class="max-h-full object-contain group-hover:scale-103 transition-transform duration-300"
+            alt="Sfuryatell ISAS"
+            class="max-h-full object-contain"
           />
         </div>
         <div class="p-4 2xl:p-5 flex flex-col gap-1.5 2xl:gap-2">
           <div class="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] 2xl:text-[11px] font-bold tracking-wider uppercase w-fit">
             FAST ARCADE GAME · GEN - SET 2023
           </div>
-          <h4 class="font-bold text-[16px] 2xl:text-[18px] text-[#0F172A] dark:text-white group-hover:text-[#8B1E2D] transition-colors m-0">
+          <h4 class="font-bold text-[16px] 2xl:text-[18px] text-[#0F172A] dark:text-white m-0">
             Sfuryatell - ISAS
           </h4>
           <p class="text-[12px] 2xl:text-[13.5px] text-[#64748B] dark:text-gray-300 leading-snug m-0">
-            Arcade frenetico sviluppato presso ISAS Videogames Academy. Realiz...
+            Arcade frenetico sviluppato presso ISAS Videogames Academy. Realizzazione interfaccia avanzata con UI Toolkit e logica di gameplay.
           </p>
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Unity</span>
@@ -155,7 +159,7 @@ const { class: className = "" } = Astro.props
         </div>
       </a>
 
-      <!-- Project Works - ITS Lazio Digital -->
+      <!-- Project Works - ITS Lazio Digital (Figma 17:7010) -->
       <div
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all"
       >
@@ -174,7 +178,7 @@ const { class: className = "" } = Astro.props
             Project Works - ITS Lazio Digital
           </h4>
           <p class="text-[12px] 2xl:text-[13.5px] text-[#64748B] dark:text-gray-300 leading-snug m-0">
-            Collezione di moduli applicativi XR, interazioni spaziali multi-target e si...
+            Collezione di moduli applicativi XR, interazioni spaziali multi-target e simulazioni interattive realizzate nel biennio ITS.
           </p>
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Mixed Reality</span>
@@ -186,7 +190,7 @@ const { class: className = "" } = Astro.props
       </div>
     </div>
 
-    <!-- Row 3: Game Jams & Experimental Titles Banner (Match Image 3) -->
+    <!-- Row 3: Game Jams & Experimental Titles Banner (Figma 17:7026 - Match Attachment 3) -->
     <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col sm:flex-row items-center gap-5 2xl:gap-7 shadow-2xs">
       <div class="w-28 2xl:w-36 h-20 2xl:h-24 rounded-[8px] bg-[#F5F2EB] flex items-center justify-center shrink-0 border border-gray-200/80 p-2">
         <img
@@ -206,7 +210,7 @@ const { class: className = "" } = Astro.props
           Produzioni indie e game jam: Il Rito (esperimento horror d atmosfera e audio immersivo), Please Open The Door (puzzle game ad enigmi logici) e il sito web portfolio moderno sviluppato con standard web reattivi.
         </p>
         <div class="flex flex-wrap gap-1.5 pt-1">
-          <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Il Rito (Horror Atmosferico)</span>
+          <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Il Rito (Horror Atmosphere)</span>
           <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Please Open The Door (Puzzle Game)</span>
           <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12px]">Portfolio Sito Web</span>
         </div>
