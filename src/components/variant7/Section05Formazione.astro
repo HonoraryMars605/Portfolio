@@ -1,18 +1,24 @@
 ---
 // Section 05: Formazione Accademica (Figma 17:7042 / 83:252 - Match Image 4)
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
+
+export interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
 ---
 
 <section
   id="section-05"
-  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full"
+  class={`section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full ${className}`}
 >
   <SectionPatternCanvas theme="space" />
   <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-5 2xl:gap-7 relative z-10">
     <!-- Section Editorial Header -->
     <div class="flex flex-col gap-1.5 pb-2">
       <div class="flex items-center gap-3">
-        <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
+        <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
           05 // COME MI SONO FORMATO?
         </div>
       </div>
@@ -295,19 +301,19 @@ import SectionPatternCanvas from "./SectionPatternCanvas.astro"
     <!-- Certificazioni / Solid Badges (Figma 37:3140 - Match Image 4) -->
     <div class="flex flex-wrap items-center gap-3 2xl:gap-4 pt-1 2xl:pt-2">
       <!-- Epass 7 Moduli User (Solid Blue #0066B2) -->
-      <div class="flex items-center gap-3 px-5 py-3 2xl:px-6 2xl:py-3.5 rounded-[8px] 2xl:rounded-[10px] bg-[#0066B2] text-white shadow-xs">
+      <div class="flex items-center gap-3 px-5 py-3 2xl:px-6 2xl:py-3.5 rounded-[8px] 2xl:rounded-[10px] bg-swiss-epass text-white shadow-xs">
         <img src="/assets/variant7/37_3142_Icona___Epass_7_Moduli_User.svg" alt="Epass" class="w-8 h-8 2xl:w-10 2xl:h-10 object-contain rounded-[4px]" />
         <span class="text-[12.5px] 2xl:text-[14px] font-bold tracking-wide">Epass 7 Moduli User</span>
       </div>
 
       <!-- NDG Linux Unhatched (Solid Dark Navy #0B1726) -->
-      <div class="flex items-center gap-3 px-5 py-3 2xl:px-6 2xl:py-3.5 rounded-[8px] 2xl:rounded-[10px] bg-[#0B1726] text-white shadow-xs">
+      <div class="flex items-center gap-3 px-5 py-3 2xl:px-6 2xl:py-3.5 rounded-[8px] 2xl:rounded-[10px] bg-swiss-cisco text-white shadow-xs">
         <img src="/assets/variant7/37_3148_Icona___NDG_Linux_Unhatched.svg" alt="Cisco" class="w-8 h-8 2xl:w-10 2xl:h-10 object-contain rounded-[4px]" />
         <span class="text-[12.5px] 2xl:text-[14px] font-bold tracking-wide">NDG Linux Unhatched</span>
       </div>
 
       <!-- Gaming Week (Solid Deep Purple #281858) -->
-      <div class="flex items-center gap-3 px-5 py-3 2xl:px-6 2xl:py-3.5 rounded-[8px] 2xl:rounded-[10px] bg-[#281858] text-white shadow-xs">
+      <div class="flex items-center gap-3 px-5 py-3 2xl:px-6 2xl:py-3.5 rounded-[8px] 2xl:rounded-[10px] bg-swiss-gaming text-white shadow-xs">
         <img src="/assets/variant7/37_3154_Icona___Gaming_Week.svg" alt="Gaming Week" class="w-8 h-8 2xl:w-10 2xl:h-10 object-contain rounded-[4px]" />
         <span class="text-[12.5px] 2xl:text-[14px] font-bold tracking-wide">Gaming Week</span>
       </div>

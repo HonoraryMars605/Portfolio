@@ -1,18 +1,24 @@
 ---
 // Section 03: Esperienze Professionali (Figma 17:6808 / 83:252 - Match Image 2)
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
+
+export interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
 ---
 
 <section
   id="section-03"
-  class="section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full"
+  class={`section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full ${className}`}
 >
   <SectionPatternCanvas theme="code" />
   <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-5 2xl:gap-7 relative z-10">
     <!-- Section Editorial Header -->
     <div class="flex flex-col gap-1.5 pb-2">
       <div class="flex items-center gap-3">
-        <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-[#FDF2F4] dark:bg-[#380A10] border border-[#FECDD3] dark:border-red-900 text-[#8B1E2D] dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
+        <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
           03 // DOVE HO LAVORATO?
         </div>
       </div>

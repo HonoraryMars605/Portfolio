@@ -1,0 +1,151 @@
+---
+/**
+ * Portfolio · Variant 7 · Swiss Editorial CV · PC · 1440
+ * Figma Node ID: 17:6624 / 83:252
+ * 
+ * Clean, fully-typed Astro component implementing the 10080x1256 horizontal canvas strip
+ * (7 sequential sections of 1440x1256px each + 2 fixed floating navigation overlays)
+ * with 1:1 pixel fidelity, Tailwind tokens, full Light/Dark parity, and lightweight Vanilla TS.
+ */
+import TopNavbar from "./TopNavbar.astro"
+import FloatingNavRail from "./FloatingNavRail.astro"
+import Section01Hero from "./Section01Hero.astro"
+import Section02Profilo from "./Section02Profilo.astro"
+import Section03Esperienze from "./Section03Esperienze.astro"
+import Section04Progetti from "./Section04Progetti.astro"
+import Section05Formazione from "./Section05Formazione.astro"
+import Section06CosaMiPiace from "./Section06CosaMiPiace.astro"
+import Section07Contatto from "./Section07Contatto.astro"
+import Preloader from "./Preloader.astro"
+import SoundManager from "./SoundManager.astro"
+import CursorTrail from "./CursorTrail.astro"
+import PdfViewerModal from "./PdfViewerModal.astro"
+
+export interface Props {
+  class?: string
+  showPreloader?: boolean
+  showSoundManager?: boolean
+  showCursorTrail?: boolean
+  showPdfModal?: boolean
+}
+
+const {
+  class: className = "",
+  showPreloader = true,
+  showSoundManager = true,
+  showCursorTrail = true,
+  showPdfModal = true,
+} = Astro.props
+---
+
+<div
+  id="portfolio-variant-7-root"
+  class={`relative w-full h-full min-h-screen bg-swiss-bg dark:bg-swiss-bg-dark text-[#111827] dark:text-[#F3F4F6] font-sans antialiased overflow-hidden select-none-subtle transition-colors duration-200 ${className}`}
+  data-node-id="17:6624"
+  data-variant="Variant 7 · Swiss Editorial CV · PC · 1440"
+>
+  <!-- Background Swiss Grid Overlay Texture -->
+  <div class="pointer-events-none fixed inset-0 z-1 bg-[radial-gradient(rgba(0,0,0,0.04)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px] opacity-60 dark:opacity-40 transition-opacity duration-250"></div>
+
+  <!-- Procedural Web Audio Sound Engine -->
+  {showSoundManager && <SoundManager />}
+
+  <!-- Preloader Splash: Preloader · Swiss Editorial · PC · 1440 -->
+  {showPreloader && <Preloader />}
+
+  <!-- Interactive Cursor Telemetry Trail -->
+  {showCursorTrail && <CursorTrail />}
+
+  <!-- Fixed Top Editorial Navigation Bar (Figma 34:2795 / 83:1114) -->
+  <TopNavbar />
+
+  <!-- Fixed Floating Right Navigation Rail (Figma 44:3818 / 83:1102) -->
+  <FloatingNavRail />
+
+  <!-- PDF Modal Viewer -->
+  {showPdfModal && <PdfViewerModal />}
+
+  <!-- Main Horizontal Scroll Slider Container (7 sections x 1440px) -->
+  <main
+    id="horizontal-slider-container"
+    class="relative z-10 h-screen w-full overflow-x-auto overflow-y-hidden flex flex-row flex-nowrap snap-x snap-mandatory scroll-smooth"
+    tabindex="0"
+    role="region"
+    aria-label="Portfolio · Variant 7 · Swiss Editorial CV · PC · 1440"
+  >
+    <!-- 01 · Presentazione (Figma 17:6663 / 83:253) -->
+    <Section01Hero />
+
+    <!-- 02 · Competenze (Figma 17:6710 / 83:420) -->
+    <Section02Profilo />
+
+    <!-- 03 · Esperienze professionali (Figma 17:6806 / 83:580) -->
+    <Section03Esperienze />
+
+    <!-- 04 · Progetti (Figma 17:6935 / 83:720) -->
+    <Section04Progetti />
+
+    <!-- 05 · Formazione e certificazioni (Figma 17:7040 / 83:890) -->
+    <Section05Formazione />
+
+    <!-- 06 · Interessi personali (Figma 17:7166 / 83:980) -->
+    <Section06CosaMiPiace />
+
+    <!-- 07 · Contatti e crediti (Figma 65:614 / 83:1070) -->
+    <Section07Contatto />
+  </main>
+</div>
+
+<!-- Lightweight Vanilla TypeScript for Horizontal Wheel and Arrow Navigation -->
+<script>
+  function setupHorizontalViewportScroll() {
+    const container = document.getElementById("horizontal-slider-container")
+    if (!container) return
+
+    // DeltaY -> ScrollLeft translation while preserving nested vertical scroll
+    container.addEventListener(
+      "wheel",
+      (e: WheelEvent) => {
+        const target = e.target as HTMLElement
+        let el: HTMLElement | null = target
+        while (el && el !== container) {
+          const overflowY = window.getComputedStyle(el).overflowY
+          if ((overflowY === "auto" || overflowY === "scroll") && el.scrollHeight > el.clientHeight) {
+            const atTop = el.scrollTop <= 1 && e.deltaY < 0
+            const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2 && e.deltaY > 0
+            if (!atTop && !atBottom) return
+          }
+          el = el.parentElement
+        }
+
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault()
+          container.scrollBy({
+            left: e.deltaY * 1.5,
+            behavior: "auto",
+          })
+        }
+      },
+      { passive: false }
+    )
+
+    // Keyboard Arrow navigation
+    window.addEventListener("keydown", (e: KeyboardEvent) => {
+      const modal = document.getElementById("pdf-modal-container")
+      if (modal && !modal.classList.contains("hidden")) return
+
+      if (e.key === "ArrowRight" || e.key === "PageDown") {
+        e.preventDefault()
+        container.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" })
+        if ((window as any).playSfx) (window as any).playSfx("slide")
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault()
+        container.scrollBy({ left: -window.innerWidth * 0.85, behavior: "smooth" })
+        if ((window as any).playSfx) (window as any).playSfx("slide")
+      }
+    })
+  }
+
+  setupHorizontalViewportScroll()
+  document.addEventListener("astro:after-swap", setupHorizontalViewportScroll)
+</script>

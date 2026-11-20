@@ -7,6 +7,21 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        swiss: {
+          crimson: '#8B1E2D',
+          'crimson-hover': '#6E1622',
+          'crimson-light': '#FDF2F4',
+          'crimson-border': '#FECDD3',
+          bg: '#FAF9F5',
+          'bg-dark': '#0C1017',
+          'border-light': '#E2E8F0',
+          'border-dark': '#1E293B',
+          'card-light': '#FFFFFF',
+          'card-dark': '#111827',
+          epass: '#0066B2',
+          cisco: '#0B1726',
+          gaming: '#281858',
+        },
         brand: {
           50: '#fdf2f3',
           100: '#fce7e9',

@@ -1,12 +1,17 @@
 ---
 // Top Editorial Floating Navigation Bar (Figma Variant 7 Swiss 34:2795 - Match Image 9)
+export interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
 ---
 
-<header class="fixed top-5 inset-x-0 mx-auto max-w-[1400px] 2xl:max-w-[1680px] 3xl:max-w-[2000px] 4k:max-w-[2400px] w-[calc(100%-32px)] sm:w-[calc(100%-48px)] h-[56px] 2xl:h-[64px] 3xl:h-[72px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[16px] 2xl:rounded-[20px] z-40 px-4 sm:px-6 2xl:px-8 flex items-center justify-between shadow-sm transition-colors duration-200">
+<header class={`fixed top-5 inset-x-0 mx-auto max-w-[1400px] 2xl:max-w-[1680px] 3xl:max-w-[2000px] 4k:max-w-[2400px] w-[calc(100%-32px)] sm:w-[calc(100%-48px)] h-[56px] 2xl:h-[64px] 3xl:h-[72px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[16px] 2xl:rounded-[20px] z-40 px-4 sm:px-6 2xl:px-8 flex items-center justify-between shadow-sm transition-colors duration-200 ${className}`}>
   <!-- Marchio / Monogramma VC (Figma 83:1116) -->
   <div class="flex items-center">
     <a href="#section-01" class="flex items-center no-underline" title="Torna a 01 // CHI SONO?">
-      <div class="w-[32px] h-[32px] 2xl:w-[38px] 2xl:h-[38px] 3xl:w-[42px] 3xl:h-[42px] rounded-[6px] 2xl:rounded-[8px] bg-[#8B1E2D] flex items-center justify-center text-white font-sans font-bold text-[13px] 2xl:text-[15px] 3xl:text-[17px] tracking-tight shadow-xs hover:scale-105 transition-transform">
+      <div class="w-[32px] h-[32px] 2xl:w-[38px] 2xl:h-[38px] 3xl:w-[42px] 3xl:h-[42px] rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson flex items-center justify-center text-white font-sans font-bold text-[13px] 2xl:text-[15px] 3xl:text-[17px] tracking-tight shadow-xs hover:scale-105 transition-transform">
         VC
       </div>
     </a>
@@ -51,7 +56,7 @@
     <button
       type="button"
       id="btn-nav-view-pdf"
-      class="btn-view-pdf h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-[#8B1E2D] hover:bg-[#6e1622] active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs border-none cursor-pointer flex items-center justify-center whitespace-nowrap"
+      class="btn-view-pdf h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs border-none cursor-pointer flex items-center justify-center whitespace-nowrap"
       title="Visualizza Curriculum Vitae (PDF)"
     >
       CV
@@ -62,7 +67,7 @@
       href="https://www.linkedin.com/in/valerio-comella-6a5693241/"
       target="_blank"
       rel="noopener noreferrer"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-[#8B1E2D] hover:bg-[#6e1622] active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
+      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
       title="Profilo LinkedIn ufficiale"
     >
       Linkedin
@@ -73,7 +78,7 @@
       href="https://github.com/valeriocomella"
       target="_blank"
       rel="noopener noreferrer"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-[#8B1E2D] hover:bg-[#6e1622] active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
+      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
       title="Profilo GitHub ufficiale"
     >
       GitHub

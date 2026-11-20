@@ -1,5 +1,11 @@
 ---
 // Floating Navigation Dock / Right Rail (Figma 44:3818 - Match Image 8)
+export interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
+
 const sections = [
   { id: "01", label: "Hero" },
   { id: "02", label: "Profilo" },
@@ -11,7 +17,7 @@ const sections = [
 ---
 
 <aside
-  class="fixed right-3 sm:right-5 2xl:right-8 top-1/2 -translate-y-1/2 z-40 w-[45px] 2xl:w-[54px] 3xl:w-[60px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[22px] 2xl:rounded-[26px] py-3.5 px-1.5 flex flex-col items-center gap-2 shadow-md select-none transition-all"
+  class={`fixed right-3 sm:right-5 2xl:right-8 top-1/2 -translate-y-1/2 z-40 w-[45px] 2xl:w-[54px] 3xl:w-[60px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[22px] 2xl:rounded-[26px] py-3.5 px-1.5 flex flex-col items-center gap-2 shadow-md select-none transition-all ${className}`}
   aria-label="Navigazione rapida sezioni orizzontali"
 >
   <!-- Prev Button -->
@@ -33,8 +39,8 @@ const sections = [
           data-rail-target={sec.id}
           class={`rail-dot w-[31px] h-[31px] 2xl:w-[38px] 2xl:h-[38px] rounded-[6px] 2xl:rounded-[8px] flex items-center justify-center font-sans text-[13px] 2xl:text-[15px] font-bold transition-all border-none cursor-pointer ${
             idx === 0
-              ? "bg-[#8B1E2D] text-white shadow-2xs"
-              : "bg-transparent text-[#475569] dark:text-gray-400 hover:text-[#8B1E2D] hover:bg-red-50/50 dark:hover:bg-red-950/30"
+              ? "bg-swiss-crimson text-white shadow-2xs"
+              : "bg-transparent text-[#475569] dark:text-gray-400 hover:text-swiss-crimson hover:bg-red-50/50 dark:hover:bg-red-950/30"
           }`}
           title={`Sezione ${sec.id} - ${sec.label}`}
         >
@@ -69,10 +75,10 @@ const sections = [
       currentSectionIdx = idx
       dots.forEach((d, i) => {
         if (i === idx) {
-          d.classList.add("bg-[#8B1E2D]", "text-white", "shadow-2xs")
+          d.classList.add("bg-swiss-crimson", "text-white", "shadow-2xs")
           d.classList.remove("text-[#475569]", "dark:text-gray-400", "bg-transparent")
         } else {
-          d.classList.remove("bg-[#8B1E2D]", "text-white", "shadow-2xs")
+          d.classList.remove("bg-swiss-crimson", "text-white", "shadow-2xs")
           d.classList.add("text-[#475569]", "dark:text-gray-400", "bg-transparent")
         }
       })

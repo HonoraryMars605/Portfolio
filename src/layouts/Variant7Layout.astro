@@ -10,11 +10,13 @@ import PdfViewerModal from "@/components/variant7/PdfViewerModal.astro"
 interface Props {
   title?: string
   description?: string
+  bare?: boolean
 }
 
 const {
   title = "Valerio Comella - Swiss Editorial Portfolio",
   description = "Swiss Editorial Portfolio di Valerio Comella - Software Engineer | Unity (C#) & Full Stack Developer. Navigazione a scorrimento orizzontale, coordinate telemetry e sound design.",
+  bare = false,
 } = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valeriocomella.github.io")
@@ -169,98 +171,94 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://valerioc
       }
     </style>
   </head>
-  <body class="bg-[#FAF9F5] dark:bg-[#0C1017] text-[#111827] dark:text-[#F3F4F6] antialiased h-full w-full flex flex-col relative overflow-hidden transition-colors duration-200">
-    <!-- Grid overlay texture -->
-    <div class="swiss-grid-overlay"></div>
-
-    <!-- Procedural Web Audio Sound Engine -->
-    <SoundManager />
-
-    <!-- Fictional Developer Preloader Splash (Portfolio · PC · 1920 Inspiration) -->
-    <Preloader />
-
-    <!-- Interactive Cursor Telemetry Trail (x, y coords & hex tokens) -->
-    <CursorTrail />
-
-    <!-- Fixed Top Editorial Navigation Bar -->
-    <TopNavbar />
-
-    <!-- Fixed Floating Right Navigation Rail -->
-    <FloatingNavRail />
-
-    <!-- PDF Viewer Modal (Visualizza PDF) -->
-    <PdfViewerModal />
-
-    <!-- Horizontal Scroll Sections Container -->
-    <main
-      id="horizontal-slider-container"
-      class="relative z-10 h-screen w-full overflow-x-auto overflow-y-hidden flex flex-row flex-nowrap snap-x snap-mandatory scroll-smooth"
-      tabindex="0"
-      aria-label="Portfolio Swiss Editorial Orizzontale"
-    >
+  <body class="bg-swiss-bg dark:bg-swiss-bg-dark text-[#111827] dark:text-[#F3F4F6] antialiased h-full w-full flex flex-col relative overflow-hidden transition-colors duration-200">
+    {bare ? (
       <slot />
-    </main>
+    ) : (
+      <>
+        <!-- Grid overlay texture -->
+        <div class="swiss-grid-overlay"></div>
 
-    <!-- Horizontal Wheel & Keyboard Translation Script -->
-    <script>
-      function setupHorizontalScroll() {
-        const container = document.getElementById("horizontal-slider-container")
-        if (!container) return
+        <!-- Procedural Web Audio Sound Engine -->
+        <SoundManager />
 
-        // Intercept mousewheel deltaY to scroll horizontally or vertically
-        container.addEventListener(
-          "wheel",
-          (e: WheelEvent) => {
-            const target = e.target as HTMLElement
+        <!-- Fictional Developer Preloader Splash (Portfolio · PC · 1920 Inspiration) -->
+        <Preloader />
 
-            // Check if user is hovering over any vertically scrollable container (cards, section slide, etc.)
-            let el: HTMLElement | null = target
-            while (el && el !== container) {
-              const overflowY = window.getComputedStyle(el).overflowY
-              if ((overflowY === "auto" || overflowY === "scroll") && el.scrollHeight > el.clientHeight) {
-                const atTop = el.scrollTop <= 1 && e.deltaY < 0
-                const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2 && e.deltaY > 0
+        <!-- Interactive Cursor Telemetry Trail (x, y coords & hex tokens) -->
+        <CursorTrail />
 
-                // If not at vertical bound, let the user scroll vertically inside the card list / section!
-                if (!atTop && !atBottom) {
-                  return
+        <!-- Fixed Top Editorial Navigation Bar -->
+        <TopNavbar />
+
+        <!-- Fixed Floating Right Navigation Rail -->
+        <FloatingNavRail />
+
+        <!-- PDF Viewer Modal (Visualizza PDF) -->
+        <PdfViewerModal />
+
+        <!-- Horizontal Scroll Sections Container -->
+        <main
+          id="horizontal-slider-container"
+          class="relative z-10 h-screen w-full overflow-x-auto overflow-y-hidden flex flex-row flex-nowrap snap-x snap-mandatory scroll-smooth"
+          tabindex="0"
+          aria-label="Portfolio Swiss Editorial Orizzontale"
+        >
+          <slot />
+        </main>
+
+        <!-- Horizontal Wheel & Keyboard Translation Script -->
+        <script>
+          function setupHorizontalScroll() {
+            const container = document.getElementById("horizontal-slider-container")
+            if (!container) return
+
+            container.addEventListener(
+              "wheel",
+              (e: WheelEvent) => {
+                const target = e.target as HTMLElement
+                let el: HTMLElement | null = target
+                while (el && el !== container) {
+                  const overflowY = window.getComputedStyle(el).overflowY
+                  if ((overflowY === "auto" || overflowY === "scroll") && el.scrollHeight > el.clientHeight) {
+                    const atTop = el.scrollTop <= 1 && e.deltaY < 0
+                    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2 && e.deltaY > 0
+                    if (!atTop && !atBottom) return
+                  }
+                  el = el.parentElement
                 }
+
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                  e.preventDefault()
+                  container.scrollBy({
+                    left: e.deltaY * 1.5,
+                    behavior: "auto",
+                  })
+                }
+              },
+              { passive: false }
+            )
+
+            window.addEventListener("keydown", (e: KeyboardEvent) => {
+              const modal = document.getElementById("pdf-modal-container")
+              if (modal && !modal.classList.contains("hidden")) return
+
+              if (e.key === "ArrowRight" || e.key === "PageDown") {
+                e.preventDefault()
+                container.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" })
+                if ((window as any).playSfx) (window as any).playSfx("slide")
+              } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+                e.preventDefault()
+                container.scrollBy({ left: -window.innerWidth * 0.85, behavior: "smooth" })
+                if ((window as any).playSfx) (window as any).playSfx("slide")
               }
-              el = el.parentElement
-            }
-
-            // If vertical scroll is exhausted or not scrollable, translate vertical wheel to horizontal section slide
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-              e.preventDefault()
-              container.scrollBy({
-                left: e.deltaY * 1.5,
-                behavior: "auto",
-              })
-            }
-          },
-          { passive: false }
-        )
-
-        // Keyboard arrow navigation
-        window.addEventListener("keydown", (e: KeyboardEvent) => {
-          // If modal is open, let modal handle keys
-          const modal = document.getElementById("pdf-modal-container")
-          if (modal && !modal.classList.contains("hidden")) return
-
-          if (e.key === "ArrowRight" || e.key === "PageDown") {
-            e.preventDefault()
-            container.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" })
-            if ((window as any).playSfx) (window as any).playSfx("slide")
-          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
-            e.preventDefault()
-            container.scrollBy({ left: -window.innerWidth * 0.85, behavior: "smooth" })
-            if ((window as any).playSfx) (window as any).playSfx("slide")
+            })
           }
-        })
-      }
 
-      setupHorizontalScroll()
-      document.addEventListener("astro:after-swap", setupHorizontalScroll)
-    </script>
+          setupHorizontalScroll()
+          document.addEventListener("astro:after-swap", setupHorizontalScroll)
+        </script>
+      </>
+    )}
   </body>
 </html>

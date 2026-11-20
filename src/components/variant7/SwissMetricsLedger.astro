@@ -1,5 +1,11 @@
 ---
 // Swiss Metrics Ledger (8 Cards Infinite Marquee) - Figma 63:322
+export interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
+
 const metrics = [
   {
     value: "1.200+ Ore",
@@ -47,7 +53,7 @@ const metrics = [
 const doubleMetrics = [...metrics, ...metrics]
 ---
 
-<div class="relative w-full overflow-hidden group/marquee" id="metrics-marquee-container">
+<div class={`relative w-full overflow-hidden group/marquee ${className}`} id="metrics-marquee-container">
   <!-- Fade Gradients at Edges for Editorial Polish -->
   <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-[#FAF9F5] dark:from-[#0C1017] to-transparent"></div>
   <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-l from-[#FAF9F5] dark:from-[#0C1017] to-transparent"></div>
@@ -61,10 +67,10 @@ const doubleMetrics = [...metrics, ...metrics]
     {
       doubleMetrics.map((m, idx) => (
         <div
-          class="w-[280px] sm:w-[295px] lg:w-[308px] bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col justify-start shrink-0 shadow-2xs hover:border-[#8B1E2D]/60 dark:hover:border-red-500/60 transition-all gap-1.5 cursor-pointer hover:shadow-md"
+          class="w-[280px] sm:w-[295px] lg:w-[308px] bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[10px] p-5 flex flex-col justify-start shrink-0 shadow-2xs hover:border-swiss-crimson/60 dark:hover:border-red-500/60 transition-all gap-1.5 cursor-pointer hover:shadow-md"
           data-index={idx}
         >
-          <span class="text-[26px] sm:text-[28px] font-extrabold tracking-tight text-[#8B1E2D] dark:text-red-400 leading-tight">
+          <span class="text-[26px] sm:text-[28px] font-extrabold tracking-tight text-swiss-crimson dark:text-red-400 leading-tight">
             {m.value}
           </span>
           <span class="text-[13px] font-bold text-[#0F172A] dark:text-white leading-tight">
