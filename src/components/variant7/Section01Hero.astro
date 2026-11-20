@@ -1,4 +1,5 @@
 ---
+// Section 01: Presentazione (Figma 17:6663 / 83:253 - Match Image 7)
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 import SwissMetricsLedger from "./SwissMetricsLedger.astro"
 
@@ -17,7 +18,7 @@ const { class: className = "" } = Astro.props
   <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-6 sm:gap-7 2xl:gap-9 relative z-10">
     <!-- Intestazione / Riga sezione (Figma 17:6664) -->
     <div class="flex items-center gap-3 border-b border-gray-200/80 dark:border-gray-800 pb-3 text-[11px] 2xl:text-[13px] font-sans">
-      <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold tracking-wide">
+      <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold tracking-wide font-mono">
         01 // CHI SONO?
       </div>
       <span class="text-[#94A3B8] dark:text-gray-400 font-medium tracking-wider text-[11px] 2xl:text-[13px] hidden sm:inline">
@@ -35,25 +36,25 @@ const { class: className = "" } = Astro.props
             VALERIO COMELLA
           </h1>
           <div class="h-[32px] 2xl:h-[40px] flex items-center">
-            <h2 class="text-lg sm:text-[20px] 2xl:text-[24px] 3xl:text-[28px] font-semibold text-swiss-crimson dark:text-red-400 tracking-[-0.005em] m-0 font-mono flex items-center">
+            <h2 class="text-base sm:text-lg 2xl:text-xl font-bold uppercase tracking-wider text-swiss-crimson dark:text-red-400 m-0 font-mono flex items-center">
               <span id="hero-typewriter-text">Software Engineer</span>
               <span id="hero-typewriter-cursor" class="inline-block w-[2px] 2xl:w-[3px] h-[19px] 2xl:h-[24px] bg-swiss-crimson dark:bg-red-400 ml-1 animate-pulse"></span>
             </h2>
           </div>
         </div>
 
-        <!-- Biografia (Figma media_1795184245127_6d567dd1.png - Red Highlights) -->
+        <!-- Biografia (Figma media_1795189813595_8df36c51.jpg - Red Highlights) -->
         <p class="text-[14px] sm:text-[15px] 2xl:text-[17px] 3xl:text-[19px] leading-[24px] 2xl:leading-[28px] 3xl:leading-[32px] text-[#334155] dark:text-gray-300 m-0 max-w-xl 2xl:max-w-2xl">
           <span class="text-swiss-crimson dark:text-red-400 font-medium">Unity Developer</span> specializzato in <span class="text-swiss-crimson dark:text-red-400 font-medium">C#</span> , con esperienza nello sviluppo di <span class="text-swiss-crimson dark:text-red-400 font-medium">applicazioni interattive</span> , soluzioni <span class="text-swiss-crimson dark:text-red-400 font-medium">Mixed Reality</span> e prodotti <span class="text-swiss-crimson dark:text-red-400 font-medium">B2B</span>. Solida formazione in <span class="text-swiss-crimson dark:text-red-400 font-medium">Game Development</span> e Mixed Reality ( <span class="text-swiss-crimson dark:text-red-400 font-medium">ITS EQF5</span> ) , con competenze <span class="text-swiss-crimson dark:text-red-400 font-medium">Full Stack</span>.
         </p>
       </div>
 
-      <!-- Immagine / Presentazione (Right 5 cols) -->
+      <!-- Immagine / Presentazione: Monitor Stand Setup (Right 5 cols - Match Image 6) -->
       <div class="lg:col-span-5 flex justify-center lg:justify-end items-center">
         <img
           src="/assets/variant7/hero-monitor-stand.png"
-          alt="Valerio Comella - Setup Monitor"
-          class="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-[460px] 2xl:max-w-[560px] 3xl:max-w-[660px] object-contain drop-shadow-md select-none"
+          alt="Valerio Comella - Monitor Setup"
+          class="w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[504px] 2xl:max-w-[560px] object-contain drop-shadow-md select-none transition-transform hover:scale-[1.01]"
           loading="eager"
         />
       </div>
@@ -109,7 +110,6 @@ const { class: className = "" } = Astro.props
       }
     }
 
-    // Start typing cycle after initial pause on first text
     window.setTimeout(tick, 2000)
   }
 

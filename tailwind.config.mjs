@@ -70,5 +70,15 @@ export default {
       },
     },
   },
+  safelist: [
+    'bg-[#8B1E2D]',
+    'bg-[#0066B2]',
+    'bg-[#0B1726]',
+    'bg-[#281858]',
+    'bg-swiss-crimson',
+    'hover:bg-[#6E1622]',
+    'text-white',
+    'shadow-2xs',
+  ],
   plugins: [],
 };

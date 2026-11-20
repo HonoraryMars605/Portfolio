@@ -1,5 +1,5 @@
 ---
-// Section 04: Progetti in Evidenza (Figma 17:6935 / 83:720 - Match Attachment 3 & raw_structure_tree.json)
+// Section 04: Progetti in Evidenza (Figma media_1795189813579_ebb6ef63.jpg - 1:1 Match)
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 
 export interface Props {
@@ -11,11 +11,11 @@ const { class: className = "" } = Astro.props
 
 <section
   id="section-04"
-  class={`section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center shrink-0 snap-start pt-20 sm:pt-24 pb-8 min-h-full ${className}`}
+  class={`section-slide relative w-screen min-w-[100vw] h-full overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-start shrink-0 snap-start pt-20 sm:pt-24 pb-16 min-h-full ${className}`}
 >
   <SectionPatternCanvas theme="gamedev" />
   <div class="w-full max-w-[1312px] 2xl:max-w-[1560px] 3xl:max-w-[1850px] 4k:max-w-[2200px] mx-auto my-auto flex flex-col justify-center gap-5 2xl:gap-7 relative z-10">
-    <!-- Section Editorial Header (Figma 17:6937 & 17:6936) -->
+    <!-- Section Editorial Header (Figma media_1795189813579_ebb6ef63.jpg) -->
     <div class="flex flex-col gap-1.5 pb-2">
       <div class="flex items-center gap-3">
         <div class="inline-flex items-center px-3 py-1 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold text-[11px] 2xl:text-[13px] tracking-wide font-mono">
@@ -23,16 +23,16 @@ const { class: className = "" } = Astro.props
         </div>
       </div>
       <h2 class="text-2xl sm:text-[32px] 2xl:text-[38px] 3xl:text-[44px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] mt-1 m-0">
-        Portfolio Opere &amp; Produzioni Videoludiche
+        Progetti personali
       </h2>
       <p class="text-[14px] sm:text-[15px] 2xl:text-[17px] 3xl:text-[19px] text-[#64748B] dark:text-gray-300 max-w-4xl 2xl:max-w-5xl m-0 leading-normal">
         Demo-prototipi sviluppati e co-sviluppati durante i mie percorsi di studio ed oltre
       </p>
     </div>
 
-    <!-- Row 1: Featured 2 Main Projects (Violinum & Lock Fight - Figma 17:6942) -->
+    <!-- Row 1: Featured 2 Main Projects (Violinum & Lock Fight - Match Image 3) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 2xl:gap-6">
-      <!-- Violinum (Figma 17:6943) -->
+      <!-- Violinum -->
       <a
         href="/projects/violinum"
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-between shadow-2xs hover:border-swiss-crimson/50 transition-all no-underline"
@@ -45,9 +45,6 @@ const { class: className = "" } = Astro.props
           />
         </div>
         <div class="flex flex-col gap-2 2xl:gap-3 mt-2">
-          <div class="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] 2xl:text-[11px] font-bold tracking-wider uppercase w-fit">
-            ITALIAN GAME 2025 SELECTION · VR EXPERIENCE
-          </div>
           <h3 class="text-[20px] 2xl:text-[24px] font-bold text-[#0F172A] dark:text-white group-hover:text-swiss-crimson transition-colors m-0">
             Violinum
           </h3>
@@ -57,14 +54,17 @@ const { class: className = "" } = Astro.props
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Unity</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">C#</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Virtual Reality</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Adventure Creator</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">3D Audio</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Italian Game 2025</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">ITS Lazio Digital</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">2025</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">PC</span>
           </div>
         </div>
       </a>
 
-      <!-- Lock Fight (Figma 17:6961) -->
+      <!-- Lock Fight -->
       <a
         href="/projects/lock-fight"
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-between shadow-2xs hover:border-swiss-crimson/50 transition-all no-underline"
@@ -77,9 +77,6 @@ const { class: className = "" } = Astro.props
           />
         </div>
         <div class="flex flex-col gap-2 2xl:gap-3 mt-2">
-          <div class="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 text-[#8B1E2D] dark:text-red-300 font-mono text-[9.5px] 2xl:text-[11px] font-bold tracking-wider uppercase w-fit">
-            TACTICAL STRATEGY GAME · SETTEMBRE - OTTOBRE 2024
-          </div>
           <h3 class="text-[20px] 2xl:text-[24px] font-bold text-[#0F172A] dark:text-white group-hover:text-swiss-crimson transition-colors m-0">
             Lock Fight
           </h3>
@@ -89,17 +86,17 @@ const { class: className = "" } = Astro.props
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-800">
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Unity</span>
             <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">C#</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Turn-based Tactics</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Grid Movement</span>
-            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">AI State Machine</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Custom Editor Tools</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">2024</span>
+            <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Mobile</span>
           </div>
         </div>
       </a>
     </div>
 
-    <!-- Row 2: 3 Medium Project Cards (Rusheep, Sfuryatell, Project Works - Figma 17:6979) -->
+    <!-- Row 2: 3 Medium Project Cards (Rusheep, Sfuryatell, Project Works - Match Image 3) -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 2xl:gap-6">
-      <!-- Rusheep (Figma 17:6980) -->
+      <!-- Rusheep -->
       <div
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all"
       >
@@ -128,7 +125,7 @@ const { class: className = "" } = Astro.props
         </div>
       </div>
 
-      <!-- Sfuryatell - ISAS (Figma 17:6994) -->
+      <!-- Sfuryatell - ISAS -->
       <a
         href="/projects/sfuryatell"
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all no-underline"
@@ -159,7 +156,7 @@ const { class: className = "" } = Astro.props
         </div>
       </a>
 
-      <!-- Project Works - ITS Lazio Digital (Figma 17:7010) -->
+      <!-- Project Works - ITS Lazio Digital -->
       <div
         class="group bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] overflow-hidden flex flex-col justify-between shadow-2xs hover:border-[#8B1E2D]/50 transition-all"
       >
@@ -190,7 +187,7 @@ const { class: className = "" } = Astro.props
       </div>
     </div>
 
-    <!-- Row 3: Game Jams & Experimental Titles Banner (Figma 17:7026 - Match Attachment 3) -->
+    <!-- Row 3: Game Jams & Experimental Titles Banner (Match Image 3) -->
     <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col sm:flex-row items-center gap-5 2xl:gap-7 shadow-2xs">
       <div class="w-28 2xl:w-36 h-20 2xl:h-24 rounded-[8px] bg-[#F5F2EB] flex items-center justify-center shrink-0 border border-gray-200/80 p-2">
         <img

@@ -1,6 +1,6 @@
 ---
-// Floating Vertical Navigation Rail (Figma 44:3818 / 83:1102 - Match Image 5)
-// Exact vertical capsule: ‹ 01 02 [03] 04 05 06 07 › fixed on the right viewport edge
+// Floating Horizontal Navigation Dock (Figma media_1795189823769_2e590999.png)
+// Exact horizontal bottom capsule: ‹ [01] 02 03 04 05 06 07 ›
 export interface Props {
   class?: string
 }
@@ -19,30 +19,30 @@ const sections = [
 ---
 
 <nav
-  class={`fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 w-[45px] 2xl:w-[52px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[8px] 2xl:rounded-[10px] py-3 px-1.5 flex flex-col items-center gap-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.08)] select-none transition-all ${className}`}
+  class={`fixed bottom-5 sm:bottom-6 inset-x-0 mx-auto w-fit z-40 bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[18px] 2xl:rounded-[22px] py-1.5 px-3 sm:px-4 flex items-center gap-1.5 sm:gap-2 2xl:gap-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.08)] select-none transition-all ${className}`}
   aria-label="Navigazione rapida sezioni orizzontali"
 >
-  <!-- Prev Button (Figma 44:3820 - Icona / ‹) -->
+  <!-- Prev Button (Icona / ‹) -->
   <button
     id="rail-prev-btn"
     type="button"
-    class="w-[28px] h-[28px] 2xl:w-[34px] 2xl:h-[34px] rounded-[6px] flex items-center justify-center text-[#6B7280] dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm 2xl:text-base font-bold border-none bg-transparent cursor-pointer active:scale-90"
+    class="w-7 h-7 2xl:w-8 2xl:h-8 rounded-[6px] flex items-center justify-center text-[#475569] dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-xs 2xl:text-sm font-bold border-none bg-transparent cursor-pointer active:scale-90"
     title="Sezione precedente"
   >
     ‹
   </button>
 
-  <!-- Section Indicators (Figma 44:3822 - 01 to 07) -->
-  <div class="flex flex-col items-center gap-1">
+  <!-- Section Indicators (01 to 07) -->
+  <div class="flex items-center gap-1 sm:gap-1.5">
     {
       sections.map((sec, idx) => (
         <button
           type="button"
           data-rail-target={sec.id}
-          class={`rail-dot w-[28px] h-[28px] 2xl:w-[34px] 2xl:h-[34px] rounded-[6px] flex items-center justify-center font-sans text-[11px] 2xl:text-[13px] font-bold transition-all border-none cursor-pointer ${
+          class={`rail-dot w-[30px] h-[30px] sm:w-[32px] sm:h-[32px] 2xl:w-[38px] 2xl:h-[38px] rounded-[7px] 2xl:rounded-[9px] flex items-center justify-center font-sans text-[12px] sm:text-[13px] 2xl:text-[15px] font-bold transition-all border-none cursor-pointer ${
             idx === 0
-              ? "bg-swiss-crimson text-white shadow-2xs"
-              : "bg-transparent text-[#6B7280] dark:text-gray-400 hover:text-swiss-crimson hover:bg-red-50/50 dark:hover:bg-red-950/30"
+              ? "bg-[#8B1E2D] text-white shadow-2xs"
+              : "bg-transparent text-[#475569] dark:text-gray-400 hover:text-swiss-crimson hover:bg-red-50/50 dark:hover:bg-red-950/30"
           }`}
           title={`Sezione ${sec.id} - ${sec.label}`}
         >
@@ -52,11 +52,11 @@ const sections = [
     }
   </div>
 
-  <!-- Next Button (Figma 44:3829 - Icona / ›) -->
+  <!-- Next Button (Icona / ›) -->
   <button
     id="rail-next-btn"
     type="button"
-    class="w-[28px] h-[28px] 2xl:w-[34px] 2xl:h-[34px] rounded-[6px] flex items-center justify-center text-[#6B7280] dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm 2xl:text-base font-bold border-none bg-transparent cursor-pointer active:scale-90"
+    class="w-7 h-7 2xl:w-8 2xl:h-8 rounded-[6px] flex items-center justify-center text-[#475569] dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-xs 2xl:text-sm font-bold border-none bg-transparent cursor-pointer active:scale-90"
     title="Sezione successiva"
   >
     ›
@@ -77,11 +77,11 @@ const sections = [
       currentSectionIdx = idx
       dots.forEach((d, i) => {
         if (i === idx) {
-          d.classList.add("bg-swiss-crimson", "text-white", "shadow-2xs")
-          d.classList.remove("text-[#6B7280]", "dark:text-gray-400", "bg-transparent")
+          d.classList.add("bg-[#8B1E2D]", "text-white", "shadow-2xs")
+          d.classList.remove("text-[#475569]", "dark:text-gray-400", "bg-transparent")
         } else {
-          d.classList.remove("bg-swiss-crimson", "text-white", "shadow-2xs")
-          d.classList.add("text-[#6B7280]", "dark:text-gray-400", "bg-transparent")
+          d.classList.remove("bg-[#8B1E2D]", "bg-swiss-crimson", "text-white", "shadow-2xs")
+          d.classList.add("text-[#475569]", "dark:text-gray-400", "bg-transparent")
         }
       })
     }

@@ -1,5 +1,6 @@
 ---
-// Section 03: Esperienze Professionali (Figma 17:6808 / 83:252 - Match Image 2)
+// Section 03: Esperienze Professionali (Figma media_1795189813569_811a617f.jpg - 1:1 Match)
+// 4 Cards in 2x2 grid, identical to Figma reference capture
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 
 export interface Props {
@@ -30,15 +31,15 @@ const { class: className = "" } = Astro.props
       </p>
     </div>
 
-    <!-- Experience Cards Grid (2x3 Grid - 6 Cards matching Image 2) -->
+    <!-- Experience Cards Grid (2x2 Grid - 4 Cards matching Image 2) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 2xl:gap-6">
       <!-- Card 1: Skill Factory -->
       <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-between gap-3.5 2xl:gap-4 shadow-2xs">
         <div>
           <div class="flex items-start justify-between gap-3 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div class="flex items-center gap-3 2xl:gap-4">
-              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 flex items-center justify-center font-bold text-[13px] 2xl:text-[15px] text-[#8B1E2D] dark:text-red-300 shrink-0">
-                SK
+              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-black text-white flex items-center justify-center font-bold text-[14px] 2xl:text-[16px] shrink-0">
+                <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
               <div>
                 <h3 class="font-bold text-[15px] 2xl:text-[17px] text-[#0F172A] dark:text-white m-0">
@@ -55,13 +56,11 @@ const { class: className = "" } = Astro.props
           </div>
 
           <div class="text-[11.5px] 2xl:text-[13px] font-mono text-[#8B1E2D] dark:text-red-400 mt-2.5 mb-2 flex items-center gap-1.5 font-medium">
-            <span>📅 2025 - Presente (Luglio 2026)</span>
+            <span>2025 - Luglio 2026</span>
           </div>
 
           <ul class="text-[12px] 2xl:text-[13.5px] text-[#475569] dark:text-gray-300 space-y-1.5 pl-4 list-disc m-0 leading-relaxed">
-            <li>Insegnamento pratico di Unity e programmazione orientata agli oggetti (OOP) in linguaggio C#.</li>
             <li>Sviluppo piattaforma web aziendale focalizzato sul Back-end tramite Java / Spring Boot + Thymeleaf.</li>
-            <li>Monitoraggio continuo di progetti studenteschi, supporto tecnico e sessioni di code review.</li>
           </ul>
         </div>
 
@@ -81,8 +80,8 @@ const { class: className = "" } = Astro.props
         <div>
           <div class="flex items-start justify-between gap-3 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div class="flex items-center gap-3 2xl:gap-4">
-              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-[#FFF1F2] dark:bg-red-950/40 border border-[#FECDD3] dark:border-red-900/60 flex items-center justify-center font-bold text-[13px] 2xl:text-[15px] text-[#8B1E2D] dark:text-red-300 shrink-0">
-                L'
+              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 flex items-center justify-center p-1 shrink-0">
+                <span class="font-bold text-[14px] text-amber-500">▲E<br/>●C</span>
               </div>
               <div>
                 <h3 class="font-bold text-[15px] 2xl:text-[17px] text-[#0F172A] dark:text-white m-0">
@@ -99,13 +98,13 @@ const { class: className = "" } = Astro.props
           </div>
 
           <div class="text-[11.5px] 2xl:text-[13px] font-mono text-[#8B1E2D] dark:text-red-400 mt-2.5 mb-2 flex items-center gap-1.5 font-medium">
-            <span>📅 2024 - 2025 (Gennaio - Aprile 2026)</span>
+            <span>2024 - 2025 (Gennaio - Aprile 2026)</span>
           </div>
 
           <ul class="text-[12px] 2xl:text-[13.5px] text-[#475569] dark:text-gray-300 space-y-1.5 pl-4 list-disc m-0 leading-relaxed">
-            <li>Collaborazione alla ricerca e sviluppo di progetti orientati alla didattica per la piattaforma MR zSpace e MR-HMI.</li>
-            <li>Sviluppo in C# dei sistemi e wrapper multi SDK per l'interazione spaziale 3D.</li>
-            <li>Concept grafico (Figma-Canva) e implementazione UI &amp; UX interattiva tramite uGUI.</li>
+            <li>Sviluppatore Unity/C#</li>
+            <li>Co-sviluppato diversi applicativi a tema didattico in campo MR e MR-HMI, con l'utilizzo del software e hardware zSpace</li>
+            <li>Ricerca e sviluppo in C#, UI design (Figma) e Management (Miro)</li>
           </ul>
         </div>
 
@@ -125,7 +124,7 @@ const { class: className = "" } = Astro.props
         <div>
           <div class="flex items-start justify-between gap-3 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div class="flex items-center gap-3 2xl:gap-4">
-              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 flex items-center justify-center p-1 shrink-0 shadow-2xs">
+              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 flex items-center justify-center p-1 shrink-0">
                 <img src="/assets/variant7/17_6880_Icona___Protom_Group.svg" alt="Protom Group" class="w-full h-full object-contain" />
               </div>
               <div>
@@ -143,13 +142,11 @@ const { class: className = "" } = Astro.props
           </div>
 
           <div class="text-[11.5px] 2xl:text-[13px] font-mono text-[#8B1E2D] dark:text-red-400 mt-2.5 mb-2 flex items-center gap-1.5 font-medium">
-            <span>📅 2023 - 2024 (Novembre 2025)</span>
+            <span>2023 - 2024 (Novembre 2025)</span>
           </div>
 
           <ul class="text-[12px] 2xl:text-[13.5px] text-[#475569] dark:text-gray-300 space-y-1.5 pl-4 list-disc m-0 leading-relaxed">
             <li>Co-sviluppo piattaforma web focalizzato sul Front-end tramite HTML5, CSS3 e JavaScript.</li>
-            <li>Prototipazione e programmazione moduli interattivi Unity &amp; XR per clienti enterprise.</li>
-            <li>Integrazione pipeline asset grafici e ottimizzazione del rendering real-time.</li>
           </ul>
         </div>
 
@@ -168,7 +165,7 @@ const { class: className = "" } = Astro.props
         <div>
           <div class="flex items-start justify-between gap-3 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div class="flex items-center gap-3 2xl:gap-4">
-              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-black border border-gray-800 flex items-center justify-center p-1 shrink-0 shadow-2xs">
+              <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-black border border-gray-800 flex items-center justify-center p-1 shrink-0">
                 <img src="/assets/variant7/17_6908_Icona___Katabasi_Studio.svg" alt="Katabasi Studio" class="w-full h-full object-contain" />
               </div>
               <div>
@@ -186,13 +183,13 @@ const { class: className = "" } = Astro.props
           </div>
 
           <div class="text-[11.5px] 2xl:text-[13px] font-mono text-[#8B1E2D] dark:text-red-400 mt-2.5 mb-2 flex items-center gap-1.5 font-medium">
-            <span>📅 Nov 2024 - Apr 2025</span>
+            <span>Nov 2024 - Apr 2025</span>
           </div>
 
           <ul class="text-[12px] 2xl:text-[13.5px] text-[#475569] dark:text-gray-300 space-y-1.5 pl-4 list-disc m-0 leading-relaxed">
-            <li>Durante i 5 mesi di stage (oltre 720 ore) ho collaborato attivamente allo sviluppo di due prodotti B2B real-time.</li>
-            <li>Architettura software in C#, integrazione UI (uGUI), gestione localizzazione e Custom Editor Tools per ottimizzare il workflow.</li>
-            <li>Testing, profilazione performance e packaging build WebGL cross-browser.</li>
+            <li>Sviluppo di due prodotti B2B realizzati con Unity e implementati su piattaforma WebGL.</li>
+            <li>Sviluppo in C#, integrati elementi UI (uGUI), organizzazione e documentazione tramite Milanote e Notion</li>
+            <li>Gestione della localizzazione e Custom Editor Tools per l'ottimizzazione del workflow di sviluppo.</li>
           </ul>
         </div>
 
@@ -204,50 +201,6 @@ const { class: className = "" } = Astro.props
           <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Custom Editor Tools</span>
           <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">Localization</span>
           <span class="px-2 py-0.5 rounded-[4px] bg-gray-50 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-sans text-[11px] 2xl:text-[12.5px]">720+ Ore</span>
-        </div>
-      </div>
-
-      <!-- Card 5: Example for future card 01 (Figma 17:6812 - Match Image 2) -->
-      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-start gap-3.5 2xl:gap-4 shadow-2xs">
-        <div class="flex items-start justify-between gap-3 border-b border-gray-100 dark:border-gray-800 pb-3">
-          <div class="flex items-center gap-3 2xl:gap-4">
-            <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-black border border-gray-800 flex items-center justify-center p-1 shrink-0 shadow-2xs">
-              <img src="/assets/variant7/36_3034_Icona___Example_for_future_car.svg" alt="Katabasi future card" class="w-full h-full object-contain" />
-            </div>
-            <div>
-              <h3 class="font-bold text-[15px] 2xl:text-[17px] text-[#0F172A] dark:text-white m-0">
-                Example for future card (non generare)
-              </h3>
-              <p class="text-[12px] 2xl:text-[13.5px] text-[#64748B] dark:text-gray-400 m-0">
-                Unity (C#) Developer WebGL
-              </p>
-            </div>
-          </div>
-          <span class="px-2.5 py-0.5 rounded-[4px] border border-gray-200 dark:border-gray-700 font-sans text-[11px] 2xl:text-[12.5px] text-gray-600 dark:text-gray-300 whitespace-nowrap">
-            Tirocinio Curriculare
-          </span>
-        </div>
-      </div>
-
-      <!-- Card 6: Example for future card 02 (Figma 17:6812 - Match Image 2) -->
-      <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-5 2xl:p-6 flex flex-col justify-start gap-3.5 2xl:gap-4 shadow-2xs">
-        <div class="flex items-start justify-between gap-3 border-b border-gray-100 dark:border-gray-800 pb-3">
-          <div class="flex items-center gap-3 2xl:gap-4">
-            <div class="w-10 h-10 2xl:w-12 2xl:h-12 rounded-[6px] 2xl:rounded-[8px] bg-black border border-gray-800 flex items-center justify-center p-1 shrink-0 shadow-2xs">
-              <img src="/assets/variant7/36_3064_Icona___Example_for_future_car.svg" alt="Katabasi future card" class="w-full h-full object-contain" />
-            </div>
-            <div>
-              <h3 class="font-bold text-[15px] 2xl:text-[17px] text-[#0F172A] dark:text-white m-0">
-                Example for future card (non generare)
-              </h3>
-              <p class="text-[12px] 2xl:text-[13.5px] text-[#64748B] dark:text-gray-400 m-0">
-                Unity (C#) Developer WebGL
-              </p>
-            </div>
-          </div>
-          <span class="px-2.5 py-0.5 rounded-[4px] border border-gray-200 dark:border-gray-700 font-sans text-[11px] 2xl:text-[12.5px] text-gray-600 dark:text-gray-300 whitespace-nowrap">
-            Tirocinio Curriculare
-          </span>
         </div>
       </div>
     </div>
