@@ -7,82 +7,80 @@ export interface Props {
 const { class: className = "" } = Astro.props
 ---
 
-<header class={`fixed top-5 inset-x-0 mx-auto max-w-[1400px] 2xl:max-w-[1680px] 3xl:max-w-[2000px] 4k:max-w-[2400px] w-[calc(100%-32px)] sm:w-[calc(100%-48px)] h-[56px] 2xl:h-[64px] 3xl:h-[72px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[16px] 2xl:rounded-[20px] z-40 px-4 sm:px-6 2xl:px-8 flex items-center justify-between shadow-sm transition-colors duration-200 ${className}`}>
-  <!-- Marchio / Monogramma VC (Figma 83:1116) -->
-  <div class="flex items-center">
-    <a href="#section-01" class="flex items-center no-underline" title="Torna a 01 // CHI SONO?">
-      <div class="w-[32px] h-[32px] 2xl:w-[38px] 2xl:h-[38px] 3xl:w-[42px] 3xl:h-[42px] rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson flex items-center justify-center text-white font-sans font-bold text-[13px] 2xl:text-[15px] 3xl:text-[17px] tracking-tight shadow-xs hover:scale-105 transition-transform">
+<header class={`fixed top-4 inset-x-0 mx-auto max-w-[1400px] 2xl:max-w-[1680px] 3xl:max-w-[2000px] 4k:max-w-[2400px] w-[calc(100%-32px)] sm:w-[calc(100%-48px)] h-[56px] 2xl:h-[64px] 3xl:h-[72px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[16px] 2xl:rounded-[20px] z-40 px-4 sm:px-6 2xl:px-8 flex items-center justify-between shadow-sm transition-colors duration-200 ${className}`}>
+  <!-- Marchio / Monogramma VC & Nome Ruolo (Figma media_1795184216613_10e9e1ef.png) -->
+  <div class="flex items-center gap-3">
+    <a href="#section-01" class="flex items-center gap-3 no-underline group" title="Torna a 01 // CHI SONO?">
+      <div class="w-[32px] h-[32px] 2xl:w-[38px] 2xl:h-[38px] 3xl:w-[42px] 3xl:h-[42px] rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson flex items-center justify-center text-white font-sans font-bold text-[13px] 2xl:text-[15px] 3xl:text-[17px] tracking-tight shadow-xs group-hover:scale-105 transition-transform">
         VC
+      </div>
+      <div class="flex flex-col gap-0.5 text-left">
+        <span class="font-bold text-[12.5px] 2xl:text-[14px] 3xl:text-[15px] tracking-tight text-[#0F172A] dark:text-white leading-none font-sans">
+          VALERIO COMELLA
+        </span>
+        <span class="text-[9px] 2xl:text-[10px] 3xl:text-[11px] font-mono font-semibold tracking-wider text-[#64748B] dark:text-gray-400 uppercase leading-none">
+          GAME DEV &amp; FULL-STACK
+        </span>
       </div>
     </a>
   </div>
 
-  <!-- Navigazione / Preferenze e collegamenti (Figma 38:3784) -->
+  <!-- Navigazione / Preferenze e collegamenti (Figma media_1795184216613_10e9e1ef.png) -->
   <div class="flex items-center gap-1.5 sm:gap-2 2xl:gap-3">
-    <!-- Preferenze / Audio (Figma 37:3161) -->
+    <!-- Preferenze / Audio (Icon only) -->
     <button
       id="btn-sound-toggle"
       type="button"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-2.5 2xl:px-3.5 rounded-[6px] 2xl:rounded-[8px] border border-[#E5E7EB] dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-sans font-bold text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      class="w-[32px] h-[32px] 2xl:w-[38px] 2xl:h-[38px] 3xl:w-[44px] 3xl:h-[44px] rounded-[6px] 2xl:rounded-[8px] border border-[#E5E7EB] dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center justify-center shadow-2xs active:scale-95"
       title="Attiva/Disattiva effetti sonori interattivi"
     >
       <span id="sound-toggle-icon" class="text-xs 2xl:text-sm">🔊</span>
-      <span id="sound-toggle-label" class="hidden sm:inline">SFX ON</span>
     </button>
 
-    <!-- Preferenze / Tema (Figma 37:3164) -->
+    <!-- Preferenze / Tema (Icon only) -->
     <button
       id="btn-theme-toggle"
       type="button"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-2.5 2xl:px-3.5 rounded-[6px] 2xl:rounded-[8px] border border-[#E5E7EB] dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-sans font-bold text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
+      class="w-[32px] h-[32px] 2xl:w-[38px] 2xl:h-[38px] 3xl:w-[44px] 3xl:h-[44px] rounded-[6px] 2xl:rounded-[8px] border border-[#E5E7EB] dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center justify-center shadow-2xs active:scale-95"
       title="Passa da modalità Chiara a Scura"
     >
-      <span id="theme-toggle-icon" class="text-xs 2xl:text-sm">🌓</span>
-      <span id="theme-toggle-label" class="hidden sm:inline">Dark/Light</span>
+      <span id="theme-toggle-icon" class="text-xs 2xl:text-sm">☼</span>
     </button>
 
-    <!-- Preferenze / Lingua (Figma 34:2819) -->
-    <button
-      id="btn-lang-toggle"
-      type="button"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-2.5 2xl:px-3.5 rounded-[6px] 2xl:rounded-[8px] border border-[#E5E7EB] dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-sans font-bold text-[#374151] dark:text-gray-200 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs active:scale-95"
-      title="Cambia lingua / Switch language"
-    >
-      <span id="lang-toggle-icon" class="text-xs 2xl:text-sm">🌐</span>
-      <span id="lang-toggle-label">ITA/EN</span>
-    </button>
-
-    <!-- Collegamento / CV (Figma 34:2806 & 34:2808) -->
-    <button
-      type="button"
-      id="btn-nav-view-pdf"
-      class="btn-view-pdf h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs border-none cursor-pointer flex items-center justify-center whitespace-nowrap"
-      title="Visualizza Curriculum Vitae (PDF)"
-    >
-      CV
-    </button>
-
-    <!-- Collegamento / LinkedIn (Figma 65:795 & 65:797) -->
+    <!-- Collegamento / LinkedIn (Figma Blue Pill) -->
     <a
       href="https://www.linkedin.com/in/valerio-comella-6a5693241/"
       target="_blank"
       rel="noopener noreferrer"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
+      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-3.5 2xl:px-4 rounded-[6px] 2xl:rounded-[8px] bg-[#0A66C2] hover:bg-[#084e96] active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[14px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
       title="Profilo LinkedIn ufficiale"
     >
-      Linkedin
+      <span>Linkedin</span>
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
     </a>
 
-    <!-- Collegamento / GitHub (Figma 65:787 & 65:789) -->
+    <!-- Collegamento / GitHub (Figma Purple Pill) -->
     <a
       href="https://github.com/valeriocomella"
       target="_blank"
       rel="noopener noreferrer"
-      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-4 2xl:px-5 rounded-full bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[15px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center justify-center whitespace-nowrap"
+      class="h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-3.5 2xl:px-4 rounded-[6px] 2xl:rounded-[8px] bg-[#6E40C9] hover:bg-[#5b32aa] active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[14px] font-bold tracking-wide transition-all shadow-2xs no-underline flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
       title="Profilo GitHub ufficiale"
     >
-      GitHub
+      <span>GitHub</span>
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
     </a>
+
+    <!-- Collegamento / CV (Figma Burgundy Pill) -->
+    <button
+      type="button"
+      id="btn-nav-view-pdf"
+      class="btn-view-pdf h-[32px] 2xl:h-[38px] 3xl:h-[44px] px-3.5 2xl:px-4 rounded-[6px] 2xl:rounded-[8px] bg-swiss-crimson hover:bg-swiss-crimson-hover active:scale-95 text-white font-sans text-[11px] 2xl:text-[13px] 3xl:text-[14px] font-bold tracking-wide transition-all shadow-2xs border-none cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
+      title="Visualizza Curriculum Vitae (PDF)"
+    >
+      <span>CV.PDF</span>
+      <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+    </button>
   </div>
 </header>
 
@@ -91,14 +89,12 @@ const { class: className = "" } = Astro.props
     // 1. Sound Button Toggle
     const soundBtn = document.getElementById("btn-sound-toggle")
     const soundIcon = document.getElementById("sound-toggle-icon")
-    const soundLabel = document.getElementById("sound-toggle-label")
 
     if (soundBtn) {
       soundBtn.onclick = () => {
         if ((window as any).soundEngine) {
           const isMuted = (window as any).soundEngine.toggleMute()
           if (soundIcon) soundIcon.textContent = isMuted ? "🔇" : "🔊"
-          if (soundLabel) soundLabel.textContent = isMuted ? "SFX OFF" : "SFX ON"
         }
       }
     }
@@ -109,14 +105,14 @@ const { class: className = "" } = Astro.props
     const root = document.documentElement
 
     const isCurrentlyDark = root.classList.contains("dark") || root.getAttribute("data-theme") === "dark"
-    if (themeIcon) themeIcon.textContent = isCurrentlyDark ? "🌙" : "🌓"
+    if (themeIcon) themeIcon.textContent = isCurrentlyDark ? "🌙" : "☼"
 
     if (themeBtn) {
       themeBtn.onclick = () => {
         const isDark = root.classList.toggle("dark")
         root.setAttribute("data-theme", isDark ? "dark" : "light")
         localStorage.setItem("theme", isDark ? "dark" : "light")
-        if (themeIcon) themeIcon.textContent = isDark ? "🌙" : "🌓"
+        if (themeIcon) themeIcon.textContent = isDark ? "🌙" : "☼"
         if ((window as any).playSfx) (window as any).playSfx("click")
       }
     }

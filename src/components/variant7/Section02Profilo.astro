@@ -1,5 +1,5 @@
 ---
-// Section 02: Competenze (Figma 17:6710 / 83:252 - Match Image 1)
+// Section 02: Competenze (Figma media_1795184248927_8408222b.png - 1:1 Match)
 import SectionPatternCanvas from "./SectionPatternCanvas.astro"
 
 export interface Props {
@@ -30,180 +30,225 @@ const { class: className = "" } = Astro.props
       </p>
     </div>
 
-    <!-- 3 Colonne Competenze (Figma 17:6727 / 83:252 - Match Image 1) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-8 items-start">
-      <!-- Categoria 1: GAME DEV & ENGINE -->
+    <!-- 3 Colonne Competenze (Figma media_1795184248927_8408222b.png) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-8 items-end">
+      <!-- Categoria 1: GAME DEV & ENGINE AREA -->
       <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-6 2xl:p-7 flex flex-col gap-5 2xl:gap-6 shadow-2xs">
         <h3 class="font-bold text-[12px] 2xl:text-[14px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
-          GAME DEV &amp; ENGINE
+          GAME DEV &amp; ENGINE AREA
         </h3>
 
         <div class="flex flex-col gap-4 2xl:gap-5">
-          <!-- Unity -->
+          <!-- Unity (C#) -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6738_Icona___Unity__C__.svg"
-              alt="Unity"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-1 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/unity.png"
+                alt="Unity"
+                class="w-full h-full object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Unity (C#)</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Custom Editor Tools, uGUI, UI Toolkit, Monobehaviour</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Unity (C#)</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Avanzata</span>
             </div>
           </div>
 
           <!-- Unreal Engine 5 -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6743_Icona___Unreal_Engine_5__Bluep.svg"
-              alt="Unreal Engine"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-1 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/unreal.png"
+                alt="Unreal Engine 5"
+                class="w-full h-full object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Unreal Engine 5 (Blueprint - C++)</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Blueprint Visual Scripting, Gameplay Framework, Level Design</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Unreal Engine 5 (Blueprint - C++)</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
+            </div>
+          </div>
+
+          <!-- Blender & Maya -->
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/blender_maya.png"
+                alt="Blender & Maya"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Blender &amp; Maya</span>
+              <span class="text-[11px] 2xl:text-[12px] text-[#64748B] dark:text-gray-400 leading-tight">Modellazione 3D, UV mapping, rigging e animazione asset</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Categoria 2: FULL STACK DEV -->
+      <!-- Categoria 2: FULL STACK AREA -->
       <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-6 2xl:p-7 flex flex-col gap-5 2xl:gap-6 shadow-2xs">
         <h3 class="font-bold text-[12px] 2xl:text-[14px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
-          FULL STACK DEV
+          FULL STACK AREA
         </h3>
 
         <div class="flex flex-col gap-4 2xl:gap-5">
-          <!-- Java & Spring Boot -->
+          <!-- C#, Java & Spring Boot -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6763_Icona___Java___Spring_Boot___0.svg"
-              alt="Java"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/java_spring.png"
+                alt="C#, Java & Spring Boot"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Java &amp; Spring Boot</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Thymeleaf, REST API, architettura MVC e logica di business</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">C#, Java &amp; Spring Boot</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
             </div>
           </div>
 
           <!-- PostgreSQL & MySQL -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6768_Icona___PostgreSQL___MySQL___0.svg"
-              alt="Database"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/postgres_mysql.png"
+                alt="PostgreSQL & MySQL"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">PostgreSQL &amp; MySQL</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Database relazionali, schema design, persistenza dati e query</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">PostgreSQL &amp; MySQL</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
             </div>
           </div>
 
           <!-- HTML5, CSS3 & JavaScript -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6773_Icona___HTML5__CSS3___JavaScri.svg"
-              alt="HTML5 CSS3 JS"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/web_stack.png"
+                alt="HTML5, CSS3 & JavaScript"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">HTML5, CSS3 &amp; JavaScript</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Front-end responsive, Bootstrap, DOM scripting e performance</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">HTML5, CSS3 &amp; JavaScript</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
             </div>
           </div>
 
-          <!-- C & Python (Figma 17:6778 & 63:115) -->
+          <!-- C & Python -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <div class="flex items-center gap-1.5 shrink-0">
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
               <img
-                src="/assets/variant7/17_6778_Icona___C___Python___01.svg"
-                alt="C"
-                class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-              />
-              <img
-                src="/assets/variant7/63_115_Icona___C___Python___02.svg"
-                alt="Python"
-                class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
+                src="/assets/variant7/v2_icons/c_python.png"
+                alt="C & Python"
+                class="h-7 2xl:h-8 object-contain"
               />
             </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">C &amp; Python</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Competenze base</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">C &amp; Python</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Base</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Categoria 3: WORKFLOW, TOOLING & DESIGN -->
+      <!-- Categoria 3: WORKFLOW, TOOLING, DESIGN & OTHERS AREA -->
       <div class="bg-white dark:bg-gray-900 border border-gray-200/90 dark:border-gray-800 rounded-[14px] 2xl:rounded-[18px] p-6 2xl:p-7 flex flex-col gap-5 2xl:gap-6 shadow-2xs">
         <h3 class="font-bold text-[12px] 2xl:text-[14px] tracking-wider uppercase text-[#0F172A] dark:text-gray-200 m-0 font-sans">
-          WORKFLOW, TOOLING &amp; DESIGN
+          WORKFLOW, TOOLING, DESIGN &amp; OTHERS AREA
         </h3>
 
         <div class="flex flex-col gap-4 2xl:gap-5">
           <!-- Git & GitHub -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6787_Icona___Git___GitHub.svg"
-              alt="Git"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/git_github.png"
+                alt="Git & GitHub"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Git &amp; GitHub</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Version control distribuito, pull request, branching e code review</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Git &amp; GitHub</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Avanzata</span>
             </div>
           </div>
 
           <!-- Figma & Canva -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6792_Icona___Figma___Canva___01.svg"
-              alt="Figma & Canva"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/figma_canva.png"
+                alt="Figma & Canva"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Figma &amp; Canva</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Design UI/UX, wireframe, prototipazione interattiva e design system</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Figma &amp; Canva</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
             </div>
           </div>
 
-          <!-- Trello, Notion, Milanote, Miro -->
+          <!-- Trello, Notion, Milanote & Miro -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6797_Icona___Trello__Notion__Milano.svg"
-              alt="Project Tools"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/project_tools.png"
+                alt="Trello, Notion, Milanote & Miro"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Trello, Notion, Milanote, Miro</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Gestione sprint agili</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Trello, Notion, Milanote &amp; Miro</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
             </div>
           </div>
 
-          <!-- Visual Studio, VS Code, IntelliJ IDEA, Antigravity -->
+          <!-- Visual Studio, VS Code, IntelliJ IDEA & Antigravity -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/63_357_Icona___Visual_Studio__VS_Code.svg"
-              alt="IDEs"
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/ides.png"
+                alt="Visual Studio, VS Code, IntelliJ IDEA & Antigravity"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">Visual Studio, VS Code, IntelliJ IDEA, Antigravity</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">Ambienti di sviluppo Code firtst &amp; Agent first</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Visual Studio, VS Code, IntelliJ IDEA &amp; Antigravity</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Avanzata</span>
             </div>
           </div>
 
           <!-- AI & Prompt Eng. -->
           <div class="flex items-center gap-3 2xl:gap-4">
-            <img
-              src="/assets/variant7/17_6802_Icona___AI___Prompt_Eng_.svg"
-              alt="AI & Prompt Eng."
-              class="w-9 h-9 2xl:w-11 2xl:h-11 shrink-0 rounded-[8px] 2xl:rounded-[10px] shadow-2xs"
-            />
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/ai_prompt.png"
+                alt="AI & Prompt Eng."
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
             <div class="flex flex-col">
-              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100">AI &amp; Prompt Eng.</span>
-              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-snug">ChatGPT, Gemini automazione workflow e accelerazione code creation</span>
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">AI &amp; Prompt Eng.</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Intermedia</span>
+            </div>
+          </div>
+
+          <!-- Video Editing -->
+          <div class="flex items-center gap-3 2xl:gap-4">
+            <div class="h-9 2xl:h-11 px-1.5 shrink-0 rounded-[8px] 2xl:rounded-[10px] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <img
+                src="/assets/variant7/v2_icons/video_editing.png"
+                alt="Video Editing"
+                class="h-7 2xl:h-8 object-contain"
+              />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[13px] 2xl:text-[15px] 3xl:text-[16px] font-bold text-[#0F172A] dark:text-gray-100 leading-snug">Video Editing</span>
+              <span class="text-[11px] 2xl:text-[12.5px] text-[#64748B] dark:text-gray-400 leading-tight">Competenza Base</span>
             </div>
           </div>
         </div>

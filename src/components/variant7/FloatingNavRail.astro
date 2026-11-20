@@ -1,5 +1,6 @@
 ---
-// Floating Navigation Dock / Right Rail (Figma 44:3818 - Match Image 8)
+// Floating Navigation Dock (Figma media_1795184258925_9939f6ef.png)
+// Horizontal dock capsule with ‹ [01] 02 03 04 05 06 07 ›
 export interface Props {
   class?: string
 }
@@ -7,17 +8,18 @@ export interface Props {
 const { class: className = "" } = Astro.props
 
 const sections = [
-  { id: "01", label: "Hero" },
-  { id: "02", label: "Profilo" },
+  { id: "01", label: "Chi Sono" },
+  { id: "02", label: "Competenze" },
   { id: "03", label: "Esperienze" },
   { id: "04", label: "Progetti" },
   { id: "05", label: "Formazione" },
-  { id: "06", label: "Cosa Mi Piace" },
+  { id: "06", label: "Passioni" },
+  { id: "07", label: "Contatti" },
 ]
 ---
 
-<aside
-  class={`fixed right-3 sm:right-5 2xl:right-8 top-1/2 -translate-y-1/2 z-40 w-[45px] 2xl:w-[54px] 3xl:w-[60px] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[22px] 2xl:rounded-[26px] py-3.5 px-1.5 flex flex-col items-center gap-2 shadow-md select-none transition-all ${className}`}
+<nav
+  class={`fixed bottom-5 sm:bottom-6 inset-x-0 mx-auto w-fit z-40 bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border border-[#E5E7EB] dark:border-gray-800 rounded-[22px] 2xl:rounded-[26px] py-1.5 px-3 sm:px-4 flex items-center gap-1.5 sm:gap-2 2xl:gap-2.5 shadow-lg select-none transition-all ${className}`}
   aria-label="Navigazione rapida sezioni orizzontali"
 >
   <!-- Prev Button -->
@@ -30,14 +32,14 @@ const sections = [
     ‹
   </button>
 
-  <!-- Number Dots -->
-  <div class="flex flex-col gap-1 2xl:gap-1.5">
+  <!-- Number Dots (01 to 07) -->
+  <div class="flex items-center gap-1 sm:gap-1.5">
     {
       sections.map((sec, idx) => (
         <button
           type="button"
           data-rail-target={sec.id}
-          class={`rail-dot w-[31px] h-[31px] 2xl:w-[38px] 2xl:h-[38px] rounded-[6px] 2xl:rounded-[8px] flex items-center justify-center font-sans text-[13px] 2xl:text-[15px] font-bold transition-all border-none cursor-pointer ${
+          class={`rail-dot w-[30px] h-[30px] sm:w-[32px] sm:h-[32px] 2xl:w-[38px] 2xl:h-[38px] rounded-[7px] 2xl:rounded-[9px] flex items-center justify-center font-sans text-[12.5px] sm:text-[13px] 2xl:text-[15px] font-bold transition-all border-none cursor-pointer ${
             idx === 0
               ? "bg-swiss-crimson text-white shadow-2xs"
               : "bg-transparent text-[#475569] dark:text-gray-400 hover:text-swiss-crimson hover:bg-red-50/50 dark:hover:bg-red-950/30"
@@ -59,7 +61,7 @@ const sections = [
   >
     ›
   </button>
-</aside>
+</nav>
 
 <script>
   function setupRail() {
@@ -103,7 +105,7 @@ const sections = [
           const sec = document.getElementById(`section-${targetId}`)
           if (sec) {
             sec.scrollIntoView({ behavior: "smooth", inline: "start" })
-            updateActiveDot(Math.min(currentSectionIdx - 1, dots.length - 1))
+            updateActiveDot(currentSectionIdx - 1)
             if ((window as any).playSfx) (window as any).playSfx("slide")
           }
         }
@@ -117,7 +119,7 @@ const sections = [
           const sec = document.getElementById(`section-${targetId}`)
           if (sec) {
             sec.scrollIntoView({ behavior: "smooth", inline: "start" })
-            updateActiveDot(Math.min(currentSectionIdx + 1, dots.length - 1))
+            updateActiveDot(currentSectionIdx + 1)
             if ((window as any).playSfx) (window as any).playSfx("slide")
           }
         }
@@ -129,10 +131,10 @@ const sections = [
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
               const secId = entry.target.id.replace("section-", "")
               const idx = sectionIds.indexOf(secId)
-              if (idx !== -1) updateActiveDot(Math.min(idx, dots.length - 1))
+              if (idx !== -1) updateActiveDot(idx)
             }
           })
         },
