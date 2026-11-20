@@ -1,6 +1,6 @@
 ---
 interface Props {
-  theme: "minimal" | "abstract" | "code" | "gamedev" | "space"
+  theme: "minimal" | "abstract" | "code" | "gamedev" | "space" | "vr_quest" | "smartphone" | "tablet" | "laptop" | "monitor"
 }
 
 const { theme } = Astro.props
@@ -16,7 +16,7 @@ const { theme } = Astro.props
   // ==========================================
   // MULTI-THEME GPU CANVAS ENGINE FOR SECTIONS
   // ==========================================
-  type ThemeKey = "minimal" | "abstract" | "code" | "gamedev" | "space"
+  type ThemeKey = "minimal" | "abstract" | "code" | "gamedev" | "space" | "vr_quest" | "smartphone" | "tablet" | "laptop" | "monitor"
 
   interface ThemeConfig {
     colors: string[]
@@ -60,13 +60,54 @@ const { theme } = Astro.props
       particleCount: 34,
       radius: 150,
     },
-    space: {
+        space: {
       colors: ["#6366F1", "#0284C7", "#9B1C2E", "#D97706", "#334155"],
       shapes: ["spark", "planet", "orbit", "moon", "asteroid"],
       gravity: 0,
       speed: 0.6,
       particleCount: 38,
       radius: 140,
+    },
+    // --- 5 HARDWARE DEVICE PATTERN THEMES ---
+    vr_quest: {
+      colors: ["#4F46E5", "#06B6D4", "#9B1C2E", "#111827", "#818CF8"],
+      shapes: ["questPills", "spatialReticle", "spatialBox", "trackingRay", "questVisor"],
+      gravity: 0.008,
+      speed: 0.6,
+      particleCount: 36,
+      radius: 145,
+    },
+    smartphone: {
+      colors: ["#2563EB", "#9B1C2E", "#1E293B", "#10B981", "#64748B"],
+      shapes: ["dynamicIsland", "touchRipples", "phoneChassis", "homeIndicator", "hapticMatrix"],
+      gravity: -0.02,
+      speed: 0.7,
+      particleCount: 38,
+      radius: 140,
+    },
+    tablet: {
+      colors: ["#D97706", "#9B1C2E", "#0284C7", "#334155", "#8B5CF6"],
+      shapes: ["stylusNib", "splitGrid", "vectorBezier", "tabletFrame", "paletteRing"],
+      gravity: 0.005,
+      speed: 0.65,
+      particleCount: 34,
+      radius: 140,
+    },
+    laptop: {
+      colors: ["#059669", "#9B1C2E", "#0EA5E9", "#1E293B", "#F59E0B"],
+      shapes: ["laptopProfile", "terminalPrompt", "syntaxBrackets", "keycapUnit", "gitBranchTree"],
+      gravity: -0.022,
+      speed: 0.72,
+      particleCount: 38,
+      radius: 150,
+    },
+    monitor: {
+      colors: ["#EA580C", "#DC2626", "#FBBF24", "#111111", "#9B1C2E"],
+      shapes: ["retroSun", "palmSilhouette", "monitorDisplay", "widescreen5k", "synthHorizon"],
+      gravity: -0.015,
+      speed: 0.68,
+      particleCount: 36,
+      radius: 145,
     },
   }
 
@@ -266,6 +307,135 @@ const { theme } = Astro.props
     } else if (shape === "asteroid") {
       cx.rect(-drawSize * 0.24, -drawSize * 0.24, drawSize * 0.48, drawSize * 0.48)
       cx.stroke()
+
+    // ==========================================
+    // 6. VR META QUEST 3 (Spatial & 6-DoF Optics)
+    // ==========================================
+    } else if (shape === "questPills") {
+      const pw = 4, ph = 14, pCenterH = 18
+      cx.roundRect(-11, -ph/2, pw, ph, 2)
+      cx.roundRect(-pw/2, -pCenterH/2, pw, pCenterH, 2)
+      cx.roundRect(7, -ph/2, pw, ph, 2)
+      cx.fill()
+    } else if (shape === "spatialReticle") {
+      const r = drawSize * 0.32
+      cx.arc(0, 0, r, 0, Math.PI * 2)
+      cx.stroke()
+      cx.beginPath()
+      cx.arc(0, 0, 2.5, 0, Math.PI * 2)
+      cx.fill()
+      cx.beginPath()
+      cx.moveTo(-r - 4, 0); cx.lineTo(-r + 4, 0)
+      cx.moveTo(r - 4, 0); cx.lineTo(r + 4, 0)
+      cx.moveTo(0, -r - 4); cx.lineTo(0, -r + 4)
+      cx.moveTo(0, r - 4); cx.lineTo(0, r + 4)
+      cx.stroke()
+    } else if (shape === "spatialBox") {
+      const s = drawSize * 0.28
+      cx.moveTo(0, -s); cx.lineTo(s * 0.86, -s * 0.5); cx.lineTo(s * 0.86, s * 0.5); cx.lineTo(0, s); cx.lineTo(-s * 0.86, s * 0.5); cx.lineTo(-s * 0.86, -s * 0.5); cx.closePath(); cx.stroke()
+      cx.beginPath(); cx.moveTo(0, -s); cx.lineTo(0, 0); cx.lineTo(s * 0.86, -s * 0.5)
+      cx.moveTo(0, 0); cx.lineTo(-s * 0.86, -s * 0.5)
+      cx.stroke()
+    } else if (shape === "trackingRay") {
+      cx.moveTo(-drawSize * 0.35, 0); cx.lineTo(drawSize * 0.35, 0); cx.stroke()
+      cx.beginPath(); cx.arc(-drawSize * 0.35, 0, 2.5, 0, Math.PI * 2); cx.arc(0, 0, 3, 0, Math.PI * 2); cx.arc(drawSize * 0.35, 0, 2.5, 0, Math.PI * 2); cx.fill()
+    } else if (shape === "questVisor") {
+      cx.roundRect(-drawSize * 0.38, -drawSize * 0.22, drawSize * 0.76, drawSize * 0.44, 10)
+      cx.stroke()
+      cx.beginPath(); cx.arc(0, drawSize * 0.14, 5, Math.PI, Math.PI * 2); cx.stroke()
+
+    // ==========================================
+    // 7. SMARTPHONE (Titanium Pro & Dynamic UI)
+    // ==========================================
+    } else if (shape === "dynamicIsland") {
+      cx.roundRect(-drawSize * 0.35, -drawSize * 0.12, drawSize * 0.7, drawSize * 0.24, 8)
+      cx.fill()
+      cx.beginPath(); cx.arc(drawSize * 0.16, 0, 2, 0, Math.PI * 2); cx.fillStyle = "#ffffff"; cx.fill(); cx.fillStyle = color
+    } else if (shape === "touchRipples") {
+      cx.arc(0, 0, drawSize * 0.36, 0, Math.PI * 2); cx.stroke()
+      cx.beginPath(); cx.arc(0, 0, drawSize * 0.2, 0, Math.PI * 2); cx.stroke()
+      cx.beginPath(); cx.arc(0, 0, 3, 0, Math.PI * 2); cx.fill()
+    } else if (shape === "phoneChassis") {
+      cx.roundRect(-drawSize * 0.22, -drawSize * 0.38, drawSize * 0.44, drawSize * 0.76, 7)
+      cx.stroke()
+      cx.beginPath(); cx.roundRect(-drawSize * 0.08, -drawSize * 0.33, drawSize * 0.16, 2, 1); cx.fill()
+    } else if (shape === "homeIndicator") {
+      cx.roundRect(-drawSize * 0.32, 4, drawSize * 0.64, 3, 2); cx.fill()
+      cx.beginPath(); cx.moveTo(-6, -2); cx.lineTo(0, -8); cx.lineTo(6, -2); cx.stroke()
+    } else if (shape === "hapticMatrix") {
+      for (let r = -1; r <= 1; r++) {
+        for (let c = -0.5; c <= 0.5; c += 1) {
+          cx.beginPath(); cx.arc(c * 12, r * 10, 2.5, 0, Math.PI * 2); cx.fill()
+        }
+      }
+
+    // ==========================================
+    // 8. TABLET (Pro Canvas & Stylus Drawing)
+    // ==========================================
+    } else if (shape === "stylusNib") {
+      cx.moveTo(0, drawSize * 0.4); cx.lineTo(-6, drawSize * 0.1); cx.lineTo(-4, -drawSize * 0.35); cx.lineTo(4, -drawSize * 0.35); cx.lineTo(6, drawSize * 0.1); cx.closePath(); cx.stroke()
+      cx.beginPath(); cx.arc(0, drawSize * 0.4, 2, 0, Math.PI * 2); cx.fill()
+    } else if (shape === "splitGrid") {
+      cx.rect(-drawSize * 0.38, -drawSize * 0.28, drawSize * 0.76, drawSize * 0.56); cx.stroke()
+      cx.beginPath(); cx.moveTo(-drawSize * 0.12, -drawSize * 0.28); cx.lineTo(-drawSize * 0.12, drawSize * 0.28)
+      cx.moveTo(drawSize * 0.14, -drawSize * 0.28); cx.lineTo(drawSize * 0.14, drawSize * 0.28); cx.stroke()
+    } else if (shape === "vectorBezier") {
+      cx.rect(-3.5, -3.5, 7, 7); cx.fill()
+      cx.beginPath(); cx.moveTo(-drawSize * 0.35, -drawSize * 0.2); cx.lineTo(drawSize * 0.35, drawSize * 0.2); cx.stroke()
+      cx.beginPath(); cx.arc(-drawSize * 0.35, -drawSize * 0.2, 2.5, 0, Math.PI * 2); cx.arc(drawSize * 0.35, drawSize * 0.2, 2.5, 0, Math.PI * 2); cx.stroke()
+    } else if (shape === "tabletFrame") {
+      cx.roundRect(-drawSize * 0.36, -drawSize * 0.3, drawSize * 0.72, drawSize * 0.6, 6); cx.stroke()
+      cx.beginPath(); cx.arc(0, -drawSize * 0.24, 1.5, 0, Math.PI * 2); cx.fill()
+    } else if (shape === "paletteRing") {
+      cx.arc(0, 0, drawSize * 0.34, 0, Math.PI * 2); cx.stroke()
+      cx.beginPath(); cx.arc(-6, -6, 3, 0, Math.PI * 2); cx.arc(7, -4, 2.5, 0, Math.PI * 2); cx.arc(0, 8, 3, 0, Math.PI * 2); cx.fill()
+
+    // ==========================================
+    // 9. LAPTOP (Ultrabook Developer Workstation)
+    // ==========================================
+    } else if (shape === "laptopProfile") {
+      cx.moveTo(-drawSize * 0.35, drawSize * 0.2); cx.lineTo(drawSize * 0.35, drawSize * 0.2); cx.stroke()
+      cx.beginPath(); cx.moveTo(-drawSize * 0.28, drawSize * 0.2); cx.lineTo(-drawSize * 0.24, -drawSize * 0.25); cx.lineTo(drawSize * 0.24, -drawSize * 0.25); cx.lineTo(drawSize * 0.28, drawSize * 0.2); cx.stroke()
+    } else if (shape === "terminalPrompt") {
+      cx.moveTo(-drawSize * 0.3, -drawSize * 0.18); cx.lineTo(-drawSize * 0.1, 0); cx.lineTo(-drawSize * 0.3, drawSize * 0.18); cx.stroke()
+      cx.fillRect(0, drawSize * 0.08, drawSize * 0.22, 3)
+    } else if (shape === "syntaxBrackets") {
+      cx.font = "bold 20px monospace"; cx.textAlign = "center"; cx.textBaseline = "middle"; cx.fillText("{ }", 0, 0)
+    } else if (shape === "keycapUnit") {
+      cx.roundRect(-drawSize * 0.28, -drawSize * 0.28, drawSize * 0.56, drawSize * 0.56, 5); cx.stroke()
+      cx.beginPath(); cx.arc(0, 0, 2, 0, Math.PI * 2); cx.fill()
+    } else if (shape === "gitBranchTree") {
+      cx.beginPath(); cx.arc(-8, drawSize * 0.22, 3, 0, Math.PI * 2); cx.arc(8, -drawSize * 0.22, 3, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.moveTo(-8, drawSize * 0.22); cx.bezierCurveTo(-8, 0, 8, 0, 8, -drawSize * 0.22); cx.stroke()
+
+    // ==========================================
+    // 10. STUDIO MONITOR (5K Retina & Retro Palms)
+    // ==========================================
+    } else if (shape === "retroSun") {
+      const r = drawSize * 0.36
+      cx.arc(0, 0, r, 0, Math.PI * 2); cx.stroke()
+      for (let y = -4; y <= r - 4; y += 7) {
+        const chordW = Math.sqrt(Math.max(0, r * r - y * y))
+        cx.moveTo(-chordW, y); cx.lineTo(chordW, y)
+      }
+      cx.stroke()
+    } else if (shape === "palmSilhouette") {
+      cx.moveTo(-2, drawSize * 0.35); cx.quadraticCurveTo(-6, 0, -8, -drawSize * 0.2); cx.stroke()
+      cx.beginPath(); cx.moveTo(2, drawSize * 0.35); cx.quadraticCurveTo(6, 0, 8, -drawSize * 0.15); cx.stroke()
+      cx.beginPath(); cx.arc(-8, -drawSize * 0.2, 8, Math.PI * 0.8, Math.PI * 1.8); cx.stroke()
+      cx.beginPath(); cx.arc(8, -drawSize * 0.15, 8, Math.PI * 1.2, Math.PI * 2.2); cx.stroke()
+    } else if (shape === "monitorDisplay") {
+      cx.roundRect(-drawSize * 0.4, -drawSize * 0.3, drawSize * 0.8, drawSize * 0.48, 3); cx.stroke()
+      cx.beginPath(); cx.moveTo(0, drawSize * 0.18); cx.lineTo(0, drawSize * 0.35)
+      cx.moveTo(-drawSize * 0.18, drawSize * 0.35); cx.lineTo(drawSize * 0.18, drawSize * 0.35); cx.stroke()
+    } else if (shape === "widescreen5k") {
+      cx.rect(-drawSize * 0.4, -drawSize * 0.22, drawSize * 0.8, drawSize * 0.44); cx.stroke()
+      cx.font = "bold 9px sans-serif"; cx.textAlign = "center"; cx.textBaseline = "middle"; cx.fillText("5K", 0, 0)
+    } else if (shape === "synthHorizon") {
+      cx.moveTo(-drawSize * 0.45, 0); cx.lineTo(drawSize * 0.45, 0); cx.stroke()
+      cx.beginPath(); cx.moveTo(-drawSize * 0.3, 0); cx.lineTo(-drawSize * 0.4, drawSize * 0.3)
+      cx.moveTo(0, 0); cx.lineTo(0, drawSize * 0.3)
+      cx.moveTo(drawSize * 0.3, 0); cx.lineTo(drawSize * 0.4, drawSize * 0.3); cx.stroke()
     } else {
       cx.arc(0, 0, drawSize * 0.28, 0, Math.PI * 2)
       cx.fill()
