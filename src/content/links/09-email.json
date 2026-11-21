@@ -1,0 +1,10 @@
+{
+  "title": "Contattami via Email",
+  "subtitle": "valeriocom@hotmail.it · Richieste e collaborazioni",
+  "url": "mailto:valeriocom@hotmail.it",
+  "category": "contact",
+  "icon": "mingcute:mail-send-line",
+  "featured": false,
+  "order": 9,
+  "visible": true
+}

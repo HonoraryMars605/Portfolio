@@ -45,7 +45,32 @@ const data = defineCollection({
   schema: z.any(),
 })
 
+const links = defineCollection({
+  type: "data",
+  schema: z
+    .object({
+      title: z.string(),
+      subtitle: z.string().optional(),
+      description: z.string().optional(),
+      url: z.string(),
+      category: z.string().default("other"),
+      icon: z.string().optional(),
+      featured: z.boolean().default(false),
+      order: z.number().default(100),
+      visible: z.boolean().default(true),
+    })
+    .transform((data) => {
+      const text = data.subtitle || data.description
+      return {
+        ...data,
+        subtitle: text,
+        description: text,
+      }
+    }),
+})
+
 export const collections = {
   projects,
   data,
+  links,
 }

@@ -1,0 +1,539 @@
+---
+import "@/styles/global.css"
+import { Image } from "astro:assets"
+import { getCollection } from "astro:content"
+import avatarImg from "@/assets/avatar.png"
+import Icon from "@/components/base/Icon.astro"
+import { SITE, PROFILE } from "@site-config"
+
+// Retrieve links dynamically from Content Collection
+const rawLinks = await getCollection("links")
+const links = rawLinks
+  .filter((entry) => entry.data.visible !== false)
+  .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100))
+
+// Group links for Swiss Editorial hierarchy
+const featuredLinks = links.filter((item) => item.data.featured)
+const standardLinks = links.filter((item) => !item.data.featured)
+
+// Group standard links by category
+const socialLinks = standardLinks.filter((item) => item.data.category === "social")
+const projectLinks = standardLinks.filter((item) => item.data.category === "project")
+const otherLinks = standardLinks.filter(
+  (item) => item.data.category !== "social" && item.data.category !== "project",
+)
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.href || "https://valeriocomella.github.io")
+const pageTitle = "Valerio Comella // Links & Bio Directory"
+const pageDescription =
+  "Linktree alternativo nativo di Valerio Comella - Software Engineer, Unity Developer (C#) e Full Stack. Portfolio interattivo, CV, GitHub e progetti."
+const ogImage = new URL("/img/social-preview.png", canonicalURL).toString()
+---
+
+<!doctype html>
+<html lang="it" class="h-full select-none-subtle">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Valerio Comella" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts: Alfa Slab One, Inter, Fira Code (Swiss Editorial) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Prevent Theme Flicker -->
+    <script is:inline>
+      (function () {
+        try {
+          const savedTheme = localStorage.getItem("theme")
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+          if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add("dark", "scheme-dark")
+            document.documentElement.setAttribute("data-theme", "dark")
+          } else {
+            document.documentElement.classList.remove("dark", "scheme-dark")
+            document.documentElement.setAttribute("data-theme", "light")
+          }
+        } catch (e) {}
+      })()
+    </script>
+
+    <style is:global>
+      :root {
+        --color-editorial-bg: #FAF9F5;
+        --color-editorial-accent: #9B1C2E;
+        --color-editorial-dark: #111111;
+        --color-editorial-text: #111827;
+      }
+
+      html.dark,
+      html[data-theme="dark"] {
+        --color-editorial-bg: #0C1017;
+        --color-editorial-accent: #B91C1C;
+        --color-editorial-dark: #FFFFFF;
+        --color-editorial-text: #F3F4F6;
+        color-scheme: dark;
+      }
+
+      body {
+        background-color: var(--color-editorial-bg);
+        color: var(--color-editorial-text);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .font-heading {
+        font-family: 'Alfa Slab One', cursive, system-ui, sans-serif;
+        font-weight: 400;
+      }
+
+      /* Subtle noise/grid background overlay for Swiss aesthetic */
+      .swiss-grid-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 24px 24px;
+        opacity: 0.7;
+      }
+
+      html.dark .swiss-grid-overlay {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        opacity: 0.45;
+      }
+    </style>
+  </head>
+
+  <body class="bg-swiss-bg dark:bg-swiss-bg-dark text-[#111827] dark:text-[#F3F4F6] transition-colors duration-200 relative overflow-x-hidden">
+    <!-- Grid overlay texture -->
+    <div class="swiss-grid-overlay"></div>
+
+    <div class="relative z-10 w-full min-h-screen flex flex-col justify-between px-4 py-6 sm:px-6 sm:py-8 md:py-10">
+      
+      <!-- Top Bar: Quick Return to Portfolio + Theme Switcher -->
+      <header class="w-full max-w-xl mx-auto flex items-center justify-between pb-6 sm:pb-8 border-b border-gray-200/70 dark:border-gray-800/80">
+        <a
+          href="/"
+          class="group inline-flex items-center gap-2 text-[11.5px] sm:text-[12px] font-mono font-medium text-[#64748B] hover:text-swiss-crimson dark:text-gray-400 dark:hover:text-red-400 transition-colors no-underline"
+          title="Torna al portfolio principale"
+        >
+          <span class="inline-block transition-transform duration-150 group-hover:-translate-x-1">←</span>
+          <span>PORTFOLIO INTERATTIVO</span>
+        </a>
+
+        <!-- Compact Theme Toggle -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-[8px] border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 text-[#475569] dark:text-gray-300 hover:text-swiss-crimson dark:hover:text-red-400 hover:border-swiss-crimson/40 transition-colors shadow-2xs cursor-pointer"
+          title="Cambia tema chiaro/scuro"
+          aria-label="Cambia tema chiaro/scuro"
+        >
+          <Icon name="mingcute:sun-line" size="15" class="block dark:hidden" />
+          <Icon name="mingcute:moon-line" size="15" class="hidden dark:block" />
+        </button>
+      </header>
+
+      <!-- Main Content Container -->
+      <main class="w-full max-w-xl mx-auto flex-1 flex flex-col items-center py-6 sm:py-8">
+        
+        <!-- Identity Header -->
+        <div class="w-full flex flex-col items-center text-center gap-3">
+          
+          <!-- Avatar with Swiss Accent Ring -->
+          <div class="relative group">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-white dark:bg-[#111827] border-2 border-swiss-crimson/30 dark:border-red-900/50 shadow-sm transition-transform duration-200 group-hover:scale-105">
+              <Image
+                src={avatarImg}
+                alt="Valerio Comella"
+                width={192}
+                height={192}
+                class="w-full h-full rounded-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <span class="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-[#0C1017]" title="Disponibile per opportunità"></span>
+          </div>
+
+          <!-- Editorial Category Badge -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-swiss-crimson-light dark:bg-[#380A10] border border-swiss-crimson-border dark:border-red-900 text-swiss-crimson dark:text-red-300 font-bold text-[10.5px] sm:text-[11px] font-mono tracking-wider">
+            00 // LINKS &amp; DIRECTORY
+          </div>
+
+          <!-- Name & Tagline -->
+          <div class="flex flex-col gap-1">
+            <h1 class="text-2xl sm:text-[28px] font-bold text-[#0F172A] dark:text-white tracking-[-0.02em] font-heading m-0">
+              VALERIO COMELLA
+            </h1>
+            <p class="text-[13px] sm:text-[14px] font-sans text-[#475569] dark:text-gray-300 font-medium m-0 max-w-md">
+              Software Engineer | Unity (C#) &amp; Full Stack Developer
+            </p>
+          </div>
+
+          <!-- Status / Telemetry Strip -->
+          <div class="flex items-center gap-2 text-[11px] sm:text-[11.5px] font-mono text-[#64748B] dark:text-gray-400">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>NAPOLI, IT</span>
+            <span class="text-gray-300 dark:text-gray-700">·</span>
+            <span>ITS EQF5 GAME DEV</span>
+            <span class="text-gray-300 dark:text-gray-700">·</span>
+            <span class="text-swiss-crimson dark:text-red-400 font-semibold">42 STUDENT</span>
+          </div>
+
+          <!-- Quick Email Copy Bar -->
+          <div class="w-full mt-2 bg-white/95 dark:bg-[#111827]/95 border border-[#E2E8F0] dark:border-gray-800 rounded-[12px] p-2 sm:p-2.5 flex items-center justify-between gap-3 shadow-2xs">
+            <div class="flex items-center gap-2 pl-1.5 overflow-hidden text-left">
+              <span class="text-swiss-crimson dark:text-red-400 shrink-0 text-sm">✉</span>
+              <div class="flex flex-col overflow-hidden">
+                <span class="text-[10px] font-mono uppercase text-[#94A3B8] dark:text-gray-400 font-medium tracking-wide">
+                  Email diretta
+                </span>
+                <span class="text-[12px] sm:text-[12.5px] font-mono text-[#1E293B] dark:text-gray-200 truncate select-all">
+                  {PROFILE.email}
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                id="quick-copy-email"
+                data-email={PROFILE.email}
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[7px] text-[11.5px] font-mono font-medium bg-[#F1F5F9] dark:bg-[#1E293B] hover:bg-swiss-crimson hover:text-white dark:hover:bg-red-700 dark:hover:text-white text-[#334155] dark:text-gray-200 border border-gray-200 dark:border-gray-700 transition-all duration-150 cursor-pointer"
+                title="Copia email negli appunti"
+                aria-label="Copia indirizzo email"
+              >
+                <Icon name="mingcute:copy-line" size="13" class="copy-icon" />
+                <Icon name="mingcute:check-line" size="13" class="check-icon hidden text-emerald-500 group-hover:text-white" />
+                <span class="btn-text">Copia</span>
+              </button>
+
+              <a
+                href={`mailto:${PROFILE.email}`}
+                class="inline-flex items-center justify-center w-8 h-8 rounded-[7px] bg-[#F1F5F9] dark:bg-[#1E293B] text-[#334155] dark:text-gray-200 hover:bg-swiss-crimson hover:text-white dark:hover:bg-red-700 dark:hover:text-white border border-gray-200 dark:border-gray-700 transition-colors"
+                title="Apri client email"
+                aria-label="Invia email a Valerio Comella"
+              >
+                <Icon name="mingcute:mail-send-line" size="13" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Links Stack -->
+        <div class="w-full flex flex-col gap-6 mt-6 sm:mt-7">
+          
+          <!-- FEATURED / PRIORITY SECTION (Portfolio & CV) -->
+          {featuredLinks.length > 0 && (
+            <div class="w-full flex flex-col gap-2.5">
+              <div class="flex items-center justify-between px-1">
+                <span class="text-[10.5px] font-mono uppercase tracking-wider text-swiss-crimson dark:text-red-400 font-bold">
+                  // RISORSE PRINCIPALI (CONSIGLIATE)
+                </span>
+                <span class="text-[10px] font-mono text-[#94A3B8] dark:text-gray-400">
+                  CTA PRIORITARIE
+                </span>
+              </div>
+
+              <div class="w-full flex flex-col gap-2.5">
+                {featuredLinks.map((item) => (
+                  <a
+                    href={item.data.url}
+                    target={item.data.url.startsWith("http") || item.data.url.endsWith(".pdf") ? "_blank" : undefined}
+                    rel={item.data.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                    class="group relative w-full p-4 rounded-[12px] bg-gradient-to-r from-swiss-crimson-light/70 via-white to-white dark:from-[#380A10]/50 dark:via-[#111827] dark:to-[#111827] border-2 border-swiss-crimson/50 hover:border-swiss-crimson dark:border-red-900 dark:hover:border-red-500 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-between gap-3.5 no-underline text-inherit"
+                  >
+                    <div class="flex items-center gap-3.5 min-w-0">
+                      <div class="w-10 h-10 rounded-[8px] bg-swiss-crimson text-white flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+                        {item.data.icon ? (
+                          <Icon name={item.data.icon} size="20" />
+                        ) : (
+                          <Icon name="mingcute:briefcase-line" size="20" />
+                        )}
+                      </div>
+                      <div class="flex flex-col min-w-0 text-left">
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <span class="font-bold text-[14.5px] sm:text-[15px] text-[#0F172A] dark:text-white tracking-tight group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                            {item.data.title}
+                          </span>
+                          <span class="inline-block px-1.5 py-0.2 rounded bg-swiss-crimson text-white text-[9px] font-mono font-bold uppercase tracking-wider">
+                            EXPLORE
+                          </span>
+                        </div>
+                        {item.data.subtitle && (
+                          <span class="text-[12px] sm:text-[12.5px] text-[#475569] dark:text-gray-300 font-sans leading-normal truncate mt-0.5">
+                            {item.data.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div class="shrink-0 w-7 h-7 rounded-full bg-swiss-crimson/10 dark:bg-red-900/40 text-swiss-crimson dark:text-red-300 flex items-center justify-center group-hover:bg-swiss-crimson group-hover:text-white transition-all">
+                      <span class="text-sm font-bold transition-transform duration-150 group-hover:translate-x-0.5">→</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- SOCIAL & DEVELOPER PROFILES -->
+          {socialLinks.length > 0 && (
+            <div class="w-full flex flex-col gap-2">
+              <div class="flex items-center justify-between px-1">
+                <span class="text-[10.5px] font-mono uppercase tracking-wider text-[#64748B] dark:text-gray-400 font-semibold">
+                  // PROFILI UFFICIALI &amp; CODEBASE
+                </span>
+                <span class="text-[10px] font-mono text-[#94A3B8] dark:text-gray-400">
+                  SOCIAL &amp; DEV
+                </span>
+              </div>
+
+              <div class="w-full flex flex-col gap-2">
+                {socialLinks.map((item) => (
+                  <a
+                    href={item.data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group w-full p-3.5 rounded-[12px] bg-white/95 dark:bg-[#111827]/95 border border-[#E2E8F0] dark:border-gray-800 hover:border-swiss-crimson/50 dark:hover:border-red-500/50 shadow-2xs hover:shadow-xs transition-all duration-150 hover:-translate-y-0.5 flex items-center justify-between gap-3 no-underline text-inherit"
+                  >
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-9 h-9 rounded-[8px] bg-[#F1F5F9] dark:bg-[#1E293B] text-[#334155] dark:text-gray-200 group-hover:bg-swiss-crimson-light dark:group-hover:bg-[#380A10] group-hover:text-swiss-crimson dark:group-hover:text-red-400 flex items-center justify-center shrink-0 transition-colors">
+                        {item.data.icon ? (
+                          <Icon name={item.data.icon} size="18" />
+                        ) : (
+                          <Icon name="mingcute:external-link-line" size="18" />
+                        )}
+                      </div>
+                      <div class="flex flex-col min-w-0 text-left">
+                        <span class="font-medium text-[13.5px] sm:text-[14px] text-[#0F172A] dark:text-white group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                          {item.data.title}
+                        </span>
+                        {item.data.subtitle && (
+                          <span class="text-[11.5px] text-[#64748B] dark:text-gray-400 leading-normal truncate">
+                            {item.data.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div class="shrink-0 text-[#94A3B8] dark:text-gray-400 group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                      <Icon name="mingcute:external-link-line" size="14" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- PROJECTS & DEMOS -->
+          {projectLinks.length > 0 && (
+            <div class="w-full flex flex-col gap-2">
+              <div class="flex items-center justify-between px-1">
+                <span class="text-[10.5px] font-mono uppercase tracking-wider text-[#64748B] dark:text-gray-400 font-semibold">
+                  // PROGETTI SELEZIONATI &amp; DEMO
+                </span>
+                <span class="text-[10px] font-mono text-[#94A3B8] dark:text-gray-400">
+                  UNITY C# SHOWCASE
+                </span>
+              </div>
+
+              <div class="w-full flex flex-col gap-2">
+                {projectLinks.map((item) => (
+                  <a
+                    href={item.data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group w-full p-3.5 rounded-[12px] bg-white/95 dark:bg-[#111827]/95 border border-[#E2E8F0] dark:border-gray-800 hover:border-swiss-crimson/50 dark:hover:border-red-500/50 shadow-2xs hover:shadow-xs transition-all duration-150 hover:-translate-y-0.5 flex items-center justify-between gap-3 no-underline text-inherit"
+                  >
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-9 h-9 rounded-[8px] bg-[#F1F5F9] dark:bg-[#1E293B] text-[#334155] dark:text-gray-200 group-hover:bg-swiss-crimson-light dark:group-hover:bg-[#380A10] group-hover:text-swiss-crimson dark:group-hover:text-red-400 flex items-center justify-center shrink-0 transition-colors">
+                        {item.data.icon ? (
+                          <Icon name={item.data.icon} size="18" />
+                        ) : (
+                          <Icon name="mingcute:game-2-line" size="18" />
+                        )}
+                      </div>
+                      <div class="flex flex-col min-w-0 text-left">
+                        <span class="font-medium text-[13.5px] sm:text-[14px] text-[#0F172A] dark:text-white group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                          {item.data.title}
+                        </span>
+                        {item.data.subtitle && (
+                          <span class="text-[11.5px] text-[#64748B] dark:text-gray-400 leading-normal truncate">
+                            {item.data.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div class="shrink-0 text-[#94A3B8] dark:text-gray-400 group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                      <Icon name="mingcute:external-link-line" size="14" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- OTHER / CONTACT -->
+          {otherLinks.length > 0 && (
+            <div class="w-full flex flex-col gap-2">
+              <div class="flex items-center justify-between px-1">
+                <span class="text-[10.5px] font-mono uppercase tracking-wider text-[#64748B] dark:text-gray-400 font-semibold">
+                  // CONTATTO DIRETTO
+                </span>
+                <span class="text-[10px] font-mono text-[#94A3B8] dark:text-gray-400">
+                  REACH OUT
+                </span>
+              </div>
+
+              <div class="w-full flex flex-col gap-2">
+                {otherLinks.map((item) => (
+                  <a
+                    href={item.data.url}
+                    class="group w-full p-3.5 rounded-[12px] bg-white/95 dark:bg-[#111827]/95 border border-[#E2E8F0] dark:border-gray-800 hover:border-swiss-crimson/50 dark:hover:border-red-500/50 shadow-2xs hover:shadow-xs transition-all duration-150 hover:-translate-y-0.5 flex items-center justify-between gap-3 no-underline text-inherit"
+                  >
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-9 h-9 rounded-[8px] bg-[#F1F5F9] dark:bg-[#1E293B] text-[#334155] dark:text-gray-200 group-hover:bg-swiss-crimson-light dark:group-hover:bg-[#380A10] group-hover:text-swiss-crimson dark:group-hover:text-red-400 flex items-center justify-center shrink-0 transition-colors">
+                        {item.data.icon ? (
+                          <Icon name={item.data.icon} size="18" />
+                        ) : (
+                          <Icon name="mingcute:mail-line" size="18" />
+                        )}
+                      </div>
+                      <div class="flex flex-col min-w-0 text-left">
+                        <span class="font-medium text-[13.5px] sm:text-[14px] text-[#0F172A] dark:text-white group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                          {item.data.title}
+                        </span>
+                        {item.data.subtitle && (
+                          <span class="text-[11.5px] text-[#64748B] dark:text-gray-400 leading-normal truncate">
+                            {item.data.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div class="shrink-0 text-[#94A3B8] dark:text-gray-400 group-hover:text-swiss-crimson dark:group-hover:text-red-400 transition-colors">
+                      <span class="text-sm font-bold transition-transform duration-150 group-hover:translate-x-0.5">→</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+      </main>
+
+      <!-- Swiss Editorial Footer -->
+      <footer class="w-full max-w-xl mx-auto pt-8 pb-4 flex flex-col items-center justify-center gap-2 border-t border-gray-200/70 dark:border-gray-800/80 text-center">
+        <div class="flex items-center gap-2 text-[11px] font-mono text-[#64748B] dark:text-gray-400">
+          <span>VALERIO COMELLA</span>
+          <span>·</span>
+          <span>SWISS EDITORIAL DIRECTORY</span>
+        </div>
+        <p class="text-[10px] font-mono text-[#94A3B8] dark:text-gray-400 m-0">
+          BUILT WITH ASTRO v4 · TAILWIND CSS · CONTENT COLLECTIONS
+        </p>
+      </footer>
+    </div>
+
+    <!-- Client-Side Vanilla TypeScript: Theme Toggle & Quick Email Copy -->
+    <script>
+      // Quick Email Copy with Instant Visual Feedback
+      function setupEmailCopy() {
+        const copyBtn = document.getElementById("quick-copy-email")
+        if (!copyBtn) return
+
+        copyBtn.addEventListener("click", async () => {
+          const email = copyBtn.getAttribute("data-email")
+          if (!email) return
+
+          try {
+            await navigator.clipboard.writeText(email)
+            const copyIcon = copyBtn.querySelector(".copy-icon")
+            const checkIcon = copyBtn.querySelector(".check-icon")
+            const btnText = copyBtn.querySelector(".btn-text")
+
+            if (copyIcon && checkIcon && btnText) {
+              copyIcon.classList.add("hidden")
+              checkIcon.classList.remove("hidden")
+              btnText.textContent = "Copiata!"
+              copyBtn.classList.add("bg-emerald-50", "dark:bg-emerald-950/40", "border-emerald-300", "dark:border-emerald-700")
+
+              setTimeout(() => {
+                copyIcon.classList.remove("hidden")
+                checkIcon.classList.add("hidden")
+                btnText.textContent = "Copia"
+                copyBtn.classList.remove("bg-emerald-50", "dark:bg-emerald-950/40", "border-emerald-300", "dark:border-emerald-700")
+              }, 2000)
+            }
+          } catch (err) {
+            console.error("Clipboard copy failed", err)
+          }
+        })
+      }
+
+      // Theme Toggle Logic
+      function setupThemeToggle() {
+        const toggleBtn = document.getElementById("theme-toggle")
+        if (!toggleBtn) return
+
+        toggleBtn.addEventListener("click", () => {
+          const isDark = document.documentElement.classList.contains("dark")
+          const nextTheme = isDark ? "light" : "dark"
+
+          if (nextTheme === "dark") {
+            document.documentElement.classList.add("dark", "scheme-dark")
+            document.documentElement.setAttribute("data-theme", "dark")
+          } else {
+            document.documentElement.classList.remove("dark", "scheme-dark")
+            document.documentElement.setAttribute("data-theme", "light")
+          }
+
+          try {
+            localStorage.setItem("theme", nextTheme)
+          } catch (e) {}
+        })
+      }
+
+      setupEmailCopy()
+      setupThemeToggle()
+      document.addEventListener("astro:after-swap", () => {
+        setupEmailCopy()
+        setupThemeToggle()
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "title": "itch.io Showcase",
+  "subtitle": "Catalogo giochi, game jam e prototipi realizzati in Unity (C#)",
+  "url": "https://honorarymars605.itch.io",
+  "category": "social",
+  "icon": "itchio",
+  "featured": false,
+  "order": 5,
+  "visible": true
+}

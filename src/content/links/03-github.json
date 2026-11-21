@@ -1,0 +1,10 @@
+{
+  "title": "GitHub",
+  "subtitle": "Repository open source, game dev Unity e architetture web",
+  "url": "https://github.com/valeriocomella",
+  "category": "social",
+  "icon": "mingcute:github-line",
+  "featured": false,
+  "order": 3,
+  "visible": true
+}

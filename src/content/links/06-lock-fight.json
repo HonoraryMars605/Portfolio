@@ -1,0 +1,10 @@
+{
+  "title": "Lock Fight",
+  "subtitle": "Action combat system sviluppato in Unity C# (Demo Web/PC)",
+  "url": "https://lock-fight.itch.io/lock-fight",
+  "category": "project",
+  "icon": "mingcute:sword-line",
+  "featured": false,
+  "order": 6,
+  "visible": true
+}

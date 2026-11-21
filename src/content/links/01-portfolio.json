@@ -1,0 +1,10 @@
+{
+  "title": "Portfolio Interattivo",
+  "subtitle": "Esperienza Swiss Editorial con telemetria e audio procedurali",
+  "url": "/",
+  "category": "primary",
+  "icon": "mingcute:briefcase-line",
+  "featured": true,
+  "order": 1,
+  "visible": true
+}

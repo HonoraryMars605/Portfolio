@@ -1,0 +1,10 @@
+{
+  "title": "Curriculum Vitae (PDF)",
+  "subtitle": "Formazione ITS EQF5, esperienze lavorative e stack Unity/Full Stack",
+  "url": "/CV_ComellaValerio.pdf",
+  "category": "primary",
+  "icon": "academicons:cv",
+  "featured": true,
+  "order": 2,
+  "visible": true
+}
